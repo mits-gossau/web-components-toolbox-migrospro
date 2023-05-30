@@ -24,17 +24,7 @@
 	font-display: swap;
 }
 :root {
-  --color-active: #592037;
-  --color-disabled: #592037;
-  --color-hover: #b37187;
-  --color-quaternary:#fefce5;
-  --color-secondary: #8b254c;
-  --color-tertiary: #b5ce34;
-  /* -- */
   --font-family-bold: HelveticaNowTextBold, HelveticaNowText, Helvetica, Arial, sans-serif;
   --font-family-secondary: var(--font-family-bold);
   --font-family: HelveticaNowText, Helvetica, Arial, sans-serif;
-  /* -- */
-  --h-color: var(--color-secondary);
-  /* -- */
 }
