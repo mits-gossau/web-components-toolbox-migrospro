@@ -18,12 +18,10 @@
   <script>
     const rootFolder = 'src'
     const css = './src/css/variablesCustom.css'
-    const login = './src/es/components/web-components-toolbox/src/es/components/msrc/login/default-/default-.html'
     const logo = './src/es/components/atoms/logo/default-/default-.html'
     const nav = './src/es/components/web-components-toolbox/src/es/components/molecules/navigation/migrospro-/migrospro-.html'
     const footer = './src/es/components/organisms/footer/default-/default-.html'
-    const pageQuery = `rootFolder=${rootFolder}&css=${css}&login=${login}&logo=${logo}&nav=${nav}&footer=${footer}`
-    console.log(pageQuery)
+    const pageQuery = `rootFolder=${rootFolder}&css=${css}&logo=${logo}&nav=${nav}&footer=${footer}`
     document.querySelector('#pages').innerHTML = /* HTML */`
       <ul>
         <li><a href="./src/es/components/web-components-toolbox/docs/Grid.html?${pageQuery}&content=./src/es/components/pages/Home.html">Home</a></li>
