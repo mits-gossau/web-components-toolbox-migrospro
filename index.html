@@ -21,10 +21,13 @@
     const logo = './src/es/components/atoms/logo/default-/default-.html'
     const nav = './src/es/components/web-components-toolbox/src/es/components/molecules/navigation/migrospro-/migrospro-.html'
     const footer = './src/es/components/organisms/footer/default-/default-.html'
-    const pageQuery = `rootFolder=${rootFolder}&css=${css}&logo=${logo}&nav=${nav}&footer=${footer}`
+    const body = './src/es/components/pages/Home.html' 
+    const menu = './src/es/components/pages/Menu.html' 
+    const basket = './src/es/components/pages/Basket.html' 
+    const pageQuery = `rootFolder=${rootFolder}&css=${css}&logo=${logo}&nav=${nav}&footer=${footer}&body=${body}&menu=${menu}&basket=${basket}`
     document.querySelector('#pages').innerHTML = /* HTML */`
       <ul>
-        <li><a href="./src/es/components/web-components-toolbox/docs/Grid.html?${pageQuery}&content=./src/es/components/pages/Home.html">Home</a></li>
+        <li><a href="./src/es/components/web-components-toolbox/docs/Grid.html?${pageQuery}">Home</a></li>
         <li><a href="./src/es/components/web-components-toolbox/docs/Grid.html?${pageQuery}&content=./src/es/components/pages/Products.html">Product List</a></li>
         <li><a href="./src/es/components/web-components-toolbox/docs/Grid.html?${pageQuery}&content=./src/es/components/pages/ProductDetail.html">Product Detail</a></li>
       </ul>
