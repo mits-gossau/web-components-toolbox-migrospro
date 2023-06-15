@@ -25,12 +25,14 @@
 }
 :root {
   --any-margin-top-first-child: calc(var(--content-spacing) * 4);
+  --button-square-padding-custom:1em;
   --content-width: calc(100% - (var(--content-spacing) * 2));
   --font-family-bold: HelveticaNowTextBold, HelveticaNowText, Helvetica, Arial, sans-serif;
   --font-family-secondary: var(--font-family-bold);
   --font-family: HelveticaNowText, Helvetica, Arial, sans-serif;
   --footer-default-content-width: 100%;
   --header-height: calc(3em + (var(--content-spacing) * 2));
+  --header-migrospro-a-menu-icon-background-color-custom:var(--m-black);
   --header-migrospro-background-color-custom:var(--m-white);
   --header-migrospro-border-bottom-custom: 1px solid var(--m-gray-300);
   --header-migrospro-flex-wrap-custom:nowrap;
@@ -39,6 +41,4 @@
   --header-migrospro-padding: var(--content-spacing) 0;
   --main-height: 100%;
   --main-overflow-y:auto;
-  --button-square-padding-custom:1em;
-  /* --button-category-background-color-custom:var(--color-secondary); */
 }
