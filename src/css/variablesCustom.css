@@ -29,7 +29,7 @@
 	--font-family-secondary: var(--font-family-bold);
 	--font-family: HelveticaNowText, Helvetica, Arial, sans-serif;
 	--header-default-background-color-custom: var(--m-black);
-	--header-default-logo-width-custom: 237px;
+	--header-default-logo-width-custom: 15vw;
 	--content-width: 90%;
 	--header-default-content-width: 90%;
 }
