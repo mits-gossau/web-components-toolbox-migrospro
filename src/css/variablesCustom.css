@@ -41,4 +41,5 @@
   --header-migrospro-padding: var(--content-spacing) 0;
   --main-height: 100%;
   --main-overflow-y:auto;
+  --header-migrospro-a-logo-top-custom:2em;
 }
