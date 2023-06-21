@@ -34,4 +34,6 @@
 	--header-default-content-width: max(calc(1200px - var(--content-spacing) * 2), var(--content-width));
 	--picture-store-logo-img-max-width:5em;
 	--wrapper-text-flex-wrap-custom:nowrap;
+	--footer-default-invert-background-color-custom:var(--m-black);
+	--footer-default-invert-orange-background-color-custom:var(--color-secondary);
 }
