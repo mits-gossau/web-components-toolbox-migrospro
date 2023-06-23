@@ -80,7 +80,55 @@
                 </button>
             </a-button>
         </m-tag-filter>
-        <m-tag-filter namespace="tag-filter-horizontal-" answer-event-name="list-articles" request-event-name="request-list-articles" tag-detail-property-name="subTagFetch"></m-tag-filter>
+        <o-wrapper namespace=wrapper-teaser->
+            <m-teaser namespace=teaser-plain- href="http://www.jowa.ch">
+                <figure>
+                    <a-picture namespace="picture-teaser-" picture-load defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="randomized image">
+                    </a-picture>
+                    <figcaption>
+                        <div>
+                            <h2 class="line-height-one-em">Accueil et espace détente</h2>
+                        </div>
+                    </figcaption>
+                </figure>
+            </m-teaser>
+            <m-teaser namespace=teaser-plain- href="http://www.jowa.ch">
+                <figure>
+                    <a-picture namespace="picture-teaser-" picture-load
+                        defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="randomized image">
+                    </a-picture>
+                    <figcaption>
+                        <div>
+                            <h2 class="line-height-one-em">Post de travail</h2>
+                        </div>
+                    </figcaption>
+                </figure>
+            </m-teaser>
+            <m-teaser namespace=teaser-plain- href="http://www.jowa.ch">
+                <figure>
+                    <a-picture namespace="picture-teaser-" picture-load
+                        defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="randomized image">
+                    </a-picture>
+                    <figcaption>
+                        <div>
+                            <h2 class="line-height-one-em">Accueil et espace détente</h2>
+                        </div>
+                    </figcaption>
+                </figure>
+            </m-teaser>
+            <m-teaser namespace=teaser-plain- href="http://www.jowa.ch">
+                <figure>
+                    <a-picture namespace="picture-teaser-" picture-load
+                        defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="randomized image">
+                    </a-picture>
+                    <figcaption>
+                        <div>
+                            <h2 class="line-height-one-em">Post de travail</h2>
+                        </div>
+                    </figcaption>
+                </figure>
+            </m-teaser>
+        </o-wrapper>
         <msrc-product-list
             endpoint="https://admin.alnatura.ch/umbraco/api/ProductsApi/GetCats?cat="
             web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="BeSS_97"
