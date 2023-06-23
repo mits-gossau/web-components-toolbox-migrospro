@@ -37,4 +37,9 @@
 	--header-default-logo-width-custom: 15vw;
 	--picture-store-logo-img-max-width:5em;
 	--wrapper-text-flex-wrap-custom:nowrap;
+	--button-category-background-color-active-custom:#E0E0E0;
+	--button-category-color-custom:var(--m-black);
+	--button-category-background-color-custom:var(--m-gray-100);
+	--button-category-color-active-custom:var(--m-black);
+	--button-category-background-color-hover-custom:var(--button-category-background-color-active-custom);
 }
