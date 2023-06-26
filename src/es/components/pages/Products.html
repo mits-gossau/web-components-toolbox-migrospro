@@ -158,46 +158,62 @@
             </a-button>
         </m-tag-filter>
         <div>
-            <o-wrapper namespace=wrapper-text->
-                <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample1.jpg"
-                        alt="Migros"></a-picture>
-                    <div>Accueil et espace détente</div>
-                </a>
-                <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample2.jpg"
-                        alt="Migros"></a-picture>
-                    <div>Post de travail</div>
-                </a>
-                <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample1.jpg"
-                        alt="Migros"></a-picture>
-                    <div>Extérieur et terrasse</div>
-                </a>
+            <o-wrapper namespace=wrapper-category->
+                <div>
+                    <a width=25% href=# class="center"><a-picture
+                            defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="Migros"></a-picture>
+                        <div>Accueil et espace détente</div>
+                    </a>
+                </div>
+                <div>
+                    <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample2.jpg"
+                            alt="Migros"></a-picture>
+                        <div>Post de travail</div>
+                    </a>
+                </div>
+                <div>
+                    <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample1.jpg"
+                            alt="Migros"></a-picture>
+                        <div>Extérieur et terrasse</div>
+                    </a>
+                </div>
+               <div>
                 <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample2.jpg"
                         alt="Migros"></a-picture>
                     <div>Mobilier professionnel</div>
                 </a>
+               </div>
             </o-wrapper>
-            <o-wrapper namespace=wrapper-text->
+        <o-wrapper namespace=wrapper-category->
+            <div>
                 <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample1.jpg"
                         alt="Migros"></a-picture>
-                    <div>Baaaahhhhhh</div>
+                    <div>Accueil et espace détente</div>
                 </a>
+            </div>
+            <div>
                 <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample2.jpg"
                         alt="Migros"></a-picture>
-                    <div>Hello Baaaahhhhhh Hello</div>
+                    <div>Post de travail</div>
                 </a>
+            </div>
+            <div>
                 <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample1.jpg"
                         alt="Migros"></a-picture>
-                    <div>Baaaahhhhhh</div>
+                    <div>Extérieur et terrasse</div>
                 </a>
+            </div>
+            <div>
                 <a width=25% href=# class="center"><a-picture defaultSource="../../../../img/migrospro/category-sample2.jpg"
                         alt="Migros"></a-picture>
-                    <div>Baaaahhhhhh</div>
+                    <div>Mobilier professionnel</div>
                 </a>
-            </o-wrapper>
-            <div class="spacer-two"></div>
+            </div>
+        </o-wrapper>
+        <hr>
             <msrc-product-list endpoint="https://admin.alnatura.ch/umbraco/api/ProductsApi/GetCats?cat="
-                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="BeSS_97" sort="updated_at"
-                env="production" mode="default" language="de" config='{
+                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="BeSS_97"
+                sort="updated_at" env="production" mode="default" language="de" config='{
                                             "colCount":["2","2","2","4","4"],
                                             "fallbackEmptyComponent":"Es wurde kein Produkt gefunden. Bitte versuchen Sie es später noch einmal.",
                                             "filterOptions":{
