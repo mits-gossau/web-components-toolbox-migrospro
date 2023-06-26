@@ -36,7 +36,6 @@
 	--header-default-content-width: max(calc(1200px - var(--content-spacing) * 2), var(--content-width));
 	--header-default-logo-width-custom: 15vw;
 	--picture-store-logo-img-max-width:5em;
-	--wrapper-text-flex-wrap-custom:nowrap;
 	--button-category-color-custom:var(--m-black);
 	--button-category-background-color-custom:var(--m-gray-100);
 	--button-category-color-active-custom:var(--m-white);
