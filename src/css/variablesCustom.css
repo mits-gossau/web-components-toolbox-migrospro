@@ -41,4 +41,8 @@
 	--button-category-color-active-custom:var(--m-white);
 	--button-category-background-color-hover-custom:var(--m-gray-300);
 	--button-category-color-hover-custom:var(--m-black);
+	/* --- */
+	--navigation-alnatura-not-open-color-active-custom:var(--m-white);
+	--navigation-alnatura-not-open-color-hover-custom:var(--m-white);
+	
 }
