@@ -163,98 +163,24 @@
             </a-button>
         </m-tag-filter>
         <div>
-            <o-wrapper namespace=wrapper-spacer->
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-            </o-wrapper>
-            <o-wrapper namespace=wrapper-spacer->
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../../../img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-            </o-wrapper>
-            <hr>
+            <style>
+                :host {
+                    --a-margin:0;
+                }
+            </style>
+                <a-breadcrumb icon="../src/icons/chevron_right.svg">
+                    <ul>
+                        <li><a href="#">Page d’accueil</a></li>
+                        <li><span></span></li>
+                        <li><a href="#">Mobilier & Equipements</a></li>
+                        <li><span></span></li>
+                        <li><a href="#">Post de travail</a></li>
+                    </ul>
+                </a-breadcrumb>
+                <div class="spacer"></div>
+            <h2>Post de travail</h2>
+            <div class="spacer"></div>
+            
             <msrc-product-list endpoint="https://admin.alnatura.ch/umbraco/api/ProductsApi/GetCats?cat="
                 web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="BeSS_97"
                 sort="updated_at" env="production" mode="default" language="de" config='{
