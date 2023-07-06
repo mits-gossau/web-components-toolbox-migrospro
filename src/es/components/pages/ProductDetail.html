@@ -5,7 +5,9 @@
         --path-color: var(--color-tertiary);
     }
 </style>
-<a href="#"><h5><a-arrow move hover-on-parent-element direction="left"></a-arrow>Zurück zur Übersicht</h5></a>
+<a href="#">
+    <h5><a-arrow move hover-on-parent-element direction="left"></a-arrow>Zurück zur Übersicht</h5>
+</a>
 <o-wrapper align-items="start">
     <style>
         :host {
@@ -17,12 +19,12 @@
         <h2 class="font-size-h1 bg-price margin-zero">5.90</h2>
         <h3 class="margin-zero">Alviana JojoBar Hands</h3>
         <p>25g</p>
-        <a href="#more-info"><h5 class="margin-zero">Weitere Informationen<a-arrow move hover-on-parent-element direction="right"></a-arrow></h5></a>
-        <msrc-reviews-summary
-            env="local"
-            web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe"
-            target-identifier="523205500000"
-        ></msrc-reviews-summary>
+        <a href="#more-info">
+            <h5 class="margin-zero">Weitere Informationen<a-arrow move hover-on-parent-element
+                    direction="right"></a-arrow></h5>
+        </a>
+        <msrc-reviews-summary env="local" web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe"
+            target-identifier="523205500000"></msrc-reviews-summary>
         <hr>
         <p class="margin-zero">Erhältlich bei</p>
         <o-wrapper namespace="wrapper-no-calc-column-width-left-" flex-nowrap-mobile no-calc-column-width>
@@ -48,10 +50,16 @@
     </div>
 </o-wrapper>
 <div class="spacer-two"></div>
-<m-details id="more-info" desktop-open namespace="details-default-">
-    <details open>
+<o-body-style background-color="var(--m-gray-100)">
+    <div class="spacer-one"></div>
+    <h2>Informations sur le produit</h2>
+    <p>Toutes les informations sur les produits et les prix sont sans engagement.</p>
+</o-body-style>
+<div class="spacer-two"></div>
+<m-details id="more-info" namespace="details-default-">
+    <details>
         <summary>
-            <h4>Produktinformationen</h4>
+            <h4>Information produit</h4>
         </summary>
         <div>
             <table>
@@ -110,38 +118,14 @@
         </div>
     </details>
 </m-details>
-<m-details id="reviews" namespace="details-default-">
-    <details>
-        <summary>
-            <h4>Kundenbewertungen</h4>
-        </summary>
-        <div>
-            <msrc-ratings-reviews
-                env="local"
-                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe"
-                target-identifier="523205500000"
-            ></msrc-ratings-reviews>
-        </div>
-    </details>
-</m-details>
 <m-details namespace="details-default-">
     <details>
         <summary>
-            <h4>Fragen zum Produkt</h4>
+            <h4>Valeurs nutritionnelles</h4>
         </summary>
         <div>
-            <msrc-questions-answers
-                env="local"
-                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe"
-                target-identifier="523205500000"
-            ></msrc-questions-answers>
+            Example....
         </div>
     </details>
 </m-details>
-<div class="spacer-one"></div>
-<o-body-style background-image="url(../../../../img/products/Tafelfond_A6_DRUCK.jpg)" color=var(--background-color) h-color=var(--background-color)>
-    <div class="spacer-one"></div>
-    <h2>Informationen zum Produkt</h2>
-    <p>Produktangaben sowie Verfügbarkeit und Preise von Produkten Sämtliche Angaben zu den Produkten (Zutatenliste,
-        Nährwertangaben/Food Facts, Allergiehinweise etc. ) und Preisangaben sind unverbindlich.</p>
-</o-body-style>
+<div class="spacer-two"></div>
