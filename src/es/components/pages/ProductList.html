@@ -6,16 +6,13 @@
 <o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="20%">
     <section>
         <m-tag-filter namespace="tag-filter-vertical-" has-icons>
-            <a-button namespace="button-category-" tag="xBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
+            <a-button namespace="button-category-" tag="BeSS_97" request-event-name="request-list-product">
                 Papeterie & Impression
             </a-button>
-            <a-button namespace="button-category-" tag="xxBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
+            <a-button namespace="button-category-" tag="xxBeSS_97" request-event-name="request-list-articles">
                 Bricolage & Plantes
             </a-button>
-            <a-button namespace="button-category-" tag="xxxBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
+            <a-button namespace="button-category-" tag="xxxBeSS_97" request-event-name="request-list-articles">
                 Bricolage & Plantes
             </a-button>
         </m-tag-filter>
@@ -112,30 +109,9 @@
                 </m-teaser>
             </o-wrapper>
             <hr>
-            <msrc-product-list endpoint="https://admin.alnatura.ch/umbraco/api/ProductsApi/GetCats?cat="
-                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="xBeSS_97"
-                sort="updated_at" env="production" mode="default" language="de" config='{
-                                            "colCount":["2","2","2","4","4"],
-                                            "fallbackEmptyComponent":"Es wurde kein Produkt gefunden. Bitte versuchen Sie es später noch einmal.",
-                                            "filterOptions":{
-                                                "additionalQueryParams":{
-                                                    "limit":8,
-                                                    "view":"browseallretailers"
-                                                },
-                                                "fo":{
-                                                    "anchor_target":"_blank",
-                                                    "link_target":"/de/produkte/{productSlug}.html",
-                                                    "target":"alnatura"
-                                                },
-                                                "region":"gmzh"
-                                            },
-                                            "hideAddToShoppingList":true,
-                                            "hideRating":false,
-                                            "order":"asc",
-                                            "theme":"mgb",
-                                            "paginationOptions":{}
-                                        }'>
-            </msrc-product-list>
+            <m-product-list answer-event-name="list-products" request-event-name="request-list-products"
+                namespace="product-list-default-">
+            </m-product-list>
         </div>
     </section>
 </o-grid>
