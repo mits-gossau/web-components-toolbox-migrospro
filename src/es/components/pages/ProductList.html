@@ -5,14 +5,15 @@
 </style>
 <o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="20%">
     <section>
-        <m-tag-filter namespace="tag-filter-vertical-" has-icons>
-            <a-button namespace="button-category-" tag="BeSS_97" request-event-name="request-list-product">
+        <m-tag-filter namespace="tag-filter-vertical-">
+            
+            <a-button namespace="button-category-" tag="BeSS_97" request-event-name="request-list-product" answer-event-name="list-product"  >
                Show Products
             </a-button>
-            <a-button namespace="button-category-" tag="xxBeSS_97" request-event-name="request-list-articles">
+            <a-button namespace="button-category-" tag="BeSS_010" request-event-name="request-list-product" answer-event-name="list-product"  >
                 Bricolage & Plantes
             </a-button>
-            <a-button namespace="button-category-" tag="xxxBeSS_97" request-event-name="request-list-articles">
+            <a-button namespace="button-category-" tag="BeSS_0108" request-event-name="request-list-product" answer-event-name="list-product"  >
                 Bricolage & Plantes
             </a-button>
         </m-tag-filter>
@@ -109,7 +110,7 @@
                 </m-teaser>
             </o-wrapper>
             <hr>
-            <m-product-list answer-event-name="list-products" namespace="product-list-default-"></m-product-list>
+            <m-product-list answer-event-name="list-product" namespace="product-list-default-"></m-product-list>
         </div>
     </section>
 </o-grid>
