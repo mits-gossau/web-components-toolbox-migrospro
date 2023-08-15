@@ -23,7 +23,7 @@
     <c-fetch-html>
       <c-fetch-css>
         <c-fetch-modules>
-          <c-product endpoint="https://testadmin.migrospro.ch/umbraco/api/">
+          <c-product endpoint="https://testadmin.migrospro.ch/umbraco/api/MigrosProProductApi/GetProductsByCategory">
             <p-general>
               <o-header menu-icon="true" namespace="header-default-" namespace-fallback role="header">
                 <!-- template path passed by path query gets loaded into here. eg. ./src/es/components/atoms/logo/default-/default-.html -->
@@ -134,7 +134,6 @@
     const loadHTML = (path, selector, append = false, rootFolder, setChild = 'appendChild') => {
       if (!path) return null
       if (!rootFolder) rootFolder = 'docs'
-      console.log('load', {path, rootFolder});
       path = location.href.replace(new RegExp(`${rootFolder}\/.*`), path)
       return fetch(path).then(res => res.text()).then(innerHTML => {
         // fix relative links
