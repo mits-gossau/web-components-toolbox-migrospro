@@ -16,28 +16,47 @@
                 answer-event-name="list-product">
                 Bricolage & Plantes
             </a-button>
-            <a-button namespace="button-category-" tag="BeSS_0108" min-percentage="30"
+            <a-button namespace="button-category-" tag="BeSS_010119,BeSS_010103,BeSS_010106" min-percentage="30"
                 active-detail-property-name="fetch:tag" request-event-name="request-list-product"
                 answer-event-name="list-product">
                 Bricolage & Plantes
             </a-button>
         </m-tag-filter>
         <div>
-            <o-wrapper namespace=wrapper-spacer->
+            <style>
+                .hide-sub-category {
+                    display: none;
+                }
+            </style>
+            <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="BeSS_97">
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
+                            <style>
+                                :host {
+                                    --button-category-background-color-active-custom: none;
+                                    --button-category-background-color-custom: none;
+                                    --button-category-background-color-hover-custom: none;
+                                    --button-category-color-hover-custom: var(--color-secondary);
+                                    --button-category-color-active-custom: var(--color-secondary);
+                                    --button-category-padding-custom: 0;
+                                }
+                            </style>
+                            <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="BeSS_97"
+                                min-percentage="50" active-detail-property-name="fetch:tag"
+                                request-event-name="request-list-product" answer-event-name="list-product">
+                                Test Me!
+                            </a-button>
                     </figure>
                 </m-teaser>
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
@@ -48,7 +67,8 @@
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
@@ -59,20 +79,45 @@
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
                             </a-link>
                         </figcaption>
+                    </figure>
+                </m-teaser>
+                <m-teaser namespace="teaser-plainer-">
+                    <figure>
+                        <a-picture namespace="picture-teaser-" picture-load
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
+                        <figcaption>
+                            <style>
+                                :host {
+                                    --button-category-background-color-active-custom: none;
+                                    --button-category-background-color-custom: none;
+                                    --button-category-background-color-hover-custom: none;
+                                    --button-category-color-hover-custom: var(--color-secondary);
+                                    --button-category-color-active-custom: var(--color-secondary);
+                                    --button-category-padding-custom: 0;
+                                }
+                            </style>
+                            <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="eSS_97"
+                                min-percentage="50" active-detail-property-name="fetch:tag"
+                                request-event-name="request-list-product" answer-event-name="list-product">
+                                Post de travail
+                            </a-button>
                     </figure>
                 </m-teaser>
             </o-wrapper>
-            <o-wrapper namespace=wrapper-spacer->
+            <o-wrapper namespace=wrapper-teaser- data-id="BeSS_010119" simulate-children="4">
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
@@ -83,7 +128,8 @@
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
@@ -94,7 +140,8 @@
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
@@ -105,7 +152,8 @@
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg" alt="Yosemite"></a-picture>
+                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                            alt="default-alt-tag"></a-picture>
                         <figcaption>
                             <a-link hover-on-parent-shadow-root-host>
                                 <a href="#">Post de travail</a>
