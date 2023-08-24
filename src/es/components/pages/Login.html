@@ -1,0 +1,110 @@
+<o-grid namespace="grid-2colums2rows-" first-container-vertical>
+    <style>
+        :host > section {
+            margin-bottom: 80px;
+        }
+        :host label {
+            color: var(--m-gray-600);
+            font-size: 14px;
+        }
+        :host h3 {
+            color: var(--m-orange-600);
+        }
+        :host hr {
+            color: var(--m-gray-300);
+        }
+        :host ul {
+            list-style: none;
+        }
+        :host li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        :host li a-picture {
+            width: 85px;
+            height: 60px;
+        }
+        :host li p {
+            color: #9E9E9E;
+            font-size: 12px;
+            width: 75%;
+            margin: 0 0 0 12px;
+        }
+        .login-sidebar {
+            background-color: var(--m-gray-100);
+            padding: 24px 16px;
+        }
+        input[type="submit"].hidden {
+            display: none;
+        }
+    </style>
+    <section>
+        <div class="login-form">
+            <h2>Connexion</h2>
+            <p>Connectez-vous avec votre identifiant Migros Pro.</p>
+            <m-form role="form">
+                <form id="form-login" action="/umbraco/Surface/MigrosProAccount/Login" class="form-horizontal" method="post" role="form">
+                    <input id="RedirectUrl" name="RedirectUrl" type="hidden" value="/">
+                    <input name="__RequestVerificationToken" type="hidden"
+                        value="6pzkApeevErcwdK07jsC-QqtJ5qtfEFL96Zpmh1maEgV47pP2CiOGs_2MCoVVqusDPPrDMCb3GSrbq4CThnWDvjR6Voml2eTqx_NVAEg1ZU1">
+                    <p>
+                        <div><label for="Email">E-mail</label></div>
+                        <div><input id="Email" name="Email" type="email" required></div>
+                    </p>
+                    <p>
+                        <div><label for="Password">Mot de passe</label></div>
+                        <div><input id="Password" name="Password" type="password" required></div>
+                    </p>
+                    <p>
+                        <div>
+                            <input type="submit" value="submit" class="hidden" />
+                            <a-button id="form-login-submit" type="submit" namespace="button-primary-" tabindex="0">Enregistrer</a-button>
+                        </div>
+                    </p>
+                </form>
+            </m-form>
+        </div>
+        <div>
+            <div class="login-sidebar">
+                <h3>Pas encore d'utilisateur&nbsp;?</h3>
+                <hr>
+                <ul>
+                    <li>
+                        <a-picture namespace="picture-" alt="Book" defaultsource="/src/icons/icon_book.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>Les incontournables sélectionnés pour vous parmi +100’000 références</p>
+                    </li>
+                    <li>
+                        <a-picture namespace="picture-" alt="Cash" defaultsource="/src/icons/icon_cash.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>Paiement à 30 jours</p>
+                    </li>
+                    <li>
+                        <a-picture namespace="picture-" alt="Label" defaultsource="/src/icons/icon_label.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>Remises sur volumnes annuels</p>
+                    </li>
+                    <li>
+                        <a-picture namespace="picture-" alt="Deliverer" defaultsource="/src/icons/icon_deliverer.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>Choix de la livraison: achat en magasin ou livraison sur site.</p>
+                    </li>
+                    <li>
+                        <a-picture namespace="picture-" alt="Warrenty" defaultsource="/src/icons/icon_warrenty.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>M-Garantie: 2 ans</p>
+                    </li>
+                    <li>
+                        <a-picture namespace="picture-" alt="Migros Pro Card" defaultsource="/src/icons/icon_migrospro-card.png"
+                            aspect-ratio="0.7058824" tabindex="0" loading="lazy" loaded="true"></a-picture>
+                        <p>Votre carte MIGROS PRO</p>
+                    </li>
+                </ul>
+                <hr>
+                <a-button namespace="button-primary-" onclick="" tabindex="0">Créez votre compte
+                    professionnel</a-button>
+            </div>
+        </div>
+    </section>
+</o-grid>

@@ -44,4 +44,24 @@
 	--navigation-alnatura-not-open-color-active-custom: var(--m-white);
 	--navigation-alnatura-not-open-color-hover-custom: var(--m-white);
 	--picture-store-logo-img-max-width: 5em;
+
+	/* grid */
+	--grid-2columns2rows-grid-gap-custom: 40px;
+
+	/* headlines */
+	--grid-2colums2rows-h-font-family: var(--font-family);
+	--grid-2colums2rows-h-margin-bottom: 16px;
+	--grid-2colums2rows-h-font-size: 20px;
+	--grid-2colums2rows-h-color: var(--m-orange-600);
+	--grid-2colums2rows-h-font-weight: 400;
+
+	/* lists */
+	--grid-2colums2rows-ul-list-style: none;
+	--grid-2colums2rows-ul-margin: 0;
+
+	/* hr */
+	--grid-2colums2rows-hr-margin: 32px 0;
+	--grid-2colums2rows-hr-margin-mobile: var(--grid-2colums2rows-hr-margin);
+
+	
 }
