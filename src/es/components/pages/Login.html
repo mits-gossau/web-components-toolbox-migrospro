@@ -31,12 +31,12 @@
             width: 75%;
             margin: 0 0 0 12px;
         }
-        .login-sidebar {
+        :host .login-sidebar {
             background-color: var(--m-gray-100);
             padding: 24px 16px;
         }
-        input[type="submit"].hidden {
-            display: none;
+        :host input[type="submit"] {
+            padding: 12px 24px;
         }
     </style>
     <section>
@@ -58,8 +58,7 @@
                     </p>
                     <p>
                         <div>
-                            <input type="submit" value="submit" class="hidden" />
-                            <a-button id="form-login-submit" type="submit" namespace="button-primary-" tabindex="0">Enregistrer</a-button>
+                            <input type="submit" value="Enregistrer" />
                         </div>
                     </p>
                 </form>
@@ -102,7 +101,7 @@
                     </li>
                 </ul>
                 <hr>
-                <a-button namespace="button-primary-" onclick="" tabindex="0">Créez votre compte
+                <a-button namespace="button-primary-" onclick="window.open('https://www.migros.ch/', '_self')" tabindex="0">Créez votre compte
                     professionnel</a-button>
             </div>
         </div>
