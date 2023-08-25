@@ -15,21 +15,21 @@
             </a-breadcrumb>
         </div>
         <m-form role="form">
-            <form action="/register" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
+            <form action="/register" enctype="multipart/form-data" method="post" role="form">
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Data_CivilityId">Civillité</label>
                     <div class="form-radio-group">
                         <span>
-                            <input checked="" id="Data_CivilityId" name="Data.CivilityId" type="radio" value="1">
-                            <label>M</label> 
+                            <input id="Data_CivilityId_M" name="Data.CivilityId" type="radio" value="1" checked>
+                            <label for="Data_CivilityId_M">M</label> 
                         </span>
                         <span>
-                            <input id="Data_CivilityId" name="Data.CivilityId" type="radio" value="2">
-                            <label>Mme </label> 
+                            <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2">
+                            <label for="Data_CivilityId_Mme">Mme </label> 
                         </span>
                         <span>
-                            <input id="Data_CivilityId" name="Data.CivilityId" type="radio" value="3">
-                            <label>Autre</label>
+                            <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3">
+                            <label for="Data_CivilityId_Autre">Autre</label>
                         </span>
                     </div>
                 </div>
