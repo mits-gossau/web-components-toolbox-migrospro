@@ -1,0 +1,416 @@
+<o-migrospro-register-form>
+    <section>
+        <h1>Votre demande de création de compte</h1>
+        <div class="form-steps">
+            <a-breadcrumb iconWidth="3em" icon="../../../../../src/es/components/web-components-toolbox/src/icons/chevron_right.svg">
+                <ul>
+                    <li><a href="#" class="active">1. Vos coordonnées</a></li>
+                    <li><span></span></li>
+                    <li><a href="#">2. Votre entreprise</a></li>
+                    <li><span></span></li>
+                    <li><a href="#">3. Détail entreprise</a></li>
+                    <li><span></span></li>
+                    <li><a href="#">4. Responsable compte</a></li>
+                </ul>
+            </a-breadcrumb>
+        </div>
+        <m-form role="form">
+            <form action="/register" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Data_CivilityId">Civillité</label>
+                    <div class="form-radio-group">
+                        <span>
+                            <input checked="" id="Data_CivilityId" name="Data.CivilityId" type="radio" value="1">
+                            <label>M</label> 
+                        </span>
+                        <span>
+                            <input id="Data_CivilityId" name="Data.CivilityId" type="radio" value="2">
+                            <label>Mme </label> 
+                        </span>
+                        <span>
+                            <input id="Data_CivilityId" name="Data.CivilityId" type="radio" value="3">
+                            <label>Autre</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_FirstName">FirstName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text"
+                            value="Laurin"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_LastName">LastName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_LastName" name="Data.LastName" type="text"
+                            value="Graf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_Email">Email</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_Email" name="Data.Email" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_PhoneNumber">PhoneNumber</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_PhoneNumber" name="Data.PhoneNumber" type="text"
+                            value="asdfsadf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_MobileNumber">MobileNumber</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_MobileNumber" name="Data.MobileNumber"
+                            type="text"></div>
+                </div>
+                <hr>
+                <p>step two</p>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_ActivityAreaId">ActivityAreaId</label>
+                    <div class="col-md-10"><select class="form-control" id="Data_ActivityAreaId" name="Data.ActivityAreaId">
+                            <option value="">TRANSLATE: RegisterForm.Dropdown.ActivityArea</option>
+                            <option value="1">Activités financières et assurances</option>
+                            <option value="2">Activités de ménage</option>
+                            <option selected="" value="3">Activités immobilières</option>
+                            <option value="4">Activités spécialisées, scientifiques, techniques</option>
+                            <option value="5">Administration publique</option>
+                            <option value="6">Agriculture, sylviculture, pêche</option>
+                            <option value="7">Arts, spectacles et activités récréatives</option>
+                            <option value="8">Commerce-réparation d'auto. et motocyles</option>
+                            <option value="9">Construction</option>
+                            <option value="10">Hébergement et restauration</option>
+                            <option value="11">Industrie extractive</option>
+                            <option value="12">Industrie manufacturière</option>
+                            <option value="13">Information et communication</option>
+                            <option value="14">Production et distribution d'eau</option>
+                            <option value="15">Production et distribution d'électricité, gaz…</option>
+                            <option value="16">Santé humaine et action sociale</option>
+                            <option value="17">Services administratifs et soutiens</option>
+                            <option value="18">Transports et entreposage</option>
+                            <option value="19">Autres services</option>
+                        </select></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_CompanyName">CompanyName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_CompanyName" name="Data.CompanyName" type="text"
+                            value="sdfsadf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_SocialReason">SocialReason</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_SocialReason" name="Data.SocialReason"
+                            type="text" value="asdfasdf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_AddressLine1">AddressLine1</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AddressLine1" name="Data.AddressLine1"
+                            type="text" value="sadfasdf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_AddressLine2">AddressLine2</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AddressLine2" name="Data.AddressLine2"
+                            type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_CityId">CityId</label>
+                    <div class="col-md-10"><select class="form-control" id="Data_CityId" name="Data.CityId">
+                            <option value="">TRANSLATE: RegisterForm.Dropdown.City</option>
+                            <option selected="" value="1">1200 Genève</option>
+                            <option value="2">1201 Genève</option>
+                            <option value="3">1202 Genève</option>
+                            <option value="4">1203 Genève</option>
+                            <option value="5">1204 Genève</option>
+                            <option value="6">1205 Genève</option>
+                            <option value="7">1206 Genève</option>
+                            <option value="8">1207 Genève</option>
+                            <option value="9">1208 Genève</option>
+                            <option value="10">1209 Genève</option>
+                            <option value="11">1211 Genève 1</option>
+                            <option value="12">1211 Genève 3</option>
+                            <option value="13">1211 Genève 4</option>
+                            <option value="14">1211 Genève 5</option>
+                            <option value="15">1211 Genève 6</option>
+                            <option value="16">1211 Genève 7</option>
+                            <option value="17">1211 Genève 8</option>
+                            <option value="18">1211 Genève 10</option>
+                            <option value="19">1211 Genève 11</option>
+                            <option value="20">1211 Genève 12</option>
+                            <option value="21">1211 Genève 13</option>
+                            <option value="22">1211 Genève 14</option>
+                            <option value="23">1211 Genève 17</option>
+                            <option value="24">1211 Genève 19</option>
+                            <option value="25">1211 Genève 20</option>
+                            <option value="26">1211 Genève 21</option>
+                            <option value="27">1211 Genève 22</option>
+                            <option value="28">1211 Genève 23</option>
+                            <option value="29">1211 Genève 26</option>
+                            <option value="30">1211 Genève 27</option>
+                            <option value="31">1211 Genève 28</option>
+                            <option value="32">1211 Genève 70</option>
+                            <option value="33">1211 Genève 71 CS CP</option>
+                            <option value="34">1211 Genève 73</option>
+                            <option value="35">1211 Genève 84 Votations</option>
+                            <option value="36">1212 Grand-Lancy</option>
+                            <option value="37">1212 Grand-Lanc 1</option>
+                            <option value="38">1213 Onex</option>
+                            <option value="39">1213 Petit-Lancy</option>
+                            <option value="40">1213 Petit-Lancy 1</option>
+                            <option value="41">1214 Vernier</option>
+                            <option value="42">1215 Genève 15 Aéroport</option>
+                            <option value="43">1216 Cointrin</option>
+                            <option value="44">1217 Meyrin</option>
+                            <option value="45">1217 Meyrin 1</option>
+                            <option value="46">1217 Meyrin 2</option>
+                            <option value="47">1218 Le Grand-Saconnex</option>
+                            <option value="48">1219 Aïre</option>
+                            <option value="49">1219 Châtelaine</option>
+                            <option value="50">1219 Le Lignon</option>
+                            <option value="51">1220 Les Avanchets</option>
+                            <option value="52">1222 Vésenaz</option>
+                            <option value="53">1223 1223 Cologny</option>
+                            <option value="54">1224 Chêne-Bougeries</option>
+                            <option value="55">1225 Chêne-Bourg</option>
+                            <option value="56">1226 Thônex</option>
+                            <option value="57">1227 Carouge GE</option>
+                            <option value="58">1227 Les Acacias</option>
+                            <option value="59">1228 Plan-les-Ouates</option>
+                            <option value="60">1231 Conches</option>
+                            <option value="61">1232 Confignon</option>
+                            <option value="62">1233 Bernex</option>
+                            <option value="63">1234 Vessy</option>
+                            <option value="64">1236 Cartigny</option>
+                            <option value="65">1237 Avully</option>
+                            <option value="66">1239 Collex</option>
+                            <option value="67">1240 Genève</option>
+                            <option value="68">1241 Puplinge</option>
+                            <option value="69">1242 Satigny</option>
+                            <option value="70">1243 Presinge</option>
+                            <option value="71">1244 Choulex</option>
+                            <option value="72">1245 Collonge-Bellerive</option>
+                            <option value="73">1246 Corsier GE</option>
+                            <option value="74">1247 Anières</option>
+                            <option value="75">1248 Hermance</option>
+                            <option value="76">1251 Gy</option>
+                            <option value="77">1252 Meinier</option>
+                            <option value="78">1253 Vandoeuvres</option>
+                            <option value="79">1254 Jussy</option>
+                            <option value="80">1255 Veyrier</option>
+                            <option value="81">1256 Troinex</option>
+                            <option value="82">1258 La Croix-de-Rozon1257</option>
+                            <option value="83">1258 Perly</option>
+                            <option value="84">1281 Russin</option>
+                            <option value="85">1283 Dardagny</option>
+                            <option value="86">1283 La Plaine</option>
+                            <option value="87">1284 Chancy</option>
+                            <option value="88">1285 Athenaz (Avusy)</option>
+                            <option value="89">1286 Soral</option>
+                            <option value="90">1287 Laconnex</option>
+                            <option value="91">1288 Aire-la-Ville</option>
+                            <option value="92">1289 Genève Services Spéciaux</option>
+                            <option value="93">1290 Versoix</option>
+                            <option value="94">1292 Chambésy</option>
+                            <option value="95">1293 Bellevue</option>
+                            <option value="96">1294 Genthod</option>
+                            <option value="97">1298 Céligny</option>
+                        </select></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_BillingEMailAddress">BillingEMailAddress</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_BillingEMailAddress"
+                            name="Data.BillingEMailAddress" type="text" value="asdfasdf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_DifferentBilling">DifferentBilling</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_DifferentBilling" name="Data.DifferentBilling"
+                            type="radio" value="True"> <label>Ja</label> <input checked="" class="form-control"
+                            id="Data_DifferentBilling" name="Data.DifferentBilling" type="radio" value="False">
+                        <label>nein</label></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_BillingName">BillingName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_BillingName" name="Data.BillingName"
+                            type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_BillingAddressLine1">BillingAddressLine1</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_BillingAddressLine1"
+                            name="Data.BillingAddressLine1" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_BillingAddressLine2">BillingAddressLine2</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_BillingAddressLine2"
+                            name="Data.BillingAddressLine2" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_BillingPostOfficeBox">BillingPostOfficeBox</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_BillingPostOfficeBox"
+                            name="Data.BillingPostOfficeBox" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_BillingCityId">BillingCityId</label>
+                    <div class="col-md-10"><select class="form-control" id="Data_BillingCityId" name="Data.BillingCityId">
+                            <option value="">TRANSLATE: RegisterForm.Dropdown.City</option>
+                            <option selected="" value="1">1200 Genève</option>
+                            <option value="2">1201 Genève</option>
+                            <option value="3">1202 Genève</option>
+                            <option value="4">1203 Genève</option>
+                            <option value="5">1204 Genève</option>
+                            <option value="6">1205 Genève</option>
+                            <option value="7">1206 Genève</option>
+                            <option value="8">1207 Genève</option>
+                            <option value="9">1208 Genève</option>
+                            <option value="10">1209 Genève</option>
+                            <option value="11">1211 Genève 1</option>
+                            <option value="12">1211 Genève 3</option>
+                            <option value="13">1211 Genève 4</option>
+                            <option value="14">1211 Genève 5</option>
+                            <option value="15">1211 Genève 6</option>
+                            <option value="16">1211 Genève 7</option>
+                            <option value="17">1211 Genève 8</option>
+                            <option value="18">1211 Genève 10</option>
+                            <option value="19">1211 Genève 11</option>
+                            <option value="20">1211 Genève 12</option>
+                            <option value="21">1211 Genève 13</option>
+                            <option value="22">1211 Genève 14</option>
+                            <option value="23">1211 Genève 17</option>
+                            <option value="24">1211 Genève 19</option>
+                            <option value="25">1211 Genève 20</option>
+                            <option value="26">1211 Genève 21</option>
+                            <option value="27">1211 Genève 22</option>
+                            <option value="28">1211 Genève 23</option>
+                            <option value="29">1211 Genève 26</option>
+                            <option value="30">1211 Genève 27</option>
+                            <option value="31">1211 Genève 28</option>
+                            <option value="32">1211 Genève 70</option>
+                            <option value="33">1211 Genève 71 CS CP</option>
+                            <option value="34">1211 Genève 73</option>
+                            <option value="35">1211 Genève 84 Votations</option>
+                            <option value="36">1212 Grand-Lancy</option>
+                            <option value="37">1212 Grand-Lanc 1</option>
+                            <option value="38">1213 Onex</option>
+                            <option value="39">1213 Petit-Lancy</option>
+                            <option value="40">1213 Petit-Lancy 1</option>
+                            <option value="41">1214 Vernier</option>
+                            <option value="42">1215 Genève 15 Aéroport</option>
+                            <option value="43">1216 Cointrin</option>
+                            <option value="44">1217 Meyrin</option>
+                            <option value="45">1217 Meyrin 1</option>
+                            <option value="46">1217 Meyrin 2</option>
+                            <option value="47">1218 Le Grand-Saconnex</option>
+                            <option value="48">1219 Aïre</option>
+                            <option value="49">1219 Châtelaine</option>
+                            <option value="50">1219 Le Lignon</option>
+                            <option value="51">1220 Les Avanchets</option>
+                            <option value="52">1222 Vésenaz</option>
+                            <option value="53">1223 1223 Cologny</option>
+                            <option value="54">1224 Chêne-Bougeries</option>
+                            <option value="55">1225 Chêne-Bourg</option>
+                            <option value="56">1226 Thônex</option>
+                            <option value="57">1227 Carouge GE</option>
+                            <option value="58">1227 Les Acacias</option>
+                            <option value="59">1228 Plan-les-Ouates</option>
+                            <option value="60">1231 Conches</option>
+                            <option value="61">1232 Confignon</option>
+                            <option value="62">1233 Bernex</option>
+                            <option value="63">1234 Vessy</option>
+                            <option value="64">1236 Cartigny</option>
+                            <option value="65">1237 Avully</option>
+                            <option value="66">1239 Collex</option>
+                            <option value="67">1240 Genève</option>
+                            <option value="68">1241 Puplinge</option>
+                            <option value="69">1242 Satigny</option>
+                            <option value="70">1243 Presinge</option>
+                            <option value="71">1244 Choulex</option>
+                            <option value="72">1245 Collonge-Bellerive</option>
+                            <option value="73">1246 Corsier GE</option>
+                            <option value="74">1247 Anières</option>
+                            <option value="75">1248 Hermance</option>
+                            <option value="76">1251 Gy</option>
+                            <option value="77">1252 Meinier</option>
+                            <option value="78">1253 Vandoeuvres</option>
+                            <option value="79">1254 Jussy</option>
+                            <option value="80">1255 Veyrier</option>
+                            <option value="81">1256 Troinex</option>
+                            <option value="82">1258 La Croix-de-Rozon1257</option>
+                            <option value="83">1258 Perly</option>
+                            <option value="84">1281 Russin</option>
+                            <option value="85">1283 Dardagny</option>
+                            <option value="86">1283 La Plaine</option>
+                            <option value="87">1284 Chancy</option>
+                            <option value="88">1285 Athenaz (Avusy)</option>
+                            <option value="89">1286 Soral</option>
+                            <option value="90">1287 Laconnex</option>
+                            <option value="91">1288 Aire-la-Ville</option>
+                            <option value="92">1289 Genève Services Spéciaux</option>
+                            <option value="93">1290 Versoix</option>
+                            <option value="94">1292 Chambésy</option>
+                            <option value="95">1293 Bellevue</option>
+                            <option value="96">1294 Genthod</option>
+                            <option value="97">1298 Céligny</option>
+                        </select></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_RecommendedCustomer">RecommendedCustomer</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_RecommendedCustomer"
+                            name="Data.RecommendedCustomer" type="text"></div>
+                </div>
+                <hr>
+                <p>Step three</p>
+                <div class="form-group"><label class="col-md-2 control-label" for="Data_ValuedAddedTax">ValuedAddedTax</label>
+                    <div class="col-md-10"><input checked="" class="form-control" id="Data_ValuedAddedTax"
+                            name="Data.ValuedAddedTax" type="radio" value="True"> <label>Ja</label> <input class="form-control"
+                            id="Data_ValuedAddedTax" name="Data.ValuedAddedTax" type="radio" value="False"> <label>nein</label>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_CompanyRegistrationNumber">CompanyRegistrationNumber</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_CompanyRegistrationNumber"
+                            name="Data.CompanyRegistrationNumber" type="text" value="asdfasdf"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_CompanyStructureTypeId">CompanyStructureTypeId</label>
+                    <div class="col-md-10"><select class="form-control" id="Data_CompanyStructureTypeId"
+                            name="Data.CompanyStructureTypeId">
+                            <option value="">TRANSLATE: RegisterForm.Dropdown.CompanyStructureType</option>
+                            <option value="1">Association</option>
+                            <option value="2">Entreprise</option>
+                            <option selected="" value="3">Institution</option>
+                            <option value="4">Organisation internationale</option>
+                            <option value="5">Prof. libérale ou ent. individuelle</option>
+                        </select></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_NumberOfCustomerCard">NumberOfCustomerCard</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_NumberOfCustomerCard"
+                            name="Data.NumberOfCustomerCard" type="text" value="3"></div>
+                </div>
+                <hr>
+                <p>Step four</p>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_IsAccountManager">IsAccountManager</label>
+                    <div class="col-md-10"><input checked="" class="form-control" id="Data_IsAccountManager"
+                            name="Data.IsAccountManager" type="radio" value="True"> <label>Ja</label> <input
+                            class="form-control" id="Data_IsAccountManager" name="Data.IsAccountManager" type="radio"
+                            value="False"> <label>nein</label></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerCivilityId">AccountManagerCivilityId</label>
+                    <div class="col-md-10"><input checked="" id="Data_AccountManagerCivilityId"
+                            name="Data.AccountManagerCivilityId" type="radio" value="1"> <label>Monsieur</label> <input
+                            id="Data_AccountManagerCivilityId" name="Data.AccountManagerCivilityId" type="radio" value="2">
+                        <label>Madame </label> <input id="Data_AccountManagerCivilityId" name="Data.AccountManagerCivilityId"
+                            type="radio" value="3"> <label>Autre</label></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerFirstName">AccountManagerFirstName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AccountManagerFirstName"
+                            name="Data.AccountManagerFirstName" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerLastName">AccountManagerLastName</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AccountManagerLastName"
+                            name="Data.AccountManagerLastName" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerEmail">AccountManagerEmail</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AccountManagerEmail"
+                            name="Data.AccountManagerEmail" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerPhoneNumber">AccountManagerPhoneNumber</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AccountManagerPhoneNumber"
+                            name="Data.AccountManagerPhoneNumber" type="text"></div>
+                </div>
+                <div class="form-group"><label class="col-md-2 control-label"
+                        for="Data_AccountManagerMobileNumber">AccountManagerMobileNumber</label>
+                    <div class="col-md-10"><input class="form-control" id="Data_AccountManagerMobileNumber"
+                            name="Data.AccountManagerMobileNumber" type="text"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10"><input type="submit" class="btn btn-default" value="Register"></div>
+                </div><input name="ufprt" type="hidden"
+                    value="00725F16E763F52B26655D7BB850495BC822B1CDC806CB53034BA63BE3AA843E3759168503B450E1535E6DC4FBBF5A4F6EE75033F2E06078209D8D8946DB405E9A1E09298D57C2D9DE8C6ACF3A8C67B92A42871455D87E0A9580CEFF217C7B512A65654708043DB75088187AD4A15E94A4735E1DAA1459BDB2B622338A0145541D8A18C7BEC76477438297E636B6A789">
+            </form>
+        </m-form>
+    </section>
+</o-migrospro-register-form>
