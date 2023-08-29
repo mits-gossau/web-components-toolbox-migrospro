@@ -43,6 +43,15 @@ export default class RegisterForm extends Shadow() {
       :host h1 {
         font-size: 2rem;
       }
+      :host h2 {
+        color: var(--m-orange-600);
+        font-family: var(--font-family);
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin: 1rem 0 .5rem 0;
+        text-align: left;
+        width: 100%;
+      }
       :host .form-steps {
         margin-bottom: 2rem;
       }
@@ -71,7 +80,25 @@ export default class RegisterForm extends Shadow() {
       }
       :host input[type="submit"] {
         padding: 12px 24px;
-    }
+      }
+      :host .icon-chevron :after {
+        background-image: var(--background-image, url(../../../../../src/es/components/web-components-toolbox/src/icons/chevron_right.svg));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1em;
+        color: transparent;
+        min-width: 3em;
+      }
+      @media (min-width: 768px) {
+        :host .col-2-desktop {
+            display: flex;
+            column-gap: 1rem;
+            width: 100%;
+        }
+        :host .col-2-desktop > div {
+          width: 100%;
+        }
+      }
     `
   }
 
