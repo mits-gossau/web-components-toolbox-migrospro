@@ -59,10 +59,17 @@ export default class RegisterForm extends Shadow() {
         max-width: 560px;
         margin: 0 auto 4rem auto;
       }
+      :host m-form section {
+        display: none;
+      }
+      :host m-form section.section-active {
+        display: block;
+      }
       :host .form-group {
         margin-bottom: 1rem;
       }
-      :host label {
+      :host label,
+      :host .form-text {
           color: var(--m-gray-600);
           font-size: 14px;
       }
