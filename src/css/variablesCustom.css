@@ -44,4 +44,6 @@
 	--navigation-alnatura-not-open-color-active-custom: var(--m-white);
 	--navigation-alnatura-not-open-color-hover-custom: var(--m-white);
 	--picture-store-logo-img-max-width: 5em;
+	--user-profile-default-menu-border-radius-custom:0.5em;
+	--user-profile-default-menu-top-custom:3em;
 }
