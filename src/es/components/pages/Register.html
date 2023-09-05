@@ -91,13 +91,13 @@
                         <div class="form-group">
                             <label class="control-label" for="Data_Address">Adresse *</label>
                             <div>
-                                <input class="form-control" id="Data_Address" name="Data.Address" type="text">
+                                <input class="form-control" id="Data_Address" name="Data.Address" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="Data_CityId">Localité *</label>
                             <div>
-                                <select class="form-control" id="Data_CityId" name="Data.CityId">
+                                <select class="form-control" id="Data_CityId" name="Data.CityId" required>
                                     <option value="" selected disabled>Sélectionner</option>
                                     <option value="1">1200 Genève</option>
                                     <option value="2">1201 Genève</option>
@@ -375,7 +375,7 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_CompanyStructureTypeId">Type de structure *</label>
                         <div>
-                            <select class="form-control" id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId">
+                            <select class="form-control" id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Association</option>
                                 <option value="2">Entreprise</option>
@@ -401,14 +401,14 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro Registre du Commerce) *</label>
                         <div>
-                            <input class="form-control" id="Data_CompanyRegistrationNumber" name="Data.CompanyRegistrationNumber" type="text" value="">
+                            <input class="form-control" id="Data_CompanyRegistrationNumber" name="Data.CompanyRegistrationNumber" type="text" value="" required>
                             <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro aures-vous besoin? *</label>
                         <div>
-                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard" type="text" value="">
+                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard" type="text" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -503,27 +503,68 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <a-button namespace="button-primary-" className="icon-chevron">
-                            Envoyer
-                            <svg class="icon-right" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a-button>
+                        <input type="submit" value="Envoyer" />
                     </div>
-                    
-                    <!-- <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerPhoneNumber"></label>
-                        <div>
-                            <input class="form-control" type="hidden" value="">
-                        </div>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerMobileNumber">Mobile</label>
-                        <div>
-                            <input class="form-control" id="Data_AccountManagerMobileNumber" name="Data.AccountManagerMobileNumber" type="hidden">
-                        </div>
-                    </div> -->
-                    
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
                 </section>
             </form>
         </m-form>

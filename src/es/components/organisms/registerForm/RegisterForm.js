@@ -14,23 +14,42 @@ export default class RegisterForm extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
-    const formSteps = this.root.querySelectorAll('.form-steps li');
-    const sections = this.root.querySelectorAll('m-form .section');
-  
+    // steps
+    const formSteps = this.root.querySelectorAll('.form-steps li')
+    const sections = this.root.querySelectorAll('m-form .section')
+    const nextButtons = this.root.querySelectorAll('a-button')
+    const submitButton = this.root.querySelectorAll('input[type="submit"]')
+
     formSteps.forEach((item, index) => {
       item.addEventListener('click', () => {
-        formSteps.forEach((navItem) => {
-          navItem.classList.remove('active');
+        formSteps.forEach((stepItem) => {
+          stepItem.classList.remove('active')
         });
   
         sections.forEach((section) => {
-          section.classList.remove('active');
+          section.classList.remove('active')
         });
   
-        item.classList.add('active');
-        sections[index].classList.add('active');
-      });
-    });
+        item.classList.add('active')
+        sections[index].classList.add('active')
+      })
+    })
+
+    nextButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        formSteps.forEach((stepItem) => {
+          stepItem.classList.remove('active')
+        });
+  
+        sections.forEach((section) => {
+          section.classList.remove('active')
+        });
+  
+        formSteps[index + 1].classList.add('active')
+        sections[index + 1].classList.add('active')
+
+      })
+    })
   }
 
   connectedCallback () {
