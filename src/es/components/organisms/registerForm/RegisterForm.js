@@ -14,7 +14,33 @@ export default class RegisterForm extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
-    // steps
+    // store in sessionStorage
+    const form = this.root.querySelector('m-form > form')
+    if (form) {
+      // @ts-ignore
+      const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {};
+      const formFields = form.querySelectorAll('input, select');
+  
+      formFields.forEach(field => {
+        if (field.name && savedData[field.name] !== undefined) {
+          field.value = savedData[field.name];
+        }
+      });
+  
+      form.addEventListener('change', function () {
+        const formData = {};
+  
+        formFields.forEach(field => {
+          if (field.name) {
+            formData[field.name] = field.value;
+          }
+        });
+  
+        sessionStorage.setItem('formValues', JSON.stringify(formData));
+      });
+    }
+
+    // form steps
     const formSteps = this.root.querySelectorAll('.form-steps li')
     const sections = this.root.querySelectorAll('m-form .section')
     const nextButtons = this.root.querySelectorAll('a-button')
@@ -36,6 +62,7 @@ export default class RegisterForm extends Shadow() {
       })
     })
 
+    // next buttons
     nextButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
         formSteps.forEach((stepItem) => {
@@ -53,6 +80,7 @@ export default class RegisterForm extends Shadow() {
       })
     })
 
+    // required fields
     const getRequiredFields = () => {
       const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
       const requiredFields = activeSection.querySelectorAll('[required]')
@@ -89,6 +117,7 @@ export default class RegisterForm extends Shadow() {
       }
     }
 
+    // initial required fields
     getRequiredFields()
   }
 
