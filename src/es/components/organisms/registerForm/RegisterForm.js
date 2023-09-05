@@ -13,17 +13,13 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class RegisterForm extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
-  }
 
-  connectedCallback () {
-    if (this.shouldRenderCSS()) this.renderCSS()
-
-    const navigationSteps = this.root.querySelectorAll('.register-steps li');
+    const formSteps = this.root.querySelectorAll('.form-steps li');
     const sections = this.root.querySelectorAll('m-form .section');
   
-    navigationSteps.forEach((item, index) => {
+    formSteps.forEach((item, index) => {
       item.addEventListener('click', () => {
-        navigationSteps.forEach((navItem) => {
+        formSteps.forEach((navItem) => {
           navItem.classList.remove('active');
         });
   
@@ -35,6 +31,10 @@ export default class RegisterForm extends Shadow() {
         sections[index].classList.add('active');
       });
     });
+  }
+
+  connectedCallback () {
+    if (this.shouldRenderCSS()) this.renderCSS()
   }
 
   disconnectedCallback () {
@@ -70,26 +70,26 @@ export default class RegisterForm extends Shadow() {
         text-align: left;
         width: 100%;
       }
-      :host .register-steps {
+      :host .form-steps {
         display: flex;
         flex-wrap: wrap;
         list-style: none;
         margin-bottom: 2rem;
         padding: 0;
       }
-      :host .register-steps li {
+      :host .form-steps li {
         color: var(--m-gray-400);
         cursor: pointer;
         margin-bottom: 1rem;
       }
-      :host .register-steps li:hover {
+      :host .form-steps li:hover {
         color: var(--m-orange-800);
       }
-      :host .register-steps li.active {
+      :host .form-steps li.active {
         background: 0 none;
         color: var(--m-orange-600);
       }
-      :host .register-steps li:not(:last-child):after {
+      :host .form-steps li:not(:last-child):after {
         background-image: url('../../web-components-toolbox/src/icons/chevron_right.svg');
         background-position: center;
         background-repeat: no-repeat;
@@ -131,9 +131,6 @@ export default class RegisterForm extends Shadow() {
       }
       :host input[type='radio'] {
         accent-color: var(--m-orange-700);
-      }
-      :host input[type="submit"] {
-        padding: 12px 24px;
       }
       :host .icon-chevron :after {
         background-image: var(--background-image, url(../../../../../src/es/components/web-components-toolbox/src/icons/chevron_right.svg));
