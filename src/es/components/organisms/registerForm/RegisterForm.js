@@ -17,6 +17,24 @@ export default class RegisterForm extends Shadow() {
 
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
+
+    const navigationSteps = this.root.querySelectorAll('.register-steps li');
+    const sections = this.root.querySelectorAll('m-form .section');
+  
+    navigationSteps.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        navigationSteps.forEach((navItem) => {
+          navItem.classList.remove('active');
+        });
+  
+        sections.forEach((section) => {
+          section.classList.remove('active');
+        });
+  
+        item.classList.add('active');
+        sections[index].classList.add('active');
+      });
+    });
   }
 
   disconnectedCallback () {
@@ -52,17 +70,46 @@ export default class RegisterForm extends Shadow() {
         text-align: left;
         width: 100%;
       }
-      :host .form-steps {
+      :host .register-steps {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
         margin-bottom: 2rem;
+        padding: 0;
+      }
+      :host .register-steps li {
+        color: var(--m-gray-400);
+        cursor: pointer;
+        margin-bottom: 1rem;
+      }
+      :host .register-steps li:hover {
+        color: var(--m-orange-800);
+      }
+      :host .register-steps li.active {
+        background: 0 none;
+        color: var(--m-orange-600);
+      }
+      :host .register-steps li:not(:last-child):after {
+        background-image: url('../../web-components-toolbox/src/icons/chevron_right.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1em;
+        color: transparent;
+        content: "";
+        display: inline-block;
+        height: 10px;
+        width: 1rem;
+        margin: 0 1rem;
       }
       :host m-form {
         max-width: 560px;
         margin: 0 auto 4rem auto;
       }
-      :host m-form section {
+      :host form section {
+        background: 0 none;
         display: none;
       }
-      :host m-form section.section-active {
+      :host form section.active {
         display: block;
       }
       :host .form-group {

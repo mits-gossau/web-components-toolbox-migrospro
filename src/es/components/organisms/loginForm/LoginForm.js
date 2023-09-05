@@ -90,6 +90,9 @@ export default class LoginForm extends Shadow() {
       :host input[type="submit"] {
           padding: 12px 24px;
       }
+      :host .login-form m-form form > div {
+        margin-bottom: 1rem;
+      }
     `
   }
 

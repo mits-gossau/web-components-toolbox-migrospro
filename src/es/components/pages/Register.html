@@ -1,23 +1,16 @@
 <o-migrospro-register-form>
     <section>
         <h1>Votre demande de création de compte</h1>
-        <div class="form-steps">
-            <a-breadcrumb iconWidth="3em" icon="../../../../../src/es/components/web-components-toolbox/src/icons/chevron_right.svg">
-                <ul>
-                    <li><a href="#" class="active">1. Vos coordonnées</a></li>
-                    <li><span></span></li>
-                    <li><a href="#">2. Votre entreprise</a></li>
-                    <li><span></span></li>
-                    <li><a href="#">3. Détail entreprise</a></li>
-                    <li><span></span></li>
-                    <li><a href="#">4. Responsable compte</a></li>
-                </ul>
-            </a-breadcrumb>
-        </div>
+        <ul class="register-steps">
+            <li class="active">1. Vos coordonnées</li>
+            <li>2. Votre entreprise</li>
+            <li>3. Détail entreprise</li>
+            <li>4. Responsable compte</li>
+        </ul>
         <m-form role="form">
             <form action="/register" enctype="multipart/form-data" method="post" role="form">
                 <!-- SECTION 1 -->
-                <section class="section-active">
+                <section class="section active">
                     <div class="form-group">
                         <label class="control-label" for="Data_CivilityId">Civillité *</label>
                         <div class="form-radio-group">
@@ -86,7 +79,7 @@
                 </section>
                 
                 <!-- SECTION 2 -->
-                <section>
+                <section class="section">
                     <h2>Addresse principale de l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="Data_SocialReason">Raison sociale *</label>
@@ -377,7 +370,7 @@
                 </section>
 
                 <!-- SECTION 3 -->
-                <section>
+                <section class="section">
                     <h2>Informations complémentaires sur l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="Data_CompanyStructureTypeId">Type de structure *</label>
@@ -429,7 +422,7 @@
                 </section>
 
                 <!-- SECTION 4 -->
-                <section>
+                <section class="section">
                     <h2>Responsable du compte</h2>
                     <div class="form-group">
                         <label class="control-label" for="Data_IsAccountManager">Ma société est-elle assujettie à la TVA? *</label>
