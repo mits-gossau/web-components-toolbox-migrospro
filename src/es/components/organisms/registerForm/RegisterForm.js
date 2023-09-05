@@ -18,7 +18,6 @@ export default class RegisterForm extends Shadow() {
     const formSteps = this.root.querySelectorAll('.form-steps li')
     const sections = this.root.querySelectorAll('m-form .section')
     const nextButtons = this.root.querySelectorAll('a-button')
-    const submitButton = this.root.querySelectorAll('input[type="submit"]')
 
     formSteps.forEach((item, index) => {
       item.addEventListener('click', () => {
@@ -32,6 +31,8 @@ export default class RegisterForm extends Shadow() {
   
         item.classList.add('active')
         sections[index].classList.add('active')
+
+        getRequiredFields()
       })
     })
 
@@ -48,8 +49,47 @@ export default class RegisterForm extends Shadow() {
         formSteps[index + 1].classList.add('active')
         sections[index + 1].classList.add('active')
 
+        getRequiredFields()
       })
     })
+
+    const getRequiredFields = () => {
+      const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
+      const requiredFields = activeSection.querySelectorAll('[required]')
+      const activeSectionButton = activeSection.querySelectorAll('a-button')[0]
+      const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
+
+      const emptyRequiredFields = Array.from(requiredFields).filter(field => {
+        if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email')) {
+          return field.value.trim() === '';
+        } else if (field.tagName.toLowerCase() === 'select') {
+          return field.value === '';
+        }
+      });
+
+      if (emptyRequiredFields.length !== 0) {
+        activeSectionButton?.setAttribute('disabled', true)
+        submitButton?.setAttribute('disabled', true)
+
+        requiredFields.forEach(field => {
+          field.addEventListener('change', function () {
+            const isFormValid = Array.from(requiredFields).every(field => {
+              if (field.nodeName === 'SELECT') {
+                return field.value !== '';
+              }
+              return field.value.trim() !== '';
+            });
+    
+            if (isFormValid) {
+              activeSectionButton?.removeAttribute('disabled');
+              submitButton?.removeAttribute('disabled');
+            }
+          });
+        });
+      }
+    }
+
+    getRequiredFields()
   }
 
   connectedCallback () {
