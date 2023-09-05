@@ -29,11 +29,31 @@
                 }
             </style>
             <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="BeSS_010401">
-                <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="BeSS_97"
+                <a-button namespace="button-category-">
+                    <m-teaser namespace=teaser-plain->
+                        <figure>
+                            <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag" request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plain->
+                        <figure>
+                            <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <!-- <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="BeSS_97"
                     min-percentage="50" active-detail-property-name="fetch:tag"
                     request-event-name="request-list-product" answer-event-name="list-product">
-
-
                     <m-teaser namespace="teaser-plainer-">
                         <figure>
                             <figcaption>
@@ -62,7 +82,7 @@
 
                         </figure>
                     </m-teaser>
-                </a-button>
+                </a-button> -->
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
