@@ -29,36 +29,40 @@
                 }
             </style>
             <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="BeSS_010401">
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <figcaption>
-                            <style>
-                                :host {
-                                    --button-category-background-color-active-custom: none;
-                                    --button-category-background-color-custom: none;
-                                    --button-category-background-color-hover-custom: none;
-                                    --button-category-color-hover-custom: var(--color-secondary);
-                                    --button-category-color-active-custom: var(--color-secondary);
-                                    --button-category-label-text-align-custom: center;
-                                }
-                            </style>
-                            <a-button hover-on-parent-shadow-root-host namespace="button-category-"
-                                tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag"
-                                request-event-name="request-list-product" answer-event-name="list-product">
+                <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="BeSS_97"
+                    min-percentage="50" active-detail-property-name="fetch:tag"
+                    request-event-name="request-list-product" answer-event-name="list-product">
+
+
+                    <m-teaser namespace="teaser-plainer-">
+                        <figure>
+                            <figcaption>
+                                <style>
+                                    :host {
+                                        --button-category-background-color-active-custom: none;
+                                        --button-category-background-color-custom: none;
+                                        --button-category-background-color-hover-custom: none;
+                                        --button-category-color-hover-custom: var(--color-secondary);
+                                        --button-category-color-active-custom: var(--color-secondary);
+                                        --button-category-label-text-align-custom: center;
+                                    }
+                                </style>
+
                                 <style>
                                     :host a {
                                         position: absolute;
                                         top: 0;
                                         height: 100%;
-                                        align-items:flex-end;
+                                        align-items: flex-end;
                                     }
                                 </style>
                                 SSO Products (BeSS_97)
                                 <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
                                     alt="default-alt-tag"></a-picture>
-                            </a-button>
-                    </figure>
-                </m-teaser>
+
+                        </figure>
+                    </m-teaser>
+                </a-button>
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
                         <a-picture namespace="picture-teaser-" picture-load
