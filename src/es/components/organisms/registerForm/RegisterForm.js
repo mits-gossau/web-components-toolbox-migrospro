@@ -119,6 +119,30 @@ export default class RegisterForm extends Shadow() {
 
     // initial required fields
     getRequiredFields()
+
+    // billing address
+    const differenBillingAddressNo = this.root.getElementById('Data_IsDifferentBillingAddress_No')
+    const differenBillingAddressYes = this.root.getElementById('Data_IsDifferentBillingAddress_Yes')
+    const billingAddress = this.root.getElementById('billing-address')
+
+    if (differenBillingAddressYes.checked) {
+      billingAddress.style.display = 'block'
+    }
+
+    differenBillingAddressYes.addEventListener('change', function () {
+      if (differenBillingAddressYes.checked) {
+        billingAddress.style.display = 'block';
+      } else {
+        billingAddress.style.display = 'none';
+      }
+    });
+
+    differenBillingAddressNo.addEventListener('change', function () {
+      if (differenBillingAddressNo.checked) {
+        billingAddress.style.display = 'none';
+      }
+    });
+
   }
 
   connectedCallback () {
