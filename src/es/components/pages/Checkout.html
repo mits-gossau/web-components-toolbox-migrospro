@@ -5,10 +5,8 @@
 </style>
 <div>
     <h2>Ma demande de devis</h2>
-    <div class="spacer"></div>
     <div>
-        <m-product-list request-event-name="request-basket" answer-event-name="list-basket"
-            namespace="product-list-checkout-"></m-product-list>
+        <m-checkout request-event-name="request-basket" answer-event-name="list-basket" namespace="checkout-default-"></m-checkout>
     </div>
 </div>
 <!-- live-server bug workaround: https://github.com/ritwickdey/vscode-live-server/issues/684 - don't use this empty comment in production!!! -->
