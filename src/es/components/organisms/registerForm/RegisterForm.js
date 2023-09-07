@@ -40,43 +40,53 @@ export default class RegisterForm extends Shadow() {
       });
     }
 
-    // form steps
+    // next step
     const formSteps = this.root.querySelectorAll('.form-steps li')
     const sections = this.root.querySelectorAll('m-form .section')
     const nextButtons = this.root.querySelectorAll('a-button')
 
-    formSteps.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        formSteps.forEach((stepItem) => {
-          stepItem.classList.remove('active')
-        });
-  
-        sections.forEach((section) => {
-          section.classList.remove('active')
-        });
-  
-        item.classList.add('active')
-        sections[index].classList.add('active')
-
-        getRequiredFields()
-      })
-    })
-
-    // next buttons
     nextButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
-        formSteps.forEach((stepItem) => {
-          stepItem.classList.remove('active')
-        });
-  
-        sections.forEach((section) => {
-          section.classList.remove('active')
-        });
-  
-        formSteps[index + 1].classList.add('active')
-        sections[index + 1].classList.add('active')
+        let isValidForm = false
+        const currentSection = form.querySelector('section.active');
+        const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea');
 
-        getRequiredFields()
+        if (elementsInCurrentSection.length === 0 || Array.from(elementsInCurrentSection).every(element => element.checkValidity())) {
+          isValidForm = true
+        } else {
+          form.reportValidity();
+        }
+
+        if (isValidForm) {
+          formSteps.forEach((stepItem) => {
+            stepItem.classList.remove('active')
+          });
+    
+          sections.forEach((section) => {
+            section.classList.remove('active')
+          });
+    
+          formSteps[index].classList.add('ready')
+          formSteps[index].addEventListener('click', () => {
+            formSteps.forEach((stepItem) => {
+              stepItem.classList.remove('active')
+            });
+      
+            sections.forEach((section) => {
+              section.classList.remove('active')
+            });
+
+            formSteps[index].classList.add('active')
+            sections[index].classList.add('active')
+          })
+
+          formSteps[index + 1].classList.remove('disabled')
+          formSteps[index + 1].classList.add('active')
+          sections[index + 1].classList.add('active')
+
+          getRequiredFields()
+        }
+
       })
     })
 
@@ -84,7 +94,7 @@ export default class RegisterForm extends Shadow() {
     const getRequiredFields = () => {
       const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
       const requiredFields = activeSection.querySelectorAll('[required]')
-      const activeSectionButton = activeSection.querySelectorAll('a-button')[0]
+      const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
 
       const emptyRequiredFields = Array.from(requiredFields).filter(field => {
@@ -96,7 +106,7 @@ export default class RegisterForm extends Shadow() {
       });
 
       if (emptyRequiredFields.length !== 0) {
-        activeSectionButton?.setAttribute('disabled', true)
+        nextButton?.setAttribute('disabled', true)
         submitButton?.setAttribute('disabled', true)
 
         requiredFields.forEach(field => {
@@ -109,7 +119,7 @@ export default class RegisterForm extends Shadow() {
             });
     
             if (isFormValid) {
-              activeSectionButton?.removeAttribute('disabled');
+              nextButton?.removeAttribute('disabled');
               submitButton?.removeAttribute('disabled');
             }
           });
@@ -121,24 +131,24 @@ export default class RegisterForm extends Shadow() {
     getRequiredFields()
 
     // billing address
-    const differenBillingAddressNo = this.root.getElementById('Data_IsDifferentBillingAddress_No')
-    const differenBillingAddressYes = this.root.getElementById('Data_IsDifferentBillingAddress_Yes')
+    const differentBillingAddressNo = this.root.getElementById('Data_IsDifferentBillingAddress_No')
+    const differentBillingAddressYes = this.root.getElementById('Data_IsDifferentBillingAddress_Yes')
     const billingAddress = this.root.getElementById('billing-address')
 
-    if (differenBillingAddressYes.checked) {
+    if (differentBillingAddressYes.checked) {
       billingAddress.style.display = 'block'
     }
 
-    differenBillingAddressYes.addEventListener('change', function () {
-      if (differenBillingAddressYes.checked) {
+    differentBillingAddressYes.addEventListener('change', function () {
+      if (differentBillingAddressYes.checked) {
         billingAddress.style.display = 'block';
       } else {
         billingAddress.style.display = 'none';
       }
     });
 
-    differenBillingAddressNo.addEventListener('change', function () {
-      if (differenBillingAddressNo.checked) {
+    differentBillingAddressNo.addEventListener('change', function () {
+      if (differentBillingAddressNo.checked) {
         billingAddress.style.display = 'none';
       }
     });
@@ -172,6 +182,7 @@ export default class RegisterForm extends Shadow() {
       }
       :host h1 {
         font-size: 2rem;
+        text-align: center;
       }
       :host h2 {
         color: var(--m-orange-600);
@@ -185,6 +196,7 @@ export default class RegisterForm extends Shadow() {
       :host .form-steps {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         list-style: none;
         margin-bottom: 2rem;
         padding: 0;
@@ -197,9 +209,16 @@ export default class RegisterForm extends Shadow() {
       :host .form-steps li:hover {
         color: var(--m-orange-800);
       }
+      :host .form-steps li.ready {
+        color: var(--m-black);
+      }
       :host .form-steps li.active {
         background: 0 none;
         color: var(--m-orange-600);
+      }
+      :host .form-steps li.disabled {
+        color: var(--m-gray-400);
+        cursor: default;
       }
       :host .form-steps li:not(:last-child):after {
         background-image: url('../../web-components-toolbox/src/icons/chevron_right.svg');
