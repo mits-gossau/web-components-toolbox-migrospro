@@ -92,5 +92,4 @@ export default class LoginForm extends Shadow() {
       }
     `
   }
-
 }

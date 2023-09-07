@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
+/* global sessionStorage */
+
 /**
  * RegisterForm
  * An example at: src/es/components/pages/Register.html
@@ -18,26 +20,26 @@ export default class RegisterForm extends Shadow() {
     const form = this.root.querySelector('m-form > form')
     if (form) {
       // @ts-ignore
-      const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {};
-      const formFields = form.querySelectorAll('input, select');
-  
+      const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {}
+      const formFields = form.querySelectorAll('input, select')
+
       formFields.forEach(field => {
         if (field.name && savedData[field.name] !== undefined) {
-          field.value = savedData[field.name];
+          field.value = savedData[field.name]
         }
-      });
-  
+      })
+
       form.addEventListener('change', function () {
-        const formData = {};
-  
+        const formData = {}
+
         formFields.forEach(field => {
           if (field.name) {
-            formData[field.name] = field.value;
+            formData[field.name] = field.value
           }
-        });
-  
-        sessionStorage.setItem('formValues', JSON.stringify(formData));
-      });
+        })
+
+        sessionStorage.setItem('formValues', JSON.stringify(formData))
+      })
     }
 
     // next step
@@ -48,33 +50,33 @@ export default class RegisterForm extends Shadow() {
     nextButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
         let isValidForm = false
-        const currentSection = form.querySelector('section.active');
-        const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea');
+        const currentSection = form.querySelector('section.active')
+        const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea')
 
         if (elementsInCurrentSection.length === 0 || Array.from(elementsInCurrentSection).every(element => element.checkValidity())) {
           isValidForm = true
         } else {
-          form.reportValidity();
+          form.reportValidity()
         }
 
         if (isValidForm) {
           formSteps.forEach((stepItem) => {
             stepItem.classList.remove('active')
-          });
-    
+          })
+
           sections.forEach((section) => {
             section.classList.remove('active')
-          });
-    
+          })
+
           formSteps[index].classList.add('ready')
           formSteps[index].addEventListener('click', () => {
             formSteps.forEach((stepItem) => {
               stepItem.classList.remove('active')
-            });
-      
+            })
+
             sections.forEach((section) => {
               section.classList.remove('active')
-            });
+            })
 
             formSteps[index].classList.add('active')
             sections[index].classList.add('active')
@@ -86,7 +88,6 @@ export default class RegisterForm extends Shadow() {
 
           getRequiredFields()
         }
-
       })
     })
 
@@ -99,11 +100,12 @@ export default class RegisterForm extends Shadow() {
 
       const emptyRequiredFields = Array.from(requiredFields).filter(field => {
         if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email')) {
-          return field.value.trim() === '';
+          return field.value.trim() === ''
         } else if (field.tagName.toLowerCase() === 'select') {
-          return field.value === '';
+          return field.value === ''
         }
-      });
+        return field
+      })
 
       if (emptyRequiredFields.length !== 0) {
         nextButton?.setAttribute('disabled', true)
@@ -113,17 +115,17 @@ export default class RegisterForm extends Shadow() {
           field.addEventListener('change', function () {
             const isFormValid = Array.from(requiredFields).every(field => {
               if (field.nodeName === 'SELECT') {
-                return field.value !== '';
+                return field.value !== ''
               }
-              return field.value.trim() !== '';
-            });
-    
+              return field.value.trim() !== ''
+            })
+
             if (isFormValid) {
-              nextButton?.removeAttribute('disabled');
-              submitButton?.removeAttribute('disabled');
+              nextButton?.removeAttribute('disabled')
+              submitButton?.removeAttribute('disabled')
             }
-          });
-        });
+          })
+        })
       }
     }
 
@@ -141,18 +143,17 @@ export default class RegisterForm extends Shadow() {
 
     differentBillingAddressYes.addEventListener('change', function () {
       if (differentBillingAddressYes.checked) {
-        billingAddress.style.display = 'block';
+        billingAddress.style.display = 'block'
       } else {
-        billingAddress.style.display = 'none';
+        billingAddress.style.display = 'none'
       }
-    });
+    })
 
     differentBillingAddressNo.addEventListener('change', function () {
       if (differentBillingAddressNo.checked) {
-        billingAddress.style.display = 'none';
+        billingAddress.style.display = 'none'
       }
-    });
-
+    })
   }
 
   connectedCallback () {
@@ -283,5 +284,4 @@ export default class RegisterForm extends Shadow() {
       }
     `
   }
-
 }
