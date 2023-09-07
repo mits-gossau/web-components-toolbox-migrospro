@@ -57,7 +57,11 @@
             Ajouter à mon devis
             <a-icon-mdx icon-name="ShoppingBasket" size="1em"></a-icon-mdx>
         </a-button>
-        <m-basket-control></m-basket-control>
+        <m-basket-control>
+                <a-button namespace="button-checkout-" request-event-name="remove-basket" tag="1" label="-"></a-button>
+                <input id="quantity" name="quantity" type="text">
+                <a-button namespace="button-checkout-" request-event-name="add-basket" tag="2" label="+"></a-button>
+        </m-basket-control>
     </div>
 </o-wrapper>
 <div class="spacer-two"></div>
