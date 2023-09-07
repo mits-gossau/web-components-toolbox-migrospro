@@ -6,10 +6,10 @@
 <o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="20%">
     <section>
         <m-tag-filter namespace="tag-filter-vertical-">
-            <a-button namespace="button-category-" tag="BeSS_010401" min-percentage="50"
+            <a-button namespace="button-category-" tag="BeSS_0101190101" min-percentage="50"
                 active-detail-property-name="fetch:tag" request-event-name="request-list-product"
                 answer-event-name="list-product">
-                Show Products (BeSS_97)
+                Show Products (BeSS_0101190101)
             </a-button>
             <a-button namespace="button-category-" tag="BeSS_010401,BeSS_010402" min-percentage="10"
                 active-detail-property-name="fetch:tag" request-event-name="request-list-product"
@@ -28,9 +28,74 @@
                     display: none;
                 }
             </style>
-            <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="BeSS_010401">
-                <a-button namespace="button-category-">
-                    <m-teaser namespace=teaser-plain->
+            <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="BeSS_0101190101">
+                <style>
+                    :host {
+                        --button-category-padding-custom: 0;
+                        --button-category-background-color-custom:transparent;
+                        --button-category-background-color-hover-custom:transparent;
+                        --button-category-color-hover-custom:var(--color-secondary);
+                    }
+                    :host a-button {
+                        box-shadow: 0px 0px 12px 0px rgba(51, 51, 51, 0.10);
+                    }
+                </style>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product"
+                    answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>1SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product"
+                    answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-"  picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product"
+                    answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-"  picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product"
+                    answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-"  picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
+                                alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product"
+                    answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
                         <figure>
                             <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
                                 alt="default-alt-tag"></a-picture>
@@ -40,108 +105,6 @@
                         </figure>
                     </m-teaser>
                 </a-button>
-                <a-button namespace="button-category-" tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag" request-event-name="request-list-product" answer-event-name="list-product">
-                    <m-teaser namespace=teaser-plain->
-                        <figure>
-                            <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                                alt="default-alt-tag"></a-picture>
-                            <figcaption>
-                                <p>SSO Products (BeSS_97)</p>
-                            </figcaption>
-                        </figure>
-                    </m-teaser>
-                </a-button>
-                <!-- <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="BeSS_97"
-                    min-percentage="50" active-detail-property-name="fetch:tag"
-                    request-event-name="request-list-product" answer-event-name="list-product">
-                    <m-teaser namespace="teaser-plainer-">
-                        <figure>
-                            <figcaption>
-                                <style>
-                                    :host {
-                                        --button-category-background-color-active-custom: none;
-                                        --button-category-background-color-custom: none;
-                                        --button-category-background-color-hover-custom: none;
-                                        --button-category-color-hover-custom: var(--color-secondary);
-                                        --button-category-color-active-custom: var(--color-secondary);
-                                        --button-category-label-text-align-custom: center;
-                                    }
-                                </style>
-
-                                <style>
-                                    :host a {
-                                        position: absolute;
-                                        top: 0;
-                                        height: 100%;
-                                        align-items: flex-end;
-                                    }
-                                </style>
-                                SSO Products (BeSS_97)
-                                <a-picture picture-load defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                                    alt="default-alt-tag"></a-picture>
-
-                        </figure>
-                    </m-teaser>
-                </a-button> -->
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                            alt="default-alt-tag"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                            alt="default-alt-tag"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                            alt="default-alt-tag"></a-picture>
-                        <figcaption>
-                            <a-link hover-on-parent-shadow-root-host>
-                                <a href="#">Post de travail</a>
-                            </a-link>
-                        </figcaption>
-                    </figure>
-                </m-teaser>
-                <m-teaser namespace="teaser-plainer-">
-                    <figure>
-                        <a-picture namespace="picture-teaser-" picture-load
-                            defaultSource="../../src/img/migrospro/category-sample2.jpg"
-                            alt="default-alt-tag"></a-picture>
-                        <figcaption>
-                            <style>
-                                :host {
-                                    --button-category-background-color-active-custom: none;
-                                    --button-category-background-color-custom: none;
-                                    --button-category-background-color-hover-custom: none;
-                                    --button-category-color-hover-custom: var(--color-secondary);
-                                    --button-category-color-active-custom: var(--color-secondary);
-                                    --button-category-padding-custom: 0;
-                                }
-                            </style>
-                            <a-button hover-on-parent-shadow-root-host namespace="button-category-" tag="eSS_97"
-                                min-percentage="50" active-detail-property-name="fetch:tag"
-                                request-event-name="request-list-product" answer-event-name="list-product">
-                                BTN Post de travail
-                            </a-button>
-                    </figure>
-                </m-teaser>
             </o-wrapper>
             <o-wrapper namespace=wrapper-teaser- data-id="BeSS_010119" simulate-children="4">
                 <m-teaser namespace="teaser-plainer-">

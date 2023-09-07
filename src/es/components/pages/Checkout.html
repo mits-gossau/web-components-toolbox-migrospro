@@ -3,14 +3,15 @@
         --content-width: 55%;
     }
 </style>
-<div>
-    <h2>Ma demande de devis</h2>
-    <div class="spacer"></div>
-    <div>
-        <m-product-list request-event-name="request-basket" answer-event-name="list-basket"
-            namespace="product-list-checkout-"></m-product-list>
-    </div>
+
+<h2>Ma demande de devis</h2>
+<m-checkout request-event-name="request-basket" answer-event-name="list-basket"
+    namespace="checkout-default-"></m-checkout>
 </div>
+<!-- =============== FORM START ===============-->
+
+<!-- =============== FORM END =================-->
+
 <!-- live-server bug workaround: https://github.com/ritwickdey/vscode-live-server/issues/684 - don't use this empty comment in production!!! -->
 <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Ebene_3">

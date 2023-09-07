@@ -41,9 +41,11 @@
 	--header-default-content-width: max(calc(1200px - var(--content-spacing) * 2), var(--content-width));
 	--header-default-logo-width-custom: 15vw;
 	--header-default-margin-custom: calc(var(--content-spacing) / 2) 0 var(--content-spacing) 0;
+	--modal-default-div-position: absolute;
 	--navigation-alnatura-not-open-color-active-custom: var(--m-white);
 	--navigation-alnatura-not-open-color-hover-custom: var(--m-white);
 	--picture-store-logo-img-max-width: 5em;
 	--user-profile-default-menu-border-radius-custom:0.5em;
 	--user-profile-default-menu-top-custom:3em;
+	--button-tertiary-color-custom:var(--m-black);
 }
