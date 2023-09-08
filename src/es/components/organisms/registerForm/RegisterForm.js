@@ -104,7 +104,10 @@ export default class RegisterForm extends Shadow() {
         } else if (field.tagName.toLowerCase() === 'select') {
           return field.value === ''
         }
+<<<<<<< HEAD
+=======
         return field
+>>>>>>> master
       })
 
       if (emptyRequiredFields.length !== 0) {

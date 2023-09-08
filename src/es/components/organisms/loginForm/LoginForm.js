@@ -87,9 +87,6 @@ export default class LoginForm extends Shadow() {
           background-color: var(--m-gray-100);
           padding: 24px 16px;
       }
-      :host .login-form m-form form > div {
-        margin-bottom: 1rem;
-      }
     `
   }
 }
