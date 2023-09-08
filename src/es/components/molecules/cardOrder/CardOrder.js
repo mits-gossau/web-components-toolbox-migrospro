@@ -17,10 +17,10 @@ import(
 export default class CardOrder extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
-    this.date = this.getAttribute('date')
-    this.title = this.getAttribute('title')
-    this.name = this.getAttribute('name')
-    this.state = this.getAttribute('state')
+    this.date = this.getAttribute('date') || ''
+    this.title = this.getAttribute('title') || ''
+    this.name = this.getAttribute('name') || ''
+    this.state = this.getAttribute('state') || ''
     this.edit = this.getAttribute('edit')
     this.download = this.getAttribute('download')
     this.duplicate = this.getAttribute('duplicate')
