@@ -31,9 +31,6 @@ export default class CardOrder extends Shadow() {
     this.renderHTML()
   }
 
-  disconnectedCallback () {
-  }
-
   /**
    * evaluates if a render is necessary
    *

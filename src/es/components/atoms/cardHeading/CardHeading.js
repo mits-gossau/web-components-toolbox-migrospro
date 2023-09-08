@@ -25,9 +25,6 @@ export default class CardHeading extends Shadow() {
     this.renderHTML()
   }
 
-  disconnectedCallback () {
-  }
-
   /**
    * evaluates if a render is necessary
    *
@@ -41,14 +38,11 @@ export default class CardHeading extends Shadow() {
 
   renderCSS () {
     this.css = /* css */ `
-      :host {
-      }
-
       :host h2 {
-        background-color: var(--m-gray-300);
-        font-size: var(--font-size);
-        padding: 0.5rem 1rem;
-        margin: 3rem 0 0 0;
+        background-color: var(--card-heading-background-color, var(--m-gray-300));
+        font-size: var(--card-heading-font-size, var(--font-size));
+        padding: var(--card-heading-padding, 0.5rem 1rem);
+        margin: var(--card-heading-margin, 3rem 0 0 0);
       }
     `
   }
@@ -59,7 +53,6 @@ export default class CardHeading extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-
     this.html = /* html */`
         <h2>${this.title}</h2>
     `
