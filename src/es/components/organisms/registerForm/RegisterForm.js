@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
+/* global sessionStorage */
+
 /**
  * RegisterForm
  * An example at: src/es/components/pages/Register.html
@@ -102,6 +104,10 @@ export default class RegisterForm extends Shadow() {
         } else if (field.tagName.toLowerCase() === 'select') {
           return field.value === ''
         }
+<<<<<<< HEAD
+=======
+        return field
+>>>>>>> master
       })
 
       if (emptyRequiredFields.length !== 0) {
