@@ -1,9 +1,9 @@
 // @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 import(
-    '../../web-components-toolbox/src/es/components/atoms/button/Button.js'
-    // @ts-ignore
-  ).then((module) => customElements.define('a-button', module.default))  
+  '../../web-components-toolbox/src/es/components/atoms/button/Button.js'
+  // @ts-ignore
+).then((module) => customElements.define('a-button', module.default))
 
 /**
  * Spacer
@@ -53,10 +53,8 @@ export default class Spacer extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-
     this.html = /* html */`
         <div></div>
     `
   }
-
 }
