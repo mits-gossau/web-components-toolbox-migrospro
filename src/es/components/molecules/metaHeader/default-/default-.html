@@ -1,15 +1,16 @@
 <m-meta-header namespace="meta-header-default-">
    <div>
-      <a-picture defaultSource="../src/icons/phone.svg"></a-picture>
+      <a-icon-mdx hover-on-parent-element icon-name="Phone" size="1.5em"></a-icon-mdx>
       <a href="">Aide et contact</a>
    </div>
-      <a-user-profile namespace="user-profile-default-" icon="../src/icons/user.svg">
+      <a-user-profile href="logginPage" namespace="user-profile-default-">
+      <!--<a-user-profile class="logged-in" namespace="user-profile-default-" icon-text="B2B">-->
          <a href='#'>
             <a-icon-mdx disabled icon-name="User" size="1.2em" rotate="0"></a-icon-mdx>
             <a-picture namespace="user-profile-default-" defaultSource='../src/icons/user.svg' alt=''></a-picture>
             <span>Profil</span>
          </a>
-         <a href='#'>
+         <a href='#' class="sub">
             <a-picture namespace="user-profile-default-" defaultSource='../src/icons/receipt.svg' alt=''></a-picture>
             <span>Mes Tickets</span>
          </a>
@@ -18,5 +19,5 @@
             <span>Logout</span>
          </a>
       </a-user-profile>
-      <a-basket icon="../src/icons/shopping_basket.svg" answer-event-name="basket" ></a-basket>
+      <a-basket answer-event-name="basket"></a-basket>
 </m-meta-header>
