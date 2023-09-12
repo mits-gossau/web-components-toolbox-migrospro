@@ -222,7 +222,7 @@ export default class RegisterForm extends Shadow() {
         cursor: default;
       }
       :host .form-steps li:not(:last-child):after {
-        background-image: url('../../web-components-toolbox/src/icons/chevron_right.svg');
+        background-image: url('_import-meta-url_../../../../icons/chevron_right.svg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: 1em;
@@ -265,7 +265,7 @@ export default class RegisterForm extends Shadow() {
         accent-color: var(--m-orange-700);
       }
       :host .icon-chevron :after {
-        background-image: var(--background-image, url(../../../../../src/es/components/web-components-toolbox/src/icons/chevron_right.svg));
+        background-image: var(--background-image, url('_import-meta-url_../../../../icons/chevron_right.svg'));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 1em;
