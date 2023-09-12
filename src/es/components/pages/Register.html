@@ -11,21 +11,32 @@
             <form action="/register" enctype="multipart/form-data" method="post" role="form">
                 <!-- SECTION 1 -->
                 <section class="section active">
+                    <div class="validation-summary-errors text-danger">
+                        <ul>
+                            <li>Email anton.meister@mgb.ch is already registered.</li>
+                            <li>Error 2 Email anton.meister@mgb.ch is already registered.</li>
+                            <li>Error 3 Email anton.meister@mgb.ch is already registered.</li>
+                            <li>Error 4 Email anton.meister@mgb.ch is already registered.</li>
+                        </ul>
+                    </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_CivilityId">Civillité *</label>
                         <div class="form-radio-group">
-                            <span>
+                            <label> <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio" value="1"> Monsieur </label>
+                            <!-- <span>
                                 <input id="Data_CivilityId_M" name="Data.CivilityId" type="radio" value="1" checked>
                                 <label for="Data_CivilityId_M">M</label> 
-                            </span>
-                            <span>
+                            </span> -->
+                            <label> <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2"> Mme </label>
+                            <!-- <span>
                                 <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2">
                                 <label for="Data_CivilityId_Mme">Mme </label> 
-                            </span>
-                            <span>
+                            </span> -->
+                            <label> <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3"> Autre </label>
+                            <!-- <span>
                                 <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3">
                                 <label for="Data_CivilityId_Autre">Autre</label>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                     <div class="form-group">
