@@ -4,6 +4,23 @@
   * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
   * - if a component holds other components you should share the attribute namespace with its children
   */
+
+/* src/css/web-components-toolbox-migros-design-experience/src/css/variablesCustom.css */
+/** 
+ * mdx base files
+ */
+ @import "./web-components-toolbox-migros-design-experience/src/css/base.css";
+
+ /** 
+  * only import one mdx theme at a time for mapping it at sys.css and comp.css
+  */
+ @import "./web-components-toolbox-migros-design-experience/node_modules/@migros/mdx-design-tokens/dist/m/light-rem.css";
+ /*
+ @import "../../node_modules/@migros/mdx-design-tokens/dist/showcase/light-rem.css";
+ */
+ @import "./web-components-toolbox-migros-design-experience/src/css/sys.css";
+ @import "./web-components-toolbox-migros-design-experience/src/css/comp.css";
+
 /* font tracking */
 @import url("https://cdn.fonts.net/t/1.css?apiType=css&projectid=8121ed97-d402-4592-a434-4e2ce73b1534");
 
