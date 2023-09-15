@@ -2,3 +2,6 @@
 	path = src/es/components/web-components-toolbox
 	url = https://github.com/mits-gossau/web-components-toolbox.git
 	ignore = dirty
+[submodule "src/css/web-components-toolbox-migros-design-experience"]
+	path = src/css/web-components-toolbox-migros-design-experience
+	url = https://github.com/mits-gossau/web-components-toolbox-migros-design-experience.git
