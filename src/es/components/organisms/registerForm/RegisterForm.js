@@ -46,6 +46,7 @@ export default class RegisterForm extends Shadow() {
             if (elem.hasAttribute("conditionaly-required")) {
               elem.required = false
               elem.removeAttribute("conditionaly-required")
+              // remove * as required sign at the end of the label
               const currentInputLabel = elem.parentElement.previousElementSibling;
               currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
             }
@@ -147,14 +148,12 @@ export default class RegisterForm extends Shadow() {
         })
       }
 
-      if (companyStructureTypeSelectElement) {
-        if (savedData["Data.CompanyStructureTypeId"]) {
-          Array.from(companyStructureTypeSelectElement.options).forEach(elem => {
-            if (elem.value === savedData["Data.CompanyStructureTypeId"] && elem.hasAttribute('additionalRequiredField')) {
-              setConditionalyRequiredElement(elem);
-            }
-          })
-        }
+      if (companyStructureTypeSelectElement && savedData["Data.CompanyStructureTypeId"]) {
+        Array.from(companyStructureTypeSelectElement.options).forEach(elem => {
+          if (elem.value === savedData["Data.CompanyStructureTypeId"] && elem.hasAttribute('additionalRequiredField')) {
+            setConditionalyRequiredElement(elem);
+          }
+        })
       }
     }
 
