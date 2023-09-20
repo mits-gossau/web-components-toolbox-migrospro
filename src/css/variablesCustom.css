@@ -65,4 +65,5 @@
 	--user-profile-default-menu-border-radius-custom:0.5em;
 	--user-profile-default-menu-top-custom:3em;
 	--button-tertiary-color-custom:var(--m-black);
+	--border-radius: 0.5rem;
 }

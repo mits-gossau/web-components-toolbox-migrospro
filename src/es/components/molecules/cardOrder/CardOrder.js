@@ -7,7 +7,7 @@ import(
 
 /**
  * CardOrder
- * An example at: src/es/components/pages/Bestelluebersicht.html
+ * An example at: src/es/components/pages/Benutzerprofil.html
  *
  * @export
  * @class CardOrder
