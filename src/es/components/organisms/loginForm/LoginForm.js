@@ -85,7 +85,7 @@ export default class LoginForm extends Shadow() {
       }
       :host .login-sidebar {
           background-color: var(--m-gray-100);
-          padding: 24px 16px;
+          padding: 1.5rem 1rem;
       }
     `
   }
