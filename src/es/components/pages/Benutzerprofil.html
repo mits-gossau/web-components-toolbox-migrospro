@@ -2,14 +2,14 @@
 
 <m-tabs>
     <ul class="tab-navigation">
-        <li class="active">Mes demandes de devis</li>
+        <li>Mes demandes de devis</li>
         <li>Mes favoris</li>
-        <li>Mes Paramètres</li>
+        <li class="active">Mes Paramètres</li>
         <li>Mes Tickets</li>
     </ul>
 
     <!-- QUOTE REQUESTS -->
-    <section class="tab-content active">
+    <section class="tab-content">
         <p>Grâce à votre historique de demandes de devis, consultez vos anciennes demandes, complétez une demande que vous n'avez pas terminée, ou dupliquez une demande passée.</p>
 
         <a-migrospro-card-heading title="Brouillon"></a-migrospro-card-heading>
@@ -90,10 +90,12 @@
     </section>
 
     <!-- SETTINGS -->
-    <section class="tab-content">
-        <h2>Paramètres</h2>
-        <div class="form"></div>
-        <div class="sidebar"></div>
+    <section class="tab-content active">
+        <o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="68%">
+            <div class="content">Content</div>
+            <div class="sidebar">Sidebar</div>
+        </o-grid>
+        
     </section>
 
     <!-- TICKETS -->
