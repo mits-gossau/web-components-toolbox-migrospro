@@ -13,23 +13,24 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RegisterForm extends Shadow() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     // store in sessionStorage
     const form = this.root.querySelector('m-form > form')
-    if (form) {
-      // @ts-ignore
-      const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {}
-      const formFields = form.querySelectorAll('input, select')
+    // @ts-ignore
+    const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {}
+    const formFields = form.querySelectorAll('input, select')
 
+    if (form) {
       formFields.forEach(field => {
         if (field.name && savedData[field.name] !== undefined) {
           field.value = savedData[field.name]
         }
       })
 
-      form.addEventListener('change', function () {
+      form.addEventListener('change', function (event) {
+
         const formData = {}
 
         formFields.forEach(field => {
@@ -39,6 +40,23 @@ export default class RegisterForm extends Shadow() {
         })
 
         sessionStorage.setItem('formValues', JSON.stringify(formData))
+
+        if (event.target.id === "Data_CompanyStructureTypeId") {
+          formFields.forEach(elem => {
+            if (elem.hasAttribute("conditionaly-required")) {
+              elem.required = false
+              elem.removeAttribute("conditionaly-required")
+              const currentInputLabel = elem.parentElement.previousElementSibling;
+              currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+            }
+          })
+
+          const selectedOption = event.target.options[event.target.value]
+
+          if (selectedOption.hasAttribute('additionalRequiredField')) {
+            setConditionalyRequiredElement(selectedOption);
+          }
+        }
       })
     }
 
@@ -97,6 +115,7 @@ export default class RegisterForm extends Shadow() {
       const requiredFields = activeSection.querySelectorAll('[required]')
       const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
+      const companyStructureTypeSelectElement = activeSection.querySelector("#Data_CompanyStructureTypeId")
 
       const emptyRequiredFields = Array.from(requiredFields).filter(field => {
         if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email')) {
@@ -127,7 +146,30 @@ export default class RegisterForm extends Shadow() {
           })
         })
       }
+
+      if (companyStructureTypeSelectElement) {
+        if (savedData["Data.CompanyStructureTypeId"]) {
+          Array.from(companyStructureTypeSelectElement.options).forEach(elem => {
+            if (elem.value === savedData["Data.CompanyStructureTypeId"] && elem.hasAttribute('additionalRequiredField')) {
+              setConditionalyRequiredElement(elem);
+            }
+          })
+        }
+      }
     }
+
+    // set conditional required fields
+    const setConditionalyRequiredElement = (elem) => {
+      const additionalRequiredFieldId = elem.getAttribute('additionalRequiredField')
+      const additionalRequiredInputField = Array.from(formFields).find(elem => elem.id === additionalRequiredFieldId)
+      if (additionalRequiredInputField) {
+        additionalRequiredInputField.required = true
+        additionalRequiredInputField.setAttribute("conditionaly-required", true)
+        const currentInputLabel = additionalRequiredInputField.parentElement.previousElementSibling;
+        currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+      }
+    }
+
 
     // initial required fields
     getRequiredFields()
@@ -144,6 +186,8 @@ export default class RegisterForm extends Shadow() {
     differentBillingAddressYes.addEventListener('change', function () {
       if (differentBillingAddressYes.checked) {
         billingAddress.style.display = 'block'
+        setElementsRequired(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], true)
+        setElementsType(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], "text")
       } else {
         billingAddress.style.display = 'none'
       }
@@ -152,15 +196,35 @@ export default class RegisterForm extends Shadow() {
     differentBillingAddressNo.addEventListener('change', function () {
       if (differentBillingAddressNo.checked) {
         billingAddress.style.display = 'none'
+        setElementsRequired(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], false)
+        setElementsType(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], "hidden")
       }
     })
+
+    const setElementsRequired = (elementIds, setTo) => {
+      elementIds.forEach(elementId => {
+        const currentElement = this.root.getElementById(elementId)
+        if (currentElement) {
+          currentElement.required = setTo
+        }
+      })
+    }
+
+    const setElementsType = (elementIds, setTo) => {
+      elementIds.forEach(elementId => {
+        const currentElement = this.root.getElementById(elementId)
+        if (currentElement) {
+          currentElement.type = setTo
+        }
+      })
+    }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
   }
 
   /**
@@ -168,13 +232,13 @@ export default class RegisterForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */ `
       :host section {
           display: flex;
@@ -251,15 +315,6 @@ export default class RegisterForm extends Shadow() {
       :host .form-text {
           color: var(--m-gray-600);
           font-size: 14px;
-      }
-      :host .form-radio-group {
-        display: flex;
-        gap: 2rem;
-      }
-      :host .form-radio-group span {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
       }
       :host input[type='radio'] {
         accent-color: var(--m-orange-700);

@@ -227,7 +227,7 @@
                                 <label for="Data_IsDifferentBillingAddress_No">Non</label> 
                             </span>
                             <span>
-                                <input id="Data_IsDifferentBillingAddress_Yes" name="Data.IsDifferentBillingAddress" type="radio" value="1">
+                                <input id="Data_IsDifferentBillingAddress_Yes" formId="billing-address" name="Data.IsDifferentBillingAddress" type="radio" value="1">
                                 <label for="Data_IsDifferentBillingAddress_Yes">Qui</label> 
                             </span>
                         </div>
@@ -390,9 +390,9 @@
                             <select class="form-control" id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Association</option>
-                                <option value="2">Entreprise</option>
+                                <option value="2" additionalRequiredField="Data_CompanyRegistrationNumber">Entreprise</option>
                                 <option value="3">Institution</option>
-                                <option value="4">Organisation internationale</option>
+                                <option value="4" additionalRequiredField="Data_NumberOfCustomerCard">Organisation internationale</option>
                                 <option value="5">Prof. libérale ou ent. individuelle</option>
                             </select>
                         </div>
@@ -411,16 +411,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro Registre du Commerce) *</label>
+                        <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro Registre du Commerce)</label>
                         <div>
-                            <input class="form-control" id="Data_CompanyRegistrationNumber" name="Data.CompanyRegistrationNumber" type="text" value="" required>
+                            <input class="form-control" id="Data_CompanyRegistrationNumber" name="Data.CompanyRegistrationNumber" type="text" value="">
                             <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro aures-vous besoin? *</label>
+                        <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro aures-vous besoin?</label>
                         <div>
-                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard" type="text" value="" required>
+                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
