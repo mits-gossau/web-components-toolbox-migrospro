@@ -47,9 +47,6 @@ export default class RegisterForm extends Shadow() {
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalyRequiredElement(selectedOption);
           }
-          if (!selectedOption.hasAttribute('additional-required-field')) {
-
-          }
         }
       })
     }
@@ -144,6 +141,8 @@ export default class RegisterForm extends Shadow() {
       }
 
       if (dataConditionalRequiredElement && currentSessionStorageFormValues[dataNameConditionalRequiredElement]) {
+        // temporary enable the next btn since required attribute will stop the user
+        nextButton?.removeAttribute('disabled')
         Array.from(dataConditionalRequiredElement.options).forEach(elem => {
           if (elem.value === currentSessionStorageFormValues[dataNameConditionalRequiredElement] && elem.hasAttribute('additional-required-field')) {
             setConditionalyRequiredElement(elem);
