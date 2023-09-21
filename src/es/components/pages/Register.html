@@ -387,12 +387,12 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_CompanyStructureTypeId">Type de structure *</label>
                         <div>
-                            <select class="form-control" id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
+                            <select class="form-control" data-conditional-required-element-enabled id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Association</option>
-                                <option value="2" additionalRequiredField="Data_CompanyRegistrationNumber">Entreprise</option>
+                                <option value="2" additional-required-field="Data_CompanyRegistrationNumber">Entreprise</option>
                                 <option value="3">Institution</option>
-                                <option value="4" additionalRequiredField="Data_NumberOfCustomerCard">Organisation internationale</option>
+                                <option value="4" additional-required-field="Data_NumberOfCustomerCard">Organisation internationale</option>
                                 <option value="5">Prof. libérale ou ent. individuelle</option>
                             </select>
                         </div>

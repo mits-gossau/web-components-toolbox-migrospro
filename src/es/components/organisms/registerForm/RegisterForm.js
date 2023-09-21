@@ -22,6 +22,7 @@ export default class RegisterForm extends Shadow() {
     const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {}
     const formFields = form.querySelectorAll('input, select')
 
+
     if (form) {
       formFields.forEach(field => {
         if (field.name && savedData[field.name] !== undefined) {
@@ -38,24 +39,16 @@ export default class RegisterForm extends Shadow() {
             formData[field.name] = field.value
           }
         })
+        sessionStorage.setItem('formValues', JSON.stringify(formData));
 
-        sessionStorage.setItem('formValues', JSON.stringify(formData))
-
-        if (event.target.id === "Data_CompanyStructureTypeId") {
-          formFields.forEach(elem => {
-            if (elem.hasAttribute("conditionaly-required")) {
-              elem.required = false
-              elem.removeAttribute("conditionaly-required")
-              // remove * as required sign at the end of the label
-              const currentInputLabel = elem.parentElement.previousElementSibling;
-              currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
-            }
-          })
-
+        if (event.target.hasAttribute("data-conditional-required-element-enabled")) {
+          resetConditionalyRequiredElement()
           const selectedOption = event.target.options[event.target.value]
-
-          if (selectedOption.hasAttribute('additionalRequiredField')) {
+          if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalyRequiredElement(selectedOption);
+          }
+          if (!selectedOption.hasAttribute('additional-required-field')) {
+
           }
         }
       })
@@ -77,7 +70,6 @@ export default class RegisterForm extends Shadow() {
         } else {
           form.reportValidity()
         }
-
         if (isValidForm) {
           formSteps.forEach((stepItem) => {
             stepItem.classList.remove('active')
@@ -116,7 +108,10 @@ export default class RegisterForm extends Shadow() {
       const requiredFields = activeSection.querySelectorAll('[required]')
       const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
-      const companyStructureTypeSelectElement = activeSection.querySelector("#Data_CompanyStructureTypeId")
+      const dataConditionalRequiredElement = activeSection.querySelector("[data-conditional-required-element-enabled]")
+      const dataNameConditionalRequiredElement = dataConditionalRequiredElement?.getAttribute("name")
+      // @ts-ignore
+      const currentSessionStorageFormValues = JSON.parse(sessionStorage.getItem('formValues')) || {}
 
       const emptyRequiredFields = Array.from(requiredFields).filter(field => {
         if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email')) {
@@ -148,9 +143,9 @@ export default class RegisterForm extends Shadow() {
         })
       }
 
-      if (companyStructureTypeSelectElement && savedData["Data.CompanyStructureTypeId"]) {
-        Array.from(companyStructureTypeSelectElement.options).forEach(elem => {
-          if (elem.value === savedData["Data.CompanyStructureTypeId"] && elem.hasAttribute('additionalRequiredField')) {
+      if (dataConditionalRequiredElement && currentSessionStorageFormValues[dataNameConditionalRequiredElement]) {
+        Array.from(dataConditionalRequiredElement.options).forEach(elem => {
+          if (elem.value === currentSessionStorageFormValues[dataNameConditionalRequiredElement] && elem.hasAttribute('additional-required-field')) {
             setConditionalyRequiredElement(elem);
           }
         })
@@ -159,7 +154,8 @@ export default class RegisterForm extends Shadow() {
 
     // set conditional required fields
     const setConditionalyRequiredElement = (elem) => {
-      const additionalRequiredFieldId = elem.getAttribute('additionalRequiredField')
+      removeRequiredSignOfElement()
+      const additionalRequiredFieldId = elem.getAttribute('additional-required-field')
       const additionalRequiredInputField = Array.from(formFields).find(elem => elem.id === additionalRequiredFieldId)
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
@@ -167,6 +163,28 @@ export default class RegisterForm extends Shadow() {
         const currentInputLabel = additionalRequiredInputField.parentElement.previousElementSibling;
         currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
+    }
+
+    const resetConditionalyRequiredElement = () => {
+      formFields.forEach(elem => {
+        if (elem.hasAttribute("conditionaly-required")) {
+          elem.required = false
+          elem.removeAttribute("conditionaly-required")
+          // remove * as required sign at the end of the label
+          const currentInputLabel = elem.parentElement.previousElementSibling;
+          currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+        }
+      })
+    }
+
+    const removeRequiredSignOfElement = () => {
+      formFields.forEach(elem => {
+        if (elem.hasAttribute("conditionaly-required")) {
+          // remove * as required sign at the end of the label
+          const currentInputLabel = elem.parentElement.previousElementSibling;
+          currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+        }
+      })
     }
 
 
