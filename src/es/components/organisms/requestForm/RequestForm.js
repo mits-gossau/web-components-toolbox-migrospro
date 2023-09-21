@@ -47,18 +47,12 @@ export default class RequestForm extends Shadow() {
 
   renderCSS() {
     this.css = /* css */ `
-        :host {
-        }
-        :host label {
-            align-items: center;
-            display:inline-flex;
-            gap:0.25rem;
-            margin-top:2rem;
-        }
         :host input[type="checkbox"] {
             height: 1.5rem;
             margin-right: 0.5rem;
             width: 1.5rem;
+            position: relative;
+            top: 0.375rem;
         }
         :host input[type="submit"] {
             background-color: var(--color-secondary);
