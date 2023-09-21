@@ -185,7 +185,8 @@ export default class RegisterForm extends Shadow() {
         font-size: 2rem;
         text-align: center;
       }
-      :host h2 {
+      :host h2,
+      :host m-form h3 {
         color: var(--m-orange-600);
         font-family: var(--font-family);
         font-size: 1.25rem;

@@ -8,8 +8,21 @@
 <m-checkout request-event-name="request-active-order" answer-event-name="list-basket"
     namespace="checkout-default-"></m-checkout>
 </div>
-<!-- =============== FORM START ===============-->
 
+<!-- =============== FORM START ===============-->
+<o-migrospro-request-form>
+    <form action="/order" enctype="multipart/form-data" method="post" role="form">
+        <section>
+            <p>
+                <label>
+                    <input type="checkbox"> 
+                    J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
+                </label>
+            </p>
+            <input type="submit" value="Envoyer la demande de devis" disabled />
+        </section>
+    </form>
+</o-migrospro-request-form>
 <!-- =============== FORM END =================-->
 
 <!-- live-server bug workaround: https://github.com/ritwickdey/vscode-live-server/issues/684 - don't use this empty comment in production!!! -->
