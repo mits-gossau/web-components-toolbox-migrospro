@@ -155,7 +155,7 @@ export default class RegisterForm extends Shadow() {
     const setConditionalyRequiredElement = (elem) => {
       removeRequiredSignOfElement()
       const additionalRequiredFieldId = elem.getAttribute('additional-required-field')
-      const additionalRequiredInputField = Array.from(formFields).find(elem => elem.id === additionalRequiredFieldId)
+      const additionalRequiredInputField = Array.from(formFields).find(elem => elem.getAttribute("required-field-name") === additionalRequiredFieldId)
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
         additionalRequiredInputField.setAttribute("conditionaly-required", true)
@@ -191,48 +191,42 @@ export default class RegisterForm extends Shadow() {
     getRequiredFields()
 
     // billing address
-    const differentBillingAddressNo = this.root.getElementById('Data_IsDifferentBillingAddress_No')
-    const differentBillingAddressYes = this.root.getElementById('Data_IsDifferentBillingAddress_Yes')
-    const billingAddress = this.root.getElementById('billing-address')
+    const renderingControllerElement = this.root.querySelector("[rendering-controller-element]")
+    const firstComponentController = renderingControllerElement.querySelectorAll("[show-component-if-checked]")[0]
+    const allConditinalElement = renderingControllerElement.querySelectorAll("[component-name]")
+    renderingControllerElement.addEventListener('change', (e) => {
+      const elementNameToRender = e.target.getAttribute("show-component-if-checked")
+      if (elementNameToRender) {
+        const showedElements = Array.from(allConditinalElement).filter(elem => {
+          return elem.getAttribute("component-name") === elementNameToRender
+        })
+        const hidedElements = Array.from(allConditinalElement).filter(elem => {
+          return elem.getAttribute("component-name") !== elementNameToRender
+        })
 
-    if (differentBillingAddressYes.checked) {
-      billingAddress.style.display = 'block'
-    }
+        if (showedElements.length > 0) {
+          showedElements.forEach(elem => {
+            const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditionaly-required]")
+            if (conditionalRequiredFieldsInElement.length > 0) {
+              conditionalRequiredFieldsInElement.forEach(elem => elem.required = true)
+            }
+            elem.style.display = 'block'
+          })
+        }
 
-    differentBillingAddressYes.addEventListener('change', function () {
-      if (differentBillingAddressYes.checked) {
-        billingAddress.style.display = 'block'
-        setElementsRequired(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], true)
-        setElementsType(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], "text")
-      } else {
-        billingAddress.style.display = 'none'
+        if (hidedElements.length > 0) {
+          hidedElements.forEach(elem => {
+            const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditionaly-required]")
+            if (conditionalRequiredFieldsInElement.length > 0) {
+              conditionalRequiredFieldsInElement.forEach(elem => elem.required = false)
+            }
+            elem.style.display = 'none'
+          })
+        }
       }
     })
-
-    differentBillingAddressNo.addEventListener('change', function () {
-      if (differentBillingAddressNo.checked) {
-        billingAddress.style.display = 'none'
-        setElementsRequired(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], false)
-        setElementsType(["Data_BillingName", "Data_BillingAddressLine1", "Data_BillingAddressLine2", "Data_BillingPostOfficeBox"], "hidden")
-      }
-    })
-
-    const setElementsRequired = (elementIds, setTo) => {
-      elementIds.forEach(elementId => {
-        const currentElement = this.root.getElementById(elementId)
-        if (currentElement) {
-          currentElement.required = setTo
-        }
-      })
-    }
-
-    const setElementsType = (elementIds, setTo) => {
-      elementIds.forEach(elementId => {
-        const currentElement = this.root.getElementById(elementId)
-        if (currentElement) {
-          currentElement.type = setTo
-        }
-      })
+    if (firstComponentController) {
+      firstComponentController.dispatchEvent(new Event('change', { 'bubbles': true }))
     }
   }
 

@@ -98,7 +98,7 @@
                 </section>
 
                 <!-- SECTION 2 -->
-                <section class="section">
+                <section class="section" rendering-controller-element>
                     <h2>Addresse principale de l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="Data_SocialReason">Raison sociale *</label>
@@ -235,42 +235,42 @@
                         <div class="form-radio-group">
                             <span>
                                 <input id="Data_IsDifferentBillingAddress_No" name="Data.IsDifferentBillingAddress"
-                                    show-component-if-checked="diff-billing-address" type="radio" value="0" checked>
+                                    show-component-if-checked="same-billing-address" type="radio" value="0" checked>
                                 <label for="Data_IsDifferentBillingAddress_No">Non</label>
                             </span>
                             <span>
                                 <input id="Data_IsDifferentBillingAddress_Yes" formId="billing-address"
                                     name="Data.IsDifferentBillingAddress"
-                                    show-component-if-checked="same-billing-address" type="radio" value="1">
+                                    show-component-if-checked="diff-billing-address" type="radio" value="1">
                                 <label for="Data_IsDifferentBillingAddress_Yes">Qui</label>
                             </span>
                         </div>
                     </div>
-                    <div id="billing-address" style="display: none" component-name="diff-billing-address">
+                    <div id="billing-address" component-name="diff-billing-address">
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingName">BillingName</label>
+                            <label class="control-label" for="Data_BillingName">BillingName *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingName" name="Data.BillingName" type="text">
+                                <input class="form-control" id="Data_BillingName" name="Data.BillingName" type="text" conditionaly-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine1">BillingAddressLine1</label>
+                            <label class="control-label" for="Data_BillingAddressLine1">BillingAddressLine1 *</label>
                             <div>
                                 <input class="form-control" id="Data_BillingAddressLine1"
-                                    name="Data.BillingAddressLine1" type="text">
+                                    name="Data.BillingAddressLine1" type="text" conditionaly-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine2">BillingAddressLine2</label>
+                            <label class="control-label" for="Data_BillingAddressLine2">BillingAddressLine2 *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingAddressLine2"
+                                <input class="form-control" id="Data_BillingAddressLine2" conditionaly-required
                                     name="Data.BillingAddressLine2" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingPostOfficeBox">BillingPostOfficeBox</label>
+                            <label class="control-label" for="Data_BillingPostOfficeBox">BillingPostOfficeBox *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingPostOfficeBox"
+                                <input class="form-control" id="Data_BillingPostOfficeBox" conditionaly-required
                                     name="Data.BillingPostOfficeBox" type="text">
                             </div>
                         </div>
@@ -443,7 +443,7 @@
                         <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro
                             Registre du Commerce)</label>
                         <div>
-                            <input class="form-control" id="Data_CompanyRegistrationNumber"
+                            <input class="form-control" id="Data_CompanyRegistrationNumber" required-field-name="Data_CompanyRegistrationNumber"
                                 name="Data.CompanyRegistrationNumber" type="text" value="">
                             <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                         </div>
@@ -452,7 +452,7 @@
                         <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro
                             aures-vous besoin?</label>
                         <div>
-                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard"
+                            <input class="form-control" id="Data_NumberOfCustomerCard" required-field-name="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard"
                                 type="text" value="">
                         </div>
                     </div>
