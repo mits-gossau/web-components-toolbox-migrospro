@@ -3,7 +3,7 @@
 <m-tabs>
     <ul class="tab-navigation">
         <li>Mes demandes de devis</li>
-        <li>Mes favoris</li>
+        <!-- <li>Mes favoris</li> -->
         <li class="active">Mes Paramètres</li>
         <li><a href="https://migrospro.ch" target="_blank">Mes Tickets</a></li>
     </ul>
@@ -85,15 +85,97 @@
     </section>
 
     <!-- FAVORITES -->
-    <section class="tab-content">
+    <!-- <section class="tab-content">
         <h2>Favoris</h2>
-    </section>
+    </section> -->
 
     <!-- SETTINGS -->
     <section class="tab-content active">
-        <o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="68%">
+        <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher">
             <div class="content">
-                Content
+                <section>
+                    <m-form role="form">
+                        <form action="/settings" enctype="multipart/form-data" method="post" role="form">
+                            <section class="section">
+                                <div class="validation-errors">
+                                    <ul>
+                                        <li>Error - Email anton.meister@mgb.ch is already registered</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_CivilityId">Civillité *</label>
+                                    <div class="form-radio-group">
+                                        <label>
+                                            <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio" value="1"> M 
+                                        </label>
+                                        <label> 
+                                            <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2"> Mme 
+                                        </label>
+                                        <label> 
+                                            <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3"> Autre 
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_FirstName">Prénom *</label>
+                                    <div>
+                                        <input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text" value="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_LastName">Nom *</label>
+                                    <div>
+                                        <input class="form-control" id="Data_LastName" name="Data.LastName" type="text" value="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_Email">E-mail professionnel *</label>
+                                    <div>
+                                        <input class="form-control" id="Data_Email" name="Data.Email" type="email" value="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_MobileNumber">Mobile</label>
+                                    <div>
+                                        <input class="form-control" id="Data_MobileNumber" name="Data.MobileNumber" type="tel">
+                                    </div>
+                                </div>
+                                <h3>Modifier votre mot de passe</h3>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_PasswordCurrent">Mot de passe actuel</label>
+                                    <div>
+                                        <input class="form-control" id="Data_PasswordCurrent" name="Data.PasswordCurrent" type="password" value="">
+                                        <span>afficher</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_PasswordNew">Mot de passe</label>
+                                    <div>
+                                        <input class="form-control" id="Data_PasswordNew" name="Data.PasswordNew" type="password" value="">
+                                        <span>afficher</span>
+                                    </div>
+                                    <div>Min. 8 caractères, y compris les lettres, chiffres et caractères spéciaux</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="Data_PasswordConfirm">Confirmer le mot de passe</label>
+                                    <div>
+                                        <input class="form-control" id="Data_PasswordConfirm" name="Data.PasswordConfirm" type="password" value="">
+                                        <span>afficher</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input class="form-control" id="Data_TwoFactor" name="Data.TwoFactor" type="checkbox"> 
+                                        Activer l'authentification à 2 facteurs (E-Mail)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit">Enregistrer les modifications</button>
+                                </div>
+                            </section>
+                        </form>
+                    </m-form>
+                </section>
             </div>
             <div class="sidebar">
                 <a-migrospro-sidebar>
@@ -114,7 +196,7 @@
                     <p>+ de 500</p>
                 </a-migrospro-sidebar>
             </div>
-        </o-grid>
+        </o-migrospro-request-form>
         <a-migrospro-spacer></a-migrospro-spacer>
     </section>
 </m-tabs>
