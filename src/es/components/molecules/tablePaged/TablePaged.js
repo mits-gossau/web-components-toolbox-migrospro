@@ -30,9 +30,16 @@ export default class TablePaged extends Shadow() {
       this.setParam('pageSize', this.footDropdown.value)
     }
 
-    //onklick on Search
+    //onklick on Search button
     this.search = event => {
       this.setParam('searchString', this.InputField.value) 
+    }
+
+    // onclick on reset button
+    this.reset = event => {
+      this.url.searchParams.delete("orderBy")
+      this.url.searchParams.delete("searchString")
+      window.location.replace(this.url)
     }
 
     // onClick on edit field
@@ -120,9 +127,11 @@ export default class TablePaged extends Shadow() {
         padding-bottom: var(--search-padding-bottom, 1em);
         justify-content: flex-end;
       }
+      :host .search > * {
+        margin-left: var(--search-children-margin-left, 1em);
+      }
       :host .search input{
         width: var(--search-input-width, auto);
-        margin-right: var(--search-input-margin-right, 1em);
         height: var(--search-input-height, 60px);
       }
       :host .search a-button {
@@ -247,6 +256,15 @@ export default class TablePaged extends Shadow() {
       searchBtn.root.appendChild(searchIcon)
       searchBtn.addEventListener('click', this.search)
       searchDiv.appendChild(searchBtn)
+
+      const resetBtn = new children[0].constructorClass({ namespace: (this.getAttribute('namespace') ?? '' + 'button-secondary-') , namespaceFallback: this.hasAttribute('namespace-fallback'), mobileBreakpoint: this.mobileBreakpoint }) // eslint-disable-line
+      const resetIcon = new children[1].constructorClass({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback'), mobileBreakpoint: this.mobileBreakpoint }) // eslint-disable-line
+      resetIcon.setAttribute('icon-name', 'RotateLeft')
+      resetIcon.setAttribute('size', '1.5em')
+      resetIcon.setAttribute('no-hover', '')
+      resetBtn.root.appendChild(resetIcon)
+      resetBtn.addEventListener('click', this.reset)
+      searchDiv.appendChild(resetBtn)
 
       this.root.prepend(searchDiv)
 
