@@ -22,17 +22,20 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_CivilityId">Civillité *</label>
                         <div class="form-radio-group">
-                            <label> <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio" value="1"> Monsieur </label>
+                            <label> <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio"
+                                    value="1"> Monsieur </label>
                             <!-- <span>
                                 <input id="Data_CivilityId_M" name="Data.CivilityId" type="radio" value="1" checked>
                                 <label for="Data_CivilityId_M">M</label> 
                             </span> -->
-                            <label> <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2"> Mme </label>
+                            <label> <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2"> Mme
+                            </label>
                             <!-- <span>
                                 <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2">
                                 <label for="Data_CivilityId_Mme">Mme </label> 
                             </span> -->
-                            <label> <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3"> Autre </label>
+                            <label> <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3">
+                                Autre </label>
                             <!-- <span>
                                 <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3">
                                 <label for="Data_CivilityId_Autre">Autre</label>
@@ -42,13 +45,15 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_FirstName">Prénom *</label>
                         <div>
-                            <input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text" value="" required>
+                            <input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text" value=""
+                                required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_LastName">Nom *</label>
                         <div>
-                            <input class="form-control" id="Data_LastName" name="Data.LastName" type="text" value="" required>
+                            <input class="form-control" id="Data_LastName" name="Data.LastName" type="text" value=""
+                                required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,13 +69,15 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_Email">E-mail professionnel *</label>
                         <div>
-                            <input class="form-control" id="Data_Email" name="Data.Email" type="email" value="" required>
+                            <input class="form-control" id="Data_Email" name="Data.Email" type="email" value=""
+                                required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_PhoneNumber">Téléphone *</label>
                         <div>
-                            <input class="form-control" id="Data_PhoneNumber" name="Data.PhoneNumber" type="tel" value="" required>
+                            <input class="form-control" id="Data_PhoneNumber" name="Data.PhoneNumber" type="tel"
+                                value="" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,19 +90,21 @@
                         <a-button namespace="button-primary-" className="icon-chevron">
                             Continuer
                             <svg class="icon-right" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
                             </svg>
                         </a-button>
                     </div>
                 </section>
-                
+
                 <!-- SECTION 2 -->
-                <section class="section">
+                <section class="section" rendering-controller-element>
                     <h2>Addresse principale de l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="Data_SocialReason">Raison sociale *</label>
                         <div>
-                            <input class="form-control" id="Data_SocialReason" name="Data.SocialReason" type="text" value="" required>
+                            <input class="form-control" id="Data_SocialReason" name="Data.SocialReason" type="text"
+                                value="" required>
                         </div>
                     </div>
                     <div class="col-2-desktop">
@@ -215,46 +224,54 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_EmailRegister">Adresse e-mail de facturation *</label>
                         <div>
-                            <input class="form-control" id="Data_EmailRegister" name="Data.EmailRegister" type="email" value="" required>
+                            <input class="form-control" id="Data_EmailRegister" name="Data.EmailRegister" type="email"
+                                value="" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="Data_IsDifferentBillingAddress">L’adresse de facture est-elle différente de votre adresse principale? *</label>
+                        <label class="control-label" for="Data_IsDifferentBillingAddress">L’adresse de facture est-elle
+                            différente de votre adresse principale? *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_IsDifferentBillingAddress_No" name="Data.IsDifferentBillingAddress" type="radio" value="0" checked>
-                                <label for="Data_IsDifferentBillingAddress_No">Non</label> 
+                                <input id="Data_IsDifferentBillingAddress_No" name="Data.IsDifferentBillingAddress"
+                                    show-component-if-checked="same-billing-address" type="radio" value="0" checked>
+                                <label for="Data_IsDifferentBillingAddress_No">Non</label>
                             </span>
                             <span>
-                                <input id="Data_IsDifferentBillingAddress_Yes" name="Data.IsDifferentBillingAddress" type="radio" value="1">
-                                <label for="Data_IsDifferentBillingAddress_Yes">Qui</label> 
+                                <input id="Data_IsDifferentBillingAddress_Yes" formId="billing-address"
+                                    name="Data.IsDifferentBillingAddress"
+                                    show-component-if-checked="diff-billing-address" type="radio" value="1">
+                                <label for="Data_IsDifferentBillingAddress_Yes">Qui</label>
                             </span>
                         </div>
                     </div>
-                    <div id="billing-address" style="display: none">
+                    <div id="billing-address" component-name="diff-billing-address">
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingName">BillingName</label>
+                            <label class="control-label" for="Data_BillingName">BillingName *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingName" name="Data.BillingName" type="text">
+                                <input class="form-control" id="Data_BillingName" name="Data.BillingName" type="text" conditional-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine1">BillingAddressLine1</label>
+                            <label class="control-label" for="Data_BillingAddressLine1">BillingAddressLine1 *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingAddressLine1" name="Data.BillingAddressLine1" type="text">
+                                <input class="form-control" id="Data_BillingAddressLine1"
+                                    name="Data.BillingAddressLine1" type="text" conditional-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine2">BillingAddressLine2</label>
+                            <label class="control-label" for="Data_BillingAddressLine2">BillingAddressLine2 *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingAddressLine2" name="Data.BillingAddressLine2" type="text">
+                                <input class="form-control" id="Data_BillingAddressLine2" conditional-required
+                                    name="Data.BillingAddressLine2" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingPostOfficeBox">BillingPostOfficeBox</label>
+                            <label class="control-label" for="Data_BillingPostOfficeBox">BillingPostOfficeBox *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingPostOfficeBox" name="Data.BillingPostOfficeBox" type="text">
+                                <input class="form-control" id="Data_BillingPostOfficeBox" conditional-required
+                                    name="Data.BillingPostOfficeBox" type="text">
                             </div>
                         </div>
                         <div class="form-group">
@@ -364,18 +381,25 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="Data_RecommendedCustomer">Un client Migros Pro vous a recommandé nos services?</label>
+                    <div class="form-group" component-name="same-billing-address">
+                        <label class="control-label" for="Data_RecommendedCustomer">Un client Migros Pro vous a
+                            recommandé nos services?</label>
                         <div>
-                            <input class="form-control" id="Data_RecommendedCustomer" name="Data.RecommendedCustomer" type="text">
+                            <input class="form-control" id="Data_RecommendedCustomer" name="Data.RecommendedCustomer"
+                                type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <a-button namespace="button-primary-" className="icon-chevron">
-                            <style>:host button[disabled]{cursor:pointer !important}</style>
+                            <style>
+                                :host button[disabled] {
+                                    cursor: pointer !important
+                                }
+                            </style>
                             Continuer
                             <svg class="icon-right" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
                             </svg>
                         </a-button>
                     </div>
@@ -387,48 +411,62 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_CompanyStructureTypeId">Type de structure *</label>
                         <div>
-                            <select class="form-control" id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
+                            <select class="form-control" data-conditional-required-element-enabled
+                                id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Association</option>
-                                <option value="2">Entreprise</option>
+                                <option value="2" additional-required-field="Data_CompanyRegistrationNumber">Entreprise
+                                </option>
                                 <option value="3">Institution</option>
-                                <option value="4">Organisation internationale</option>
+                                <option value="4">Organisation
+                                    internationale</option>
                                 <option value="5">Prof. libérale ou ent. individuelle</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_ValuedAddedTax">Ma société est-elle assujettie à la TVA? *</label>
+                        <label class="control-label" for="Data_ValuedAddedTax">Ma société est-elle assujettie à la TVA?
+                            *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_ValuedAddedTax_No" name="Data.ValuedAddedTax" type="radio" value="0" checked>
-                                <label for="Data_ValuedAddedTax_No">Non</label> 
+                                <input id="Data_ValuedAddedTax_No" name="Data.ValuedAddedTax" type="radio" value="0"
+                                    checked>
+                                <label for="Data_ValuedAddedTax_No">Non</label>
                             </span>
                             <span>
                                 <input id="Data_ValuedAddedTax_Yes" name="Data.ValuedAddedTax" type="radio" value="1">
-                                <label for="Data_ValuedAddedTax_Yes">Qui</label> 
+                                <label for="Data_ValuedAddedTax_Yes">Qui</label>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro Registre du Commerce) *</label>
+                        <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro
+                            Registre du Commerce)</label>
                         <div>
-                            <input class="form-control" id="Data_CompanyRegistrationNumber" name="Data.CompanyRegistrationNumber" type="text" value="" required>
+                            <input class="form-control" id="Data_CompanyRegistrationNumber" required-field-name="Data_CompanyRegistrationNumber"
+                                name="Data.CompanyRegistrationNumber" type="text" value="">
                             <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro aures-vous besoin? *</label>
+                        <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro
+                            aures-vous besoin?</label>
                         <div>
-                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard" type="text" value="" required>
+                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard"
+                                type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <a-button namespace="button-primary-" className="icon-chevron">
-                            <style>:host button[disabled]{cursor:pointer !important}</style>
+                            <style>
+                                :host button[disabled] {
+                                    cursor: pointer !important
+                                }
+                            </style>
                             Continuer
                             <svg class="icon-right" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
                             </svg>
                         </a-button>
                     </div>
@@ -438,15 +476,18 @@
                 <section class="section">
                     <h2>Responsable du compte</h2>
                     <div class="form-group">
-                        <label class="control-label" for="Data_IsAccountManager">Ma société est-elle assujettie à la TVA? *</label>
+                        <label class="control-label" for="Data_IsAccountManager">Ma société est-elle assujettie à la
+                            TVA? *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_IsAccountManager_No" name="Data.IsAccountManager" type="radio" value="0" checked>
-                                <label for="Data_IsAccountManager_No">Non</label> 
+                                <input id="Data_IsAccountManager_No" name="Data.IsAccountManager" type="radio" value="0"
+                                    checked>
+                                <label for="Data_IsAccountManager_No">Non</label>
                             </span>
                             <span>
-                                <input id="Data_IsAccountManager_Yes" name="Data.IsAccountManager" type="radio" value="1">
-                                <label for="Data_IsAccountManager_Yes">Qui</label> 
+                                <input id="Data_IsAccountManager_Yes" name="Data.IsAccountManager" type="radio"
+                                    value="1">
+                                <label for="Data_IsAccountManager_Yes">Qui</label>
                             </span>
                         </div>
                     </div>
@@ -456,15 +497,18 @@
                         <label class="control-label" for="Data_AccountManagerCivilityId">Civillité *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_AccountManagerCivilityId_M" name="Data.AccountManagerCivilityId" type="radio" value="1" checked>
-                                <label for="Data_AccountManagerCivilityId_M">M</label> 
+                                <input id="Data_AccountManagerCivilityId_M" name="Data.AccountManagerCivilityId"
+                                    type="radio" value="1" checked>
+                                <label for="Data_AccountManagerCivilityId_M">M</label>
                             </span>
                             <span>
-                                <input id="Data_AccountManagerCivilityId_Mme" name="Data.AccountManagerCivilityId" type="radio" value="2">
-                                <label for="Data_AccountManagerCivilityId_Mme">Mme </label> 
+                                <input id="Data_AccountManagerCivilityId_Mme" name="Data.AccountManagerCivilityId"
+                                    type="radio" value="2">
+                                <label for="Data_AccountManagerCivilityId_Mme">Mme </label>
                             </span>
                             <span>
-                                <input id="Data_AccountManagerCivilityId_Autre" name="Data.AccountManagerCivilityId" type="radio" value="3">
+                                <input id="Data_AccountManagerCivilityId_Autre" name="Data.AccountManagerCivilityId"
+                                    type="radio" value="3">
                                 <label for="Data_AccountManagerCivilityId_Autre">Autre</label>
                             </span>
                         </div>
@@ -472,19 +516,23 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_AccountManagerFirstName">Prénom *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerFirstName" name="Data.AccountManagerFirstName" type="text" value="" required>
+                            <input class="form-control" id="Data_AccountManagerFirstName"
+                                name="Data.AccountManagerFirstName" type="text" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_AccountManagerLastName">Nom *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerLastName" name="Data.AccountManagerLastName" type="text" value="" required>
+                            <input class="form-control" id="Data_AccountManagerLastName"
+                                name="Data.AccountManagerLastName" type="text" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerFunctionService">Fonction / Service *</label>
+                        <label class="control-label" for="Data_AccountManagerFunctionService">Fonction / Service
+                            *</label>
                         <div>
-                            <select class="form-control" id="Data_AccountManagerFunctionService" name="Data.AccountManagerFunctionService" required>
+                            <select class="form-control" id="Data_AccountManagerFunctionService"
+                                name="Data.AccountManagerFunctionService" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -494,24 +542,28 @@
                     <div class="form-group">
                         <label class="control-label" for="Data_AccountManagerEmail">E-mail professionnel *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerEmail" name="Data.AccountManagerEmail" type="email" value="" required>
+                            <input class="form-control" id="Data_AccountManagerEmail" name="Data.AccountManagerEmail"
+                                type="email" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_AccountManagerPhoneNumber">Téléphone *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerPhoneNumber" name="Data.AccountManagerPhoneNumber" type="tel" value="" required>
+                            <input class="form-control" id="Data_AccountManagerPhoneNumber"
+                                name="Data.AccountManagerPhoneNumber" type="tel" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_AccountManagerMobileNumber">Mobile</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerMobileNumber" name="Data.AccountManagerMobileNumber" type="tel">
+                            <input class="form-control" id="Data_AccountManagerMobileNumber"
+                                name="Data.AccountManagerMobileNumber" type="tel">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="Data_ProductOffers">
-                            <input class="form-control" id="Data_ProductOffers" name="Data.ProductOffers" type="checkbox">
+                            <input class="form-control" id="Data_ProductOffers" name="Data.ProductOffers"
+                                type="checkbox">
                             Je souhaite être informé des meilleurs offres de MIGROS PRO pour mon entreprise.
                         </label>
                     </div>
