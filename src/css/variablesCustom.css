@@ -60,10 +60,13 @@
 	--header-default-content-width: 90% !important;
 	--header-default-logo-width-custom: max(10em, 12vw);
 	--header-default-margin-custom: calc(var(--content-spacing) / 2) 0 var(--content-spacing) 0;
+	--menu-color-custom:var(--m-black);
 	--modal-default-div-position: absolute;
-	--navigation-alnatura-not-open-color-active-custom: var(--m-white);
-	--navigation-alnatura-not-open-color-hover-custom: var(--m-white);
+	--navigation-migrospro-color-custom: var(--m-white);
+	--navigation-migrospro-color-second-level-custom: var(--m-black);
 	--picture-store-logo-img-max-width: 5em;
 	--user-profile-default-menu-border-radius-custom:0.5em;
 	--user-profile-default-menu-top-custom:3em;
+	--wrapper-text-a-text-decoration-hover:underline;
+	--wrapper-text-a-text-decoration:none;
 }

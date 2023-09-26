@@ -120,6 +120,9 @@ export default class TablePaged extends Shadow() {
       :host {
         --any-content-width: 80%;
       }
+      :host > .table {        
+        overflow-x: auto;
+      } 
 
       :host .search {
         display: flex;
@@ -176,18 +179,18 @@ export default class TablePaged extends Shadow() {
         --table-padding-right-last-child: var(--table-element-padding, 0.5em);
       }
 
-      :host tfoot div {
+      :host .foot {
         display: flex;
         align-items: center;
         justify-content: flex-end;        
         padding-top: var(--tfoot-padding-top, 1em);
       }
-      :host tfoot div span,
-      :host tfoot div select,
-      :host tfoot div a-icon-mdx {
+      :host .foot span,
+      :host .foot select,
+      :host .foot a-icon-mdx {
         margin: var(--tfoot-margin, 0 0.3em);
       }
-      :host tfoot select {
+      :host .foot select {
         width: var(--tfoot-select-width, 70px);
       }
     `
@@ -290,15 +293,18 @@ export default class TablePaged extends Shadow() {
         }
       });
 
-      // Paged navigation in div
-      const fragment = document.createDocumentFragment();
-      Array.from(this.foot.children).forEach(c => fragment.appendChild(c))
-      
-      const footDiv = document.createElement('div')
-      footDiv.appendChild(fragment);
 
-      this.foot.appendChild(footDiv)
+      const tableDiv = document.createElement('div')
+      tableDiv.appendChild(this.table)
+      tableDiv.className = 'table'
+
+      this.root.appendChild(tableDiv)
+      this.root.appendChild(this.foot)
     })
+  }
+
+  get table (){
+    return this.root.querySelector('table')
   }
 
   get allHeads () {
@@ -306,11 +312,11 @@ export default class TablePaged extends Shadow() {
   }
 
   get foot () {
-    return this.root.querySelector('tfoot>tr>td')
+    return this.root.querySelector('.foot')
   }
 
   get footDropdown () {
-    return this.foot.querySelector('select')
+    return this.foot.querySelector('.foot>select')
   }
 
   get aModal () {
