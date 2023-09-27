@@ -30,7 +30,7 @@ export default class TablePaged extends Shadow() {
       this.setParam('pageSize', this.footDropdown.value)
     }
 
-    //onklick on Search button
+    // onclick event on search button
     this.search = event => {
       this.setParam('searchString', this.InputField.value) 
     }
