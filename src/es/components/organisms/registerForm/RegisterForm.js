@@ -255,6 +255,13 @@ export default class RegisterForm extends Shadow() {
 
   renderCSS() {
     this.css = /* css */ `
+      :host {
+        --background-color: transparent; 
+        --color: var(--m-gray-600);
+        --color-black: var(--m-black);
+        color: var(--color, var(--m-gray-600));
+        font-size: var(--font-size);
+      }
       :host section {
           display: flex;
           flex-direction: column;
@@ -334,6 +341,10 @@ export default class RegisterForm extends Shadow() {
       }
       :host input[type='radio'] {
         accent-color: var(--m-orange-700);
+      }
+      :host textarea:focus, 
+      :host input:focus {
+          color: var(--color-secondary);
       }
       :host .icon-chevron :after {
         background-image: var(--background-image, url('_import-meta-url_../../../../icons/chevron_right.svg'));
