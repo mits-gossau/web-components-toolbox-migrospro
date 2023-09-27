@@ -191,43 +191,48 @@ export default class RegisterForm extends Shadow() {
     getRequiredFields()
 
     // billing address
-    const renderingControllerElement = this.root.querySelector("[rendering-controller-element]")
-    const firstComponentController = renderingControllerElement.querySelectorAll("[show-component-if-checked]")[0]
-    const allConditionalElement = renderingControllerElement.querySelectorAll("[component-name]")
-    renderingControllerElement.addEventListener('change', (e) => {
-      const elementNameToRender = e.target.getAttribute("show-component-if-checked")
-      if (elementNameToRender) {
-        const showedElements = Array.from(allConditionalElement).filter(elem => {
-          return elem.getAttribute("component-name") === elementNameToRender
-        })
-        const hidedElements = Array.from(allConditionalElement).filter(elem => {
-          return elem.getAttribute("component-name") !== elementNameToRender
-        })
+    const renderingControllerElements = this.root.querySelectorAll("[rendering-controller-element]")
 
-        if (showedElements.length > 0) {
-          showedElements.forEach(elem => {
-            const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
-            if (conditionalRequiredFieldsInElement.length > 0) {
-              conditionalRequiredFieldsInElement.forEach(elem => elem.required = true)
-            }
-            elem.style.display = 'block'
-          })
-        }
+    Array.from(renderingControllerElements).forEach(controller => {
+      
 
-        if (hidedElements.length > 0) {
-          hidedElements.forEach(elem => {
-            const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
-            if (conditionalRequiredFieldsInElement.length > 0) {
-              conditionalRequiredFieldsInElement.forEach(elem => elem.required = false)
-            }
-            elem.style.display = 'none'
+      const firstComponentController = controller.querySelectorAll("[show-component-if-checked]")[0]
+      const allConditionalElement = controller.querySelectorAll("[component-name]")
+      controller.addEventListener('change', (e) => {
+        const elementNameToRender = e.target.getAttribute("show-component-if-checked")
+        if (elementNameToRender) {
+          const showedElements = Array.from(allConditionalElement).filter(elem => {
+            return elem.getAttribute("component-name") === elementNameToRender
           })
+          const hidedElements = Array.from(allConditionalElement).filter(elem => {
+            return elem.getAttribute("component-name") !== elementNameToRender
+          })
+
+          if (showedElements.length > 0) {
+            showedElements.forEach(elem => {
+              const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
+              if (conditionalRequiredFieldsInElement.length > 0) {
+                conditionalRequiredFieldsInElement.forEach(elem => elem.required = true)
+              }
+              elem.style.display = 'block'
+            })
+          }
+
+          if (hidedElements.length > 0) {
+            hidedElements.forEach(elem => {
+              const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
+              if (conditionalRequiredFieldsInElement.length > 0) {
+                conditionalRequiredFieldsInElement.forEach(elem => elem.required = false)
+              }
+              elem.style.display = 'none'
+            })
+          }
         }
+      })
+      if (firstComponentController) {
+        firstComponentController.dispatchEvent(new Event('change', { 'bubbles': true }))
       }
-    })
-    if (firstComponentController) {
-      firstComponentController.dispatchEvent(new Event('change', { 'bubbles': true }))
-    }
+    });
   }
 
   connectedCallback() {
