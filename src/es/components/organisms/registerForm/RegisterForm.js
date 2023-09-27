@@ -330,6 +330,10 @@ export default class RegisterForm extends Shadow() {
       :host input[type='radio'] {
         accent-color: var(--m-orange-700);
       }
+      :host textarea:focus, 
+      :host input:focus {
+          color: var(--color-secondary);
+      }
       :host .icon-chevron :after {
         background-image: var(--background-image, url('_import-meta-url_../../../../icons/chevron_right.svg'));
         background-position: center;

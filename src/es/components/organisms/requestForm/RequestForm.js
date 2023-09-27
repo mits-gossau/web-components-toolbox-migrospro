@@ -78,18 +78,18 @@ export default class RequestForm extends Shadow() {
         :host m-form h3 {
           color: var(--m-orange-600);
           font-family: var(--font-family);
-          font-size: 1.25rem;
-          font-weight: 400;
-          margin: 1rem 0 .5rem 0;
-          text-align: left;
+          font-size: var(--h-font-size, 1.25rem);
+          font-weight: var(--h-font-weight, 400);
+          margin: var(--h-margin, 1rem 0 .5rem 0);
+          text-align: var(--h-text-align, left);
           width: 100%;
         }
         :host input[type="checkbox"] {
-            height: 1.5rem;
-            margin-right: 0.5rem;
-            width: 1.5rem;
+            height: var(--input-checkbox-dimension, 1.5rem);
+            margin-right: var(--input-checkbox-margin-right, 0.5rem);
+            width: var(--input-checkbox-dimension, 1.5rem);
             position: relative;
-            top: 0.375rem;
+            top: var(--input-checkbox-top, 0.375rem);
         }
         :host input[type='radio'] {
           accent-color: var(--m-orange-700);
@@ -138,10 +138,10 @@ export default class RequestForm extends Shadow() {
             color: var(--color-label-a, var(--color-black));
         }
         :host .form-group {
-          margin-bottom: 1rem;
+            margin-bottom: var(--form-group-margin-bottom, 1rem);
         }
         :host .form-group > div {
-          position: relative;
+            position: relative;
         }
         :host label {
           cursor: pointer;
@@ -161,10 +161,10 @@ export default class RequestForm extends Shadow() {
             gap: var(--gap, 2rem);
           }
           :host .content {
-            width: 68%;
+            width: var(--content-width, 68%);
           }
           :host .sidebar {
-            width: 32%;
+            width: var(--sidebar-width, 32%);
           }
         }
     `;
