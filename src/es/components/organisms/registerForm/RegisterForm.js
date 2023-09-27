@@ -250,6 +250,13 @@ export default class RegisterForm extends Shadow() {
 
   renderCSS() {
     this.css = /* css */ `
+      :host {
+        --background-color: transparent; 
+        --color: var(--m-gray-600);
+        --color-black: var(--m-black);
+        color: var(--color, var(--m-gray-600));
+        font-size: var(--font-size);
+      }
       :host section {
           display: flex;
           flex-direction: column;

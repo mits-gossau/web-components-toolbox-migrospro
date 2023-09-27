@@ -68,7 +68,6 @@ export default class RequestForm extends Shadow() {
     this.css = /* css */ `
         :host {
           --background-color: transparent; 
-          --font-size: 14px;
           --color: var(--m-gray-600);
           --color-black: var(--m-black);
           color: var(--color, var(--m-gray-600));
@@ -85,14 +84,18 @@ export default class RequestForm extends Shadow() {
           width: 100%;
         }
         :host input[type="checkbox"] {
-            height: var(--input-checkbox-dimension, 1.5rem);
+            height: var(--input-radio-checkbox-dimension, 24px);
+            width: var(--input-radio-checkbox-dimension, 24px);
             margin-right: var(--input-checkbox-margin-right, 0.5rem);
-            width: var(--input-checkbox-dimension, 1.5rem);
             position: relative;
             top: var(--input-checkbox-top, 0.375rem);
         }
         :host input[type='radio'] {
           accent-color: var(--m-orange-700);
+          height: var(--input-radio-checkbox-dimension, 24px);
+          width: var(--input-radio-checkbox-dimension, 24px);
+          position: relative;
+          top: var(--input-radio-top, -2px);
         }
         :host .icon-chevron :after {
           background-image: var(--background-image, url('_import-meta-url_../../../../icons/chevron_right.svg'));
@@ -105,6 +108,15 @@ export default class RequestForm extends Shadow() {
         :host textarea:focus, 
         :host input:focus {
             color: var(--color-secondary);
+        }
+        :host input[type="text"],
+        :host input[type="password"],
+        :host input[type="email"],
+        :host input[type="tel"],
+        :host input[type="number"],
+        :host input[type="date"],
+        :host input[type="time"] {
+          height: var(--input-height, 48px);
         }
         :host input[type="password"] + span,
         :host input[type="text"] + span {
@@ -152,6 +164,7 @@ export default class RequestForm extends Shadow() {
             font-size: var(--font-size-label, var(--font-size));
         }
         :host .form-radio-group {
+          padding-top: var(--form-radio-group-padding-top, 4px);
           display: flex;
           gap: 2rem;
         }
