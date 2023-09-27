@@ -258,20 +258,20 @@ export default class RegisterForm extends Shadow() {
       :host section {
           display: flex;
           flex-direction: column;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-margin-bottom, 4rem);
       }
       :host h1 {
-        font-size: 2rem;
-        text-align: center;
+        font-size: var(--h1-font-size, 2rem);
+        text-align: var(--h1-text-align, center);
       }
       :host h2,
       :host m-form h3 {
         color: var(--m-orange-600);
         font-family: var(--font-family);
-        font-size: 1.25rem;
-        font-weight: 400;
-        margin: 1rem 0 .5rem 0;
-        text-align: left;
+        font-size: var(--h-font-size, 1.25rem);
+        font-weight: var(--h-font-weight, 400);
+        margin: var(--h-margin, 1rem 0 .5rem 0);
+        text-align: var(--h-text-align, left);
         width: 100%;
       }
       :host .form-steps {
@@ -279,13 +279,13 @@ export default class RegisterForm extends Shadow() {
         flex-wrap: wrap;
         justify-content: center;
         list-style: none;
-        margin-bottom: 2rem;
-        padding: 0;
+        margin-bottom: var(--form-steps-margin-bottom, 2rem);
+        padding: var(--form-steps-padding, 0);
       }
       :host .form-steps li {
         color: var(--m-gray-400);
         cursor: pointer;
-        margin-bottom: 1rem;
+        margin-bottom: var(--form-steps-li-margin-bottom, 1rem);
       }
       :host .form-steps li:hover {
         color: var(--m-orange-800);
@@ -294,7 +294,7 @@ export default class RegisterForm extends Shadow() {
         color: var(--m-black);
       }
       :host .form-steps li.active {
-        background: 0 none;
+        background: var(--form-steps-li-active-background, 0 none);
         color: var(--m-orange-600);
       }
       :host .form-steps li.disabled {
@@ -314,8 +314,8 @@ export default class RegisterForm extends Shadow() {
         margin: 0 1rem;
       }
       :host m-form {
-        max-width: 560px;
-        margin: 0 auto 4rem auto;
+        max-width: var(--m-form-max-width, 560px);
+        margin: var(--m-form-margin, 0 auto 4rem auto);
       }
       :host form section {
         background: 0 none;
@@ -325,12 +325,12 @@ export default class RegisterForm extends Shadow() {
         display: block;
       }
       :host .form-group {
-        margin-bottom: 1rem;
+        margin-bottom: var(--form-group-margin-bottom, 1rem);
       }
       :host label,
       :host .form-text {
           color: var(--m-gray-600);
-          font-size: 14px;
+          font-size: var(--label-form-text-font-size, 14px);
       }
       :host input[type='radio'] {
         accent-color: var(--m-orange-700);
@@ -346,7 +346,7 @@ export default class RegisterForm extends Shadow() {
       @media (min-width: 768px) {
         :host .col-2-desktop {
             display: flex;
-            column-gap: 1rem;
+            column-gap: var(--col-2-desktop-column-gap, 1rem);
             width: 100%;
         }
         :host .col-2-desktop > div {
