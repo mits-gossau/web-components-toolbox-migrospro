@@ -22,7 +22,16 @@ export default class TablePaged extends Shadow() {
 
     // click on tableHead or paged nav
     this.clickListener = event => {
-      this.setParam(event.target.getAttribute('data-name'), event.target.getAttribute('data-value'))
+      var name, value;
+      if (event.target.hasAttribute('data-name')){
+        name = event.target.getAttribute('data-name')
+        value = event.target.getAttribute('data-value')
+      }
+      else {
+        name = event.target.parentNode.getAttribute('data-name')
+        value = event.target.parentNode.getAttribute('data-value')
+      }
+      this.setParam(name, value)
     }
 
     //onchange of dropdown
@@ -49,7 +58,7 @@ export default class TablePaged extends Shadow() {
           'open-modal', 
           { detail: 
             { origEvent: event, 
-              child: event.target 
+              child: event.target.hasAttribute('open-modal-target') ? event.target : Array.from(this.aModal).find(a => Array.from(a.children).includes(event.target)) 
             }, 
             bubbles: true, 
             cancelable: true, 
