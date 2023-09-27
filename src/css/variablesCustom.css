@@ -49,6 +49,7 @@
 	--button-category-color-active-custom: var(--m-white);
 	--button-category-color-custom: var(--m-black);
 	--button-category-color-hover-custom: var(--m-black);
+	--button-category-justify-content-mobile-custom:center;
 	--button-tertiary-color-custom:var(--m-black);
 	--font-family-bold: HelveticaNowTextBold, HelveticaNowText, Helvetica, Arial, sans-serif;
 	--font-family-secondary: var(--font-family-bold);
@@ -65,6 +66,7 @@
 	--navigation-migrospro-color-custom: var(--m-white);
 	--navigation-migrospro-color-second-level-custom: var(--m-black);
 	--picture-store-logo-img-max-width: 5em;
+	--tag-filter-a-button-width-mobile-custom: 49%;
 	--user-profile-default-menu-border-radius-custom:0.5em;
 	--user-profile-default-menu-top-custom:3em;
 	--wrapper-text-a-text-decoration-hover:underline;
