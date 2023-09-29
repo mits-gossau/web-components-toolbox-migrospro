@@ -194,7 +194,7 @@ export default class RegisterForm extends Shadow() {
     const renderingControllerElements = this.root.querySelectorAll("[rendering-controller-element]")
 
     Array.from(renderingControllerElements).forEach(controller => {
-      
+
 
       const firstComponentController = controller.querySelectorAll("[show-component-if-checked]")[0]
       const allConditionalElement = controller.querySelectorAll("[component-name]")
@@ -233,7 +233,113 @@ export default class RegisterForm extends Shadow() {
         firstComponentController.dispatchEvent(new Event('change', { 'bubbles': true }))
       }
     });
+
+    // number input max and min value validation
+    const numberInputFieldsWithMaxAttribute = this.root.querySelectorAll('input[type="text"][custom-number-validation]')
+    Array.from(numberInputFieldsWithMaxAttribute).forEach(elem => {
+      const max = +elem.getAttribute("max")
+      const min = +elem.getAttribute("min")
+      const validityMessage = elem.getAttribute("custom-validity-message")
+
+      elem.addEventListener("keydown", (e) => {
+        // ignore NaN e.keys except backspace and -,+,.,e key since the are as default allow to type in number
+        if ((isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 109 || +e.keyCode === 107 || +e.keyCode === 190) && +e.keyCode !== 8) {
+          e.target.setCustomValidity(validityMessage);
+          e.target.reportValidity();
+          e.preventDefault();
+        }
+      })
+
+      elem.addEventListener("keyup", (e) => {
+        if (elem.value) {
+          const typed = +elem.value;
+          if (typed <= max && typed >= min) {
+            e.target.setCustomValidity("");
+            elem.value = typed
+          } else {
+            e.target.setCustomValidity(validityMessage);
+            e.target.reportValidity();
+          }
+        } else {
+          e.target.setCustomValidity(validityMessage);
+          e.target.reportValidity();
+        }
+      })
+
+      elem.addEventListener("change", (e) => {
+        if (elem.value) {
+          const typed = +elem.value;
+          if (typed > max || typed < min) {
+            elem.value = ""
+            e.target.setCustomValidity(validityMessage);
+            e.target.reportValidity();
+          }
+        }
+      })
+    })
+
+    // pattern right format validation
+    const patternTextInputFields = this.root.querySelectorAll('input[type="text"][custom-pattern-validation]')
+    Array.from(patternTextInputFields).forEach(elem => {
+      const validityMessage = elem.getAttribute("custom-validity-message")
+
+      elem.addEventListener("keydown", (e) => {
+        // ignore NaN e.keys except C,H,E, left and right arrows and spec chars that needed to type the code
+        if ((isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 8
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 16
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 37
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 39
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 67
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 72
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 69
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 109
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 190
+          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 110) {
+          e.target.setCustomValidity(validityMessage);
+          e.target.reportValidity();
+          e.preventDefault();
+        }
+      })
+
+      elem.addEventListener("keyup", (e) => {
+        const currentValue = elem.value
+        if (
+          currentValue.substring(0, 3) === "CHE"
+          && currentValue.split('.').length === 3
+          && currentValue.split('.')[1].split('').every(e => !isNaN(+e))
+          && currentValue.split('.')[2].split('').every(e => !isNaN(+e))
+          && currentValue.length === 15
+        ) {
+          e.target.setCustomValidity("");
+          e.target.reportValidity();
+        } else {
+          e.target.setCustomValidity(validityMessage);
+          e.target.reportValidity();
+        }
+      })
+
+      elem.addEventListener("change", (e) => {
+        const currentValue = elem.value
+        if (
+          currentValue.substring(0, 3) === "CHE"
+          && currentValue.split('.').length === 3
+          && currentValue.split('.')[1].split('').every(e => !isNaN(+e))
+          && currentValue.split('.')[2].split('').every(e => !isNaN(+e))
+          && currentValue.length === 15
+        ) {
+          e.target.setCustomValidity("");
+          e.target.reportValidity();
+        } else {
+          e.target.setCustomValidity(validityMessage);
+          e.target.reportValidity();
+          elem.value = ""
+        }
+      })
+    })
   }
+
+
+
 
   connectedCallback() {
     if (this.shouldRenderCSS()) this.renderCSS()
