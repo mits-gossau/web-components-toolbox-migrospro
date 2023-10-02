@@ -49,7 +49,10 @@
 	--button-category-color-active-custom: var(--m-white);
 	--button-category-color-custom: var(--m-black);
 	--button-category-color-hover-custom: var(--m-black);
-	--button-tertiary-color-custom:var(--m-black);
+	--button-category-justify-content-mobile-custom:center;
+	--button-category-teaser-color-custom: var(--m-black);
+	--button-category-teaser-background-color-active-custom: transparent;
+	--button-tertiary-color-custom: var(--m-black);
 	--font-family-bold: HelveticaNowTextBold, HelveticaNowText, Helvetica, Arial, sans-serif;
 	--font-family-secondary: var(--font-family-bold);
 	--font-family: HelveticaNowText, Helvetica, Arial, sans-serif;
@@ -60,13 +63,14 @@
 	--header-default-content-width: 90% !important;
 	--header-default-logo-width-custom: max(10em, 12vw);
 	--header-default-margin-custom: calc(var(--content-spacing) / 2) 0 var(--content-spacing) 0;
-	--menu-color-custom:var(--m-black);
+	--menu-color-custom: var(--m-black);
 	--modal-default-div-position: absolute;
 	--navigation-migrospro-color-custom: var(--m-white);
 	--navigation-migrospro-color-second-level-custom: var(--m-black);
 	--picture-store-logo-img-max-width: 5em;
-	--user-profile-default-menu-border-radius-custom:0.5em;
-	--user-profile-default-menu-top-custom:3em;
-	--wrapper-text-a-text-decoration-hover:underline;
-	--wrapper-text-a-text-decoration:none;
+	--tag-filter-a-button-width-mobile-custom: 49%;
+	--user-profile-default-menu-border-radius-custom: 0.5em;
+	--user-profile-default-menu-top-custom: 3em;
+	--wrapper-text-a-text-decoration-hover: underline;
+	--wrapper-text-a-text-decoration: none;
 }
