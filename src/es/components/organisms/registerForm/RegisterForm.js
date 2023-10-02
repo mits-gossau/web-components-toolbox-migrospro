@@ -25,12 +25,12 @@ export default class RegisterForm extends Shadow() {
 
     if (form) {
       formFields.forEach(field => {
-        if (field.type !== 'radio') {
+        if (field.type !== 'radio' || field.type !== 'checkbox') {
           if (field.name && savedData[field.name] !== undefined) {
             field.value = savedData[field.name]
           }
         }
-        if (field.type === 'radio') {
+        if (field.type === 'radio' || field.type === 'checkbox') {
           if (field.name && savedData[field.name] !== undefined) {
             if (field.value === savedData[field.name]) {
               field.checked = true
@@ -44,12 +44,12 @@ export default class RegisterForm extends Shadow() {
         const formData = {}
 
         formFields.forEach(field => {
-          if (field.type !== 'radio') {
+          if (field.type !== 'radio' || field.type !== 'checkbox') {
             if (field.name) {
               formData[field.name] = field.value
             }
           }
-          if (field.type === 'radio') {
+          if (field.type === 'radio' || field.type === 'checkbox') {
             if (field.name) {
               if (field.checked) {
                 formData[field.name] = field.value
@@ -139,6 +139,10 @@ export default class RegisterForm extends Shadow() {
           if(field.tagName.toLowerCase() === 'input' && field.type === 'radio') {
             const radioInputsWithSameName = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`))
             return radioInputsWithSameName.every(radioInput => radioInput.checked === false)
+          }
+          if(field.tagName.toLowerCase() === 'input' && field.type === 'checkbox') {
+            const checkbox = Array.from(form.querySelectorAll(`input[type="checkbox"][name="${field.name}"]`))
+            return checkbox.every(checkboxInput => checkboxInput.checked === false)
           }
           return field
         }
