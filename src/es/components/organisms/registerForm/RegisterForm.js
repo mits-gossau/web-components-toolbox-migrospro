@@ -25,8 +25,17 @@ export default class RegisterForm extends Shadow() {
 
     if (form) {
       formFields.forEach(field => {
-        if (field.name && savedData[field.name] !== undefined) {
-          field.value = savedData[field.name]
+        if (field.type !== 'radio') {
+          if (field.name && savedData[field.name] !== undefined) {
+            field.value = savedData[field.name]
+          }
+        }
+        if (field.type === 'radio') {
+          if (field.name && savedData[field.name] !== undefined) {
+            if (field.value === savedData[field.name]) {
+              field.checked = true
+            }
+          }
         }
       })
 
@@ -35,8 +44,17 @@ export default class RegisterForm extends Shadow() {
         const formData = {}
 
         formFields.forEach(field => {
-          if (field.name) {
-            formData[field.name] = field.value
+          if (field.type !== 'radio') {
+            if (field.name) {
+              formData[field.name] = field.value
+            }
+          }
+          if (field.type === 'radio') {
+            if (field.name) {
+              if (field.checked) {
+                formData[field.name] = field.value
+              }
+            }
           }
         })
         sessionStorage.setItem('formValues', JSON.stringify(formData));
@@ -111,12 +129,19 @@ export default class RegisterForm extends Shadow() {
       const currentSessionStorageFormValues = JSON.parse(sessionStorage.getItem('formValues')) || {}
 
       const emptyRequiredFields = Array.from(requiredFields).filter(field => {
-        if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email')) {
-          return field.value.trim() === ''
-        } else if (field.tagName.toLowerCase() === 'select') {
-          return field.value === ''
+        if (field.required) {
+          if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email' || field.type === 'tel')) {
+            return field.value.trim() === ''
+          } 
+          if (field.tagName.toLowerCase() === 'select') {
+            return field.value === ''
+          }
+          if(field.tagName.toLowerCase() === 'input' && field.type === 'radio') {
+            const radioInputsWithSameName = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`))
+            return radioInputsWithSameName.every(radioInput => radioInput.checked === false)
+          }
+          return field
         }
-        return field
       })
 
       if (emptyRequiredFields.length !== 0) {
