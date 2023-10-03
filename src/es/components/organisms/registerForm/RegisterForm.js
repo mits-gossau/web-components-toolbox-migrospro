@@ -13,7 +13,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RegisterForm extends Shadow() {
-  constructor(options = {}, ...args) {
+  constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     // store in sessionStorage
@@ -21,7 +21,6 @@ export default class RegisterForm extends Shadow() {
     // @ts-ignore
     const savedData = JSON.parse(sessionStorage.getItem('formValues')) || {}
     const formFields = form.querySelectorAll('input, select')
-
 
     if (form) {
       formFields.forEach(field => {
@@ -40,7 +39,6 @@ export default class RegisterForm extends Shadow() {
       })
 
       form.addEventListener('change', function (event) {
-
         const formData = {}
 
         formFields.forEach(field => {
@@ -57,13 +55,13 @@ export default class RegisterForm extends Shadow() {
             }
           }
         })
-        sessionStorage.setItem('formValues', JSON.stringify(formData));
+        sessionStorage.setItem('formValues', JSON.stringify(formData))
 
-        if (event.target.hasAttribute("data-conditional-required-element-enabled")) {
+        if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
           resetConditionalRequiredElement()
           const selectedOption = event.target.options[event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
-            setConditionalRequiredElement(selectedOption);
+            setConditionalRequiredElement(selectedOption)
           }
         }
       })
@@ -123,8 +121,8 @@ export default class RegisterForm extends Shadow() {
       const requiredFields = activeSection.querySelectorAll('[required]')
       const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
-      const dataConditionalRequiredElement = activeSection.querySelector("[data-conditional-required-element-enabled]")
-      const dataNameConditionalRequiredElement = dataConditionalRequiredElement?.getAttribute("name")
+      const dataConditionalRequiredElement = activeSection.querySelector('[data-conditional-required-element-enabled]')
+      const dataNameConditionalRequiredElement = dataConditionalRequiredElement?.getAttribute('name')
       // @ts-ignore
       const currentSessionStorageFormValues = JSON.parse(sessionStorage.getItem('formValues')) || {}
 
@@ -132,15 +130,15 @@ export default class RegisterForm extends Shadow() {
         if (field.required) {
           if (field.tagName.toLowerCase() === 'input' && (field.type === 'text' || field.type === 'email' || field.type === 'tel')) {
             return field.value.trim() === ''
-          } 
+          }
           if (field.tagName.toLowerCase() === 'select') {
             return field.value === ''
           }
-          if(field.tagName.toLowerCase() === 'input' && field.type === 'radio') {
+          if (field.tagName.toLowerCase() === 'input' && field.type === 'radio') {
             const radioInputsWithSameName = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`))
             return radioInputsWithSameName.every(radioInput => radioInput.checked === false)
           }
-          if(field.tagName.toLowerCase() === 'input' && field.type === 'checkbox') {
+          if (field.tagName.toLowerCase() === 'input' && field.type === 'checkbox') {
             const checkbox = Array.from(form.querySelectorAll(`input[type="checkbox"][name="${field.name}"]`))
             return checkbox.every(checkboxInput => checkboxInput.checked === false)
           }
@@ -174,7 +172,7 @@ export default class RegisterForm extends Shadow() {
         nextButton?.removeAttribute('disabled')
         Array.from(dataConditionalRequiredElement.options).forEach(elem => {
           if (elem.value === currentSessionStorageFormValues[dataNameConditionalRequiredElement] && elem.hasAttribute('additional-required-field')) {
-            setConditionalRequiredElement(elem);
+            setConditionalRequiredElement(elem)
           }
         })
       }
@@ -184,22 +182,22 @@ export default class RegisterForm extends Shadow() {
     const setConditionalRequiredElement = (elem) => {
       removeRequiredSignOfElement()
       const additionalRequiredFieldId = elem.getAttribute('additional-required-field')
-      const additionalRequiredInputField = Array.from(formFields).find(elem => elem.getAttribute("required-field-name") === additionalRequiredFieldId)
+      const additionalRequiredInputField = Array.from(formFields).find(elem => elem.getAttribute('required-field-name') === additionalRequiredFieldId)
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
-        additionalRequiredInputField.setAttribute("conditional-required", true)
-        const currentInputLabel = additionalRequiredInputField.parentElement.previousElementSibling;
+        additionalRequiredInputField.setAttribute('conditional-required', true)
+        const currentInputLabel = additionalRequiredInputField.parentElement.previousElementSibling
         currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
     }
 
     const resetConditionalRequiredElement = () => {
       formFields.forEach(elem => {
-        if (elem.hasAttribute("conditional-required")) {
+        if (elem.hasAttribute('conditional-required')) {
           elem.required = false
-          elem.removeAttribute("conditional-required")
+          elem.removeAttribute('conditional-required')
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.parentElement.previousElementSibling;
+          const currentInputLabel = elem.parentElement.previousElementSibling
           currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
@@ -207,39 +205,36 @@ export default class RegisterForm extends Shadow() {
 
     const removeRequiredSignOfElement = () => {
       formFields.forEach(elem => {
-        if (elem.hasAttribute("conditional-required")) {
+        if (elem.hasAttribute('conditional-required')) {
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.parentElement.previousElementSibling;
+          const currentInputLabel = elem.parentElement.previousElementSibling
           currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
     }
 
-
     // initial required fields
     getRequiredFields()
 
     // billing address
-    const renderingControllerElements = this.root.querySelectorAll("[rendering-controller-element]")
+    const renderingControllerElements = this.root.querySelectorAll('[rendering-controller-element]')
 
     Array.from(renderingControllerElements).forEach(controller => {
-      
-
-      const firstComponentController = controller.querySelectorAll("[show-component-if-checked]")[0]
-      const allConditionalElement = controller.querySelectorAll("[component-name]")
+      const firstComponentController = controller.querySelectorAll('[show-component-if-checked]')[0]
+      const allConditionalElement = controller.querySelectorAll('[component-name]')
       controller.addEventListener('change', (e) => {
-        const elementNameToRender = e.target.getAttribute("show-component-if-checked")
+        const elementNameToRender = e.target.getAttribute('show-component-if-checked')
         if (elementNameToRender) {
           const showedElements = Array.from(allConditionalElement).filter(elem => {
-            return elem.getAttribute("component-name") === elementNameToRender
+            return elem.getAttribute('component-name') === elementNameToRender
           })
           const hidedElements = Array.from(allConditionalElement).filter(elem => {
-            return elem.getAttribute("component-name") !== elementNameToRender
+            return elem.getAttribute('component-name') !== elementNameToRender
           })
 
           if (showedElements.length > 0) {
             showedElements.forEach(elem => {
-              const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
+              const conditionalRequiredFieldsInElement = elem.querySelectorAll('[conditional-required]')
               if (conditionalRequiredFieldsInElement.length > 0) {
                 conditionalRequiredFieldsInElement.forEach(elem => elem.required = true)
               }
@@ -249,7 +244,7 @@ export default class RegisterForm extends Shadow() {
 
           if (hidedElements.length > 0) {
             hidedElements.forEach(elem => {
-              const conditionalRequiredFieldsInElement = elem.querySelectorAll("[conditional-required]")
+              const conditionalRequiredFieldsInElement = elem.querySelectorAll('[conditional-required]')
               if (conditionalRequiredFieldsInElement.length > 0) {
                 conditionalRequiredFieldsInElement.forEach(elem => elem.required = false)
               }
@@ -259,16 +254,16 @@ export default class RegisterForm extends Shadow() {
         }
       })
       if (firstComponentController) {
-        firstComponentController.dispatchEvent(new Event('change', { 'bubbles': true }))
+        firstComponentController.dispatchEvent(new Event('change', { bubbles: true }))
       }
-    });
+    })
   }
 
-  connectedCallback() {
+  connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
   }
 
   /**
@@ -276,13 +271,13 @@ export default class RegisterForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS() {
+  shouldRenderCSS () {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */ `
       :host {
         --background-color: transparent; 
