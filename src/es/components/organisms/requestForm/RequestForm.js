@@ -70,7 +70,7 @@ export default class RequestForm extends Shadow() {
     if (clickedButtonValue === 'submit') {
         console.log("submit");
     }
-    
+
     if (clickedButtonValue === 'saveForLater') {
         console.log("saveForLater");
         action = this.getAttribute('action-save-for-later');
@@ -121,6 +121,10 @@ export default class RequestForm extends Shadow() {
           --color-black: var(--m-black);
           color: var(--color, var(--m-gray-600));
           font-size: var(--font-size);
+        }
+        :host h1 {
+          font-size: var(--h1-font-size, 2rem);
+          text-align: var(--h1-text-align, center);
         }
         :host h2,
         :host m-form h3 {

@@ -14,21 +14,62 @@
     action-submit="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/OrderCheckoutSubmit" 
     action-save-for-later="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/AddToOrder%27"
 >
-    <form enctype="multipart/form-data" method="post" role="form">
-        <section>
-            <div>
-                <label>
-                    <input type="checkbox" id="terms-checkbox"> 
-                    J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
-                </label>
-            </div> 
+    <m-form role="form">
+        <form enctype="multipart/form-data" method="post" role="form">
+            <section>
+                <h3>Votre demande sur mesure</h3>
+                <p>Organiser un évènement, approvisionner votre économat, récompenser vos
+                    collaborateurs ou vos clients, passer une commande spéciale...Indiquez ici les besoins de votre
+                    entreprise, nous vous répondons de manière personnalisée:</p>
+                <div>
+                    <textarea name="request" id="request" cols="30" rows="10" placeholder="Votre demande"></textarea>
+                </div>
+                <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p>
 
-            <div>
-                <button type="submit" name="submitType" disabled value="submit">Envoyer la demande de devis</button>
-                <button type="submit" name="submitType" disabled value="saveForLater">Enregistrer en brouillon</button>
-            </div>
-        </section>
-    </form>
+                <h3>Joindre un fichier pour détailler votre commande</h3>
+                <p>
+                    <input type="file" name="file" id="file" />
+                </p>
+
+                <h3>Informations sur votre devis</h3>
+                <p for="company">Mode de livraison souhaité *</p>
+
+                <div>
+                    <label for="delivery1">
+                        <input type="radio" name="delivery" id="delivery1" value="1" checked />
+                        Retrait en magasin (gratuit)
+                    </label>
+                </div>
+
+                <div>
+                    <select name="delivery" id="delivery">
+                        <option value="">Sélectionner</option>
+                        <option value="1">Livraison</option>
+                        <option value="2">Retrait en magasin</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="delivery2">
+                        <input type="radio" name="delivery" id="delivery2" value="2" />
+                        Livraison (frais de livraison)
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input type="checkbox" id="terms-checkbox"> 
+                        J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
+                    </label>
+                </div> 
+
+                <div>
+                    <button type="submit" name="submitType" disabled value="submit">Envoyer la demande de devis</button>
+                    <button type="submit" name="submitType" disabled value="saveForLater">Enregistrer en brouillon</button>
+                </div>
+            </section>
+        </form>
+    </m-form>
 </o-migrospro-request-form>
 <a-migrospro-spacer></a-migrospro-spacer>
 <!-- =============== FORM END =================-->
