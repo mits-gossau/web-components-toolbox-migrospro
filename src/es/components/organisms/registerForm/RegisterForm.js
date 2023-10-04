@@ -24,7 +24,7 @@ export default class RegisterForm extends Shadow() {
 
     if (form) {
       formFields.forEach(field => {
-        if (field.type !== 'radio' || field.type !== 'checkbox') {
+        if (field.type !== 'radio' && field.type !== 'checkbox') {
           if (field.name && savedData[field.name] !== undefined) {
             field.value = savedData[field.name]
           }
