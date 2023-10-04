@@ -528,27 +528,29 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <h5>Pattern validation by clicking submit button</h5>
                         <label class="control-label" for="Data_AccountManagerLastName">Registration Number *</label>
                         <div>
                             <input
                             class="form-control" 
                             id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName" 
+                            name="Data.AccountManagerLastName1" 
                             type="text" 
                             pattern="CHE-[0-9]{3}\.[0-9]{3}\.[0-9]{3}"
                             title="Please add the format like CHE-333.333.333"
                             maxlength="15" 
-                            placeholder="CHE-XXX.XXX.XXX" 
+                            placeholder="CHE-333.333.333" 
                             required>
                         </div>
                     </div>
                     <div class="form-group">
+                        <h5>Pattern validation inmediatly after user input change</h5>
                         <label class="control-label" for="Data_AccountManagerLastName">Registration Number *</label>
                         <div>
                             <input
                             class="form-control" 
                             id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName" 
+                            name="Data.AccountManagerLastName2" 
                             type="text" 
                             value="" 
                             maxlength="15" 
@@ -559,12 +561,27 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <h5>Number(min and max) validation by clicking submit button</h5>
                         <label class="control-label" for="Data_AccountManagerLastName">Number Of CustomerCard *</label>
                         <div>
                             <input 
                             class="form-control" 
                             id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName" 
+                            name="Data.AccountManagerLastName4" 
+                            type="number" 
+                            min="0" 
+                            max="7" 
+                            required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h5>Number(min and max) validation inmediatly after user input change</h5>
+                        <label class="control-label" for="Data_AccountManagerLastName">Number Of CustomerCard *</label>
+                        <div>
+                            <input 
+                            class="form-control" 
+                            id="Data_AccountManagerLastName"
+                            name="Data.AccountManagerLastName3" 
                             type="text" 
                             custom-number-validation 
                             custom-validity-message="Bitte geben Sie ein Nummer zwischen 0-7" 
