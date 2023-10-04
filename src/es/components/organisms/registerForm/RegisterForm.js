@@ -338,9 +338,6 @@ export default class RegisterForm extends Shadow() {
     })
   }
 
-
-
-
   connectedCallback() {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
