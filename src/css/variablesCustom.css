@@ -44,6 +44,27 @@
 :root {
 	--any-margin-top-first-child: calc(var(--content-spacing) * 2);
 	--border-radius: 0.5rem;
+	--button-primary-color-custom: var(--m-white);
+	--button-primary-color-hover-custom: var(--m-white);
+	--button-primary-color-hover: var(--m-white);
+	--button-primary-background-color-hover-custom: var(--m-orange-600);
+	--button-primary-border-color-hover: var(--m-orange-600);
+	--button-primary-background-color-disabled: var(--button-primary-background-color-disabled-custom, var(--color-disabled, var(--m-orange-300)));
+	--button-primary-background-color-hover: var(--button-primary-background-color-hover-custom, var(--color-hover, var(--m-orange-800)));
+	--button-primary-background-color: var(--button-primary-background-color-custom, var(--color-secondary, var(--m-orange-600)));
+	--button-primary-color: var(--button-primary-color-custom, var(--background-color, var(--m-white)));
+	--button-primary-font-family: var(--font-family);
+	--button-secondary-background-color-disabled: transparent;
+	--button-secondary-background-color-hover: transparent;
+	--button-secondary-background-color: transparent;
+	--button-secondary-border-color-disabled: var(--button-secondary-border-color-disabled-custom, var(--color-disabled, var(--m-orange-300)));
+	--button-secondary-border-color-hover: var(--button-secondary-border-color-hover-custom, var(--color-hover, var(--m-orange-800)));
+	--button-secondary-border-color: var(--button-secondary-border-color-custom, var(--color-secondary, var(--m-orange-600)));
+	--button-secondary-border-width: 2px;
+	--button-secondary-color-disabled: var(--button-secondary-color-disabled-custom, var(--color-disabled, var(--m-orange-300)));
+	--button-secondary-color-hover: var(--button-secondary-color-hover-custom, var(--color-hover, var(--m-orange-800)));
+	--button-secondary-color: var(--button-secondary-color-custom, var(--color-secondary, var(--m-orange-600)));
+	--button-secondary-font-family: var(--font-family);
 	--button-category-background-color-custom: var(--m-gray-100);
 	--button-category-background-color-hover-custom: var(--m-gray-300);
 	--button-category-color-active-custom: var(--m-white);
