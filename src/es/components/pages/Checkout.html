@@ -26,10 +26,18 @@
                 </div>
                 <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p>
 
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+
                 <h3>Joindre un fichier pour détailler votre commande</h3>
-                <p>
-                    <input type="file" name="file" id="file" />
-                </p>
+                <div>
+                    <div>
+                        <a-icon-paperclip hover-on-parent-parent-element></a-icon-paperclip>
+                        <span class="type-file-label">&nbsp;Choisissez un fichier...</span>
+                    </div>
+                    <input multiple type="file" value="file" remove-file-title="Datei entfernen" />
+                </div>
+
+                <a-migrospro-spacer height="4rem"></a-migrospro-spacer>
 
                 <h3>Informations sur votre devis</h3>
                 <p for="company">Mode de livraison souhaité *</p>

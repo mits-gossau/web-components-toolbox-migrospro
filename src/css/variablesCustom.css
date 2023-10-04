@@ -65,6 +65,8 @@
 	--button-secondary-color-hover: var(--button-secondary-color-hover-custom, var(--color-hover, var(--m-orange-800)));
 	--button-secondary-color: var(--button-secondary-color-custom, var(--color-secondary, var(--m-orange-600)));
 	--button-secondary-font-family: var(--font-family);
+	--button-secondary-width: 100%;
+	--button-secondary-border-color-custom: inherit;
 	--button-category-background-color-custom: var(--m-gray-100);
 	--button-category-background-color-hover-custom: var(--m-gray-300);
 	--button-category-color-active-custom: var(--m-white);
