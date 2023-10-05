@@ -4,10 +4,14 @@
     }
 </style>
 
-<!-- <h2>Ma demande de devis</h2>
-<m-checkout request-event-name="request-active-order" answer-event-name="list-basket" namespace="checkout-default-"
+<h2>Ma demande de devis</h2>
+
+<m-checkout 
+    request-event-name="request-active-order" 
+    answer-event-name="list-basket" 
+    namespace="checkout-default-"
     is-logged-in="true">
-</m-checkout> -->
+</m-checkout>
 
 <!-- =============== FORM START ===============-->
 <o-migrospro-request-form 
@@ -17,6 +21,8 @@
     <m-form role="form">
         <form enctype="multipart/form-data" method="post" role="form">
             <section>
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+                
                 <h3>Votre demande sur mesure</h3>
                 <p>Organiser un évènement, approvisionner votre économat, récompenser vos
                     collaborateurs ou vos clients, passer une commande spéciale...Indiquez ici les besoins de votre
