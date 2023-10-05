@@ -1,5 +1,5 @@
 // @ts-check
-import { Shadow } from "../../web-components-toolbox/src/es/components/prototypes/Shadow.js";
+import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 /**
  * RequestForm
@@ -11,46 +11,95 @@ import { Shadow } from "../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RequestForm extends Shadow() {
-  constructor(options = {}, ...args) {
-    super({ importMetaUrl: import.meta.url, ...options }, ...args);
-    const showPasswordText = this.getAttribute("show-password-text") || "show";
-    const hidePasswordText = this.getAttribute("hide-password-text") || "hide";
+  constructor (options = {}, ...args) {
+    super({ importMetaUrl: import.meta.url, ...options }, ...args)
+
+    this.form = this.shadowRoot.querySelector('form')
+    const showPasswordText = this.getAttribute('show-password-text') || 'show'
+    const hidePasswordText = this.getAttribute('hide-password-text') || 'hide'
 
     // terms checkbox
-    const termsCheckbox = this.root.querySelector('input[type="checkbox"]')
-    const submitButton = this.root.querySelector('input[type="submit"]')
-    if (termsCheckbox && submitButton) {
-      termsCheckbox.addEventListener("change", function () {
-        // @ts-ignore
+    const termsCheckbox = this.root.querySelector('#terms-checkbox')
+    const submitButtons = this.root.querySelectorAll('button[type="submit"]')
+    if (termsCheckbox && submitButtons) {
+      termsCheckbox.addEventListener('change', function () {
         if (termsCheckbox.checked) {
-          submitButton.removeAttribute("disabled")
+          submitButtons.forEach((element) => {
+            element.removeAttribute('disabled')
+          })
         } else {
-          submitButton.setAttribute("disabled", "true")
+          submitButtons.forEach((element) => {
+            element.setAttribute('disabled', 'true')
+          })
         }
-      });
+      })
     }
 
     // show password
-    const showHidePasswords = this.root.querySelectorAll('input[type="password"] + span');
+    const showHidePasswords = this.root.querySelectorAll(
+      'input[type="password"] + span'
+    )
     if (showHidePasswords) {
-      showHidePasswords.forEach(element => {
-        element.addEventListener("click", function () {
+      showHidePasswords.forEach((element) => {
+        element.addEventListener('click', function () {
           const input = this.previousElementSibling
-          if (input.getAttribute("type") === "password") {
-            input.setAttribute("type", "text")
+          if (input.getAttribute('type') === 'password') {
+            input.setAttribute('type', 'text')
             element.innerHTML = hidePasswordText
           } else {
-            input.setAttribute("type", "password")
+            input.setAttribute('type', 'password')
             element.innerHTML = showPasswordText
           }
-        });
-      });
+        })
+      })
     }
   }
 
-  connectedCallback() {
-    if (this.shouldRenderCSS()) this.renderCSS();
-    this.renderHTML();
+  connectedCallback () {
+    this.form.addEventListener('submit', this.onSubmit.bind(this))
+    if (this.shouldRenderCSS()) this.renderCSS()
+    this.renderHTML()
+  }
+
+  onSubmit = async (event) => {
+    event.preventDefault()
+
+    const clickedButtonValue = event.submitter.value;
+    let action = this.getAttribute('action-submit');
+
+    if (clickedButtonValue === 'submit') {
+        console.log("submit");
+    }
+    
+    if (clickedButtonValue === 'saveForLater') {
+        console.log("saveForLater");
+        action = this.getAttribute('action-save-for-later');
+    } 
+
+    const formData = new FormData(event.target)
+    const jsonData = {}
+
+    formData.forEach((value, key) => {
+      jsonData[key] = value
+    })
+
+    try {
+      const response = await fetch(action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      })
+
+      if (!response.ok) {
+        console.error('Failed to submit form:', response.statusText)
+      } else {
+        console.log('Form submitted successfully:', await response.json())
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    }
   }
 
   /**
@@ -58,13 +107,13 @@ export default class RequestForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS() {
+  shouldRenderCSS () {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
-    );
+    )
   }
 
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */ `
         :host {
           --background-color: transparent; 
@@ -132,7 +181,7 @@ export default class RequestForm extends Shadow() {
             right: 0;
             top: 0;
         }
-        :host input[type="submit"],
+        :host button[type="submit"],
         :host button {
             background-color: var(--color-secondary);
             border: var(--border-width, 1px) solid var(--border-color, var(--m-orange-600));
@@ -142,9 +191,15 @@ export default class RequestForm extends Shadow() {
             font-size: var(--font-size-input, var(--font-size));
             padding: 0.75em 1.5em;
         }
-        :host input[type="submit"][disabled] {
+        :host button[type="submit"][disabled] {
             cursor: not-allowed;
             opacity: 0.5;
+        }
+        :host button[type="submit"]:hover,
+        :host button:hover {
+            background-color: var(--button-primary-background-color-hover);
+            border-color: var(--button-primary-border-color-hover);
+            color: var(--button-primary-color-hover);
         }
         :host label a {
             color: var(--color-label-a, var(--color-black));
@@ -168,6 +223,23 @@ export default class RequestForm extends Shadow() {
           display: flex;
           gap: 2rem;
         }
+        :host #terms-checkbox {
+          margin-top: var(--term-checkbox-margin-top, 4rem);
+          margin-bottom: var(--term-checkbox-margin-bottom, 3rem);
+        }
+        :host button[type="submit"] + button[type="submit"],
+        :host a-button + a-button {
+          background-color: var(--button-secondary-background-color);
+          border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
+          color: var(--button-secondary-color);
+          margin-left: var(--button-margin-left, 2rem);
+        }
+        :host button[type="submit"] + button[type="submit"]:hover,
+        :host a-button + a-button:hover {
+            background-color: var(--button-secondary-background-color-hover);
+            border-color: var(--button-secondary-border-color-hover);
+            color: var(--button-secondary-color-hover);
+        }
         @media (min-width: 768px) {
           :host {
             display: flex;
@@ -180,7 +252,7 @@ export default class RequestForm extends Shadow() {
             width: var(--sidebar-width, 32%);
           }
         }
-    `;
+    `
   }
 
   /**
@@ -188,9 +260,9 @@ export default class RequestForm extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML() {
+  renderHTML () {
     this.html = /* html */ `
         <slot></slot>
-    `;
+    `
   }
 }

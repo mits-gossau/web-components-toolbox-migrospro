@@ -5,24 +5,28 @@
 </style>
 
 <h2>Ma demande de devis</h2>
-<m-checkout 
-    request-event-name="request-active-order" 
-    answer-event-name="list-basket"
-    namespace="checkout-default-"
+<m-checkout request-event-name="request-active-order" answer-event-name="list-basket" namespace="checkout-default-"
     is-logged-in="true">
 </m-checkout>
 
 <!-- =============== FORM START ===============-->
-<o-migrospro-request-form>
-    <form action="/order" enctype="multipart/form-data" method="post" role="form">
+<o-migrospro-request-form 
+    action-submit="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/OrderCheckoutSubmit" 
+    action-save-for-later="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/AddToOrder%27"
+>
+    <form enctype="multipart/form-data" method="post" role="form">
         <section>
-            <p>
+            <div>
                 <label>
-                    <input type="checkbox"> 
+                    <input type="checkbox" id="terms-checkbox"> 
                     J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
                 </label>
-            </p>
-            <input type="submit" value="Envoyer la demande de devis" disabled />
+            </div> 
+
+            <div>
+                <button type="submit" name="submitType" disabled value="submit">Envoyer la demande de devis</button>
+                <button type="submit" name="submitType" disabled value="saveForLater">Enregistrer en brouillon</button>
+            </div>
         </section>
     </form>
 </o-migrospro-request-form>
