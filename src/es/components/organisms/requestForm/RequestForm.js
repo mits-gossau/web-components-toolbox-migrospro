@@ -122,8 +122,6 @@ export default class RequestForm extends Shadow() {
       jsonData[key] = value
     })
 
-    console.log('Form data:', jsonData)
-
     try {
       const response = await fetch(action, {
         method: 'POST',
