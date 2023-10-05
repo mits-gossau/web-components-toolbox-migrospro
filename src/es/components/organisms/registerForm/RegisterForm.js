@@ -307,24 +307,6 @@ export default class RegisterForm extends Shadow() {
     Array.from(patternTextInputFields).forEach(elem => {
       const validityMessage = elem.getAttribute("custom-validity-message")
 
-      elem.addEventListener("keydown", (e) => {
-        // ignore NaN e.keys except C,H,E, left and right arrows and spec chars that needed to type the code
-        if ((isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 8
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 16
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 37
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 39
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 67
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 72
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 69
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 109
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 190
-          && (isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 107) && +e.keyCode !== 110) {
-          e.target.setCustomValidity(validityMessage);
-          e.target.reportValidity();
-          e.preventDefault();
-        }
-      })
-
       elem.addEventListener("keyup", (e) => {
         const currentValue = elem.value
         if (
