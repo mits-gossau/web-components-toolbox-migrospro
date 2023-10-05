@@ -263,6 +263,7 @@ export default class RequestForm extends Shadow() {
         }
         :host .form-radio-group-vertical input[type="radio"] + label {
           display: inline-block;
+          height: var(--form-radio-group-vertical-input-radio-height, 24px);
           width: calc(100% - var(--form-radio-group-vertical-input-radio-width, 40px));
         }
         :host .form-radio-group-vertical input[type="radio"]:not(:last-of-type),
