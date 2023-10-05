@@ -42,7 +42,7 @@ export default class RegisterForm extends Shadow() {
         const formData = {}
 
         formFields.forEach(field => {
-          if (field.type !== 'radio' || field.type !== 'checkbox') {
+          if (field.type !== 'radio' && field.type !== 'checkbox') {
             if (field.name) {
               formData[field.name] = field.value
             }
