@@ -28,7 +28,7 @@
                     collaborateurs ou vos clients, passer une commande spéciale...Indiquez ici les besoins de votre
                     entreprise, nous vous répondons de manière personnalisée:</p>
                 <div>
-                    <textarea name="request" id="request" cols="30" rows="10" placeholder="..."></textarea>
+                    <textarea name="comment" id="comment" cols="30" rows="10" placeholder="..."></textarea>
                 </div>
                 <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p>
 
@@ -52,7 +52,7 @@
                     <input type="radio" name="delivery" id="delivery-one" value="1" required />
                     <label for="delivery-one">Retrait en magasin (gratuit)</label>
 
-                    <select id="delivery-select" class="hidden">
+                    <select id="delivery-select" name="deliveryStoreId" class="hidden">
                         <option value="">Sélectionner</option>
                         <option value="1">Livraison</option>
                         <option value="2">Retrait en magasin</option>
@@ -66,22 +66,22 @@
 
                     <address id="different-address" class="hidden">
                         <label for="different-name">Autre nom *</label>
-                        <input type="text" name="name" id="different-name" />
+                        <input type="text" name="differentDeliveryName" id="different-name" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
                         <label for="different-address-line-1">Autre address line 1 *</label>
-                        <input type="text" name="different-address-line-1" id="different-address-line-1" />
+                        <input type="text" name="differentDeliveryAddressLine1" id="different-address-line-1" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
                         <label for="different-address-line-2">Autre address line 2</label>
-                        <input type="text" name="different-address-line-2" id="different-address-line-2" />
+                        <input type="text" name="differentDeliveryAddressLine2" id="different-address-line-2" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
                         <label for="different-location">Autre localité *</label>
-                        <select name="different-location" id="different-location">
+                        <select name="differentDeliveryLocation" id="different-location">
                             <option value="" selected disabled>Sélectionner</option>
                             <option value="1">1200 Genève</option>
                             <option value="2">1201 Genève</option>
@@ -188,14 +188,14 @@
 
                 <div>
                     <label for="delivery-date">Date de livraison souhaitée *</label>
-                    <input type="date" name="delivery-date" id="delivery-date" data-min-days="3" required />
+                    <input type="date" name="preferredDeliveryDate" id="delivery-date" data-min-days="3" required />
                 </div>
 
                 <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
 
                 <div>
                     <label for="delivery-order-name">Nom de la commande *</label>
-                    <input type="text" name="delivery-order-name" id="delivery-order-name" required />
+                    <input type="text" name="orderName" id="order-name" required />
                 </div>
 
                 <div>
