@@ -16,7 +16,7 @@ export default class CardOrder extends Shadow() {
     this.date = this.getAttribute('date') || ''
     this.title = this.getAttribute('title') || ''
     this.name = this.getAttribute('name') || ''
-    this.state = this.getAttribute('state') || ''
+    this.category = this.getAttribute('category') || ''
     this.editText = this.getAttribute('editText')
     this.editUrl = this.getAttribute('editUrl')
     this.downloadText = this.getAttribute('downloadText')
@@ -58,13 +58,15 @@ export default class CardOrder extends Shadow() {
         height: var(--card-line-height, 2.5rem);
         margin: 0;
         padding: 0;
-        white-space: nowrap;
       }
       :host .card > div p:first-child {
         height: var(--card-line-height-small, 2.25rem);
       }
       :host .card small {
         color: var(--card-color-small, var(--m-gray-700));
+      }
+      :host .action {
+        min-width: var(--card-action-min-width, 10rem);
       }
       @media (min-width: 768px) {
         :host .card {
@@ -74,7 +76,7 @@ export default class CardOrder extends Shadow() {
             grid-column-gap: var(--card-column-gap, 2.5rem);
             align-items: end;
         }
-        :host .state {
+        :host .category {
             text-align: right;
             display: flex;
             flex-direction: column;
@@ -90,6 +92,7 @@ export default class CardOrder extends Shadow() {
    * @return {void}
    */
   renderHTML () {
+
     const buttonEdit = this.editText
       ? `
         <a-button namespace="button-action-" href="${this.editUrl}">
@@ -124,16 +127,24 @@ export default class CardOrder extends Shadow() {
                 <p><small>${this.date}</small></p>
                 <h3>${this.title}</h3>
             </div>
-            <div class="state">
+            <div class="category">
                 <p><small>${this.name}</small></p>
-                <p>${this.state}</p>
+                <p>${this.category}</p>
             </div>
             <div class="action">
-                ${buttonEdit}
-                ${buttonDownload}
-                ${buttonDuplicate}
+              ${buttonEdit}
+              ${buttonDownload}
+              ${buttonDuplicate}
             </div>
         </div>
     `
+  }
+
+  get iconName () {
+    return this.getAttribute('icon-name') || ''
+  }
+
+  get iconSize () {
+    return this.getAttribute('icon-size') || '1em'
   }
 }
