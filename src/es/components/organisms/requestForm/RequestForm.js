@@ -53,6 +53,45 @@ export default class RequestForm extends Shadow() {
         })
       })
     }
+
+    // update required fields
+    const differentDeliveryOptions = this.root.querySelectorAll('input[name="delivery"]')
+    const deliverySelect = this.root.querySelector('#delivery-select')
+    const differentDeliveryName = this.root.querySelector('#different-name')
+    const differentDeliveryAddressLine1 = this.root.querySelector('#different-address-line-1')
+    const differentDeliveryAddressLine2 = this.root.querySelector('#different-address-line-2')
+    const differentDeliveryLocation = this.root.querySelector('#different-location')
+
+    for (let i = 0; i < differentDeliveryOptions.length; i++) {
+      differentDeliveryOptions[i].addEventListener('change', function(event) {
+        switch (event.target.value) {
+          case '1':
+            deliverySelect.required = true
+            break;
+          case '3':
+            differentDeliveryName.required = true
+            differentDeliveryAddressLine1.required = true
+            differentDeliveryAddressLine2.required = true
+            differentDeliveryLocation.required = true
+            break;
+          default:
+            deliverySelect.required = false
+            differentDeliveryName.required = false
+            differentDeliveryAddressLine1.required = false
+            differentDeliveryAddressLine2.required = false
+            differentDeliveryLocation.required = false
+            break;
+        }
+      });
+    }
+
+    // update delivery date minimum 
+    const deliveryDate = this.root.getElementById('delivery-date')
+    const minDays = deliveryDate.getAttribute('min-days') || 3
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + minDays);
+    const minDate = currentDate.toISOString().substr(0, 10);
+    deliveryDate.setAttribute('min', minDate);
   }
 
   connectedCallback () {
@@ -70,7 +109,7 @@ export default class RequestForm extends Shadow() {
     if (clickedButtonValue === 'submit') {
         console.log("submit");
     }
-    
+
     if (clickedButtonValue === 'saveForLater') {
         console.log("saveForLater");
         action = this.getAttribute('action-save-for-later');
@@ -122,6 +161,10 @@ export default class RequestForm extends Shadow() {
           color: var(--color, var(--m-gray-600));
           font-size: var(--font-size);
         }
+        :host h1 {
+          font-size: var(--h1-font-size, 2rem);
+          text-align: var(--h1-text-align, center);
+        }
         :host h2,
         :host m-form h3 {
           color: var(--m-orange-600);
@@ -161,6 +204,7 @@ export default class RequestForm extends Shadow() {
         :host input[type="text"],
         :host input[type="password"],
         :host input[type="email"],
+        :host input[type="file"],
         :host input[type="tel"],
         :host input[type="number"],
         :host input[type="date"],
@@ -180,6 +224,28 @@ export default class RequestForm extends Shadow() {
             position: absolute;
             right: 0;
             top: 0;
+        }
+        :host *:has(> input[type="file"]) {
+          border: 1px solid var(--m-gray-400);
+          color: inherit;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        :host *:has(> input[type="file"]) > div {
+          display: inline-flex;
+          justify-content: space-between;
+          padding: var(--input-file-padding, 0.75rem 1rem);
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+        :host *:has(> input[type="file"]) > div a-icon-mdx {
+          color: var(--m-gray-600);
+        }
+        :host input[type="file"] {
+          width: 100%;
         }
         :host button[type="submit"],
         :host button {
@@ -219,9 +285,40 @@ export default class RequestForm extends Shadow() {
             font-size: var(--font-size-label, var(--font-size));
         }
         :host .form-radio-group {
-          padding-top: var(--form-radio-group-padding-top, 4px);
           display: flex;
           gap: 2rem;
+          padding-top: var(--form-radio-group-padding-top, 4px);
+        }
+        :host .form-radio-group-vertical {
+          clear: both;
+          padding-top: var(--form-radio-group-padding-top, 4px);
+        }
+        :host .form-radio-group-vertical input[type="radio"] {
+          display: inline-block;
+          float: left;
+          margin-right: var(--form-radio-group-vertical-input-radio-margin-right, 0.5rem);
+          position: relative;
+          top: 0;
+        }
+        :host .form-radio-group-vertical input[type="radio"] + label {
+          display: inline-block;
+          height: var(--form-radio-group-vertical-input-radio-height, 24px);
+          width: calc(100% - var(--form-radio-group-vertical-input-radio-width, 40px));
+        }
+        :host .form-radio-group-vertical input[type="radio"]:not(:last-of-type),
+        :host .form-radio-group-vertical input[type="radio"]:not(:last-of-type) + label {
+          margin-bottom: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > select,
+        :host .form-radio-group-vertical > address {
+          margin-bottom: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > address {
+          margin-top: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > input[type="radio"]:checked ~ select,
+        :host .form-radio-group-vertical > input[type="radio"]:checked + address {
+          display: block;
         }
         :host #terms-checkbox {
           margin-top: var(--term-checkbox-margin-top, 4rem);
@@ -251,6 +348,9 @@ export default class RequestForm extends Shadow() {
           :host .sidebar {
             width: var(--sidebar-width, 32%);
           }
+        }
+        .hidden {
+          display: none;
         }
     `
   }

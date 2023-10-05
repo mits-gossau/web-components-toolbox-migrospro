@@ -2,14 +2,14 @@
 
 <m-tabs>
     <ul class="tab-navigation">
-        <li>Mes demandes de devis</li>
+        <li class="active">Mes demandes de devis</li>
         <!-- <li>Mes favoris</li> -->
-        <li class="active">Mes Paramètres</li>
+        <li>Mes Paramètres</li>
         <li><a href="https://migrospro.ch" target="_blank">Mes Tickets</a></li>
     </ul>
 
     <!-- QUOTE REQUESTS -->
-    <section class="tab-content">
+    <section class="tab-content active">
         <p>Grâce à votre historique de demandes de devis, consultez vos anciennes demandes, complétez une demande que vous n'avez pas terminée, ou dupliquez une demande passée.</p>
 
         <a-migrospro-card-heading title="Brouillon"></a-migrospro-card-heading>
@@ -17,7 +17,7 @@
         <m-migrospro-card-order
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
-            state="Brouillon"
+            category="Brouillon"
             editText="Modifier"
             editUrl="https://migros.ch"
         >
@@ -26,7 +26,7 @@
         <m-migrospro-card-order
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
-            state="Brouillon"
+            category="Brouillon"
             editText="Modifier"
             editUrl="https://migros.ch"
         ></m-migrospro-card-order>
@@ -34,7 +34,7 @@
         <m-migrospro-card-order
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
-            state="Brouillon"
+            category="Brouillon"
             editText="Modifier"
             editUrl="https://migros.ch"
         ></m-migrospro-card-order>
@@ -44,7 +44,7 @@
         <m-migrospro-card-order
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
-            state="Envoyé"
+            category="Envoyé"
             downloadText="Télécharger"
             downloadUrl="https://migros.ch"
             duplicateText="Dupliquer"
@@ -55,7 +55,7 @@
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
             name="Max Mustermann"
-            state="Envoyé"
+            category="Envoyé"
             downloadText="Télécharger"
             downloadUrl="https://migros.ch"
             duplicateText="Dupliquer"
@@ -65,7 +65,7 @@
         <m-migrospro-card-order
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
-            state="Envoyé"
+            category="Envoyé"
             downloadText="Télécharger"
             downloadUrl="https://migros.ch"
             duplicateText="Dupliquer"
@@ -76,7 +76,7 @@
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
             name="Anna Musterfrau"
-            state="Envoyé"
+            category="Envoyé"
             downloadText="Télécharger"
             downloadUrl="https://migros.ch"
             duplicateText="Dupliquer"
@@ -87,7 +87,7 @@
             date="01.01.2023"
             title="Test Bestell-Liste 123456"
             name="Max Mustermann"
-            state="Envoyé"
+            category="Envoyé"
             downloadText="Télécharger"
             downloadUrl="https://migros.ch"
             duplicateText="Dupliquer"
@@ -104,7 +104,7 @@
     </section> -->
 
     <!-- SETTINGS -->
-    <section class="tab-content active">
+    <section class="tab-content">
         <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher">
             <div class="content">
                 <section>
