@@ -53,6 +53,37 @@ export default class RequestForm extends Shadow() {
         })
       })
     }
+
+    // update required fields
+    const differentDeliveryOptions = this.root.querySelectorAll('input[name="delivery"]')
+    const deliverySelect = this.root.querySelector('#delivery-select')
+    const differentDeliveryName = this.root.querySelector('#different-name')
+    const differentDeliveryAddressLine1 = this.root.querySelector('#different-address-line-1')
+    const differentDeliveryAddressLine2 = this.root.querySelector('#different-address-line-2')
+    const differentDeliveryLocation = this.root.querySelector('#different-location')
+
+    for (let i = 0; i < differentDeliveryOptions.length; i++) {
+      differentDeliveryOptions[i].addEventListener('change', function(event) {
+        switch (event.target.value) {
+          case '1':
+            deliverySelect.required = true
+            break;
+          case '3':
+            differentDeliveryName.required = true
+            differentDeliveryAddressLine1.required = true
+            differentDeliveryAddressLine2.required = true
+            differentDeliveryLocation.required = true
+            break;
+          default:
+            deliverySelect.required = false
+            differentDeliveryName.required = false
+            differentDeliveryAddressLine1.required = false
+            differentDeliveryAddressLine2.required = false
+            differentDeliveryLocation.required = false
+            break;
+        }
+      });
+    }
   }
 
   connectedCallback () {
@@ -272,7 +303,6 @@ export default class RequestForm extends Shadow() {
         }
         :host .form-radio-group-vertical > select,
         :host .form-radio-group-vertical > address {
-          display: none;
           margin-bottom: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
         }
         :host .form-radio-group-vertical > address {
@@ -310,6 +340,9 @@ export default class RequestForm extends Shadow() {
           :host .sidebar {
             width: var(--sidebar-width, 32%);
           }
+        }
+        .hidden {
+          display: none;
         }
     `
   }

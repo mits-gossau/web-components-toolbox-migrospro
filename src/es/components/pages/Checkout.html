@@ -49,39 +49,39 @@
                 <p>Mode de livraison souhaité *</p>
 
                 <div class="form-radio-group-vertical">
-                    <input type="radio" name="delivery" id="delivery-one" value="1" />
+                    <input type="radio" name="delivery" id="delivery-one" value="1" required />
                     <label for="delivery-one">Retrait en magasin (gratuit)</label>
 
-                    <select name="delivery" id="delivery-select" required>
+                    <select id="delivery-select" class="hidden">
                         <option value="">Sélectionner</option>
                         <option value="1">Livraison</option>
                         <option value="2">Retrait en magasin</option>
                     </select>
   
-                    <input type="radio" name="delivery" id="delivery-two" value="2" />
+                    <input type="radio" name="delivery" id="delivery-two" value="2" required />
                     <label for="delivery-two">Livraison (frais de livraison)</label>
 
                     <label for="delivery-three">Autres adresses de livraison</label>
-                    <input type="radio" name="delivery" id="delivery-three" value="3" />
+                    <input type="radio" name="delivery" id="delivery-three" value="3" required />
 
-                    <address>
+                    <address id="different-address" class="hidden">
                         <label for="different-name">Autre nom *</label>
-                        <input type="text" name="name" id="different-name" required />
+                        <input type="text" name="name" id="different-name" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
                         <label for="different-address-line-1">Autre address line 1 *</label>
-                        <input type="text" name="different-address-line-1" id="different-address-line-1" required />
+                        <input type="text" name="different-address-line-1" id="different-address-line-1" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
                         <label for="different-address-line-2">Autre address line 2</label>
-                        <input type="text" name="different-address-line-2" id="different-address-line-2" required />
+                        <input type="text" name="different-address-line-2" id="different-address-line-2" />
 
                         <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
 
-                        <label for="location">Autre localité *</label>
-                        <select name="location" id="location" required>
+                        <label for="different-location">Autre localité *</label>
+                        <select name="different-location" id="different-location">
                             <option value="" selected disabled>Sélectionner</option>
                             <option value="1">1200 Genève</option>
                             <option value="2">1201 Genève</option>
