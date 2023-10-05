@@ -109,11 +109,11 @@ export default class RequestForm extends Shadow() {
     let action = this.getAttribute('action-submit')
 
     if (clickedButtonValue === 'submit') {
-      console.log('submit')
+      //console.log('submit')
     }
 
     if (clickedButtonValue === 'saveForLater') {
-      console.log('saveForLater')
+      //console.log('saveForLater')
       action = this.getAttribute('action-save-for-later')
     }
 
@@ -124,22 +124,24 @@ export default class RequestForm extends Shadow() {
       jsonData[key] = value
     })
 
-    try {
-      const response = await fetch(action, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jsonData)
-      })
-
-      if (!response.ok) {
-        console.error('Failed to submit form:', response.statusText)
-      } else {
-        console.log('Form submitted successfully:', await response.json())
+    if (action) {
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(jsonData)
+        })
+  
+        if (!response.ok) {
+          console.error('Failed to submit form:', response.statusText)
+        } else {
+          console.log('Form submitted successfully:', await response.json())
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error)
       }
-    } catch (error) {
-      console.error('Error submitting form:', error)
     }
   }
 
