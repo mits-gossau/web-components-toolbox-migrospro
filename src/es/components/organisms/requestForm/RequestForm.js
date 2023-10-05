@@ -63,35 +63,37 @@ export default class RequestForm extends Shadow() {
     const differentDeliveryLocation = this.root.querySelector('#different-location')
 
     for (let i = 0; i < differentDeliveryOptions.length; i++) {
-      differentDeliveryOptions[i].addEventListener('change', function(event) {
+      differentDeliveryOptions[i].addEventListener('change', function (event) {
         switch (event.target.value) {
           case '1':
             deliverySelect.required = true
-            break;
+            break
           case '3':
             differentDeliveryName.required = true
             differentDeliveryAddressLine1.required = true
             differentDeliveryAddressLine2.required = true
             differentDeliveryLocation.required = true
-            break;
+            break
           default:
             deliverySelect.required = false
             differentDeliveryName.required = false
             differentDeliveryAddressLine1.required = false
             differentDeliveryAddressLine2.required = false
             differentDeliveryLocation.required = false
-            break;
+            break
         }
-      });
+      })
     }
 
-    // update delivery date minimum 
+    // update delivery date minimum
     const deliveryDate = this.root.getElementById('delivery-date')
-    const minDays = deliveryDate.getAttribute('min-days') || 3
-    let currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + minDays);
-    const minDate = currentDate.toISOString().substr(0, 10);
-    deliveryDate.setAttribute('min', minDate);
+    if (deliveryDate) {
+      const minDays = deliveryDate.getAttribute('min-days') || 3
+      const currentDate = new Date()
+      currentDate.setDate(currentDate.getDate() + minDays)
+      const minDate = currentDate.toISOString().substr(0, 10)
+      deliveryDate.setAttribute('min', minDate)
+    }
   }
 
   connectedCallback () {
@@ -103,17 +105,17 @@ export default class RequestForm extends Shadow() {
   onSubmit = async (event) => {
     event.preventDefault()
 
-    const clickedButtonValue = event.submitter.value;
-    let action = this.getAttribute('action-submit');
+    const clickedButtonValue = event.submitter.value
+    let action = this.getAttribute('action-submit')
 
     if (clickedButtonValue === 'submit') {
-        console.log("submit");
+      console.log('submit')
     }
 
     if (clickedButtonValue === 'saveForLater') {
-        console.log("saveForLater");
-        action = this.getAttribute('action-save-for-later');
-    } 
+      console.log('saveForLater')
+      action = this.getAttribute('action-save-for-later')
+    }
 
     const formData = new FormData(event.target)
     const jsonData = {}

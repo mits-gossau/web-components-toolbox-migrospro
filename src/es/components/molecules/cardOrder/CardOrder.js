@@ -92,7 +92,6 @@ export default class CardOrder extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-
     const buttonEdit = this.editText
       ? `
         <a-button namespace="button-action-" href="${this.editUrl}">
