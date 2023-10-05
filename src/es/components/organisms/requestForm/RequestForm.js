@@ -84,6 +84,14 @@ export default class RequestForm extends Shadow() {
         }
       });
     }
+
+    // update delivery date minimum 
+    const deliveryDate = this.root.getElementById('delivery-date')
+    const minDays = deliveryDate.getAttribute('min-days') || 3
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + minDays);
+    const minDate = currentDate.toISOString().substr(0, 10);
+    deliveryDate.setAttribute('min', minDate);
   }
 
   connectedCallback () {
