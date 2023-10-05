@@ -165,6 +165,7 @@ export default class RequestForm extends Shadow() {
         :host input[type="text"],
         :host input[type="password"],
         :host input[type="email"],
+        :host input[type="file"],
         :host input[type="tel"],
         :host input[type="number"],
         :host input[type="date"],
@@ -184,6 +185,28 @@ export default class RequestForm extends Shadow() {
             position: absolute;
             right: 0;
             top: 0;
+        }
+        :host *:has(> input[type="file"]) {
+          border: 1px solid var(--m-gray-400);
+          color: inherit;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        :host *:has(> input[type="file"]) > div {
+          display: inline-flex;
+          justify-content: space-between;
+          padding: var(--input-file-padding, 0.75rem 1rem);
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+        :host *:has(> input[type="file"]) > div a-icon-mdx {
+          color: var(--m-gray-600);
+        }
+        :host input[type="file"] {
+          width: 100%;
         }
         :host button[type="submit"],
         :host button {
