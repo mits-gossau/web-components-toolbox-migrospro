@@ -246,9 +246,40 @@ export default class RequestForm extends Shadow() {
             font-size: var(--font-size-label, var(--font-size));
         }
         :host .form-radio-group {
-          padding-top: var(--form-radio-group-padding-top, 4px);
           display: flex;
           gap: 2rem;
+          padding-top: var(--form-radio-group-padding-top, 4px);
+        }
+        :host .form-radio-group-vertical {
+          clear: both;
+          padding-top: var(--form-radio-group-padding-top, 4px);
+        }
+        :host .form-radio-group-vertical input[type="radio"] {
+          display: inline-block;
+          float: left;
+          margin-right: var(--form-radio-group-vertical-input-radio-margin-right, 0.5rem);
+          position: relative;
+          top: 0;
+        }
+        :host .form-radio-group-vertical input[type="radio"] + label {
+          display: inline-block;
+          width: calc(100% - var(--form-radio-group-vertical-input-radio-width, 40px));
+        }
+        :host .form-radio-group-vertical input[type="radio"]:not(:last-of-type),
+        :host .form-radio-group-vertical input[type="radio"]:not(:last-of-type) + label {
+          margin-bottom: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > select,
+        :host .form-radio-group-vertical > address {
+          display: none;
+          margin-bottom: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > address {
+          margin-top: var(--form-radio-group-vertical-element-margin-bottom, 1rem);
+        }
+        :host .form-radio-group-vertical > input[type="radio"]:checked ~ select,
+        :host .form-radio-group-vertical > input[type="radio"]:checked + address {
+          display: block;
         }
         :host #terms-checkbox {
           margin-top: var(--term-checkbox-margin-top, 4rem);

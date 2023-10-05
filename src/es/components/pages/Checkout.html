@@ -17,14 +17,14 @@
     <m-form role="form">
         <form enctype="multipart/form-data" method="post" role="form">
             <section>
-                <!-- <h3>Votre demande sur mesure</h3>
+                <h3>Votre demande sur mesure</h3>
                 <p>Organiser un évènement, approvisionner votre économat, récompenser vos
                     collaborateurs ou vos clients, passer une commande spéciale...Indiquez ici les besoins de votre
                     entreprise, nous vous répondons de manière personnalisée:</p>
                 <div>
                     <textarea name="request" id="request" cols="30" rows="10" placeholder="..."></textarea>
                 </div>
-                <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p> -->
+                <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p>
 
                 <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
 
@@ -37,33 +37,160 @@
                     <input multiple type="file" value="file" remove-file-title="Datei entfernen" />
                 </div>
 
-                <a-migrospro-spacer height="4rem"></a-migrospro-spacer>
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
 
-                <!-- <h3>Informations sur votre devis</h3>
-                <p for="company">Mode de livraison souhaité *</p>
+                <h3>Informations sur votre devis</h3>
+                <p>Mode de livraison souhaité *</p>
 
-                <div>
-                    <label for="delivery1">
-                        <input type="radio" name="delivery" id="delivery1" value="1" checked />
-                        Retrait en magasin (gratuit)
-                    </label>
-                </div>
+                <div class="form-radio-group-vertical">
+                    <input type="radio" name="delivery" id="delivery-one" value="1" />
+                    <label for="delivery-one">Retrait en magasin (gratuit)</label>
 
-                <div>
-                    <select name="delivery" id="delivery">
+                    <select name="delivery" id="delivery-select" required>
                         <option value="">Sélectionner</option>
                         <option value="1">Livraison</option>
                         <option value="2">Retrait en magasin</option>
                     </select>
+  
+                    <input type="radio" name="delivery" id="delivery-two" value="2" />
+                    <label for="delivery-two">Livraison (frais de livraison)</label>
+
+                    <label for="delivery-three">Autres adresses de livraison</label>
+                    <input type="radio" name="delivery" id="delivery-three" value="3" />
+
+                    <address>
+                        <label for="different-name">Autre nom *</label>
+                        <input type="text" name="name" id="different-name" required />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="different-address-line-1">Autre address line 1 *</label>
+                        <input type="text" name="different-address-line-1" id="different-address-line-1" required />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="different-address-line-2">Autre address line 2</label>
+                        <input type="text" name="different-address-line-2" id="different-address-line-2" required />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="location">Autre localité *</label>
+                        <select name="location" id="location" required>
+                            <option value="" selected disabled>Sélectionner</option>
+                            <option value="1">1200 Genève</option>
+                            <option value="2">1201 Genève</option>
+                            <option value="3">1202 Genève</option>
+                            <option value="4">1203 Genève</option>
+                            <option value="5">1204 Genève</option>
+                            <option value="6">1205 Genève</option>
+                            <option value="7">1206 Genève</option>
+                            <option value="8">1207 Genève</option>
+                            <option value="9">1208 Genève</option>
+                            <option value="10">1209 Genève</option>
+                            <option value="11">1211 Genève 1</option>
+                            <option value="12">1211 Genève 3</option>
+                            <option value="13">1211 Genève 4</option>
+                            <option value="14">1211 Genève 5</option>
+                            <option value="15">1211 Genève 6</option>
+                            <option value="16">1211 Genève 7</option>
+                            <option value="17">1211 Genève 8</option>
+                            <option value="18">1211 Genève 10</option>
+                            <option value="19">1211 Genève 11</option>
+                            <option value="20">1211 Genève 12</option>
+                            <option value="21">1211 Genève 13</option>
+                            <option value="22">1211 Genève 14</option>
+                            <option value="23">1211 Genève 17</option>
+                            <option value="24">1211 Genève 19</option>
+                            <option value="25">1211 Genève 20</option>
+                            <option value="26">1211 Genève 21</option>
+                            <option value="27">1211 Genève 22</option>
+                            <option value="28">1211 Genève 23</option>
+                            <option value="29">1211 Genève 26</option>
+                            <option value="30">1211 Genève 27</option>
+                            <option value="31">1211 Genève 28</option>
+                            <option value="32">1211 Genève 70</option>
+                            <option value="33">1211 Genève 71 CS CP</option>
+                            <option value="34">1211 Genève 73</option>
+                            <option value="35">1211 Genève 84 Votations</option>
+                            <option value="36">1212 Grand-Lancy</option>
+                            <option value="37">1212 Grand-Lanc 1</option>
+                            <option value="38">1213 Onex</option>
+                            <option value="39">1213 Petit-Lancy</option>
+                            <option value="40">1213 Petit-Lancy 1</option>
+                            <option value="41">1214 Vernier</option>
+                            <option value="42">1215 Genève 15 Aéroport</option>
+                            <option value="43">1216 Cointrin</option>
+                            <option value="44">1217 Meyrin</option>
+                            <option value="45">1217 Meyrin 1</option>
+                            <option value="46">1217 Meyrin 2</option>
+                            <option value="47">1218 Le Grand-Saconnex</option>
+                            <option value="48">1219 Aïre</option>
+                            <option value="49">1219 Châtelaine</option>
+                            <option value="50">1219 Le Lignon</option>
+                            <option value="51">1220 Les Avanchets</option>
+                            <option value="52">1222 Vésenaz</option>
+                            <option value="53">1223 1223 Cologny</option>
+                            <option value="54">1224 Chêne-Bougeries</option>
+                            <option value="55">1225 Chêne-Bourg</option>
+                            <option value="56">1226 Thônex</option>
+                            <option value="57">1227 Carouge GE</option>
+                            <option value="58">1227 Les Acacias</option>
+                            <option value="59">1228 Plan-les-Ouates</option>
+                            <option value="60">1231 Conches</option>
+                            <option value="61">1232 Confignon</option>
+                            <option value="62">1233 Bernex</option>
+                            <option value="63">1234 Vessy</option>
+                            <option value="64">1236 Cartigny</option>
+                            <option value="65">1237 Avully</option>
+                            <option value="66">1239 Collex</option>
+                            <option value="67">1240 Genève</option>
+                            <option value="68">1241 Puplinge</option>
+                            <option value="69">1242 Satigny</option>
+                            <option value="70">1243 Presinge</option>
+                            <option value="71">1244 Choulex</option>
+                            <option value="72">1245 Collonge-Bellerive</option>
+                            <option value="73">1246 Corsier GE</option>
+                            <option value="74">1247 Anières</option>
+                            <option value="75">1248 Hermance</option>
+                            <option value="76">1251 Gy</option>
+                            <option value="77">1252 Meinier</option>
+                            <option value="78">1253 Vandoeuvres</option>
+                            <option value="79">1254 Jussy</option>
+                            <option value="80">1255 Veyrier</option>
+                            <option value="81">1256 Troinex</option>
+                            <option value="82">1258 La Croix-de-Rozon1257</option>
+                            <option value="83">1258 Perly</option>
+                            <option value="84">1281 Russin</option>
+                            <option value="85">1283 Dardagny</option>
+                            <option value="86">1283 La Plaine</option>
+                            <option value="87">1284 Chancy</option>
+                            <option value="88">1285 Athenaz (Avusy)</option>
+                            <option value="89">1286 Soral</option>
+                            <option value="90">1287 Laconnex</option>
+                            <option value="91">1288 Aire-la-Ville</option>
+                            <option value="92">1289 Genève Services Spéciaux</option>
+                            <option value="93">1290 Versoix</option>
+                            <option value="94">1292 Chambésy</option>
+                            <option value="95">1293 Bellevue</option>
+                            <option value="96">1294 Genthod</option>
+                            <option value="97">1298 Céligny</option>
+                        </select>
+                    </address>
                 </div>
 
-                <div>
-                    <label for="delivery2">
-                        <input type="radio" name="delivery" id="delivery2" value="2" />
-                        Livraison (frais de livraison)
-                    </label>
-                </div> -->
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
 
+                <div>
+                    <label for="delivery-date">Date de livraison souhaitée *</label>
+                    <input type="date" name="delivery-date" id="delivery-date" required />
+                </div>
+
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+
+                <div>
+                    <label for="delivery-order-name">Nom de la commande *</label>
+                    <input type="text" name="delivery-order-name" id="delivery-order-name" required />
+                </div>
 
                 <div>
                     <label>
