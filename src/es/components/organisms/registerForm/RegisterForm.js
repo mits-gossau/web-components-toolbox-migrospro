@@ -67,6 +67,11 @@ export default class RegisterForm extends Shadow() {
       })
     }
 
+    // remove from sessionStorage
+    form.addEventListener('submit', () => {
+      sessionStorage.removeItem('formValues');
+    })
+
     // next step
     const formSteps = this.root.querySelectorAll('.form-steps li')
     const sections = this.root.querySelectorAll('m-form .section')
