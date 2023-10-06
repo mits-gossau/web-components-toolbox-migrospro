@@ -15,8 +15,8 @@
 
 <!-- =============== FORM START ===============-->
 <o-migrospro-request-form 
-    action-submit="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/OrderCheckoutSubmit" 
-    action-save-for-later="https://testadmin.migrospro.ch/umbraco/api/MigrosProOrderApi/AddToOrder%27"
+    action-submit="${self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit}" 
+    action-save-for-later="${self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater}"
 >
     <m-form role="form">
         <form enctype="multipart/form-data" method="post" role="form">
