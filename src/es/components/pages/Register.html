@@ -20,91 +20,86 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_CivilityId">Civillité *</label>
+                        <label class="control-label" for="civility-id">Civillité *</label>
                         <div class="form-radio-group">
                             <label> 
                                 <input 
-                                    id="Data_CivilityId" 
-                                    name="Data.CivilityId" 
+                                    id="civility-id-monsieur" 
+                                    name="civility-id" 
                                     type="radio" 
                                     value="1"
                                     required
                                 > Monsieur 
                             </label>
-                            <!-- <span>
-                                <input id="Data_CivilityId_M" name="Data.CivilityId" type="radio" value="1" checked>
-                                <label for="Data_CivilityId_M">M</label> 
-                            </span> -->
                             <label> 
                                 <input 
-                                    id="Data_CivilityId_Mme" 
-                                    name="Data.CivilityId" 
+                                    id="civility-id-mme" 
+                                    name="civility-id" 
                                     type="radio" 
                                     value="2"
-                                    required
                                 > Mme
                             </label>
-                            <!-- <span>
-                                <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2">
-                                <label for="Data_CivilityId_Mme">Mme </label> 
-                            </span> -->
                             <label> 
                                 <input 
-                                    id="Data_CivilityId_Autre" 
-                                    name="Data.CivilityId" 
+                                    id="civility-id-autre" 
+                                    name="civility-id" 
                                     type="radio" 
                                     value="3"
-                                    required
                                 > Autre 
                             </label>
-                            <!-- <span>
-                                <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3">
-                                <label for="Data_CivilityId_Autre">Autre</label>
-                            </span> -->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_FirstName">Prénom *</label>
+                        <label class="control-label" for="firstname">Prénom *</label>
+                        <input 
+                            class="form-control" 
+                            id="firstname" 
+                            name="firstname" 
+                            type="text" 
+                            min="1"
+                            min="50"
+                            pattern="^[\p{L}-\ `']+$"
+                            value=""
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lastname">Nom *</label>
+                        <input 
+                            class="form-control" 
+                            id="lastname" 
+                            name="lastname" 
+                            type="text" 
+                            value=""
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="function-service">Fonction / Service *</label>
+                        <select class="form-control" id="function-service" name="function-service" required>
+                            <option value="" selected disabled>Sélectionner</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">E-mail professionnel *</label>
                         <div>
-                            <input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text" value=""
+                            <input class="form-control" id="email" name="email" type="email" value=""
                                 required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_LastName">Nom *</label>
+                        <label class="control-label" for="phone">Téléphone *</label>
                         <div>
-                            <input class="form-control" id="Data_LastName" name="Data.LastName" type="text" value=""
-                                required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="Data_FunctionService">Fonction / Service *</label>
-                        <div>
-                            <select class="form-control" id="Data_FunctionService" name="Data.FunctionService" required>
-                                <option value="" selected disabled>Sélectionner</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="Data_Email">E-mail professionnel *</label>
-                        <div>
-                            <input class="form-control" id="Data_Email" name="Data.Email" type="email" value=""
-                                required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="Data_PhoneNumber">Téléphone *</label>
-                        <div>
-                            <input class="form-control" id="Data_PhoneNumber" name="Data.PhoneNumber" type="tel"
+                            <input class="form-control" id="phone" name="phone" type="tel"
                                 value="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_MobileNumber">Mobile</label>
+                        <label class="control-label" for="mobile">Mobile</label>
                         <div>
-                            <input class="form-control" id="Data_MobileNumber" name="Data.MobileNumber" type="tel">
+                            <input class="form-control" id="mobile" name="mobile" type="tel">
                         </div>
                     </div>
                     <div class="form-group">
@@ -122,23 +117,23 @@
                 <section class="section" rendering-controller-element>
                     <h2>Addresse principale de l’entreprise</h2>
                     <div class="form-group">
-                        <label class="control-label" for="Data_SocialReason">Raison sociale *</label>
+                        <label class="control-label" for="social-reason">Raison sociale *</label>
                         <div>
-                            <input class="form-control" id="Data_SocialReason" name="Data.SocialReason" type="text"
+                            <input class="form-control" id="social-reason" name="social-reason" type="text"
                                 value="" required>
                         </div>
                     </div>
                     <div class="col-2-desktop">
                         <div class="form-group">
-                            <label class="control-label" for="Data_Address">Adresse *</label>
+                            <label class="control-label" for="address">Adresse *</label>
                             <div>
-                                <input class="form-control" id="Data_Address" name="Data.Address" type="text" required>
+                                <input class="form-control" id="address" name="address" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_CityId">Localité *</label>
+                            <label class="control-label" for="location">Localité *</label>
                             <div>
-                                <select class="form-control" id="Data_CityId" name="Data.CityId" required>
+                                <select class="form-control" id="location" name="location" required>
                                     <option value="" selected disabled>Sélectionner</option>
                                     <option value="1">1200 Genève</option>
                                     <option value="2">1201 Genève</option>
@@ -243,62 +238,62 @@
                     </div>
                     <h2>Addresse de fracturation de l’entreprise</h2>
                     <div class="form-group">
-                        <label class="control-label" for="Data_EmailRegister">Adresse e-mail de facturation *</label>
+                        <label class="control-label" for="email-register">Adresse e-mail de facturation *</label>
                         <div>
-                            <input class="form-control" id="Data_EmailRegister" name="Data.EmailRegister" type="email"
+                            <input class="form-control" id="email-register" name="email-register" type="email"
                                 value="" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="Data_IsDifferentBillingAddress">L’adresse de facture est-elle
+                        <label class="control-label" for="is-different-billing-address">L’adresse de facture est-elle
                             différente de votre adresse principale? *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_IsDifferentBillingAddress_No" name="Data.IsDifferentBillingAddress"
+                                <input id="is-different-billing-address-no" name="is-different-billing-address"
                                     show-component-if-checked="same-billing-address" type="radio" value="0" checked>
-                                <label for="Data_IsDifferentBillingAddress_No">Non</label>
+                                <label for="is-different-billing-address-no">Non</label>
                             </span>
                             <span>
-                                <input id="Data_IsDifferentBillingAddress_Yes" formId="billing-address"
-                                    name="Data.IsDifferentBillingAddress"
+                                <input id="is-different-billing-address-yes" formId="billing-address"
+                                    name="is-different-billing-address"
                                     show-component-if-checked="diff-billing-address" type="radio" value="1">
-                                <label for="Data_IsDifferentBillingAddress_Yes">Qui</label>
+                                <label for="is-different-billing-address-yes">Qui</label>
                             </span>
                         </div>
                     </div>
                     <div id="billing-address" component-name="diff-billing-address">
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingName">BillingName *</label>
+                            <label class="control-label" for="billing-name">BillingName *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingName" name="Data.BillingName" type="text" conditional-required>
+                                <input class="form-control" id="billing-name" name="billing-name" type="text" conditional-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine1">BillingAddressLine1 *</label>
+                            <label class="control-label" for="billing-address-line1">BillingAddressLine1 *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingAddressLine1"
-                                    name="Data.BillingAddressLine1" type="text" conditional-required>
+                                <input class="form-control" id="billing-address-line1"
+                                    name="billing-address-line1" type="text" conditional-required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingAddressLine2">BillingAddressLine2 *</label>
+                            <label class="control-label" for="billing-address-line2">BillingAddressLine2 *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingAddressLine2" conditional-required
-                                    name="Data.BillingAddressLine2" type="text">
+                                <input class="form-control" id="billing-address-line2" conditional-required
+                                    name="billing-address-line2" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingPostOfficeBox">BillingPostOfficeBox *</label>
+                            <label class="control-label" for="billing-post-office-box">BillingPostOfficeBox *</label>
                             <div>
-                                <input class="form-control" id="Data_BillingPostOfficeBox" conditional-required
-                                    name="Data.BillingPostOfficeBox" type="text">
+                                <input class="form-control" id="billing-post-office-box" conditional-required
+                                    name="billing-post-office-box" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="Data_BillingCityId">BillingCityId</label>
+                            <label class="control-label" for="billing-location">BillingCityId</label>
                             <div>
-                                <select class="form-control" id="Data_BillingCityId" name="Data.BillingCityId">
+                                <select class="form-control" id="billing-location" name="billing-location">
                                     <option value="" selected disabled>Sélectionner</option>
                                     <option value="1">1200 Genève</option>
                                     <option value="2">1201 Genève</option>
@@ -403,10 +398,10 @@
                     </div>
 
                     <div class="form-group" component-name="same-billing-address">
-                        <label class="control-label" for="Data_RecommendedCustomer">Un client Migros Pro vous a
+                        <label class="control-label" for="recommended-customer">Un client Migros Pro vous a
                             recommandé nos services?</label>
                         <div>
-                            <input class="form-control" id="Data_RecommendedCustomer" name="Data.RecommendedCustomer"
+                            <input class="form-control" id="recommended-customer" name="recommended-customer"
                                 type="text">
                         </div>
                     </div>
@@ -430,13 +425,13 @@
                 <section class="section">
                     <h2>Informations complémentaires sur l’entreprise</h2>
                     <div class="form-group">
-                        <label class="control-label" for="Data_CompanyStructureTypeId">Type de structure *</label>
+                        <label class="control-label" for="company-structure-type-id">Type de structure *</label>
                         <div>
                             <select class="form-control" data-conditional-required-element-enabled
-                                id="Data_CompanyStructureTypeId" name="Data.CompanyStructureTypeId" required>
+                                id="company-structure-type-id" name="company-structure-type-id" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Association</option>
-                                <option value="2" additional-required-field="Data_CompanyRegistrationNumber">Entreprise
+                                <option value="2" additional-required-field="company-structure-type-id">Entreprise
                                 </option>
                                 <option value="3">Institution</option>
                                 <option value="4">Organisation
@@ -446,34 +441,34 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_ValuedAddedTax">Ma société est-elle assujettie à la TVA?
+                        <label class="control-label" for="value-added-tax">Ma société est-elle assujettie à la TVA?
                             *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_ValuedAddedTax_No" name="Data.ValuedAddedTax" type="radio" value="0"
+                                <input id="value-added-tax-no" name="value-added-tax" type="radio" value="0"
                                     checked>
-                                <label for="Data_ValuedAddedTax_No">Non</label>
+                                <label for="value-added-tax-no">Non</label>
                             </span>
                             <span>
-                                <input id="Data_ValuedAddedTax_Yes" name="Data.ValuedAddedTax" type="radio" value="1">
-                                <label for="Data_ValuedAddedTax_Yes">Qui</label>
+                                <input id="value-added-tax-yes" name="value-added-tax" type="radio" value="1">
+                                <label for="value-added-tax-yes">Qui</label>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_CompanyRegistrationNumber">No IDE (nouveau numéro
+                        <label class="control-label" for="company-registration-number">No IDE (nouveau numéro
                             Registre du Commerce)</label>
                         <div>
-                            <input class="form-control" id="Data_CompanyRegistrationNumber" required-field-name="Data_CompanyRegistrationNumber"
-                                name="Data.CompanyRegistrationNumber" type="text" value="">
+                            <input class="form-control" id="company-registration-number" required-field-name="company-registration-number"
+                                name="company-registration-number" type="text" value="">
                             <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_NumberOfCustomerCard">De combien de cartes Migros Pro
+                        <label class="control-label" for="number-of-customer-card">De combien de cartes Migros Pro
                             aures-vous besoin?</label>
                         <div>
-                            <input class="form-control" id="Data_NumberOfCustomerCard" name="Data.NumberOfCustomerCard"
+                            <input class="form-control" id="number-of-customer-card" name="number-of-customer-card"
                                 type="text" value="">
                         </div>
                     </div>
@@ -501,14 +496,14 @@
                             TVA? *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_IsAccountManager_No" name="Data.IsAccountManager" type="radio" value="0"
+                                <input id="is-account-manager-no" name="is-account-manager" type="radio" value="0"
                                     checked>
-                                <label for="Data_IsAccountManager_No">Non</label>
+                                <label for="is-account-manager-no">Non</label>
                             </span>
                             <span>
-                                <input id="Data_IsAccountManager_Yes" name="Data.IsAccountManager" type="radio"
+                                <input id="is-account-manager-yes" name="is-account-manager" type="radio"
                                     value="1">
-                                <label for="Data_IsAccountManager_Yes">Qui</label>
+                                <label for="is-account-manager-yes">Qui</label>
                             </span>
                         </div>
                     </div>
@@ -518,44 +513,44 @@
                         <label class="control-label" for="Data_AccountManagerCivilityId">Civillité *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="Data_AccountManagerCivilityId_M" name="Data.AccountManagerCivilityId"
+                                <input id="account-manager-civility-monsieur" name="account-manager-civility"
                                     type="radio" value="1" checked>
-                                <label for="Data_AccountManagerCivilityId_M">M</label>
+                                <label for="account-manager-civility-monsieur">M</label>
                             </span>
                             <span>
-                                <input id="Data_AccountManagerCivilityId_Mme" name="Data.AccountManagerCivilityId"
+                                <input id="account-manager-civility-mme" name="account-manager-civility"
                                     type="radio" value="2">
-                                <label for="Data_AccountManagerCivilityId_Mme">Mme </label>
+                                <label for="account-manager-civility-mme">Mme </label>
                             </span>
                             <span>
-                                <input id="Data_AccountManagerCivilityId_Autre" name="Data.AccountManagerCivilityId"
+                                <input id="account-manager-civility-autre" name="account-manager-civility"
                                     type="radio" value="3">
-                                <label for="Data_AccountManagerCivilityId_Autre">Autre</label>
+                                <label for="account-manager-civility-autre">Autre</label>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerFirstName">Prénom *</label>
+                        <label class="control-label" for="account-manager-firstname">Prénom *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerFirstName"
-                                name="Data.AccountManagerFirstName" type="text" value="" required>
+                            <input class="form-control" id="account-manager-firstname"
+                                name="account-manager-firstname" type="text" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerLastName">Nom *</label>
+                        <label class="control-label" for="account-manager-lastname">Nom *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerLastName"
-                                name="Data.AccountManagerLastName" type="text" value="" required>
+                            <input class="form-control" id="account-manager-lastname"
+                                name="account-manager-lastname" type="text" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <h5>Pattern validation by clicking submit button</h5>
-                        <label class="control-label" for="Data_AccountManagerLastName">Registration Number *</label>
+                        <label class="control-label" for="account-manager-lastname">Registration Number *</label>
                         <div>
                             <input
                             class="form-control" 
-                            id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName1" 
+                            id="account-manager-lastname"
+                            name="account-manager-lastname1" 
                             type="text" 
                             pattern="CHE-[0-9]{3}\.[0-9]{3}\.[0-9]{3}"
                             title="Please add the format like CHE-333.333.333"
@@ -566,12 +561,12 @@
                     </div>
                     <div class="form-group">
                         <h5>Pattern validation inmediatly after user input change</h5>
-                        <label class="control-label" for="Data_AccountManagerLastName">Registration Number *</label>
+                        <label class="control-label" for="account-manager-lastname">Registration Number *</label>
                         <div>
                             <input
                             class="form-control" 
-                            id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName2" 
+                            id="account-manager-lastname"
+                            name="account-manager-lastname2" 
                             type="text" 
                             value="" 
                             maxlength="15" 
@@ -583,12 +578,12 @@
                     </div>
                     <div class="form-group">
                         <h5>Number(min and max) validation by clicking submit button</h5>
-                        <label class="control-label" for="Data_AccountManagerLastName">Number Of CustomerCard *</label>
+                        <label class="control-label" for="account-manager-lastname">Number Of CustomerCard *</label>
                         <div>
                             <input 
                             class="form-control" 
-                            id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName4" 
+                            id="account-manager-lastname"
+                            name="account-manager-lastname4" 
                             type="number" 
                             min="0" 
                             max="7" 
@@ -597,12 +592,12 @@
                     </div>
                     <div class="form-group">
                         <h5>Number(min and max) validation inmediatly after user input change</h5>
-                        <label class="control-label" for="Data_AccountManagerLastName">Number Of CustomerCard *</label>
+                        <label class="control-label" for="account-manager-lastname">Number Of CustomerCard *</label>
                         <div>
                             <input 
                             class="form-control" 
-                            id="Data_AccountManagerLastName"
-                            name="Data.AccountManagerLastName3" 
+                            id="account-manager-lastname"
+                            name="account-manager-lastname3" 
                             type="text" 
                             custom-number-validation 
                             custom-validity-message="Bitte geben Sie ein Nummer zwischen 0-7" 
@@ -613,11 +608,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerFunctionService">Fonction / Service
+                        <label class="control-label" for="account-manager-function-service">Fonction / Service
                             *</label>
                         <div>
-                            <select class="form-control" id="Data_AccountManagerFunctionService"
-                                name="Data.AccountManagerFunctionService" required>
+                            <select class="form-control" id="account-manager-function-service"
+                                name="account-manager-function-service" required>
                                 <option value="" selected disabled>Sélectionner</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -625,29 +620,29 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerEmail">E-mail professionnel *</label>
+                        <label class="control-label" for="account-manager-email">E-mail professionnel *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerEmail" name="Data.AccountManagerEmail"
+                            <input class="form-control" id="account-manager-email" name="account-manager-email"
                                 type="email" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerPhoneNumber">Téléphone *</label>
+                        <label class="control-label" for="account-manager-phone">Téléphone *</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerPhoneNumber"
-                                name="Data.AccountManagerPhoneNumber" type="tel" value="" required>
+                            <input class="form-control" id="account-manager-phone"
+                                name="account-manager-phone" type="tel" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_AccountManagerMobileNumber">Mobile</label>
+                        <label class="control-label" for="account-manager-mobile">Mobile</label>
                         <div>
-                            <input class="form-control" id="Data_AccountManagerMobileNumber"
-                                name="Data.AccountManagerMobileNumber" type="tel">
+                            <input class="form-control" id="account-manager-mobile"
+                                name="account-manager-mobile" type="tel">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Data_ProductOffers">
-                            <input class="form-control" id="Data_ProductOffers" name="Data.ProductOffers"
+                        <label class="control-label" for="product-offers">
+                            <input class="form-control" id="product-offers" name="product-offers"
                                 type="checkbox">
                             Je souhaite être informé des meilleurs offres de MIGROS PRO pour mon entreprise.
                         </label>

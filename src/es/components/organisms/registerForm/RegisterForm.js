@@ -78,6 +78,16 @@ export default class RegisterForm extends Shadow() {
         const currentSection = form.querySelector('section.active')
         const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea')
 
+        // check if all fields in current section are valid
+        // elementsInCurrentSection.forEach(elem => {
+        //   if (elem.checkValidity()) {
+        //     isValidForm = true
+        //   } else {
+        //     isValidForm = false
+        //     form.reportValidity()
+        //   }
+        // })
+
         if (elementsInCurrentSection.length === 0 || Array.from(elementsInCurrentSection).every(element => element.checkValidity())) {
           isValidForm = true
         } else {
@@ -119,6 +129,7 @@ export default class RegisterForm extends Shadow() {
     const getRequiredFields = () => {
       const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
       const requiredFields = activeSection.querySelectorAll('[required]')
+      console.log(requiredFields)
       const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
       const dataConditionalRequiredElement = activeSection.querySelector('[data-conditional-required-element-enabled]')
