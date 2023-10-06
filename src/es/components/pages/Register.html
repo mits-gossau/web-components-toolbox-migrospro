@@ -57,8 +57,8 @@
                             name="firstname" 
                             type="text" 
                             min="1"
-                            min="50"
-                            pattern="^[\p{L}-\ `']+$"
+                            max="50"
+                            pattern="^\p{L}+$"
                             value=""
                             required
                         >
@@ -70,6 +70,9 @@
                             id="lastname" 
                             name="lastname" 
                             type="text" 
+                            min="1"
+                            max="100"
+                            pattern="^\p{L}+$"
                             value=""
                             required
                         >
@@ -85,22 +88,41 @@
                     <div class="form-group">
                         <label class="control-label" for="email">E-mail professionnel *</label>
                         <div>
-                            <input class="form-control" id="email" name="email" type="email" value=""
-                                required>
+                            <input 
+                                class="form-control" 
+                                id="email" 
+                                name="email" 
+                                type="email" 
+                                min="6"
+                                max="128"
+                                value=""
+                                required
+                            >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="phone">Téléphone *</label>
-                        <div>
-                            <input class="form-control" id="phone" name="phone" type="tel"
-                                value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="phone" 
+                            name="phone" 
+                            type="tel"
+                            max="20"
+                            pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="mobile">Mobile</label>
-                        <div>
-                            <input class="form-control" id="mobile" name="mobile" type="tel">
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="mobile" 
+                            name="mobile" 
+                            type="tel"
+                            max="20"
+                            pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
+                        >
                     </div>
                     <div class="form-group">
                         <a-button namespace="button-primary-" className="icon-chevron">
@@ -118,131 +140,153 @@
                     <h2>Addresse principale de l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="social-reason">Raison sociale *</label>
-                        <div>
-                            <input class="form-control" id="social-reason" name="social-reason" type="text"
-                                value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="social-reason" 
+                            name="social-reason" 
+                            type="text"
+                            min="1"
+                            max="150"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="col-2-desktop">
                         <div class="form-group">
                             <label class="control-label" for="address">Adresse *</label>
-                            <div>
-                                <input class="form-control" id="address" name="address" type="text" required>
-                            </div>
+                            <input 
+                                class="form-control" 
+                                id="address" 
+                                name="address" 
+                                type="text" 
+                                min="1"
+                                max="150"
+                                value="" 
+                                required
+                            >
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="location">Localité *</label>
-                            <div>
-                                <select class="form-control" id="location" name="location" required>
-                                    <option value="" selected disabled>Sélectionner</option>
-                                    <option value="1">1200 Genève</option>
-                                    <option value="2">1201 Genève</option>
-                                    <option value="3">1202 Genève</option>
-                                    <option value="4">1203 Genève</option>
-                                    <option value="5">1204 Genève</option>
-                                    <option value="6">1205 Genève</option>
-                                    <option value="7">1206 Genève</option>
-                                    <option value="8">1207 Genève</option>
-                                    <option value="9">1208 Genève</option>
-                                    <option value="10">1209 Genève</option>
-                                    <option value="11">1211 Genève 1</option>
-                                    <option value="12">1211 Genève 3</option>
-                                    <option value="13">1211 Genève 4</option>
-                                    <option value="14">1211 Genève 5</option>
-                                    <option value="15">1211 Genève 6</option>
-                                    <option value="16">1211 Genève 7</option>
-                                    <option value="17">1211 Genève 8</option>
-                                    <option value="18">1211 Genève 10</option>
-                                    <option value="19">1211 Genève 11</option>
-                                    <option value="20">1211 Genève 12</option>
-                                    <option value="21">1211 Genève 13</option>
-                                    <option value="22">1211 Genève 14</option>
-                                    <option value="23">1211 Genève 17</option>
-                                    <option value="24">1211 Genève 19</option>
-                                    <option value="25">1211 Genève 20</option>
-                                    <option value="26">1211 Genève 21</option>
-                                    <option value="27">1211 Genève 22</option>
-                                    <option value="28">1211 Genève 23</option>
-                                    <option value="29">1211 Genève 26</option>
-                                    <option value="30">1211 Genève 27</option>
-                                    <option value="31">1211 Genève 28</option>
-                                    <option value="32">1211 Genève 70</option>
-                                    <option value="33">1211 Genève 71 CS CP</option>
-                                    <option value="34">1211 Genève 73</option>
-                                    <option value="35">1211 Genève 84 Votations</option>
-                                    <option value="36">1212 Grand-Lancy</option>
-                                    <option value="37">1212 Grand-Lanc 1</option>
-                                    <option value="38">1213 Onex</option>
-                                    <option value="39">1213 Petit-Lancy</option>
-                                    <option value="40">1213 Petit-Lancy 1</option>
-                                    <option value="41">1214 Vernier</option>
-                                    <option value="42">1215 Genève 15 Aéroport</option>
-                                    <option value="43">1216 Cointrin</option>
-                                    <option value="44">1217 Meyrin</option>
-                                    <option value="45">1217 Meyrin 1</option>
-                                    <option value="46">1217 Meyrin 2</option>
-                                    <option value="47">1218 Le Grand-Saconnex</option>
-                                    <option value="48">1219 Aïre</option>
-                                    <option value="49">1219 Châtelaine</option>
-                                    <option value="50">1219 Le Lignon</option>
-                                    <option value="51">1220 Les Avanchets</option>
-                                    <option value="52">1222 Vésenaz</option>
-                                    <option value="53">1223 1223 Cologny</option>
-                                    <option value="54">1224 Chêne-Bougeries</option>
-                                    <option value="55">1225 Chêne-Bourg</option>
-                                    <option value="56">1226 Thônex</option>
-                                    <option value="57">1227 Carouge GE</option>
-                                    <option value="58">1227 Les Acacias</option>
-                                    <option value="59">1228 Plan-les-Ouates</option>
-                                    <option value="60">1231 Conches</option>
-                                    <option value="61">1232 Confignon</option>
-                                    <option value="62">1233 Bernex</option>
-                                    <option value="63">1234 Vessy</option>
-                                    <option value="64">1236 Cartigny</option>
-                                    <option value="65">1237 Avully</option>
-                                    <option value="66">1239 Collex</option>
-                                    <option value="67">1240 Genève</option>
-                                    <option value="68">1241 Puplinge</option>
-                                    <option value="69">1242 Satigny</option>
-                                    <option value="70">1243 Presinge</option>
-                                    <option value="71">1244 Choulex</option>
-                                    <option value="72">1245 Collonge-Bellerive</option>
-                                    <option value="73">1246 Corsier GE</option>
-                                    <option value="74">1247 Anières</option>
-                                    <option value="75">1248 Hermance</option>
-                                    <option value="76">1251 Gy</option>
-                                    <option value="77">1252 Meinier</option>
-                                    <option value="78">1253 Vandoeuvres</option>
-                                    <option value="79">1254 Jussy</option>
-                                    <option value="80">1255 Veyrier</option>
-                                    <option value="81">1256 Troinex</option>
-                                    <option value="82">1258 La Croix-de-Rozon1257</option>
-                                    <option value="83">1258 Perly</option>
-                                    <option value="84">1281 Russin</option>
-                                    <option value="85">1283 Dardagny</option>
-                                    <option value="86">1283 La Plaine</option>
-                                    <option value="87">1284 Chancy</option>
-                                    <option value="88">1285 Athenaz (Avusy)</option>
-                                    <option value="89">1286 Soral</option>
-                                    <option value="90">1287 Laconnex</option>
-                                    <option value="91">1288 Aire-la-Ville</option>
-                                    <option value="92">1289 Genève Services Spéciaux</option>
-                                    <option value="93">1290 Versoix</option>
-                                    <option value="94">1292 Chambésy</option>
-                                    <option value="95">1293 Bellevue</option>
-                                    <option value="96">1294 Genthod</option>
-                                    <option value="97">1298 Céligny</option>
-                                </select>
-                            </div>
+                            <select 
+                                class="form-control" 
+                                id="location" 
+                                name="location" 
+                                required
+                            >
+                                <option value="" selected disabled>Sélectionner</option>
+                                <option value="1">1200 Genève</option>
+                                <option value="2">1201 Genève</option>
+                                <option value="3">1202 Genève</option>
+                                <option value="4">1203 Genève</option>
+                                <option value="5">1204 Genève</option>
+                                <option value="6">1205 Genève</option>
+                                <option value="7">1206 Genève</option>
+                                <option value="8">1207 Genève</option>
+                                <option value="9">1208 Genève</option>
+                                <option value="10">1209 Genève</option>
+                                <option value="11">1211 Genève 1</option>
+                                <option value="12">1211 Genève 3</option>
+                                <option value="13">1211 Genève 4</option>
+                                <option value="14">1211 Genève 5</option>
+                                <option value="15">1211 Genève 6</option>
+                                <option value="16">1211 Genève 7</option>
+                                <option value="17">1211 Genève 8</option>
+                                <option value="18">1211 Genève 10</option>
+                                <option value="19">1211 Genève 11</option>
+                                <option value="20">1211 Genève 12</option>
+                                <option value="21">1211 Genève 13</option>
+                                <option value="22">1211 Genève 14</option>
+                                <option value="23">1211 Genève 17</option>
+                                <option value="24">1211 Genève 19</option>
+                                <option value="25">1211 Genève 20</option>
+                                <option value="26">1211 Genève 21</option>
+                                <option value="27">1211 Genève 22</option>
+                                <option value="28">1211 Genève 23</option>
+                                <option value="29">1211 Genève 26</option>
+                                <option value="30">1211 Genève 27</option>
+                                <option value="31">1211 Genève 28</option>
+                                <option value="32">1211 Genève 70</option>
+                                <option value="33">1211 Genève 71 CS CP</option>
+                                <option value="34">1211 Genève 73</option>
+                                <option value="35">1211 Genève 84 Votations</option>
+                                <option value="36">1212 Grand-Lancy</option>
+                                <option value="37">1212 Grand-Lanc 1</option>
+                                <option value="38">1213 Onex</option>
+                                <option value="39">1213 Petit-Lancy</option>
+                                <option value="40">1213 Petit-Lancy 1</option>
+                                <option value="41">1214 Vernier</option>
+                                <option value="42">1215 Genève 15 Aéroport</option>
+                                <option value="43">1216 Cointrin</option>
+                                <option value="44">1217 Meyrin</option>
+                                <option value="45">1217 Meyrin 1</option>
+                                <option value="46">1217 Meyrin 2</option>
+                                <option value="47">1218 Le Grand-Saconnex</option>
+                                <option value="48">1219 Aïre</option>
+                                <option value="49">1219 Châtelaine</option>
+                                <option value="50">1219 Le Lignon</option>
+                                <option value="51">1220 Les Avanchets</option>
+                                <option value="52">1222 Vésenaz</option>
+                                <option value="53">1223 1223 Cologny</option>
+                                <option value="54">1224 Chêne-Bougeries</option>
+                                <option value="55">1225 Chêne-Bourg</option>
+                                <option value="56">1226 Thônex</option>
+                                <option value="57">1227 Carouge GE</option>
+                                <option value="58">1227 Les Acacias</option>
+                                <option value="59">1228 Plan-les-Ouates</option>
+                                <option value="60">1231 Conches</option>
+                                <option value="61">1232 Confignon</option>
+                                <option value="62">1233 Bernex</option>
+                                <option value="63">1234 Vessy</option>
+                                <option value="64">1236 Cartigny</option>
+                                <option value="65">1237 Avully</option>
+                                <option value="66">1239 Collex</option>
+                                <option value="67">1240 Genève</option>
+                                <option value="68">1241 Puplinge</option>
+                                <option value="69">1242 Satigny</option>
+                                <option value="70">1243 Presinge</option>
+                                <option value="71">1244 Choulex</option>
+                                <option value="72">1245 Collonge-Bellerive</option>
+                                <option value="73">1246 Corsier GE</option>
+                                <option value="74">1247 Anières</option>
+                                <option value="75">1248 Hermance</option>
+                                <option value="76">1251 Gy</option>
+                                <option value="77">1252 Meinier</option>
+                                <option value="78">1253 Vandoeuvres</option>
+                                <option value="79">1254 Jussy</option>
+                                <option value="80">1255 Veyrier</option>
+                                <option value="81">1256 Troinex</option>
+                                <option value="82">1258 La Croix-de-Rozon1257</option>
+                                <option value="83">1258 Perly</option>
+                                <option value="84">1281 Russin</option>
+                                <option value="85">1283 Dardagny</option>
+                                <option value="86">1283 La Plaine</option>
+                                <option value="87">1284 Chancy</option>
+                                <option value="88">1285 Athenaz (Avusy)</option>
+                                <option value="89">1286 Soral</option>
+                                <option value="90">1287 Laconnex</option>
+                                <option value="91">1288 Aire-la-Ville</option>
+                                <option value="92">1289 Genève Services Spéciaux</option>
+                                <option value="93">1290 Versoix</option>
+                                <option value="94">1292 Chambésy</option>
+                                <option value="95">1293 Bellevue</option>
+                                <option value="96">1294 Genthod</option>
+                                <option value="97">1298 Céligny</option>
+                            </select>
                         </div>
                     </div>
                     <h2>Addresse de fracturation de l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="email-register">Adresse e-mail de facturation *</label>
-                        <div>
-                            <input class="form-control" id="email-register" name="email-register" type="email"
-                                value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="email-register" 
+                            name="email-register" 
+                            type="email"
+                            min="6"
+                            max="128"
+                            value=""
+                            required
+                        >
                     </div>
 
                     <div class="form-group">
@@ -250,14 +294,25 @@
                             différente de votre adresse principale? *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="is-different-billing-address-no" name="is-different-billing-address"
-                                    show-component-if-checked="same-billing-address" type="radio" value="0" checked>
+                                <input 
+                                    id="is-different-billing-address-no" 
+                                    name="is-different-billing-address"
+                                    show-component-if-checked="same-billing-address" 
+                                    type="radio" 
+                                    value="0" 
+                                    checked
+                                >
                                 <label for="is-different-billing-address-no">Non</label>
                             </span>
                             <span>
-                                <input id="is-different-billing-address-yes" formId="billing-address"
+                                <input 
+                                    id="is-different-billing-address-yes" 
                                     name="is-different-billing-address"
-                                    show-component-if-checked="diff-billing-address" type="radio" value="1">
+                                    show-component-if-checked="diff-billing-address" 
+                                    type="radio" 
+                                    value="1"
+                                    formId="billing-address"
+                                >
                                 <label for="is-different-billing-address-yes">Qui</label>
                             </span>
                         </div>
@@ -265,35 +320,55 @@
                     <div id="billing-address" component-name="diff-billing-address">
                         <div class="form-group">
                             <label class="control-label" for="billing-name">BillingName *</label>
-                            <div>
-                                <input class="form-control" id="billing-name" name="billing-name" type="text" conditional-required>
-                            </div>
+                            <input 
+                                class="form-control" 
+                                id="billing-name" 
+                                name="billing-name" 
+                                type="text" 
+                                max="150"
+                                conditional-required
+                            >
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="billing-address-line1">BillingAddressLine1 *</label>
-                            <div>
-                                <input class="form-control" id="billing-address-line1"
-                                    name="billing-address-line1" type="text" conditional-required>
-                            </div>
+                            <input 
+                                class="form-control" 
+                                id="billing-address-line1"
+                                name="billing-address-line1" 
+                                type="text" 
+                                max="150"
+                                conditional-required
+                            >
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="billing-address-line2">BillingAddressLine2 *</label>
-                            <div>
-                                <input class="form-control" id="billing-address-line2" conditional-required
-                                    name="billing-address-line2" type="text">
-                            </div>
+                            <input 
+                                class="form-control" 
+                                id="billing-address-line2" 
+                                name="billing-address-line2" 
+                                type="text"
+                                max="150"
+                                conditional-required
+                            >
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="billing-post-office-box">BillingPostOfficeBox *</label>
-                            <div>
-                                <input class="form-control" id="billing-post-office-box" conditional-required
-                                    name="billing-post-office-box" type="text">
-                            </div>
+                            <input 
+                                class="form-control" 
+                                id="billing-post-office-box" 
+                                name="billing-post-office-box"
+                                type="text"
+                                max="150"
+                                conditional-required
+                            >
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="billing-location">BillingCityId</label>
-                            <div>
-                                <select class="form-control" id="billing-location" name="billing-location">
+                            <select 
+                                class="form-control" 
+                                id="billing-location" 
+                                name="billing-location"
+                            >
                                     <option value="" selected disabled>Sélectionner</option>
                                     <option value="1">1200 Genève</option>
                                     <option value="2">1201 Genève</option>
@@ -392,18 +467,20 @@
                                     <option value="95">1293 Bellevue</option>
                                     <option value="96">1294 Genthod</option>
                                     <option value="97">1298 Céligny</option>
-                                </select>
-                            </div>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group" component-name="same-billing-address">
-                        <label class="control-label" for="recommended-customer">Un client Migros Pro vous a
-                            recommandé nos services?</label>
-                        <div>
-                            <input class="form-control" id="recommended-customer" name="recommended-customer"
-                                type="text">
-                        </div>
+                        <label class="control-label" for="recommended-customer">
+                            Un client Migros Pro vous a recommandé nos services?
+                        </label>
+                        <input 
+                            class="form-control" 
+                            id="recommended-customer" 
+                            name="recommended-customer"
+                            type="text"
+                        >
                     </div>
                     <div class="form-group">
                         <a-button namespace="button-primary-" className="icon-chevron">
@@ -426,51 +503,86 @@
                     <h2>Informations complémentaires sur l’entreprise</h2>
                     <div class="form-group">
                         <label class="control-label" for="company-structure-type-id">Type de structure *</label>
-                        <div>
-                            <select class="form-control" data-conditional-required-element-enabled
-                                id="company-structure-type-id" name="company-structure-type-id" required>
-                                <option value="" selected disabled>Sélectionner</option>
-                                <option value="1">Association</option>
-                                <option value="2" additional-required-field="company-structure-type-id">Entreprise
-                                </option>
-                                <option value="3">Institution</option>
-                                <option value="4">Organisation
-                                    internationale</option>
-                                <option value="5">Prof. libérale ou ent. individuelle</option>
-                            </select>
-                        </div>
+                        <select 
+                            class="form-control" 
+                            id="company-structure-type-id" 
+                            name="company-structure-type-id" 
+                            required
+                            data-conditional-required-element-enabled
+                        >
+                            <option value="" selected disabled>Sélectionner</option>
+                            <option value="1">Association</option>
+                            <option 
+                                value="2" 
+                                additional-required-field="company-structure-type-id"
+                            >
+                                Entreprise
+                            </option>
+                            <option value="3">Institution</option>
+                            <option value="4">Organisation internationale</option>
+                            <option value="5">Prof. libérale ou ent. individuelle</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="value-added-tax">Ma société est-elle assujettie à la TVA?
-                            *</label>
+                        <label 
+                            class="control-label" 
+                            for="value-added-tax"
+                        >
+                            Ma société est-elle assujettie à la TVA? *
+                        </label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="value-added-tax-no" name="value-added-tax" type="radio" value="0"
-                                    checked>
+                                <input 
+                                    id="value-added-tax-no" 
+                                    name="value-added-tax" 
+                                    type="radio" 
+                                    value="0"
+                                    checked
+                                >
                                 <label for="value-added-tax-no">Non</label>
                             </span>
                             <span>
-                                <input id="value-added-tax-yes" name="value-added-tax" type="radio" value="1">
+                                <input 
+                                    id="value-added-tax-yes" 
+                                    name="value-added-tax" 
+                                    type="radio" 
+                                    value="1"
+                                >
                                 <label for="value-added-tax-yes">Qui</label>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="company-registration-number">No IDE (nouveau numéro
-                            Registre du Commerce)</label>
-                        <div>
-                            <input class="form-control" id="company-registration-number" required-field-name="company-registration-number"
-                                name="company-registration-number" type="text" value="">
-                            <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
-                        </div>
+                        <label 
+                            class="control-label" 
+                            for="company-registration-number"
+                        >
+                            No IDE (nouveau numéro Registre du Commerce)
+                        </label>
+                        <input 
+                            class="form-control" 
+                            id="company-registration-number" 
+                            name="company-registration-number" 
+                            type="text" 
+                            value=""
+                            required-field-name="company-registration-number"
+                        >
+                        <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="number-of-customer-card">De combien de cartes Migros Pro
-                            aures-vous besoin?</label>
-                        <div>
-                            <input class="form-control" id="number-of-customer-card" name="number-of-customer-card"
-                                type="text" value="">
-                        </div>
+                        <label 
+                            class="control-label" 
+                            for="number-of-customer-card"
+                        >
+                            De combien de cartes Migros Pro aures-vous besoin?
+                        </label>
+                        <input 
+                            class="form-control" 
+                            id="number-of-customer-card" 
+                            name="number-of-customer-card"
+                            type="text" 
+                            value=""
+                        >
                     </div>
                     <div class="form-group">
                         <a-button namespace="button-primary-" className="icon-chevron">
@@ -492,17 +604,30 @@
                 <section class="section">
                     <h2>Responsable du compte</h2>
                     <div class="form-group">
-                        <label class="control-label" for="Data_IsAccountManager">Ma société est-elle assujettie à la
-                            TVA? *</label>
+                        <label 
+                            class="control-label" 
+                            for="Data_IsAccountManager"
+                        >
+                            Ma société est-elle assujettie à la TVA? *
+                        </label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="is-account-manager-no" name="is-account-manager" type="radio" value="0"
-                                    checked>
+                                <input 
+                                    id="is-account-manager-no" 
+                                    name="is-account-manager" 
+                                    type="radio" 
+                                    value="0"
+                                    checked
+                                >
                                 <label for="is-account-manager-no">Non</label>
                             </span>
                             <span>
-                                <input id="is-account-manager-yes" name="is-account-manager" type="radio"
-                                    value="1">
+                                <input 
+                                    id="is-account-manager-yes" 
+                                    name="is-account-manager" 
+                                    type="radio"
+                                    value="1"
+                                >
                                 <label for="is-account-manager-yes">Qui</label>
                             </span>
                         </div>
@@ -513,41 +638,67 @@
                         <label class="control-label" for="Data_AccountManagerCivilityId">Civillité *</label>
                         <div class="form-radio-group">
                             <span>
-                                <input id="account-manager-civility-monsieur" name="account-manager-civility"
-                                    type="radio" value="1" checked>
+                                <input 
+                                    id="account-manager-civility-monsieur" 
+                                    name="account-manager-civility"
+                                    type="radio" 
+                                    value="1" 
+                                    checked
+                                >
                                 <label for="account-manager-civility-monsieur">M</label>
                             </span>
                             <span>
-                                <input id="account-manager-civility-mme" name="account-manager-civility"
-                                    type="radio" value="2">
+                                <input 
+                                    id="account-manager-civility-mme" 
+                                    name="account-manager-civility"
+                                    type="radio" 
+                                    value="2"
+                                >
                                 <label for="account-manager-civility-mme">Mme </label>
                             </span>
                             <span>
-                                <input id="account-manager-civility-autre" name="account-manager-civility"
-                                    type="radio" value="3">
+                                <input 
+                                    id="account-manager-civility-autre" 
+                                    name="account-manager-civility"
+                                    type="radio" 
+                                    value="3"
+                                >
                                 <label for="account-manager-civility-autre">Autre</label>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="account-manager-firstname">Prénom *</label>
-                        <div>
-                            <input class="form-control" id="account-manager-firstname"
-                                name="account-manager-firstname" type="text" value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="account-manager-firstname"
+                            name="account-manager-firstname" 
+                            type="text" 
+                            min="1"
+                            max="50"
+                            pattern="^\p{L}+$"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="account-manager-lastname">Nom *</label>
-                        <div>
-                            <input class="form-control" id="account-manager-lastname"
-                                name="account-manager-lastname" type="text" value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="account-manager-lastname"
+                            name="account-manager-lastname" 
+                            type="text" 
+                            min="1"
+                            max="100"
+                            pattern="^\p{L}+$"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <h5>Pattern validation by clicking submit button</h5>
                         <label class="control-label" for="account-manager-lastname">Registration Number *</label>
-                        <div>
-                            <input
+                        <input
                             class="form-control" 
                             id="account-manager-lastname"
                             name="account-manager-lastname1" 
@@ -556,14 +707,14 @@
                             title="Please add the format like CHE-333.333.333"
                             maxlength="15" 
                             placeholder="CHE-333.333.333" 
-                            required>
-                        </div>
+                            required
+                        >
+                        <div class="form-text">CHE-333.333.333</div>
                     </div>
                     <div class="form-group">
                         <h5>Pattern validation inmediatly after user input change</h5>
                         <label class="control-label" for="account-manager-lastname">Registration Number *</label>
-                        <div>
-                            <input
+                        <input
                             class="form-control" 
                             id="account-manager-lastname"
                             name="account-manager-lastname2" 
@@ -573,28 +724,26 @@
                             custom-pattern-validation 
                             custom-validity-message="Bitte geben Sie die richtige Format CHE-123.123.123" 
                             placeholder="CHE-XXX.XXX.XXX" 
-                            required>
-                        </div>
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <h5>Number(min and max) validation by clicking submit button</h5>
                         <label class="control-label" for="account-manager-lastname">Number Of CustomerCard *</label>
-                        <div>
-                            <input 
+                        <input 
                             class="form-control" 
                             id="account-manager-lastname"
                             name="account-manager-lastname4" 
                             type="number" 
                             min="0" 
                             max="7" 
-                            required>
-                        </div>
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <h5>Number(min and max) validation inmediatly after user input change</h5>
                         <label class="control-label" for="account-manager-lastname">Number Of CustomerCard *</label>
-                        <div>
-                            <input 
+                        <input 
                             class="form-control" 
                             id="account-manager-lastname"
                             name="account-manager-lastname3" 
@@ -604,46 +753,72 @@
                             min="0" 
                             max="7" 
                             value="" 
-                            required>
-                        </div>
+                            required
+                        >
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="account-manager-function-service">Fonction / Service
-                            *</label>
-                        <div>
-                            <select class="form-control" id="account-manager-function-service"
-                                name="account-manager-function-service" required>
-                                <option value="" selected disabled>Sélectionner</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
-                        </div>
+                        <label 
+                            class="control-label" 
+                            for="account-manager-function-service"
+                        >
+                            Fonction / Service *
+                        </label>
+                        <select 
+                            class="form-control" 
+                            id="account-manager-function-service"
+                            name="account-manager-function-service" 
+                            required
+                        >
+                            <option value="" selected disabled>Sélectionner</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="account-manager-email">E-mail professionnel *</label>
-                        <div>
-                            <input class="form-control" id="account-manager-email" name="account-manager-email"
-                                type="email" value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="account-manager-email" 
+                            name="account-manager-email"
+                            type="email" 
+                            min="6"
+                            max="128"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="account-manager-phone">Téléphone *</label>
-                        <div>
-                            <input class="form-control" id="account-manager-phone"
-                                name="account-manager-phone" type="tel" value="" required>
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="account-manager-phone"
+                            name="account-manager-phone" 
+                            type="tel" 
+                            max="20"
+                            pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
+                            value="" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="account-manager-mobile">Mobile</label>
-                        <div>
-                            <input class="form-control" id="account-manager-mobile"
-                                name="account-manager-mobile" type="tel">
-                        </div>
+                        <input 
+                            class="form-control" 
+                            id="account-manager-mobile"
+                            name="account-manager-mobile" 
+                            type="tel"
+                            max="20"
+                            pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
+                        >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="product-offers">
-                            <input class="form-control" id="product-offers" name="product-offers"
-                                type="checkbox">
+                            <input 
+                                class="form-control" 
+                                id="product-offers" 
+                                name="product-offers"
+                                type="checkbox"
+                            >
                             Je souhaite être informé des meilleurs offres de MIGROS PRO pour mon entreprise.
                         </label>
                     </div>

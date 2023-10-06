@@ -74,25 +74,17 @@ export default class RegisterForm extends Shadow() {
 
     nextButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
-        let isValidForm = false
         const currentSection = form.querySelector('section.active')
         const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea')
+        let isValidForm = Array.from(elementsInCurrentSection).every(element => {
+          if (element.checkValidity()) {
+            return true
+          } else {
+            form.reportValidity()
+            return false
+          }
+        })
 
-        // check if all fields in current section are valid
-        // elementsInCurrentSection.forEach(elem => {
-        //   if (elem.checkValidity()) {
-        //     isValidForm = true
-        //   } else {
-        //     isValidForm = false
-        //     form.reportValidity()
-        //   }
-        // })
-
-        if (elementsInCurrentSection.length === 0 || Array.from(elementsInCurrentSection).every(element => element.checkValidity())) {
-          isValidForm = true
-        } else {
-          form.reportValidity()
-        }
         if (isValidForm) {
           formSteps.forEach((stepItem) => {
             stepItem.classList.remove('active')
@@ -119,8 +111,6 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.remove('disabled')
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
-
-          getRequiredFields()
         }
       })
     })
