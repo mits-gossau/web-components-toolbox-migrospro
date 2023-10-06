@@ -94,6 +94,23 @@ export default class RequestForm extends Shadow() {
       const minDate = currentDate.toISOString().substr(0, 10)
       deliveryDate.setAttribute('min', minDate)
     }
+
+    // get order id and write it in hidden field
+    // @ts-ignore
+    let orderId = self.Environment.getApiBaseUrl('migrospro').apiGetActiveOrderId
+    if (orderId) {
+      fetch(orderId)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.response) {
+            const orderIdInput = this.root.querySelector('#order-id')
+            if (orderIdInput) {
+              orderIdInput.value = data.response
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    }
   }
 
   connectedCallback () {
