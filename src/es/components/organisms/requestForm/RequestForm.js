@@ -106,15 +106,15 @@ export default class RequestForm extends Shadow() {
     event.preventDefault()
 
     const clickedButtonValue = event.submitter.value
-    let action = this.getAttribute('action-submit')
+    // @ts-ignore
+    let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
 
     if (clickedButtonValue === 'submit') {
-      //console.log('submit')
     }
 
     if (clickedButtonValue === 'saveForLater') {
-      //console.log('saveForLater')
-      action = this.getAttribute('action-save-for-later')
+      // @ts-ignore
+      action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
     }
 
     const formData = new FormData(event.target)
