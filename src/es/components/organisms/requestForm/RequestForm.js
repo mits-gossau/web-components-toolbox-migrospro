@@ -120,14 +120,12 @@ export default class RequestForm extends Shadow() {
   }
 
   onSubmit = async (event) => {
-    // check, if <form> has action url
-    if (!event.target.action) {
       event.preventDefault()
 
       const clickedButtonValue = event.submitter.value
       // @ts-ignore
       let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
-
+      
       if (clickedButtonValue === 'submit') {
       }
 
@@ -157,12 +155,12 @@ export default class RequestForm extends Shadow() {
             console.error('Failed to submit form:', response.statusText)
           } else {
             console.log('Form submitted successfully:', await response.json())
+            window.location=window.location;
           }
         } catch (error) {
           console.error('Error submitting form:', error)
         }
       }
-    }
   }
 
   /**
