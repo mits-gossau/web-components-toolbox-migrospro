@@ -6,7 +6,7 @@
 
 <h2>Ma demande de devis</h2>
 
-<m-migrospro-system-notification 
+<m-system-notification 
     icon-src="/src/icons/shopping_basket.svg" 
     icon-badge="0"
     title="Panier vide"
@@ -17,31 +17,31 @@
             <li>Vous ne trouvez pas l'offre qui vous convient ? Faites nous parvenir votre demande en remplissant les champs "Votre demande sur mesure" ci-dessous.</li>
         </ul>
     </div>
-</m-migrospro-system-notification>
+</m-system-notification>
 
-<m-migrospro-system-notification>
+<m-system-notification>
+    <div slot="description">
+        <p>Lorem ipsum dolor sit amet ...</p>
+    </div>
+</m-system-notification>
+
+<m-system-notification type="info">
+    <div slot="description">
+        <p>Lorem ipsum dolor sit amet ...</p>
+    </div>
+</m-system-notification>
+
+<m-system-notification type="error">
     <div slot="description">
         <p>Une erreur est survenue. Les données ne peuvent pas être affichées.</p>
     </div>
-</m-migrospro-system-notification>
+</m-system-notification>
 
-<m-migrospro-system-notification type="info">
+<m-system-notification type="success">
     <div slot="description">
-        <p>Une erreur est survenue. Les données ne peuvent pas être affichées.</p>
+        <p>Lorem ipsum dolor sit amet ...</p>
     </div>
-</m-migrospro-system-notification>
-
-<m-migrospro-system-notification type="error">
-    <div slot="description">
-        <p>Une erreur est survenue. Les données ne peuvent pas être affichées.</p>
-    </div>
-</m-migrospro-system-notification>
-
-<m-migrospro-system-notification type="success">
-    <div slot="description">
-        <p>Une erreur est survenue. Les données ne peuvent pas être affichées.</p>
-    </div>
-</m-migrospro-system-notification>
+</m-system-notification>
 
 <m-checkout 
     request-event-name="request-active-order" 
