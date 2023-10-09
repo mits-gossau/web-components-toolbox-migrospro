@@ -44,6 +44,7 @@
 :root {
 	--any-margin-top-first-child: calc(var(--content-spacing) * 2);
 	--border-radius: 0.5rem;
+	--button-action-label-margin: 0 0.25rem 0;
 	--button-category-background-color-custom: var(--m-gray-100);
 	--button-category-background-color-hover-custom: var(--m-gray-300);
 	--button-category-color-active-custom: var(--m-white);

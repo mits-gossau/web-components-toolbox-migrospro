@@ -37,6 +37,11 @@ export default class CardOrder extends Shadow() {
 
   renderCSS () {
     this.css = /* css */ `
+      :host {
+        --color: var(--m-orange-600);
+        --color-hover: var(--m-white);
+        --icon-mdx-color-hover-custom: var(--m-white);
+      }
       :host .card {
         border-bottom: var(--card-border-bottom, 1px solid var(--m-gray-300));
         padding-top: var(--card-padding-top, 1rem);
@@ -61,6 +66,9 @@ export default class CardOrder extends Shadow() {
       }
       :host .action {
         min-width: var(--card-action-min-width, 10rem);
+      }
+      :host .action a-icon-mdx {
+        color: white;
       }
       @media (min-width: 768px) {
         :host .card {
