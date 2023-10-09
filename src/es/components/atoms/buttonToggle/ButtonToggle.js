@@ -15,15 +15,18 @@ export default class ButtonToggle extends Shadow() {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
     this.orderId = this.getAttribute('order-id')
     this.isActive = this.getAttribute('is-active') === 'true'
+    this.addEventListener('click', this.handleClick)
   }
 
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
+  }
 
+  handleClick () {
     // @ts-ignore
     let toggleDefaultOrder = self.Environment.getApiBaseUrl('migrospro').apiToggleDefaultOrder + '?orderId=' + this.orderId
     if (toggleDefaultOrder) {
-      fetch(toggleDefaultOrder)
+    fetch(toggleDefaultOrder)
         .then(response => response.json())
         .catch(error => console.error(error))
     }
