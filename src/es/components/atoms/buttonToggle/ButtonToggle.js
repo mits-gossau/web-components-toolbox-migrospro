@@ -28,6 +28,11 @@ export default class ButtonToggle extends Shadow() {
     if (toggleDefaultOrder) {
     fetch(toggleDefaultOrder)
         .then(response => response.json())
+        .then(result =>{
+          if (result["requestSuccess"]) {
+            window.location = window.location;
+          }
+        })
         .catch(error => console.error(error))
     }
   }
