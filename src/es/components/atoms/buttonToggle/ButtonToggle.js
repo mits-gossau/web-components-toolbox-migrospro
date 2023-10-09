@@ -13,7 +13,6 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class ButtonToggle extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
-    this.url = this.getAttribute('fetch-url')
     this.orderId = this.getAttribute('order-id')
     this.isActive = this.getAttribute('is-active') === 'true'
   }
