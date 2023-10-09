@@ -120,44 +120,47 @@ export default class RequestForm extends Shadow() {
   }
 
   onSubmit = async (event) => {
-    event.preventDefault()
+    // check, if <form> has action url
+    if (!event.target.action) {
+      event.preventDefault()
 
-    const clickedButtonValue = event.submitter.value
-    // @ts-ignore
-    let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
-
-    if (clickedButtonValue === 'submit') {
-    }
-
-    if (clickedButtonValue === 'saveForLater') {
+      const clickedButtonValue = event.submitter.value
       // @ts-ignore
-      action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
-    }
+      let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
 
-    const formData = new FormData(event.target)
-    const jsonData = {}
+      if (clickedButtonValue === 'submit') {
+      }
 
-    formData.forEach((value, key) => {
-      jsonData[key] = value
-    })
+      if (clickedButtonValue === 'saveForLater') {
+        // @ts-ignore
+        action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
+      }
 
-    if (action) {
-      try {
-        const response = await fetch(action, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(jsonData)
-        })
-  
-        if (!response.ok) {
-          console.error('Failed to submit form:', response.statusText)
-        } else {
-          console.log('Form submitted successfully:', await response.json())
+      const formData = new FormData(event.target)
+      const jsonData = {}
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value
+      })
+
+      if (action) {
+        try {
+          const response = await fetch(action, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+          })
+    
+          if (!response.ok) {
+            console.error('Failed to submit form:', response.statusText)
+          } else {
+            console.log('Form submitted successfully:', await response.json())
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error)
         }
-      } catch (error) {
-        console.error('Error submitting form:', error)
       }
     }
   }
