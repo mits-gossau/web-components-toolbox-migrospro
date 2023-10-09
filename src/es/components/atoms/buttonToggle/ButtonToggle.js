@@ -26,11 +26,6 @@ export default class ButtonToggle extends Shadow() {
     if (toggleDefaultOrder) {
       fetch(toggleDefaultOrder)
         .then(response => response.json())
-        .then(data => {
-          if (data && data.response) {
-            console.log(data.response)
-          }
-        })
         .catch(error => console.error(error))
     }
   }
