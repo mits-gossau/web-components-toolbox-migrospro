@@ -114,7 +114,12 @@ export default class RequestForm extends Shadow() {
   }
 
   connectedCallback () {
-    this.form.addEventListener('submit', this.onSubmit.bind(this))
+    // check, if web component has a child form with action attribute
+    // if not, add submit event listener
+    if(!this.form.hasAttribute('action')) {
+      this.form.addEventListener('submit', this.onSubmit.bind(this))
+    }
+
     if (this.shouldRenderCSS()) this.renderCSS()
     this.renderHTML()
   }
