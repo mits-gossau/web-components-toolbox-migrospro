@@ -57,7 +57,7 @@ export default class ButtonToggle extends Shadow() {
         border-color: var(--border-color, transparent);
         border-style: solid;
         border-radius: var(--border-radius, var(--button-action-border-radius, 0.5em));
-        border-width: var(--border-width, var(--button-action-border-width, var(--button-action-border-width-custom, 2px)));
+        border-width: var(--button-action-border-width, var(--button-action-border-width-custom, 2px));
         cursor: pointer;
         height: var(--height, 2.5rem);
         width: var(--width, 3.5rem);
