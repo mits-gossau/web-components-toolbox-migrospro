@@ -111,6 +111,29 @@ export default class RequestForm extends Shadow() {
         })
         .catch(error => console.error(error))
     }
+
+    // get all stores and write them as options in select field 
+    // @ts-ignore
+    let allStores = self.Environment.getApiBaseUrl('migrospro').apiGetAllStores
+    if (allStores) {
+      fetch(allStores)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.response) {
+            console.log(data.response)
+            const deliveryStoresSelect = this.root.querySelector('#delivery-select')
+            if (deliveryStoresSelect) {
+              data.response.forEach((store) => {
+                const option = document.createElement('option')
+                option.value = store.id
+                option.text = store.name
+                deliveryStoresSelect.appendChild(option)
+              })
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    }
   }
 
   connectedCallback () {
