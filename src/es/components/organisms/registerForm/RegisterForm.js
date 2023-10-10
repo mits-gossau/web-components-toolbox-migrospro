@@ -116,6 +116,8 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.remove('disabled')
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
+
+          getRequiredFields();
         }
       })
     })
@@ -192,7 +194,7 @@ export default class RegisterForm extends Shadow() {
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
         additionalRequiredInputField.setAttribute('conditional-required', true)
-        const currentInputLabel = additionalRequiredInputField.parentElement.previousElementSibling
+        const currentInputLabel = additionalRequiredInputField.previousElementSibling
         currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
     }
@@ -203,7 +205,7 @@ export default class RegisterForm extends Shadow() {
           elem.required = false
           elem.removeAttribute('conditional-required')
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.parentElement.previousElementSibling
+          const currentInputLabel = elem.previousElementSibling
           currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
@@ -213,7 +215,7 @@ export default class RegisterForm extends Shadow() {
       formFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.parentElement.previousElementSibling
+          const currentInputLabel = elem.previousElementSibling
           currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
