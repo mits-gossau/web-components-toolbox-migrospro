@@ -126,13 +126,16 @@ export default class RequestForm extends Shadow() {
         .then(response => response.json())
         .then(data => {
           if (data && data.response) {
-            console.log(data.response)
             const deliveryStoresSelect = this.root.querySelector('#delivery-select')
             if (deliveryStoresSelect) {
               data.response.forEach((store) => {
+                const initialValue = deliveryStoresSelect.getAttribute('data-initial-value')
                 const option = document.createElement('option')
                 option.value = store.id
                 option.text = store.name
+                if (initialValue != null) {
+                  option.setAttribute('selected', '')  
+                }
                 deliveryStoresSelect.appendChild(option)
               })
             }
