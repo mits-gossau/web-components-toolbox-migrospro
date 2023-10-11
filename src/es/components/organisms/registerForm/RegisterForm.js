@@ -13,7 +13,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RegisterForm extends Shadow() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     // store in sessionStorage
@@ -194,7 +194,14 @@ export default class RegisterForm extends Shadow() {
         additionalRequiredInputField.required = true
         additionalRequiredInputField.setAttribute('conditional-required', true)
         const currentInputLabel = this.root.querySelector(`[required-field-label='${additionalRequiredInputField.getAttribute("required-field-name")}']`)
-        if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+        // set min value to "if-required-min-value" if its needed
+        if (additionalRequiredInputField.hasAttribute("min")
+          && additionalRequiredInputField.hasAttribute("if-required-min-value")) {
+          additionalRequiredInputField.setAttribute("min", additionalRequiredInputField.getAttribute("if-required-min-value"))
+        }
+
+        // add * as required sign end of the label
+        if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
     }
 
@@ -203,10 +210,18 @@ export default class RegisterForm extends Shadow() {
         if (elem.hasAttribute('conditional-required')) {
           elem.required = false
           elem.removeAttribute('conditional-required')
+
           // remove * as required sign at the end of the label
           const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
-          if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
+
+        // set min value to "default-min-value" if its needed
+        if (elem.hasAttribute("min")
+          && elem.hasAttribute("default-min-value")) {
+          elem.setAttribute("min", elem.getAttribute("default-min-value"))
+        }
+
       })
     }
 
@@ -215,7 +230,7 @@ export default class RegisterForm extends Shadow() {
         if (elem.hasAttribute('conditional-required')) {
           // remove * as required sign at the end of the label
           const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
-          if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
     }
@@ -351,11 +366,11 @@ export default class RegisterForm extends Shadow() {
     })
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
   }
 
   /**
@@ -363,13 +378,13 @@ export default class RegisterForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */ `
       :host {
         --background-color: transparent; 
