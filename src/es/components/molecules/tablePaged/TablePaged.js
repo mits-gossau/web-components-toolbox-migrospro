@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 /**
@@ -16,7 +16,7 @@ export default class TablePaged extends Shadow() {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     this._inputField = null
-    this.url = new URL(document.location)
+    this.url = new URL(document.location.href)
     this.query = this.url.searchParams
     this.queryOrder = this.url.searchParams.get('orderBy')
 

@@ -564,8 +564,12 @@
                             class="form-control" 
                             id="company-registration-number" 
                             name="company-registration-number" 
-                            type="text" 
+                            type="number"
+                            min="0"
+                            max="7" 
                             value=""
+                            if-required-min-value="1"
+                            default-min-value="0"
                             required-field-name="company-registration-number"
                         >
                         <div class="form-text">Le numéro du Registre du Commerce à 11 chiffres.</div>
