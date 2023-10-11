@@ -133,7 +133,7 @@ export default class RequestForm extends Shadow() {
                 const option = document.createElement('option')
                 option.value = store.id
                 option.text = store.name
-                if (initialValue != null) {
+                if (initialValue !== null && store.id == initialValue) {
                   option.setAttribute('selected', '')  
                 }
                 deliveryStoresSelect.appendChild(option)
