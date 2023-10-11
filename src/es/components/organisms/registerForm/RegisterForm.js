@@ -126,7 +126,6 @@ export default class RegisterForm extends Shadow() {
     const getRequiredFields = () => {
       const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
       const requiredFields = activeSection.querySelectorAll('[required]')
-      console.log(requiredFields)
       const nextButton = activeSection.querySelectorAll('a-button')[0]
       const submitButton = this.root.querySelectorAll('input[type="submit"]')[0]
       const dataConditionalRequiredElement = activeSection.querySelector('[data-conditional-required-element-enabled]')
@@ -194,8 +193,8 @@ export default class RegisterForm extends Shadow() {
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
         additionalRequiredInputField.setAttribute('conditional-required', true)
-        const currentInputLabel = additionalRequiredInputField.previousElementSibling
-        currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+        const currentInputLabel = this.root.querySelector(`[required-field-label='${additionalRequiredInputField.getAttribute("required-field-name")}']`)
+        if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
     }
 
@@ -205,8 +204,8 @@ export default class RegisterForm extends Shadow() {
           elem.required = false
           elem.removeAttribute('conditional-required')
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.previousElementSibling
-          currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
+          if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
     }
@@ -215,8 +214,8 @@ export default class RegisterForm extends Shadow() {
       formFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           // remove * as required sign at the end of the label
-          const currentInputLabel = elem.previousElementSibling
-          currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
+          if(currentInputLabel) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
     }
