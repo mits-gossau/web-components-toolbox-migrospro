@@ -17,11 +17,35 @@ export default class CardOrder extends Shadow() {
     this.title = this.getAttribute('title') || ''
     this.name = this.getAttribute('name') || ''
     this.category = this.getAttribute('category') || ''
+
+    // onClick on edit field
+    this.openModal = event => {
+      this.dispatchEvent(
+        new CustomEvent(
+          'open-modal',
+          {
+            detail:
+            {
+              origEvent: event,
+              child: event.target.hasAttribute('open-modal-target') ? event.target : Array.from(this.aModal).find(a => Array.from(a.children).includes(event.target))
+            },
+            bubbles: true,
+            cancelable: true,
+            composed: true
+          }
+        )
+      )
+    }
   }
 
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
+    this.aModal.forEach(a => a.addEventListener('click', this.openModal))
     this.renderHTML()
+  }
+
+  disconnectedCallback() {
+    this.aModal.forEach(a => a.removeEventListener('click', this.openModal))
   }
 
   /**
@@ -110,5 +134,9 @@ export default class CardOrder extends Shadow() {
 
   get iconSize () {
     return this.getAttribute('icon-size') || '1em'
+  }
+
+  get aModal () {
+    return this.querySelectorAll('a[open-modal-target]')
   }
 }
