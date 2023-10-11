@@ -3,14 +3,30 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 
 /**
  * GTMEvent
- * An example at: src/es/components/pages/Benutzerprofil.html
+ * An example at Migros Pro: src/es/components/pages/TrackingTest.html
  *
  * @export
  * @class GTMEvent
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {event-data} {...} object to be pushed to the dataLayer
+ * }
+ * @example {
+    <c-gtm-event event-data='{
+       "event": "register",
+       "action": "started",
+       "step": "1"
+     }'>
+       <a-button namespace="button-primary-">Register started</a-button>
+    </c-gtm-event>
+ * }
  */
 
 export default class GTMEvent extends Shadow() {
+    constructor(options = {}, ...args) {
+        super({ importMetaUrl: import.meta.url, ...options }, ...args)
+    }
+
     connectedCallback() {
         this.addEventListener('click', this.sendEvent);
     }
@@ -19,17 +35,15 @@ export default class GTMEvent extends Shadow() {
         this.removeEventListener('click', this.sendEvent);
     }
 
-    // @ts-ignore
-    sendEvent(e) {
+    sendEvent(event) {
         // @ts-ignore
-        if (this.dataLayer) {
+        if (window.dataLayer) {
             const eventData = this.getAttribute('event-data');
-            console.log("eventData", eventData)
             if (eventData) {
                 try {
                     const parsedData = JSON.parse(eventData);
                     // @ts-ignore
-                    this.dataLayer.push(parsedData);
+                    window.dataLayer.push(parsedData);
                 } catch (err) {
                     console.error("Failed to parse event data:", err);
                 }
@@ -39,8 +53,9 @@ export default class GTMEvent extends Shadow() {
 
     reset() {
         // @ts-ignore
-        if (this.dataLayer) {
-            this.dataLayer.push(function() {
+        if (window.dataLayer) {
+            // @ts-ignore
+            window.dataLayer.push(function() {
                 this.reset();
             })
         }
