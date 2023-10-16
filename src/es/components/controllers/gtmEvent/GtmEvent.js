@@ -9,6 +9,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  * @class GTMEvent
  * @type {CustomElementConstructor}
  * @attribute {
+ *  {listen-to} 'click', 'change', 'on-page-load'
  *  {event-data} {...} object to be pushed to the dataLayer
  * }
  * @example {
@@ -25,39 +26,44 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class GTMEvent extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, ...options }, ...args)
+        this.eventData = JSON.parse(this.getAttribute('event-data'))
+        this.sendEvent = this.sendEvent.bind(this)
     }
 
     connectedCallback() {
-        this.addEventListener('click', this.sendEvent);
+        const eventType = this.getAttribute('listen-to')
+
+        if (eventType === 'click') {
+            this.addEventListener('click', this.sendEvent)
+        }
+        
+        if (eventType === 'change') {
+            this.shadowRoot.querySelectorAll('*').forEach(child => {
+                child.addEventListener('change', this.sendEvent)
+            });
+        }
+
+        if (eventType === 'on-page-load') {
+            this.sendEvent()
+        }
     }
 
     disconnectedCallback() {
         this.removeEventListener('click', this.sendEvent);
+        this.shadowRoot.querySelectorAll('*').forEach(child => {
+            child.removeEventListener('change', this.sendEvent)
+        });
     }
 
-    sendEvent(event) {
+    sendEvent() {
         // @ts-ignore
-        if (window.dataLayer) {
-            const eventData = this.getAttribute('event-data');
-            if (eventData) {
-                try {
-                    const parsedData = JSON.parse(eventData);
-                    // @ts-ignore
-                    window.dataLayer.push(parsedData);
-                } catch (err) {
-                    console.error("Failed to parse event data:", err);
-                }
+        if (typeof window !== 'undefined' && window.dataLayer && this.eventData) {
+            try {
+                // @ts-ignore
+                window.dataLayer.push(this.eventData)
+            } catch (err) {
+                console.error("Failed to parse event data:", err)
             }
-        }
-    }
-
-    reset() {
-        // @ts-ignore
-        if (window.dataLayer) {
-            // @ts-ignore
-            window.dataLayer.push(function() {
-                this.reset();
-            })
         }
     }
 }

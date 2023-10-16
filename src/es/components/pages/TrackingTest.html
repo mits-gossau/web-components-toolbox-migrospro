@@ -1,8 +1,11 @@
-<c-migrospro-google-tag-manager gtm-id="GTM-PNK6BD2V" position="body"></c-migrospro-google-tag-manager>
+<!-- <c-migrospro-google-tag-manager gtm-id="GTM-PNK6BD2V" position="body"></c-migrospro-google-tag-manager> -->
+<c-tag-manager id="GTM-PNK6BD2V" test-mode="true"></c-tag-manager>
 
 <h1>Tracking Test Page</h1>
 
-<c-migrospro-gtm-event event-data='{
+<c-migrospro-gtm-event 
+  listen-to="click"
+  event-data='{
     "event": "register",
     "action": "started",
     "step": "1"
@@ -10,7 +13,9 @@
     <a-button namespace="button-primary-">Register started</a-button>
 </c-migrospro-gtm-event>
 
-<c-migrospro-gtm-event event-data='{
+<c-migrospro-gtm-event 
+  listen-to="click"
+  event-data='{
     "event": "register",
     "action": "completed",
     "step": "2"
@@ -18,7 +23,9 @@
     <a-button namespace="button-primary-">Register completed</a-button>
 </c-migrospro-gtm-event>
 
-<c-migrospro-gtm-event event-data='{
+<!-- <c-migrospro-gtm-event 
+  listen-to="on-page-load"
+  event-data='{
     "event": "view_item_list",
     "ecommerce": {
       "item_list_id": "related_products",
@@ -69,5 +76,20 @@
       ]
     }
   }'>
-    <a-button namespace="button-primary-">Product Overview List</a-button>
+</c-migrospro-gtm-event> -->
+
+<c-migrospro-gtm-event
+  listen-to="change"
+  event-data='{
+    "event": "ice-cream",
+    "action": "changed"
+  }'
+>
+  <select class="ice-cream" name="ice-cream">
+    <option value="">Select One …</option>
+    <option value="chocolate">Chocolate</option>
+    <option value="sardine">Sardine</option>
+    <option value="vanilla">Vanilla</option>
+  </select>
+  <input type="text" name="text" value="Lorem Ipsum dolor..." placeholder="Add some text" />
 </c-migrospro-gtm-event>
