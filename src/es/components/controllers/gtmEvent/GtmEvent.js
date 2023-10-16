@@ -26,7 +26,6 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class GTMEvent extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, ...options }, ...args)
-        this.eventData = JSON.parse(this.getAttribute('event-data'))
         this.sendEvent = this.sendEvent.bind(this)
     }
 
@@ -55,14 +54,18 @@ export default class GTMEvent extends Shadow() {
         });
     }
 
-    sendEvent() {
+    sendEvent(event) {
         // @ts-ignore
-        if (typeof window !== 'undefined' && window.dataLayer && this.eventData) {
+        const dataLayer = window.dataLayer
+        this.eventData = JSON.parse(this.getAttribute('event-data'))
+
+        if (event.target.name) this.eventData[event.target.name] = event.target.value
+
+        if (typeof window !== 'undefined' && dataLayer && this.eventData) {
             try {
-                // @ts-ignore
-                window.dataLayer.push(this.eventData)
+                dataLayer.push(this.eventData)
             } catch (err) {
-                console.error("Failed to parse event data:", err)
+                console.error("Failed to push event data:", err)
             }
         }
     }
