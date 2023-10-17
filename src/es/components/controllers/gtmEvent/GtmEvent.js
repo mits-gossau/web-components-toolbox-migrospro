@@ -13,13 +13,13 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  *  {event-data} {...} object to be pushed to the dataLayer
  * }
  * @example {
-    <c-gtm-event event-data='{
+    <c-migrospro-gtm-event event-data='{
        "event": "register",
        "action": "started",
        "step": "1"
      }'>
        <a-button namespace="button-primary-">Register started</a-button>
-    </c-gtm-event>
+    </c-migrospro-gtm-event>
  * }
  */
 
@@ -32,18 +32,21 @@ export default class GTMEvent extends Shadow() {
   connectedCallback () {
     const eventType = this.getAttribute('listen-to')
 
-    if (eventType === 'click') {
-      this.addEventListener('click', this.sendEvent)
-    }
-
-    if (eventType === 'change') {
-      this.shadowRoot.querySelectorAll('*').forEach(child => {
-        child.addEventListener('change', this.sendEvent)
-      })
-    }
-
-    if (eventType === 'on-page-load') {
-      this.sendEvent()
+    switch(eventType) {
+      case 'click':
+        this.addEventListener('click', this.sendEvent)
+        break;
+      case 'change':
+        this.shadowRoot.querySelectorAll('*').forEach(child => {
+          child.addEventListener('change', this.sendEvent)
+        })
+        break;
+      case 'on-page-load':
+        this.sendEvent()
+        break;
+      default:
+        console.error('Invalid event type: ' + eventType)
+        break;
     }
   }
 
@@ -54,16 +57,19 @@ export default class GTMEvent extends Shadow() {
     })
   }
 
+
   sendEvent (event) {
-    // @ts-ignore
-    const dataLayer = window.dataLayer
     this.eventData = JSON.parse(this.getAttribute('event-data'))
 
-    if (event.target.name) this.eventData[event.target.name] = event.target.value
+    if (event?.target?.name) {
+      this.eventData[event.target.name] = event.target.value
+    }
 
-    if (typeof window !== 'undefined' && dataLayer && this.eventData) {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && window.dataLayer) {
       try {
-        dataLayer.push(this.eventData)
+        // @ts-ignore
+        window.dataLayer.push(this.eventData)
       } catch (err) {
         console.error('Failed to push event data:', err)
       }
