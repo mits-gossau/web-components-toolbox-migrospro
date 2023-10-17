@@ -219,10 +219,10 @@ export default class RegisterForm extends Shadow() {
     }
 
     const resetConditionalRequiredElement = () => {
-      formFields.forEach(elem => {
+      const activeSectionConditionalRequiredFields = this.root.querySelector('m-form .section.active').querySelectorAll("[conditional-required]")
+      activeSectionConditionalRequiredFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           elem.required = false
-          elem.removeAttribute('conditional-required')
 
           // remove * as required sign at the end of the label
           const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute('required-field-name')}']`)
