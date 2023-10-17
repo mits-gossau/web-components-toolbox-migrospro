@@ -16,9 +16,9 @@ import TagManager from '../../web-components-toolbox/src/es/components/controlle
  *  {number} [timeout=n.a.] timeout to trigger the render
  * }
  * @example {
-    <c-tag-manager id="GTM-XXXXXX" test-mode="true" wc-config-load>
+    <c-migrospro-tag-manager id="GTM-XXXXXX" test-mode="true" wc-config-load>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    </c-tag-manager>
+    </c-migrospro-tag-manager>
  * }
  */
 export default class MigrosProTagManager extends TagManager {
