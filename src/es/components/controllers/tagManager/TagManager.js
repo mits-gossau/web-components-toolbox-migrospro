@@ -1,8 +1,6 @@
 // @ts-check
 import TagManager from '../../web-components-toolbox/src/es/components/controllers/tagManager/TagManager.js'
 
-/* global self */
-
 /**
  * Example at: /src/es/components/pages/TrackingTest.html
  *
@@ -27,6 +25,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
   disconnectedCallback () {
@@ -34,6 +33,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
   basketListener = (event, action) => {
@@ -61,6 +61,9 @@ export default class MigrosProTagManager extends TagManager {
     this.basketListener(event, 'remove_to_cart');
   }
 
+  requestListBasketListener = (event) => {
+    console.log(event)
+  }
 
   listProductListener = (event) => {
     /**
@@ -139,13 +142,8 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   sendEvent(eventData) {
-    console.log(eventData)
-
     // @ts-ignore
     const dataLayer = window.dataLayer
-
-    // this.eventData = JSON.parse(this.getAttribute('event-data'))
-    // if (event.target.name) this.eventData[event.target.name] = event.target.value
 
     if (typeof window !== 'undefined' && dataLayer && eventData) {
       try {

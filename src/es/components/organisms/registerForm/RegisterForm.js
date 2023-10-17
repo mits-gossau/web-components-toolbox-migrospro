@@ -15,7 +15,6 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class RegisterForm extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
-
     // store in sessionStorage
     const form = this.root.querySelector('m-form > form')
     // @ts-ignore
@@ -117,10 +116,24 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
 
+          sendEvent(++index + 1)
+
           getRequiredFields()
         }
       })
     })
+
+    // send event (gtm)
+    const sendEvent = (step) => {
+        // @ts-ignore
+        window.dataLayer.push({
+          "event": "register",
+          "action": "started",
+          "step": `${step}`
+      })
+    }
+
+    sendEvent(1) // initial event step 1
 
     // required fields
     const getRequiredFields = () => {
