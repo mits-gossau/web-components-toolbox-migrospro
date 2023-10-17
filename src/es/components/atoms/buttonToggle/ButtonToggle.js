@@ -24,13 +24,13 @@ export default class ButtonToggle extends Shadow() {
 
   handleClick () {
     // @ts-ignore
-    let toggleDefaultOrder = self.Environment.getApiBaseUrl('migrospro').apiToggleDefaultOrder + '?orderId=' + this.orderId
+    const toggleDefaultOrder = self.Environment.getApiBaseUrl('migrospro').apiToggleDefaultOrder + '?orderId=' + this.orderId
     if (toggleDefaultOrder) {
-    fetch(toggleDefaultOrder)
+      fetch(toggleDefaultOrder)
         .then(response => response.json())
-        .then(result =>{
-          if (result["requestSuccess"]) {
-            window.location = window.location;
+        .then(result => {
+          if (result.requestSuccess) {
+            window.location = window.location
           }
         })
         .catch(error => console.error(error))
@@ -51,8 +51,8 @@ export default class ButtonToggle extends Shadow() {
   renderCSS () {
     this.css = /* css */ `
       :host {
-        --color: ${this.isActive ? `var(--m-white)` : `var(--m-orange-600)`};
-        --background-color: ${this.isActive ? `var(--m-orange-600)` : `var(--m-white)`};
+        --color: ${this.isActive ? 'var(--m-white)' : 'var(--m-orange-600)'};
+        --background-color: ${this.isActive ? 'var(--m-orange-600)' : 'var(--m-white)'};
         background-color: var(--background-color, transparent);
         border-color: var(--border-color, transparent);
         border-style: solid;
@@ -72,5 +72,4 @@ export default class ButtonToggle extends Shadow() {
       }
     `
   }
-
 }
