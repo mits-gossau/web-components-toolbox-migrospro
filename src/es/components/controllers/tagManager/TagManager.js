@@ -4,7 +4,7 @@ import TagManager from '../../web-components-toolbox/src/es/components/controlle
 /* global self */
 
 /**
- * Example at: /src/es/components/pages/Home.html
+ * Example at: /src/es/components/pages/TrackingTest.html
  *
  * @export
  * @class MigrosProTagManager
