@@ -25,31 +25,42 @@ export default class MigrosProTagManager extends TagManager {
   connectedCallback () {
     super.connectedCallback()
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
+    document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
   }
 
   disconnectedCallback () {
     super.disconnectedCallback()
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
+    document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
   }
 
-  addBasketListener = (event) => {
+  basketListener = (event, action) => {
     event.detail.tags.forEach((el) => {
       const item = this.items?.find((element) => element.item_id === el)
 
       if (item) {
-        const addToCart = {
-          event: 'add_to_cart',
+        const eventToCart = {
+          event: action,
           ecommerce: {
             items: [item] 
           }
         }
 
-        this.sendEvent(addToCart)
+        this.sendEvent(eventToCart)
       }
     })
   }
+
+  addBasketListener = (event) => {
+    this.basketListener(event, 'add_to_cart');
+  }
+
+  removeBasketListener = (event) => {
+    this.basketListener(event, 'remove_to_cart');
+  }
+
 
   listProductListener = (event) => {
     /**
