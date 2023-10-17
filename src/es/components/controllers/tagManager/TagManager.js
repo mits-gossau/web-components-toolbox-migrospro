@@ -52,15 +52,40 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   listProductListener = (event) => {
-    console.log(event)
     /**
-     * @type {{ item_id: any; item_name: any; item_names: { item_name_rpa: any; item_name_sap: any; item_short_name: any; }; item_brand: any; item_category: any; item_variant: any; price: any; unit_price: any; quantity: any; package_size: any; language: any; vat: { vat_rate_id: any; vat_rate: any; }; }[]}
-     */
+      * @typedef {Object} ItemNames
+      * @property {any} item_name_rpa
+      * @property {any} item_name_sap
+      * @property {any} item_short_name
+      */
+    
+    /**
+      * @typedef {Object} VAT
+      * @property {any} vat_rate_id
+      * @property {any} vat_rate
+      */
+    
+    /**
+      * @typedef {Object} Item
+      * @property {any} item_id
+      * @property {any} item_name
+      * @property {ItemNames} item_names
+      * @property {any} item_brand
+      * @property {any} item_category
+      * @property {any} item_variant
+      * @property {any} price
+      * @property {any} unit_price
+      * @property {any} quantity
+      * @property {any} package_size
+      * @property {any} language
+      * @property {VAT} vat
+      */
+    
+    /** @type {Item[]} */
     this.items = []
-
+   
     event.detail.fetch.then((productData) => {
       
-
       productData[0].products.forEach((item) => {
         const viewItem = {
           item_id: item.id,

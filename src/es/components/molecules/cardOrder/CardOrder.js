@@ -44,7 +44,7 @@ export default class CardOrder extends Shadow() {
     this.renderHTML()
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
     this.aModal.forEach(a => a.removeEventListener('click', this.openModal))
   }
 

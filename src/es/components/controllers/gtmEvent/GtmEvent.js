@@ -24,50 +24,49 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class GTMEvent extends Shadow() {
-    constructor(options = {}, ...args) {
-        super({ importMetaUrl: import.meta.url, ...options }, ...args)
-        this.sendEvent = this.sendEvent.bind(this)
+  constructor (options = {}, ...args) {
+    super({ importMetaUrl: import.meta.url, ...options }, ...args)
+    this.sendEvent = this.sendEvent.bind(this)
+  }
+
+  connectedCallback () {
+    const eventType = this.getAttribute('listen-to')
+
+    if (eventType === 'click') {
+      this.addEventListener('click', this.sendEvent)
     }
 
-    connectedCallback() {
-        const eventType = this.getAttribute('listen-to')
-
-        if (eventType === 'click') {
-            this.addEventListener('click', this.sendEvent)
-        }
-        
-        if (eventType === 'change') {
-            this.shadowRoot.querySelectorAll('*').forEach(child => {
-                child.addEventListener('change', this.sendEvent)
-            });
-        }
-
-        if (eventType === 'on-page-load') {
-            this.sendEvent()
-        }
+    if (eventType === 'change') {
+      this.shadowRoot.querySelectorAll('*').forEach(child => {
+        child.addEventListener('change', this.sendEvent)
+      })
     }
 
-    disconnectedCallback() {
-        this.removeEventListener('click', this.sendEvent);
-        this.shadowRoot.querySelectorAll('*').forEach(child => {
-            child.removeEventListener('change', this.sendEvent)
-        });
+    if (eventType === 'on-page-load') {
+      this.sendEvent()
     }
+  }
 
-    sendEvent(event) {
-        // @ts-ignore
-        const dataLayer = window.dataLayer
-        this.eventData = JSON.parse(this.getAttribute('event-data'))
+  disconnectedCallback () {
+    this.removeEventListener('click', this.sendEvent)
+    this.shadowRoot.querySelectorAll('*').forEach(child => {
+      child.removeEventListener('change', this.sendEvent)
+    })
+  }
 
-        if (event.target.name) this.eventData[event.target.name] = event.target.value
+  sendEvent (event) {
+    // @ts-ignore
+    const dataLayer = window.dataLayer
+    this.eventData = JSON.parse(this.getAttribute('event-data'))
 
-        if (typeof window !== 'undefined' && dataLayer && this.eventData) {
-            try {
-                dataLayer.push(this.eventData)
-            } catch (err) {
-                console.error("Failed to push event data:", err)
-            }
-        }
+    if (event.target.name) this.eventData[event.target.name] = event.target.value
+
+    if (typeof window !== 'undefined' && dataLayer && this.eventData) {
+      try {
+        dataLayer.push(this.eventData)
+      } catch (err) {
+        console.error('Failed to push event data:', err)
+      }
     }
+  }
 }
-  

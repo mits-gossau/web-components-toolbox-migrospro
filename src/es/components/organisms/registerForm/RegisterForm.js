@@ -13,7 +13,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RegisterForm extends Shadow() {
-  constructor(options = {}, ...args) {
+  constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     // store in sessionStorage
@@ -69,7 +69,7 @@ export default class RegisterForm extends Shadow() {
 
     // remove from sessionStorage
     form.addEventListener('submit', () => {
-      sessionStorage.removeItem('formValues');
+      sessionStorage.removeItem('formValues')
     })
 
     // next step
@@ -81,7 +81,7 @@ export default class RegisterForm extends Shadow() {
       button.addEventListener('click', () => {
         const currentSection = form.querySelector('section.active')
         const elementsInCurrentSection = currentSection.querySelectorAll('input, select, textarea')
-        let isValidForm = Array.from(elementsInCurrentSection).every(element => {
+        const isValidForm = Array.from(elementsInCurrentSection).every(element => {
           if (element.checkValidity()) {
             return true
           } else {
@@ -117,7 +117,7 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
 
-          getRequiredFields();
+          getRequiredFields()
         }
       })
     })
@@ -193,15 +193,15 @@ export default class RegisterForm extends Shadow() {
       if (additionalRequiredInputField) {
         additionalRequiredInputField.required = true
         additionalRequiredInputField.setAttribute('conditional-required', true)
-        const currentInputLabel = this.root.querySelector(`[required-field-label='${additionalRequiredInputField.getAttribute("required-field-name")}']`)
+        const currentInputLabel = this.root.querySelector(`[required-field-label='${additionalRequiredInputField.getAttribute('required-field-name')}']`)
         // set min value to "if-required-min-value" if its needed
-        if (additionalRequiredInputField.hasAttribute("min")
-          && additionalRequiredInputField.hasAttribute("if-required-min-value")) {
-          additionalRequiredInputField.setAttribute("min", additionalRequiredInputField.getAttribute("if-required-min-value"))
+        if (additionalRequiredInputField.hasAttribute('min') &&
+          additionalRequiredInputField.hasAttribute('if-required-min-value')) {
+          additionalRequiredInputField.setAttribute('min', additionalRequiredInputField.getAttribute('if-required-min-value'))
         }
 
         // add * as required sign end of the label
-        if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+        if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
       }
     }
 
@@ -212,16 +212,15 @@ export default class RegisterForm extends Shadow() {
           elem.removeAttribute('conditional-required')
 
           // remove * as required sign at the end of the label
-          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
-          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute('required-field-name')}']`)
+          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
 
         // set min value to "default-min-value" if its needed
-        if (elem.hasAttribute("min")
-          && elem.hasAttribute("default-min-value")) {
-          elem.setAttribute("min", elem.getAttribute("default-min-value"))
+        if (elem.hasAttribute('min') &&
+          elem.hasAttribute('default-min-value')) {
+          elem.setAttribute('min', elem.getAttribute('default-min-value'))
         }
-
       })
     }
 
@@ -229,8 +228,8 @@ export default class RegisterForm extends Shadow() {
       formFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           // remove * as required sign at the end of the label
-          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute("required-field-name")}']`)
-          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes("*")) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+          const currentInputLabel = this.root.querySelector(`[required-field-label='${elem.getAttribute('required-field-name')}']`)
+          if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
         }
       })
     }
@@ -283,42 +282,42 @@ export default class RegisterForm extends Shadow() {
     // number input max and min value validation
     const numberInputFieldsWithMaxAttribute = this.root.querySelectorAll('input[type="text"][custom-number-validation]')
     Array.from(numberInputFieldsWithMaxAttribute).forEach(elem => {
-      const max = +elem.getAttribute("max")
-      const min = +elem.getAttribute("min")
-      const validityMessage = elem.getAttribute("custom-validity-message")
+      const max = +elem.getAttribute('max')
+      const min = +elem.getAttribute('min')
+      const validityMessage = elem.getAttribute('custom-validity-message')
 
-      elem.addEventListener("keydown", (e) => {
+      elem.addEventListener('keydown', (e) => {
         // ignore NaN e.keys except backspace and -,+,.,e key since the are as default allow to type in number
         if ((isNaN(+e.key) || +e.keyCode === 69 || +e.keyCode === 109 || +e.keyCode === 107 || +e.keyCode === 190) && +e.keyCode !== 8) {
-          e.target.setCustomValidity(validityMessage);
-          e.target.reportValidity();
-          e.preventDefault();
+          e.target.setCustomValidity(validityMessage)
+          e.target.reportValidity()
+          e.preventDefault()
         }
       })
 
-      elem.addEventListener("keyup", (e) => {
+      elem.addEventListener('keyup', (e) => {
         if (elem.value) {
-          const typed = +elem.value;
+          const typed = +elem.value
           if (typed <= max && typed >= min) {
-            e.target.setCustomValidity("");
+            e.target.setCustomValidity('')
             elem.value = typed
           } else {
-            e.target.setCustomValidity(validityMessage);
-            e.target.reportValidity();
+            e.target.setCustomValidity(validityMessage)
+            e.target.reportValidity()
           }
         } else {
-          e.target.setCustomValidity(validityMessage);
-          e.target.reportValidity();
+          e.target.setCustomValidity(validityMessage)
+          e.target.reportValidity()
         }
       })
 
-      elem.addEventListener("change", (e) => {
+      elem.addEventListener('change', (e) => {
         if (elem.value) {
-          const typed = +elem.value;
+          const typed = +elem.value
           if (typed > max || typed < min) {
-            elem.value = ""
-            e.target.setCustomValidity(validityMessage);
-            e.target.reportValidity();
+            elem.value = ''
+            e.target.setCustomValidity(validityMessage)
+            e.target.reportValidity()
           }
         }
       })
@@ -327,50 +326,50 @@ export default class RegisterForm extends Shadow() {
     // pattern right format validation
     const patternTextInputFields = this.root.querySelectorAll('input[type="text"][custom-pattern-validation]')
     Array.from(patternTextInputFields).forEach(elem => {
-      const validityMessage = elem.getAttribute("custom-validity-message")
+      const validityMessage = elem.getAttribute('custom-validity-message')
 
-      elem.addEventListener("keyup", (e) => {
+      elem.addEventListener('keyup', (e) => {
         const currentValue = elem.value
         if (
-          currentValue.substring(0, 3) === "CHE"
-          && currentValue.split('.').length === 3
-          && currentValue.split('.')[1].split('').every(e => !isNaN(+e))
-          && currentValue.split('.')[2].split('').every(e => !isNaN(+e))
-          && currentValue.length === 15
+          currentValue.substring(0, 3) === 'CHE' &&
+          currentValue.split('.').length === 3 &&
+          currentValue.split('.')[1].split('').every(e => !isNaN(+e)) &&
+          currentValue.split('.')[2].split('').every(e => !isNaN(+e)) &&
+          currentValue.length === 15
         ) {
-          e.target.setCustomValidity("");
-          e.target.reportValidity();
+          e.target.setCustomValidity('')
+          e.target.reportValidity()
         } else {
-          e.target.setCustomValidity(validityMessage);
-          e.target.reportValidity();
+          e.target.setCustomValidity(validityMessage)
+          e.target.reportValidity()
         }
       })
 
-      elem.addEventListener("change", (e) => {
+      elem.addEventListener('change', (e) => {
         const currentValue = elem.value
         if (
-          currentValue.substring(0, 3) === "CHE"
-          && currentValue.split('.').length === 3
-          && currentValue.split('.')[1].split('').every(e => !isNaN(+e))
-          && currentValue.split('.')[2].split('').every(e => !isNaN(+e))
-          && currentValue.length === 15
+          currentValue.substring(0, 3) === 'CHE' &&
+          currentValue.split('.').length === 3 &&
+          currentValue.split('.')[1].split('').every(e => !isNaN(+e)) &&
+          currentValue.split('.')[2].split('').every(e => !isNaN(+e)) &&
+          currentValue.length === 15
         ) {
-          e.target.setCustomValidity("");
-          e.target.reportValidity();
+          e.target.setCustomValidity('')
+          e.target.reportValidity()
         } else {
-          e.target.setCustomValidity(validityMessage);
-          e.target.reportValidity();
-          elem.value = ""
+          e.target.setCustomValidity(validityMessage)
+          e.target.reportValidity()
+          elem.value = ''
         }
       })
     })
   }
 
-  connectedCallback() {
+  connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
   }
 
   /**
@@ -378,13 +377,13 @@ export default class RegisterForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS() {
+  shouldRenderCSS () {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */ `
       :host {
         --background-color: transparent; 

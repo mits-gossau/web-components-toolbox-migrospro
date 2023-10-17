@@ -88,7 +88,7 @@ export default class RequestForm extends Shadow() {
         })
       }
     } else {
-      console.error('Some elements not found');
+      console.error('Some elements not found')
     }
 
     // update delivery date minimum
@@ -103,7 +103,7 @@ export default class RequestForm extends Shadow() {
 
     // get order id and write it in hidden field
     // @ts-ignore
-    let orderId = self.Environment.getApiBaseUrl('migrospro').apiGetActiveOrderId
+    const orderId = self.Environment.getApiBaseUrl('migrospro').apiGetActiveOrderId
     if (orderId) {
       fetch(orderId)
         .then(response => response.json())
@@ -118,9 +118,9 @@ export default class RequestForm extends Shadow() {
         .catch(error => console.error(error))
     }
 
-    // get all stores and write them as options in select field 
+    // get all stores and write them as options in select field
     // @ts-ignore
-    let allStores = self.Environment.getApiBaseUrl('migrospro').apiGetAllStores
+    const allStores = self.Environment.getApiBaseUrl('migrospro').apiGetAllStores
     if (allStores) {
       fetch(allStores)
         .then(response => response.json())
@@ -134,7 +134,7 @@ export default class RequestForm extends Shadow() {
                 option.value = store.id
                 option.text = store.name
                 if (initialValue !== null && store.id == initialValue) {
-                  option.setAttribute('selected', '')  
+                  option.setAttribute('selected', '')
                 }
                 deliveryStoresSelect.appendChild(option)
               })
@@ -148,7 +148,7 @@ export default class RequestForm extends Shadow() {
   connectedCallback () {
     // check, if web component has a child form with action attribute
     // if not, add submit event listener
-    if(!this.form.hasAttribute('action')) {
+    if (!this.form.hasAttribute('action')) {
       this.form.addEventListener('submit', this.onSubmit.bind(this))
     }
 
@@ -157,47 +157,47 @@ export default class RequestForm extends Shadow() {
   }
 
   onSubmit = async (event) => {
-      event.preventDefault()
+    event.preventDefault()
 
-      const clickedButtonValue = event.submitter.value
+    const clickedButtonValue = event.submitter.value
+    // @ts-ignore
+    let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
+
+    if (clickedButtonValue === 'submit') {
+    }
+
+    if (clickedButtonValue === 'saveForLater') {
       // @ts-ignore
-      let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
-      
-      if (clickedButtonValue === 'submit') {
-      }
+      action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
+    }
 
-      if (clickedButtonValue === 'saveForLater') {
-        // @ts-ignore
-        action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
-      }
+    const formData = new FormData(event.target)
+    const jsonData = {}
 
-      const formData = new FormData(event.target)
-      const jsonData = {}
+    formData.forEach((value, key) => {
+      jsonData[key] = value
+    })
 
-      formData.forEach((value, key) => {
-        jsonData[key] = value
-      })
+    if (action) {
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(jsonData)
+        })
 
-      if (action) {
-        try {
-          const response = await fetch(action, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
-          })
-    
-          if (!response.ok) {
-            console.error('Failed to submit form:', response.statusText)
-          } else {
-            console.log('Form submitted successfully:', await response.json())
-            window.location=window.location;
-          }
-        } catch (error) {
-          console.error('Error submitting form:', error)
+        if (!response.ok) {
+          console.error('Failed to submit form:', response.statusText)
+        } else {
+          console.log('Form submitted successfully:', await response.json())
+          window.location = window.location
         }
+      } catch (error) {
+        console.error('Error submitting form:', error)
       }
+    }
   }
 
   /**
