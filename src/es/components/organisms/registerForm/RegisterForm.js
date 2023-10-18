@@ -125,11 +125,11 @@ export default class RegisterForm extends Shadow() {
 
     // send gtm event
     const sendEvent = (step) => {
-        // @ts-ignore
-        window.dataLayer.push({
-          "event": "register",
-          "action": "started",
-          "step": `${step}`
+      // @ts-ignore
+      window.dataLayer.push({
+        event: 'register',
+        action: 'started',
+        step: `${step}`
       })
     }
 
@@ -219,7 +219,7 @@ export default class RegisterForm extends Shadow() {
     }
 
     const resetConditionalRequiredElement = () => {
-      const activeSectionConditionalRequiredFields = this.root.querySelector('m-form .section.active').querySelectorAll("[conditional-required]")
+      const activeSectionConditionalRequiredFields = this.root.querySelector('m-form .section.active').querySelectorAll('[conditional-required]')
       activeSectionConditionalRequiredFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           elem.required = false

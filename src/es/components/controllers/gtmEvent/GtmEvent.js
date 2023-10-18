@@ -32,21 +32,21 @@ export default class GTMEvent extends Shadow() {
   connectedCallback () {
     const eventType = this.getAttribute('listen-to')
 
-    switch(eventType) {
+    switch (eventType) {
       case 'click':
         this.addEventListener('click', this.sendEvent)
-        break;
+        break
       case 'change':
         this.shadowRoot.querySelectorAll('*').forEach(child => {
           child.addEventListener('change', this.sendEvent)
         })
-        break;
+        break
       case 'on-page-load':
         this.sendEvent()
-        break;
+        break
       default:
         console.error('Invalid event type: ' + eventType)
-        break;
+        break
     }
   }
 
@@ -56,7 +56,6 @@ export default class GTMEvent extends Shadow() {
       child.removeEventListener('change', this.sendEvent)
     })
   }
-
 
   sendEvent (event) {
     this.eventData = JSON.parse(this.getAttribute('event-data'))
