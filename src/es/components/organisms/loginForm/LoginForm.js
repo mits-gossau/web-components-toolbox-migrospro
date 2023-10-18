@@ -80,6 +80,10 @@ export default class LoginForm extends Shadow() {
           width: 75%;
           margin: 0 0 0 12px;
       }
+      :host .info-box{
+        display: flex;
+        gap: 0.5rem;
+      }
       :host .login-form {
         margin-bottom: 4rem;
       }

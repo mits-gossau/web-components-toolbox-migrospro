@@ -498,6 +498,10 @@ export default class RegisterForm extends Shadow() {
         color: transparent;
         min-width: 3em;
       }
+      :host .info-box{
+        display: flex;
+        gap: 0.5rem;
+      }
       @media (min-width: 768px) {
         :host .col-2-desktop {
             display: flex;
