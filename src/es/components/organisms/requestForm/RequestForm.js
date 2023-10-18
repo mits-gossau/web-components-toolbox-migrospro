@@ -396,9 +396,14 @@ export default class RequestForm extends Shadow() {
             border-color: var(--button-secondary-border-color-hover);
             color: var(--button-secondary-color-hover);
         }
-        :host .info-box{
-          display: flex;
-          gap: 0.5rem;
+        :host .info-box {
+          margin-left: var(--info-box-margin-left, 2rem);
+          position: relative;
+        }
+        :host .info-box > *:first-child {
+          display: block;
+          position: absolute;
+          left: calc(var(--info-box-margin-left, 2rem) * -1);
         }
         @media (min-width: 768px) {
           :host {
