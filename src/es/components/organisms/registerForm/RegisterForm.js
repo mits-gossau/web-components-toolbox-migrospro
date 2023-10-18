@@ -116,7 +116,7 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
 
-          sendEvent(++index + 1)
+          sendEvent(index + 2)
 
           getRequiredFields()
         }
