@@ -406,9 +406,10 @@ export default class RegisterForm extends Shadow() {
         font-size: var(--font-size);
       }
       :host section {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: var(--section-margin-bottom, 4rem);
+        color: var(--color, var(--m-gray-600));
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--section-margin-bottom, 4rem);
       }
       :host h1 {
         font-size: var(--h1-font-size, 2rem);
