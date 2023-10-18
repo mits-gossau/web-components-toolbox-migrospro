@@ -123,7 +123,7 @@ export default class RegisterForm extends Shadow() {
       })
     })
 
-    // send event (gtm)
+    // send gtm event
     const sendEvent = (step) => {
         // @ts-ignore
         window.dataLayer.push({
@@ -133,7 +133,7 @@ export default class RegisterForm extends Shadow() {
       })
     }
 
-    sendEvent(1) // initial event step 1
+    sendEvent(1) // initial gtm event step 1
 
     // required fields
     const getRequiredFields = () => {
