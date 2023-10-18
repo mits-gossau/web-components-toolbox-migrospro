@@ -92,6 +92,7 @@
 	--navigation-migrospro-color-custom: var(--m-white);
 	--navigation-migrospro-color-second-level-custom: var(--m-black);
 	--picture-store-logo-img-max-width: 5em;
+	--placeholder-color: var(--m-gray-300);
 	--tag-filter-a-button-width-mobile-custom: 49%;
 	--user-profile-default-menu-border-radius-custom: 0.5em;
 	--user-profile-default-menu-top-custom: 3em;
