@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 /**
@@ -16,38 +16,37 @@ export default class TablePaged extends Shadow() {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     this._inputField = null
-    this.url = new URL(document.location)
+    this.url = new URL(document.location.href)
     this.query = this.url.searchParams
-    this.queryOrder = this.url.searchParams.get("orderBy")
+    this.queryOrder = this.url.searchParams.get('orderBy')
 
     // click on tableHead or paged nav
     this.clickListener = event => {
-      var name, value;
-      if (event.target.hasAttribute('data-name')){
+      let name, value
+      if (event.target.hasAttribute('data-name')) {
         name = event.target.getAttribute('data-name')
         value = event.target.getAttribute('data-value')
-      }
-      else {
+      } else {
         name = event.target.parentNode.getAttribute('data-name')
         value = event.target.parentNode.getAttribute('data-value')
       }
       this.setParam(name, value)
     }
 
-    //onchange of dropdown
+    // onchange of dropdown
     this.dropdownChange = event => {
       this.setParam('pageSize', this.footDropdown.value)
     }
 
     // onclick event on search button
     this.search = event => {
-      this.setParam('searchString', this.InputField.value) 
+      this.setParam('searchString', this.InputField.value)
     }
 
     // onclick on reset button
     this.reset = event => {
-      this.url.searchParams.delete("orderBy")
-      this.url.searchParams.delete("searchString")
+      this.url.searchParams.delete('orderBy')
+      this.url.searchParams.delete('searchString')
       window.location.replace(this.url)
     }
 
@@ -55,14 +54,16 @@ export default class TablePaged extends Shadow() {
     this.openModal = event => {
       this.dispatchEvent(
         new CustomEvent(
-          'open-modal', 
-          { detail: 
-            { origEvent: event, 
-              child: event.target.hasAttribute('open-modal-target') ? event.target : Array.from(this.aModal).find(a => Array.from(a.children).includes(event.target)) 
-            }, 
-            bubbles: true, 
-            cancelable: true, 
-            composed: true 
+          'open-modal',
+          {
+            detail:
+            {
+              origEvent: event,
+              child: event.target.hasAttribute('open-modal-target') ? event.target : Array.from(this.aModal).find(a => Array.from(a.children).includes(event.target))
+            },
+            bubbles: true,
+            cancelable: true,
+            composed: true
           }
         )
       )
@@ -73,23 +74,23 @@ export default class TablePaged extends Shadow() {
    * @param {string} name
    * @param {string} value
    */
-  setParam(name, value){
+  setParam (name, value) {
     switch (name) {
-      case "orderBy":
+      case 'orderBy':
         if (this.url.searchParams.get(name) === value) {
-          this.url.searchParams.set(name, value + " Descending")
-          break;
+          this.url.searchParams.set(name, value + ' Descending')
+          break
         }
-      case "pageNumber":
+      case 'pageNumber':
         if (Number(value) == 0 || Number(value) == 1) {
           this.url.searchParams.delete(name)
-          break;
+          break
         }
       default:
         this.url.searchParams.set(name, value)
     };
 
-    //set URL with new params
+    // set URL with new params
     window.location.replace(this.url)
   }
 
@@ -106,12 +107,11 @@ export default class TablePaged extends Shadow() {
     this.aModal.forEach(a => a.removeEventListener('click', this.openModal))
     this.footArrow.forEach(a => a.addEventListener('click', this.clickListener))
     this.allHeads.forEach(th => {
-      if (th.hasAttribute('data-name')){
+      if (th.hasAttribute('data-name')) {
         th.addEventListener('click', this.clickListener)
       }
     })
   }
-
 
   /**
    * evaluates if a render is necessary
@@ -206,33 +206,33 @@ export default class TablePaged extends Shadow() {
     return this.fetchTemplate()
   }
 
- /**
+  /**
    * fetches the template
    *
    * @return {Promise<void>}
    */
- fetchTemplate () {
+  fetchTemplate () {
   /** @type {import("../../prototypes/Shadow.js").fetchCSSParams[]} */
-  const styles = [
-    {
-      path: `${this.importMetaUrl}../../web-components-toolbox/src/css/reset.css`, // no variables for this reason no namespace
-      namespace: false
-    },
-    {
-      path: `${this.importMetaUrl}../../web-components-toolbox/src/css/style.css`, // apply namespace and fallback to allow overwriting on deeper level
-      namespaceFallback: false
-    }
-  ]
-  switch (this.getAttribute('namespace')) {
-    case 'table-paged-default-':
-      return this.fetchCSS([{
-        path: `${this.importMetaUrl}./default-/default-.css`, // apply namespace since it is specific and no fallback
+    const styles = [
+      {
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/css/reset.css`, // no variables for this reason no namespace
         namespace: false
-      }, ...styles])
-    default:
-      return this.fetchCSS(styles)
+      },
+      {
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/css/style.css`, // apply namespace and fallback to allow overwriting on deeper level
+        namespaceFallback: false
+      }
+    ]
+    switch (this.getAttribute('namespace')) {
+      case 'table-paged-default-':
+        return this.fetchCSS([{
+          path: `${this.importMetaUrl}./default-/default-.css`, // apply namespace since it is specific and no fallback
+          namespace: false
+        }, ...styles])
+      default:
+        return this.fetchCSS(styles)
+    }
   }
-}
 
   /**
    * renders the html
@@ -282,15 +282,15 @@ export default class TablePaged extends Shadow() {
 
       // For all table Heads add arrow up or down
       this.allHeads.forEach(th => {
-        if (th.hasAttribute('data-name')){
+        if (th.hasAttribute('data-name')) {
           th.addEventListener('click', this.clickListener)
-          if (th.hasAttribute('data-value')){
-            if (this.queryOrder != null){
+          if (th.hasAttribute('data-value')) {
+            if (this.queryOrder != null) {
               const value = th.getAttribute('data-value')
-              if (this.queryOrder.startsWith(value)){
+              if (this.queryOrder.startsWith(value)) {
                 const icon = new children[1].constructorClass({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback'), mobileBreakpoint: this.mobileBreakpoint }) // eslint-disable-line
                 icon.setAttribute('size', '1.5em')
-                if (this.queryOrder.endsWith('Descending')){
+                if (this.queryOrder.endsWith('Descending')) {
                   icon.setAttribute('icon-name', 'ArrowDown')
                 } else {
                   icon.setAttribute('icon-name', 'ArrowUp')
@@ -300,8 +300,7 @@ export default class TablePaged extends Shadow() {
             }
           }
         }
-      });
-
+      })
 
       const tableDiv = document.createElement('div')
       tableDiv.appendChild(this.table)
@@ -312,7 +311,7 @@ export default class TablePaged extends Shadow() {
     })
   }
 
-  get table (){
+  get table () {
     return this.root.querySelector('table')
   }
 

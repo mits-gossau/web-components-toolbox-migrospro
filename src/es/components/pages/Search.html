@@ -1,69 +1,18 @@
 <style>
     :host {
-        --content-width: 90%;
+        --content-width: 55%;
     }
 </style>
-<o-grid namespace="grid-2colums2rows-" first-container-vertical first-column-with="20%">
-    <section>
-        <m-tag-filter namespace="tag-filter-vertical-">
-            <a-button namespace="button-category-" tag="xBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
-                Papeterie & Impression
-            </a-button>
-            <a-button namespace="button-category-" tag="xxBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
-                Bricolage & Plantes
-            </a-button>
-            <a-button namespace="button-category-" tag="xxxBeSS_97" answer-event-name="list-articles"
-                request-event-name="request-list-articles">
-                Bricolage & Plantes
-            </a-button>
-        </m-tag-filter>
-        <div>
-            <style>
-                :host {
-                    --a-margin:0;
-                }
-            </style>
-                <a-breadcrumb icon="../src/icons/chevron_right.svg">
-                    <ul>
-                        <li><a href="#">Page d’accueil</a></li>
-                        <li><span></span></li>
-                        <li><a href="#">Mobilier & Equipements</a></li>
-                        <li><span></span></li>
-                        <li><a href="#">Post de travail</a></li>
-                    </ul>
-                </a-breadcrumb>
-                <div class="spacer"></div>
-            <h2>Post de travail</h2>
-            <div class="spacer"></div>
-            <msrc-product-list endpoint="https://admin.alnatura.ch/umbraco/api/ProductsApi/GetCats?cat="
-                web-api-key="ZDsjzNwaw9AxGQWhzqMCsnjwYzwpQ7dzigdKXeuuiXeR97ao4phWLRwe2WrZRoPe" category="BeSS_97"
-                sort="updated_at" env="production" mode="default" language="de" config='{
-                                            "colCount":["2","2","2","4","4"],
-                                            "fallbackEmptyComponent":"Es wurde kein Produkt gefunden. Bitte versuchen Sie es später noch einmal.",
-                                            "filterOptions":{
-                                                "additionalQueryParams":{
-                                                    "limit":8,
-                                                    "view":"browseallretailers"
-                                                },
-                                                "fo":{
-                                                    "anchor_target":"_blank",
-                                                    "link_target":"/de/produkte/{productSlug}.html",
-                                                    "target":"alnatura"
-                                                },
-                                                "region":"gmzh"
-                                            },
-                                            "hideAddToShoppingList":true,
-                                            "hideRating":false,
-                                            "order":"asc",
-                                            "theme":"mgb",
-                                            "paginationOptions":{}
-                                        }'>
-            </msrc-product-list>
-        </div>
-    </section>
-</o-grid>
+<h3>Résultats de la recherche</h3>
+<m-product-list 
+    is-logged-in="true" 
+    total-articles-text="produits trouvés" 
+    request-event-name="request-list-product"
+    answer-event-name="list-product" 
+    namespace="product-list-default-"
+    detail-product-link="https://testadmin.migrospro.ch/"
+    tooltip-translation-balance="Product mit variablem Gewicht: beim Packen wiegen wir es und verrechnen dir den genauen Preis">
+</m-product-list>
 <!-- live-server bug workaround: https://github.com/ritwickdey/vscode-live-server/issues/684 - don't use this empty comment in production!!! -->
 <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Ebene_3">

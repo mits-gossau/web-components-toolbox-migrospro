@@ -5,26 +5,149 @@
 </style>
 
 <h2>Ma demande de devis</h2>
+
+<m-system-notification 
+    icon-src="/src/icons/shopping_basket.svg" 
+    icon-badge="0"
+    title="Panier vide"
+>
+    <div slot="description">
+        <ul>
+            <li>Ajoutez des produits à votre sélection en parcourant notre catalogue et en cliquant sur le bouton "Produits" dans la navigation.</li>
+            <li>Vous ne trouvez pas l'offre qui vous convient ? Faites nous parvenir votre demande en remplissant les champs "Votre demande sur mesure" ci-dessous.</li>
+        </ul>
+    </div>
+</m-system-notification>
+
+<m-system-notification>
+    <div slot="description">
+        <p>Lorem ipsum dolor sit amet ...</p>
+    </div>
+</m-system-notification>
+
+<m-system-notification type="info">
+    <div slot="description">
+        <p>Lorem ipsum dolor sit amet ...</p>
+    </div>
+</m-system-notification>
+
+<m-system-notification type="error">
+    <div slot="description">
+        <p>Une erreur est survenue. Les données ne peuvent pas être affichées.</p>
+    </div>
+</m-system-notification>
+
+<m-system-notification type="success">
+    <div slot="description">
+        <p>Lorem ipsum dolor sit amet ...</p>
+    </div>
+</m-system-notification>
+
 <m-checkout 
     request-event-name="request-active-order" 
-    answer-event-name="list-basket"
+    answer-event-name="list-basket" 
     namespace="checkout-default-"
     is-logged-in="true">
 </m-checkout>
 
 <!-- =============== FORM START ===============-->
 <o-migrospro-request-form>
-    <form action="/order" enctype="multipart/form-data" method="post" role="form">
-        <section>
-            <p>
-                <label>
-                    <input type="checkbox"> 
-                    J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
-                </label>
-            </p>
-            <input type="submit" value="Envoyer la demande de devis" disabled />
-        </section>
-    </form>
+    <m-form role="form">
+        <form enctype="multipart/form-data" method="post" role="form">
+            <section>
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+                
+                <h3>Votre demande sur mesure</h3>
+                <p>Organiser un évènement, approvisionner votre économat, récompenser vos
+                    collaborateurs ou vos clients, passer une commande spéciale...Indiquez ici les besoins de votre
+                    entreprise, nous vous répondons de manière personnalisée:</p>
+                <div>
+                    <textarea name="comment" id="comment" cols="30" rows="10" placeholder="..."></textarea>
+                </div>
+                <p><small>Si l'adresse est différente, veuillez l'indiquer dans le champ de texte.</small></p>
+
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+
+                <h3>Joindre un fichier pour détailler votre commande</h3>
+                <div>
+                    <div>
+                        <span class="type-file-label">&nbsp;Choisissez un fichier...</span>
+                        <a-icon-mdx icon-name="ShareIos" size="1.5em"></a-icon-mdx>
+                    </div>
+                    <input multiple type="file" value="file" remove-file-title="Datei entfernen" />
+                </div>
+
+                <a-migrospro-spacer height="4rem"></a-migrospro-spacer>
+
+                <h3>Informations sur votre devis</h3>
+                <p>Mode de livraison souhaité *</p>
+
+                <div class="form-radio-group-vertical">
+                    <input type="radio" name="delivery" id="delivery-one" value="DELIVERY_TO_STORE" required />
+                    <label for="delivery-one">Retrait en magasin (gratuit)</label>
+
+                    <select id="delivery-select" name="deliveryStoreId" class="hidden">
+                        <option value="">Sélectionner *</option>
+                    </select>
+  
+                    <input type="radio" name="delivery" id="delivery-two" value="DELIVERY_TO_PROFILE_ADDRESS" required />
+                    <label for="delivery-two">Livraison (frais de livraison)</label>
+
+                    <label for="delivery-three">Autres adresses de livraison</label>
+                    <input type="radio" name="delivery" id="delivery-three" value="DELIVERY_TO_DIFFERENT_ADDRESS" required />
+
+                    <address id="different-address" class="hidden">
+                        <label for="different-name">Autre nom *</label>
+                        <input type="text" name="differentDeliveryName" id="different-name" />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="different-address-line-1">Autre address line 1 *</label>
+                        <input type="text" name="differentDeliveryAddressLine1" id="different-address-line-1" />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="different-address-line-2">Autre address line 2</label>
+                        <input type="text" name="differentDeliveryAddressLine2" id="different-address-line-2" />
+
+                        <a-migrospro-spacer height="1rem"></a-migrospro-spacer>
+
+                        <label for="different-location">Autre localité *</label>
+                        <input type="text" name="differentDeliveryLocation" id="different-location" />
+                    </address>
+                </div>
+
+                <a-migrospro-spacer height="4rem"></a-migrospro-spacer>
+
+                <div>
+                    <label for="delivery-date">Date de livraison souhaitée *</label>
+                    <input type="date" name="preferredDeliveryDate" id="delivery-date" data-min-days="3" required />
+                </div>
+
+                <a-migrospro-spacer height="2rem"></a-migrospro-spacer>
+
+                <div>
+                    <label for="delivery-order-name">Nom de la commande *</label>
+                    <input type="text" name="orderName" id="order-name" required />
+                </div>
+
+                <div>
+                    <label>
+                        <input type="checkbox" id="terms-checkbox"> 
+                        J'ai lu et j'accepte les <a href="https://www.migrospro.ch/conditions-commerciales-generales-de-migros-pro" target="_blank" alt="">conditions commerciales générales</a> *
+                    </label>
+                    <p>*Champs obligatoire</p>
+                </div> 
+
+                <div>
+                    <button type="submit" name="submitType" disabled value="submit">Envoyer la demande de devis</button>
+                    <button type="submit" name="submitType" disabled value="saveForLater">Enregistrer en brouillon</button>
+
+                    <input type="hidden" name="oderId" id="order-id" value="" />
+                </div>
+            </section>
+        </form>
+    </m-form>
 </o-migrospro-request-form>
 <a-migrospro-spacer></a-migrospro-spacer>
 <!-- =============== FORM END =================-->
