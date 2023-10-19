@@ -99,7 +99,7 @@ export default class RegisterForm extends Shadow() {
           })
 
           formSteps[index].classList.add('ready')
-          
+
           formSteps[index].addEventListener('click', () => {
             formSteps.forEach((stepItem) => {
               stepItem.classList.remove('active')
@@ -125,6 +125,22 @@ export default class RegisterForm extends Shadow() {
           sendEvent(index + 2)
 
           getRequiredFields()
+        }
+
+        // if last step and step before last step is valid, make last step active and ready and clickable
+        if (index + 1 === formSteps.length - 1 && formSteps[index].classList.contains('ready')) {
+          formSteps[index + 1].addEventListener('click', () => {
+            formSteps.forEach((stepItem) => {
+              stepItem.classList.remove('active')
+            })
+
+            sections.forEach((section) => {
+              section.classList.remove('active')
+            })
+
+            formSteps[index + 1].classList.add('active')
+            sections[index + 1].classList.add('active')
+          })
         }
       })
     })
