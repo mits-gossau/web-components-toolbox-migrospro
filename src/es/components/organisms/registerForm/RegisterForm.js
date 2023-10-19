@@ -127,7 +127,7 @@ export default class RegisterForm extends Shadow() {
           getRequiredFields()
         }
 
-        // if last step and step before last step is valid, make last step active and ready and clickable
+        // if step before last step is valid, make last step active and ready and clickable
         if (index + 1 === formSteps.length - 1 && formSteps[index].classList.contains('ready')) {
           formSteps[index + 1].addEventListener('click', () => {
             formSteps.forEach((stepItem) => {
