@@ -99,6 +99,7 @@ export default class RegisterForm extends Shadow() {
           })
 
           formSteps[index].classList.add('ready')
+          
           formSteps[index].addEventListener('click', () => {
             formSteps.forEach((stepItem) => {
               stepItem.classList.remove('active')
@@ -115,6 +116,11 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.remove('disabled')
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
+
+          // if last step, make it ready
+          if (index + 1 === formSteps.length - 1) {
+            formSteps[index + 1].classList.add('ready')
+          }
 
           sendEvent(index + 2)
 
@@ -380,9 +386,6 @@ export default class RegisterForm extends Shadow() {
 
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
-  }
-
-  disconnectedCallback () {
   }
 
   /**
