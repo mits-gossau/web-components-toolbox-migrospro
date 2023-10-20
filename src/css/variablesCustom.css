@@ -94,6 +94,7 @@
 	--navigation-migrospro-flex-wrap-custom: nowrap;
 	--picture-store-logo-img-max-width: 5em;
 	--placeholder-color: var(--m-gray-400);
+	--product-item-last-border-bottom: 1px solid var(--m-gray-300);
 	--tag-filter-a-button-width-mobile-custom: 49%;
 	--user-profile-default-menu-border-radius-custom: 0.5em;
 	--user-profile-default-menu-top-custom: 3em;
