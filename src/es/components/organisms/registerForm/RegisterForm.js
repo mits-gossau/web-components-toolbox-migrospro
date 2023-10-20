@@ -37,6 +37,16 @@ export default class RegisterForm extends Shadow() {
         }
       })
 
+      // set default required field for TVA radio btn
+      if(+this.root.querySelector('[additional-required-field][type="radio"]:checked').value === 1) {
+        const conditionalRequiredFieldId = this.root.querySelector('[additional-required-field][type="radio"]:checked').getAttribute("additional-required-field")
+        const conditionalRequiredField = this.root.querySelector(`[required-field-name="${conditionalRequiredFieldId}"]`)
+        conditionalRequiredField.required = true
+        conditionalRequiredField.setAttribute('conditional-required', true)
+        const currentInputLabel = this.root.querySelector(`[required-field-label='${conditionalRequiredFieldId}']`)
+        if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+      }
+
       form.addEventListener('change', function (event) {
         const formData = {}
 
@@ -57,10 +67,35 @@ export default class RegisterForm extends Shadow() {
         sessionStorage.setItem('formValues', JSON.stringify(formData))
 
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
-          resetConditionalRequiredElement()
+          const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
+          // remove the required attribute only if TVA radio btn set to no
+          if(+conditionalCheckedRadioBtn.value !== 1) resetConditionalRequiredElement()
+
           const selectedOption = event.target.options[event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalRequiredElement(selectedOption)
+          }
+        }
+
+        if(event.target.hasAttribute('additional-required-field') && event.target.getAttribute('type') === "radio") {
+          const additionalRequiredFieldId = event.target.getAttribute('additional-required-field')
+          const additionalRequiredField = this.querySelector(`input[required-field-name="${additionalRequiredFieldId}"]`)
+          const currentInputLabel = this.querySelector(`[required-field-label='${additionalRequiredFieldId}']`)
+          // TVA radio btn value has to be 1 if its yes
+          if(+event.target.value === 1) {
+            if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+            additionalRequiredField.required = true
+            additionalRequiredField.setAttribute('conditional-required', true)
+          }
+          // TVA radio btn value has to be 0 if its no
+          else {
+            const conditionalSelectElement = this.querySelector('[data-conditional-required-element-enabled]')
+            const requiredOptionValue = conditionalSelectElement.querySelector('option[additional-required-field]').value
+            if(+conditionalSelectElement.value !== +requiredOptionValue) {
+              if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+              additionalRequiredField.required = false
+              additionalRequiredField.setAttribute('conditional-required', false)
+            } return
           }
         }
       })
