@@ -148,11 +148,28 @@
         <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes de devis.</p>
         
         <!-- <c-migrospro-products> -->    
-            <p style="color:var(--m-orange-600)">Tout sélectionner</p>
-            <o-migrospro-product-list 
-                endpoint="https://api.json-generator.com/templates/hpINMz4yKYqK/data"
-                token="ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
-            ></o-migrospro-product-list>
+            <m-form role="form">
+                <form action="/favorites" enctype="multipart/form-data" method="post" role="form">
+                    <div class="two-column-align-bottom">
+                        <div>
+                            <label for="devis">Mon devis</label>
+                            <select id="devis" name="devis">
+                                <option>Devis 1</option>
+                                <option>Devis 2</option>
+                                <option>Devis 3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="submit" value="Ajouter au devis" />
+                        </div>
+                    </div>
+                    <p style="color:var(--m-orange-600)">Tout sélectionner</p>
+                    <o-migrospro-product-list 
+                        endpoint="https://api.json-generator.com/templates/hpINMz4yKYqK/data"
+                        token="ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
+                    ></o-migrospro-product-list>
+                </form>
+            </m-form>
         <!-- </c-migrospro-products> -->
     </section>
 
