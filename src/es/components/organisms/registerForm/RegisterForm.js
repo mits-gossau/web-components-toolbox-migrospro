@@ -75,6 +75,12 @@ export default class RegisterForm extends Shadow() {
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalRequiredElement(selectedOption)
           }
+
+          if (!selectedOption.hasAttribute('additional-required-field') && +conditionalCheckedRadioBtn.value !== 1) {
+            const nextButton = this.querySelector('section.active').querySelector('a-button')
+            // remove button disable attribute if not needed
+            if(nextButton) nextButton.removeAttribute('disabled')
+          }
         }
 
         if(event.target.hasAttribute('additional-required-field') && event.target.getAttribute('type') === "radio") {
@@ -92,6 +98,11 @@ export default class RegisterForm extends Shadow() {
             const conditionalSelectElement = this.querySelector('[data-conditional-required-element-enabled]')
             const requiredOptionValue = conditionalSelectElement.querySelector('option[additional-required-field]').value
             if(+conditionalSelectElement.value !== +requiredOptionValue) {
+
+              // remove button disable attribute if not needed
+              const nextButton = this.querySelector('section.active').querySelector('a-button')
+              if(nextButton && +conditionalSelectElement.value) nextButton.removeAttribute('disabled')
+              
               if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
               additionalRequiredField.required = false
               additionalRequiredField.setAttribute('conditional-required', false)
