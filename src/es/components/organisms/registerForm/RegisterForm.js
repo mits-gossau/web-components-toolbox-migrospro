@@ -38,8 +38,9 @@ export default class RegisterForm extends Shadow() {
       })
 
       // set default required field for TVA radio btn
-      if(+this.root.querySelector('[additional-required-field][type="radio"]:checked').value === 1) {
-        const conditionalRequiredFieldId = this.root.querySelector('[additional-required-field][type="radio"]:checked').getAttribute("additional-required-field")
+      const additionalRequiredFieldRadio = this.root.querySelector('[additional-required-field][type="radio"]:checked')
+      if (additionalRequiredFieldRadio !== null && additionalRequiredFieldRadio.value === 1) {
+        const conditionalRequiredFieldId = additionalRequiredFieldRadio.getAttribute("additional-required-field")
         const conditionalRequiredField = this.root.querySelector(`[required-field-name="${conditionalRequiredFieldId}"]`)
         conditionalRequiredField.required = true
         conditionalRequiredField.setAttribute('conditional-required', true)
