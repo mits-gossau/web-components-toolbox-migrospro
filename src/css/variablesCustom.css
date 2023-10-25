@@ -89,9 +89,6 @@
 	--header-default-margin-custom: calc(var(--content-spacing) / 2) 0 var(--content-spacing) 0;
 	--menu-color-custom: var(--m-black);
 	--modal-default-div-position: absolute;
-	--navigation-migrospro-color-custom: var(--m-white);
-	--navigation-migrospro-color-second-level-custom: var(--m-black);
-	--navigation-migrospro-flex-wrap-custom: nowrap;
 	--picture-store-logo-img-max-width: 5em;
 	--placeholder-color: var(--m-gray-400);
 	--product-item-last-border-bottom: 1px solid var(--m-gray-300);
