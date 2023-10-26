@@ -382,7 +382,7 @@ export default class TablePaged extends Shadow() {
     if (this.filterDiv === null)
       return null
 
-    this._filterDropdown = this.filterDiv.firstChild
+    this._filterDropdown = this.filterDiv.firstElementChild
     return this._filterDropdown
   }
 }
