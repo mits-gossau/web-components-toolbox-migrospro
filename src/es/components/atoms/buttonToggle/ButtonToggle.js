@@ -52,7 +52,7 @@ export default class ButtonToggle extends Shadow() {
     this.css = /* css */ `
       :host {
         --color: ${this.isActive ? 'var(--m-white)' : 'var(--m-orange-600)'};
-        --background-color: ${this.isActive ? 'var(--m-orange-600)' : 'var(--m-white)'};
+        --background-color: ${this.isActive ? 'var(--m-orange-600)' : 'transparent'};
         background-color: var(--background-color, transparent);
         border-color: var(--border-color, transparent);
         border-style: solid;

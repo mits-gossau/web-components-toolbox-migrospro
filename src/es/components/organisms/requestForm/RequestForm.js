@@ -308,10 +308,10 @@ export default class RequestForm extends Shadow() {
         }
         :host button[type="submit"],
         :host button {
-            background-color: var(--color-secondary);
-            border: var(--border-width, 1px) solid var(--border-color, var(--m-orange-600));
+            background-color: var(--button-secondary-background-color);
+            border: var(--button-secondary-border-width, 1px) solid var(--button-secondary-border-color);
             border-radius: var(--border-radius);
-            color: var(--m-white);
+            color: var(--button-secondary-color);
             cursor: pointer;
             font-size: var(--font-size-input, var(--font-size));
             padding: 0.75em 1.5em;
@@ -322,9 +322,9 @@ export default class RequestForm extends Shadow() {
         }
         :host button[type="submit"]:hover,
         :host button:hover {
-            background-color: var(--button-primary-background-color-hover);
-            border-color: var(--button-primary-border-color-hover);
-            color: var(--button-primary-color-hover);
+            background-color: var(--button-secondary-background-color-hover);
+            border-color: var(--button-secondary-border-color-hover);
+            color: var(--button-secondary-color-hover);
         }
         :host label a {
             color: var(--color-label-a, var(--color-black));
@@ -385,16 +385,16 @@ export default class RequestForm extends Shadow() {
         }
         :host button[type="submit"] + button[type="submit"],
         :host a-button + a-button {
-          background-color: var(--button-secondary-background-color);
-          border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
-          color: var(--button-secondary-color);
+          background-color: var(--color-secondary);
+          border: var(--border-width) solid var(--border-color, var(--m-orange-600));
+          color: var(--m-white);
           margin-left: var(--button-margin-left, 2rem);
         }
         :host button[type="submit"] + button[type="submit"]:hover,
         :host a-button + a-button:hover {
-            background-color: var(--button-secondary-background-color-hover);
-            border-color: var(--button-secondary-border-color-hover);
-            color: var(--button-secondary-color-hover);
+            background-color: var(--button-primary-background-color-hover);
+            border-color: var(--button-primary-border-color-hover);
+            color: var(--button-primary-color-hover);
         }
         :host .info-box {
           margin-left: var(--info-box-margin-left, 2rem);
