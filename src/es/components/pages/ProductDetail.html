@@ -27,7 +27,7 @@
             --h2-line-height: normal;
             --h2-margin: 0;
             --p-font-size: 12px;
-            --p-margin: 0 0 2em 0;
+            --p-margin: 0;
         }
 
         :host .product {
@@ -41,26 +41,39 @@
             flex-shrink: 0;
         }
 
-        :host .product > div {
-            display:flex;
+        :host .product>div {
+            display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
             margin-bottom: 0.5em;
         }
-
         :host p {
             color: #808080;
+        }
+        :host m-basket-control {
+            margin-top:1em;
+        }
+        :host a-tooltip{
+            margin-top:0.5em;
         }
     </style>
     <a-picture defaultSource="../src/img/migrospro/bread.png" alt=alviana-jojobar-hands></a-picture>
     <div class="product">
         <div>
             <h2>5.90</h2>
-            <m-favorite namespace="favorite-default-" id="464831100000" answer-event-name="update-favorite" add-to-favorite-text="AD" remove-from-favorite-text="RM"></m-favorite>               
+            <m-favorite namespace="favorite-default-" id="464831100000" answer-event-name="update-favorite"
+                add-to-favorite-text="AD" remove-from-favorite-text="RM"></m-favorite>
         </div>
         <h1>Happy Bread IP-SUISSE · Dunkles Brot · Geschnitten</h1>
         <p>350 g 6.86/kg</p>
+        <a-tooltip>
+            <div class="tooltip">
+                <img class="icon-img" src="./../../../../img/migrospro/label-balance.svg" alt="" />
+                <span class="tooltip-text tooltip-text-icon">Product mit variablem Gewicht: beim Packen wiegen wir es
+                    und verrechnen dir den genauen Preis</span>
+            </div>
+        </a-tooltip>
         <m-basket-control namespace="basket-control-default-" answer-event-name="update-basket" class="closed">
             <a-button id="remove" namespace="basket-control-default-button-" request-event-name="remove-basket"
                 tag='464831100000' label="-"></a-button>
