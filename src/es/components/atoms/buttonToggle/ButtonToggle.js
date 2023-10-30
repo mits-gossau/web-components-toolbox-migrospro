@@ -3,7 +3,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 
 /**
  * ButtonToggle
- * An example at: src/es/components/pages/Bestelluebersicht.html
+ * An example at: src/es/components/pages/Benutzerprofil.html
  *
  * @export
  * @class ButtonToggle
