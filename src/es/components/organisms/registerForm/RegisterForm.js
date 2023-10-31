@@ -116,20 +116,6 @@ export default class RegisterForm extends Shadow() {
     // remove from sessionStorage
     form.addEventListener('submit', () => {
       sessionStorage.removeItem('formValues')
-
-      // @ts-ignore
-      if (typeof window !== 'undefined' && window.dataLayer) {
-        try {
-          // @ts-ignore
-          window.dataLayer.push({
-            "event": "register",
-            "action": "completed",
-            "step": "2"
-          })
-        } catch (err) {
-          console.error('Failed to push event data:', err)
-        }
-      }
     })
 
     // next step
@@ -218,6 +204,15 @@ export default class RegisterForm extends Shadow() {
 
     sendEvent(1) // initial gtm event step 1
 
+    const sendSubmitEvent = () => {
+      // @ts-ignore
+      window.dataLayer.push({
+        event: 'register',
+        action: 'completed',
+        step: '4'
+      })
+    }
+
     // required fields
     const getRequiredFields = () => {
       const activeSection = this.root.querySelectorAll('m-form .section.active')[0]
@@ -265,6 +260,10 @@ export default class RegisterForm extends Shadow() {
             if (isFormValid) {
               nextButton?.removeAttribute('disabled')
               submitButton?.removeAttribute('disabled')
+              
+              submitButton?.addEventListener('click', () => {
+                sendSubmitEvent()
+              }, { once: true })
             }
           })
         })
