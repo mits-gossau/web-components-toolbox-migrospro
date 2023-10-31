@@ -3,16 +3,20 @@
         --content-width: 55%;
     }
 </style>
+
 <h3>Résultats de la recherche</h3>
-<m-product-list 
-    is-logged-in="true" 
-    total-articles-text="produits trouvés" 
-    request-event-name="request-list-product"
-    answer-event-name="list-product" 
-    namespace="product-list-default-"
-    detail-product-link="https://testadmin.migrospro.ch/"
-    tooltip-translation-balance="Product mit variablem Gewicht: beim Packen wiegen wir es und verrechnen dir den genauen Preis">
-</m-product-list>
+<o-grid namespace="grid-2colums2rows-" first-container-horizontal>
+    <section>
+        <div>
+            <m-product-list searchterm="fruits" is-logged-in="true" total-articles-text="produits trouvés"
+            request-event-name="request-list-product" answer-event-name="list-product" namespace="product-list-default-"
+            detail-product-link="https://testadmin.migrospro.ch/"
+            tooltip-translation-balance="Product mit variablem Gewicht: beim Packen wiegen wir es und verrechnen dir den genauen Preis">
+        </m-product-list>
+    </div>
+    </section>
+</o-grid>
+
 <!-- live-server bug workaround: https://github.com/ritwickdey/vscode-live-server/issues/684 - don't use this empty comment in production!!! -->
 <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Ebene_3">

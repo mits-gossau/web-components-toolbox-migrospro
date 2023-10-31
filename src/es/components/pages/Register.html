@@ -88,6 +88,7 @@
                             required
                         >
                     </div>
+                    <p class="info-box"><a-icon-mdx icon-name="info" size="1.5em"></a-icon-mdx> Infobox Lorem Ipsum dolor amet Infobox Lorem Ipsum dolor amet Infobox Lorem Ipsum dolor amet Infobox Lorem Ipsum dolor amet Infobox Lorem Ipsum dolor amet Infobox Lorem Ipsum dolor amet...</p>
                     <div class="form-group">
                         <label class="control-label" for="function-service">Fonction / Service *</label>
                         <select class="form-control" id="function-service" name="function-service" required>
@@ -132,6 +133,7 @@
                             name="mobile" 
                             type="tel"
                             max="20"
+                            placeholder="+41220000000"
                             pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
                         >
                     </div>
@@ -546,18 +548,20 @@
                                 <input 
                                     id="value-added-tax-no" 
                                     name="value-added-tax" 
+                                    additional-required-field="company-registration-number"
                                     type="radio" 
                                     value="0"
-                                    checked
                                 >
                                 <label for="value-added-tax-no">Non</label>
                             </span>
                             <span>
                                 <input 
                                     id="value-added-tax-yes" 
-                                    name="value-added-tax" 
+                                    name="value-added-tax"
+                                    additional-required-field="company-registration-number"
                                     type="radio" 
                                     value="1"
+                                    checked
                                 >
                                 <label for="value-added-tax-yes">Qui</label>
                             </span>

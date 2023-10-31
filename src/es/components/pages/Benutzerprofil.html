@@ -2,14 +2,14 @@
 
 <m-tabs>
     <ul class="tab-navigation">
-        <li class="active">Mes demandes de devis</li>
-        <li>Mes favoris</li>
-        <li>Mes Paramètres</li>
+        <li data-tab="quote-requets">Mes demandes de devis</li>
+        <li data-tab="favorites">Mes favoris</li>
+        <li data-tab="settings">Mes Paramètres</li>
         <li><a href="https://migrospro.ch" target="_blank">Mes Tickets</a></li>
     </ul>
 
     <!-- QUOTE REQUESTS -->
-    <section class="tab-content active">
+    <section class="tab-content">
         <p>Grâce à votre historique de demandes de devis, consultez vos anciennes demandes, complétez une demande que vous n'avez pas terminée, ou dupliquez une demande passée.</p>
 
         <a-migrospro-card-heading title="Brouillon"></a-migrospro-card-heading>
@@ -145,7 +145,32 @@
 
     <!-- FAVORITES -->
     <section class="tab-content">
-        <h2>Favoris</h2>
+        <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes de devis.</p>
+        
+        <!-- <c-migrospro-products> -->    
+            <m-form role="form">
+                <form action="/favorites" enctype="multipart/form-data" method="post" role="form">
+                    <div class="two-column-align-bottom">
+                        <div>
+                            <label for="devis">Mon devis</label>
+                            <select id="devis" name="devis">
+                                <option>Devis 1</option>
+                                <option>Devis 2</option>
+                                <option>Devis 3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="submit" value="Ajouter au devis" />
+                        </div>
+                    </div>
+                    <p style="color:var(--m-orange-600)">Tout sélectionner</p>
+                    <o-migrospro-product-list 
+                        endpoint="https://api.json-generator.com/templates/hpINMz4yKYqK/data"
+                        token="ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
+                    ></o-migrospro-product-list>
+                </form>
+            </m-form>
+        <!-- </c-migrospro-products> -->
     </section>
 
     <!-- SETTINGS -->

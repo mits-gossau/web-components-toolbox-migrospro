@@ -37,6 +37,17 @@ export default class RegisterForm extends Shadow() {
         }
       })
 
+      // set default required field for TVA radio btn
+      const additionalRequiredFieldRadio = this.root.querySelector('[additional-required-field][type="radio"]:checked')
+      if (additionalRequiredFieldRadio !== null && additionalRequiredFieldRadio.value === 1) {
+        const conditionalRequiredFieldId = additionalRequiredFieldRadio.getAttribute("additional-required-field")
+        const conditionalRequiredField = this.root.querySelector(`[required-field-name="${conditionalRequiredFieldId}"]`)
+        conditionalRequiredField.required = true
+        conditionalRequiredField.setAttribute('conditional-required', true)
+        const currentInputLabel = this.root.querySelector(`[required-field-label='${conditionalRequiredFieldId}']`)
+        if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+      }
+
       form.addEventListener('change', function (event) {
         const formData = {}
 
@@ -57,10 +68,46 @@ export default class RegisterForm extends Shadow() {
         sessionStorage.setItem('formValues', JSON.stringify(formData))
 
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
-          resetConditionalRequiredElement()
+          const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
+          // remove the required attribute only if TVA radio btn set to no
+          if(+conditionalCheckedRadioBtn.value !== 1) resetConditionalRequiredElement()
+
           const selectedOption = event.target.options[event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalRequiredElement(selectedOption)
+          }
+
+          if (!selectedOption.hasAttribute('additional-required-field') && +conditionalCheckedRadioBtn.value !== 1) {
+            const nextButton = this.querySelector('section.active').querySelector('a-button')
+            // remove button disable attribute if not needed
+            if(nextButton) nextButton.removeAttribute('disabled')
+          }
+        }
+
+        if(event.target.hasAttribute('additional-required-field') && event.target.getAttribute('type') === "radio") {
+          const additionalRequiredFieldId = event.target.getAttribute('additional-required-field')
+          const additionalRequiredField = this.querySelector(`input[required-field-name="${additionalRequiredFieldId}"]`)
+          const currentInputLabel = this.querySelector(`[required-field-label='${additionalRequiredFieldId}']`)
+          // TVA radio btn value has to be 1 if its yes
+          if(+event.target.value === 1) {
+            if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+            additionalRequiredField.required = true
+            additionalRequiredField.setAttribute('conditional-required', true)
+          }
+          // TVA radio btn value has to be 0 if its no
+          else {
+            const conditionalSelectElement = this.querySelector('[data-conditional-required-element-enabled]')
+            const requiredOptionValue = conditionalSelectElement.querySelector('option[additional-required-field]').value
+            if(+conditionalSelectElement.value !== +requiredOptionValue) {
+
+              // remove button disable attribute if not needed
+              const nextButton = this.querySelector('section.active').querySelector('a-button')
+              if(nextButton && +conditionalSelectElement.value) nextButton.removeAttribute('disabled')
+              
+              if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
+              additionalRequiredField.required = false
+              additionalRequiredField.setAttribute('conditional-required', false)
+            } return
           }
         }
       })
@@ -99,6 +146,7 @@ export default class RegisterForm extends Shadow() {
           })
 
           formSteps[index].classList.add('ready')
+
           formSteps[index].addEventListener('click', () => {
             formSteps.forEach((stepItem) => {
               stepItem.classList.remove('active')
@@ -116,24 +164,45 @@ export default class RegisterForm extends Shadow() {
           formSteps[index + 1].classList.add('active')
           sections[index + 1].classList.add('active')
 
-          sendEvent(++index + 1)
+          // if last step, make it ready
+          if (index + 1 === formSteps.length - 1) {
+            formSteps[index + 1].classList.add('ready')
+          }
+
+          sendEvent(index + 2)
 
           getRequiredFields()
+        }
+
+        // if step before last step is valid, make last step active and ready and clickable
+        if (index + 1 === formSteps.length - 1 && formSteps[index].classList.contains('ready')) {
+          formSteps[index + 1].addEventListener('click', () => {
+            formSteps.forEach((stepItem) => {
+              stepItem.classList.remove('active')
+            })
+
+            sections.forEach((section) => {
+              section.classList.remove('active')
+            })
+
+            formSteps[index + 1].classList.add('active')
+            sections[index + 1].classList.add('active')
+          })
         }
       })
     })
 
-    // send event (gtm)
+    // send gtm event
     const sendEvent = (step) => {
-        // @ts-ignore
-        window.dataLayer.push({
-          "event": "register",
-          "action": "started",
-          "step": `${step}`
+      // @ts-ignore
+      window.dataLayer.push({
+        event: 'register',
+        action: 'started',
+        step: `${step}`
       })
     }
 
-    sendEvent(1) // initial event step 1
+    sendEvent(1) // initial gtm event step 1
 
     // required fields
     const getRequiredFields = () => {
@@ -219,7 +288,7 @@ export default class RegisterForm extends Shadow() {
     }
 
     const resetConditionalRequiredElement = () => {
-      const activeSectionConditionalRequiredFields = this.root.querySelector('m-form .section.active').querySelectorAll("[conditional-required]")
+      const activeSectionConditionalRequiredFields = this.root.querySelector('m-form .section.active').querySelectorAll('[conditional-required]')
       activeSectionConditionalRequiredFields.forEach(elem => {
         if (elem.hasAttribute('conditional-required')) {
           elem.required = false
@@ -382,9 +451,6 @@ export default class RegisterForm extends Shadow() {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
-  disconnectedCallback () {
-  }
-
   /**
    * evaluates if a render is necessary
    *
@@ -406,9 +472,10 @@ export default class RegisterForm extends Shadow() {
         font-size: var(--font-size);
       }
       :host section {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: var(--section-margin-bottom, 4rem);
+        color: var(--color, var(--m-gray-600));
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--section-margin-bottom, 4rem);
       }
       :host h1 {
         font-size: var(--h1-font-size, 2rem);
@@ -496,6 +563,15 @@ export default class RegisterForm extends Shadow() {
         background-size: 1em;
         color: transparent;
         min-width: 3em;
+      }
+      :host .info-box {
+        margin-left: var(--info-box-margin-left, 2rem);
+        position: relative;
+      }
+      :host .info-box > *:first-child {
+        display: block;
+        position: absolute;
+        left: calc(var(--info-box-margin-left, 2rem) * -1);
       }
       @media (min-width: 768px) {
         :host .col-2-desktop {

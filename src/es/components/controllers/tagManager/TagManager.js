@@ -44,7 +44,7 @@ export default class MigrosProTagManager extends TagManager {
         const eventToCart = {
           event: action,
           ecommerce: {
-            items: [item] 
+            items: [item]
           }
         }
 
@@ -54,11 +54,11 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   addBasketListener = (event) => {
-    this.basketListener(event, 'add_to_cart');
+    this.basketListener(event, 'add_to_cart')
   }
 
   removeBasketListener = (event) => {
-    this.basketListener(event, 'remove_to_cart');
+    this.basketListener(event, 'remove_to_cart')
   }
 
   requestListBasketListener = (event) => {
@@ -72,13 +72,13 @@ export default class MigrosProTagManager extends TagManager {
       * @property {any} item_name_sap
       * @property {any} item_short_name
       */
-    
+
     /**
       * @typedef {Object} VAT
       * @property {any} vat_rate_id
       * @property {any} vat_rate
       */
-    
+
     /**
       * @typedef {Object} Item
       * @property {any} item_id
@@ -94,12 +94,11 @@ export default class MigrosProTagManager extends TagManager {
       * @property {any} language
       * @property {VAT} vat
       */
-    
+
     /** @type {Item[]} */
     this.items = []
-   
+
     event.detail.fetch.then((productData) => {
-      
       productData[0].products.forEach((item) => {
         const viewItem = {
           item_id: item.id,
@@ -141,7 +140,7 @@ export default class MigrosProTagManager extends TagManager {
     })
   }
 
-  sendEvent(eventData) {
+  sendEvent (eventData) {
     // @ts-ignore
     const dataLayer = window.dataLayer
 
@@ -149,7 +148,7 @@ export default class MigrosProTagManager extends TagManager {
       try {
         dataLayer.push(eventData)
       } catch (err) {
-        console.error("Failed to push event data:", err)
+        console.error('Failed to push event data:', err)
       }
     }
   }

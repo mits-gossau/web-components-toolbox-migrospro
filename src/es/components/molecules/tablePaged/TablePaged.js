@@ -16,6 +16,7 @@ export default class TablePaged extends Shadow() {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     this._inputField = null
+    this._filterDropdown = null
     this.url = new URL(document.location.href)
     this.query = this.url.searchParams
     this.queryOrder = this.url.searchParams.get('orderBy')
@@ -35,7 +36,14 @@ export default class TablePaged extends Shadow() {
 
     // onchange of dropdown
     this.dropdownChange = event => {
-      this.setParam('pageSize', this.footDropdown.value)
+      var name = event.target.getAttribute('data-name')
+      var value = event.target.value
+      if (value === null || value === '') {
+        this.url.searchParams.delete(name)
+        window.location.replace(this.url)
+      }
+      else
+        this.setParam(name, value)
     }
 
     // onclick event on search button
@@ -47,6 +55,7 @@ export default class TablePaged extends Shadow() {
     this.reset = event => {
       this.url.searchParams.delete('orderBy')
       this.url.searchParams.delete('searchString')
+      this.url.searchParams.delete(this.filterDropdown.getAttribute('data-name'))
       window.location.replace(this.url)
     }
 
@@ -97,6 +106,7 @@ export default class TablePaged extends Shadow() {
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
     this.footDropdown.addEventListener('change', this.dropdownChange)
+    if (this.filterDropdown !== null) this.filterDropdown.addEventListener('change', this.dropdownChange)
     this.aModal.forEach(a => a.addEventListener('click', this.openModal))
     this.footArrow.forEach(a => a.addEventListener('click', this.clickListener))
     this.renderHTML()
@@ -104,6 +114,7 @@ export default class TablePaged extends Shadow() {
 
   disconnectedCallback () {
     this.footDropdown.removeEventListener('change', this.dropdownChange)
+    if (this.filterDropdown !== null) this.filterDropdown.removeEventListener('change', this.dropdownChange)
     this.aModal.forEach(a => a.removeEventListener('click', this.openModal))
     this.footArrow.forEach(a => a.addEventListener('click', this.clickListener))
     this.allHeads.forEach(th => {
@@ -142,12 +153,16 @@ export default class TablePaged extends Shadow() {
       :host .search > * {
         margin-left: var(--search-children-margin-left, 1em);
       }
+      :host .search #filter {
+        width: var(--search-filter-width, 350px);
+      }
       :host .search input{
         width: var(--search-input-width, auto);
         height: var(--search-input-height, 60px);
       }
       :host .search a-button {
         --button-primary-height: var(--search-button-height, 60px);
+        --button-secondary-height: var(--search-button-height, 60px);
         --color: var(--search-button-color, 60px)
       }
 
@@ -186,6 +201,10 @@ export default class TablePaged extends Shadow() {
         text-align: left;
         padding: var(--table-element-padding, 0.5em);
         --table-padding-right-last-child: var(--table-element-padding, 0.5em);
+      }
+
+      :host .error > * {
+        text-align: center;
       }
 
       :host .foot {
@@ -254,6 +273,12 @@ export default class TablePaged extends Shadow() {
       const searchDiv = document.createElement('div')
       searchDiv.className = 'search'
 
+      if (this.filterDropdown !== null){
+        this.filterDropdown.setAttribute("id", "filter")
+        searchDiv.appendChild(this.filterDropdown)
+        //this.filterDiv.remove()
+      }
+
       // Input field to current search
       this.InputField.setAttribute('type', 'text')
       this.InputField.value = this.query.get('searchString') ?? ''
@@ -307,6 +332,9 @@ export default class TablePaged extends Shadow() {
       tableDiv.className = 'table'
 
       this.root.appendChild(tableDiv)
+      if (this.error !== null){
+        this.root.appendChild(this.error)
+      }
       this.root.appendChild(this.foot)
     })
   }
@@ -317,6 +345,10 @@ export default class TablePaged extends Shadow() {
 
   get allHeads () {
     return this.root.querySelectorAll('thead>tr>th')
+  }
+
+  get error () {
+    return this.root.querySelector('.error')
   }
 
   get foot () {
@@ -337,5 +369,20 @@ export default class TablePaged extends Shadow() {
 
   get footArrow () {
     return this.foot.querySelectorAll('a-icon-mdx')
+  }
+
+  get filterDiv () {
+    return this.root.querySelector('div#filterDropdown') 
+  }
+
+  get filterDropdown () {
+    if (this._filterDropdown !== null)
+      return this._filterDropdown
+
+    if (this.filterDiv === null)
+      return null
+
+    this._filterDropdown = this.filterDiv.firstElementChild
+    return this._filterDropdown
   }
 }
