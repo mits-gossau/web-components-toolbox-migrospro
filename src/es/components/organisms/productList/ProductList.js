@@ -12,46 +12,37 @@ import { Shadow } from "../../web-components-toolbox/src/es/components/prototype
 
 export default class ProductList extends Shadow() {
   constructor(options = {}, ...args) {
-    super({ importMetaUrl: import.meta.url, ...options }, ...args);
+    super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
-    const endpoint = this.getAttribute("endpoint");
-    const token = this.getAttribute("token");
-
-    async function fetchData() {
-      try {
-        const response = await fetch(endpoint, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        throw error;
-      }
+    this.answerEventNameListener = (event) => {
+      this.renderHTML(event.detail)
     }
-
-    fetchData()
-      .then((data) => {
-        this.renderHTML(data);
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      });
   }
 
   connectedCallback() {
-    if (this.shouldRenderCSS()) this.renderCSS();
+    if (this.shouldRenderCSS()) this.renderCSS()
+    if (this.productsLoaded) this.renderHTML()
+
+    document.body.addEventListener(
+      this.getAttribute('answer-event-name') || 'answer-event-name',
+      this.answerEventNameListener
+    )
+    
+    this.dispatchEvent(
+      new CustomEvent(this.getAttribute('request-event-name'), {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      })
+    )
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    document.body.removeEventListener(
+      this.getAttribute('answer-event-name') || 'answer-event-name',
+      this.answerEventNameListener
+    )
+  }
 
   /**
    * evaluates if a render is necessary
@@ -61,7 +52,7 @@ export default class ProductList extends Shadow() {
   shouldRenderCSS() {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
-    );
+    )
   }
 
   renderCSS() {
@@ -78,23 +69,21 @@ export default class ProductList extends Shadow() {
         align-items: center;
         border-top: 1px solid var(--m-black);
       }
-    `;
+    `
   }
 
   renderHTML(data) {
-    console.log(this.importMetaUrl)
     const fetchModules = this.fetchModules([
       {
         path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/productCard/ProductCard.js`,
         name: "m-product-card",
       },
-    ]);
+    ])
 
     return Promise.all([fetchModules]).then(() => {
       let products = ""
 
       data.products.forEach((product) => {
-        console.log(JSON.stringify(product))
         products += /* html */ `
           <m-product-card 
             is-logged-in="true"
@@ -103,8 +92,6 @@ export default class ProductList extends Shadow() {
           ></m-product-card>
         `
       })
-
-      console.log(products)
 
       this.html = ""
       this.html = products

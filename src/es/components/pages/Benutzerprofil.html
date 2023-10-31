@@ -4,8 +4,8 @@
     <ul class="tab-navigation">
         <li data-tab="quote-requets">Mes demandes de devis</li>
         <li data-tab="favorites">Mes favoris</li>
-        <li data-tab="settings">Mes Paramètres</li>
-        <li><a href="https://migrospro.ch" target="_blank">Mes Tickets</a></li>
+        <li data-tab="settings">Mes paramètres</li>
+        <li><a href="https://migrospro.ch" target="_blank">Mes tickets</a></li>
     </ul>
 
     <!-- QUOTE REQUESTS -->
@@ -147,7 +147,7 @@
     <section class="tab-content">
         <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes de devis.</p>
         
-        <!-- <c-migrospro-products> -->    
+        <c-migrospro-products>    
             <m-form role="form">
                 <form action="/favorites" enctype="multipart/form-data" method="post" role="form">
                     <div class="two-column-align-bottom">
@@ -165,12 +165,12 @@
                     </div>
                     <p style="color:var(--m-orange-600)">Tout sélectionner</p>
                     <o-migrospro-product-list 
-                        endpoint="https://api.json-generator.com/templates/hpINMz4yKYqK/data"
-                        token="ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
+                        answer-event-name="list-favorites" 
+                        request-event-name="request-list-favorites"
                     ></o-migrospro-product-list>
                 </form>
             </m-form>
-        <!-- </c-migrospro-products> -->
+        </c-migrospro-products>
     </section>
 
     <!-- SETTINGS -->

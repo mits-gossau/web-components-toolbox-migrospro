@@ -116,6 +116,20 @@ export default class RegisterForm extends Shadow() {
     // remove from sessionStorage
     form.addEventListener('submit', () => {
       sessionStorage.removeItem('formValues')
+
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        try {
+          // @ts-ignore
+          window.dataLayer.push({
+            "event": "register",
+            "action": "completed",
+            "step": "2"
+          })
+        } catch (err) {
+          console.error('Failed to push event data:', err)
+        }
+      }
     })
 
     // next step
