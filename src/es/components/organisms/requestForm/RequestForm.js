@@ -193,7 +193,11 @@ export default class RequestForm extends Shadow() {
         } else {
           console.log('Form submitted successfully:', await response.json())
           const redirectUrl = this.getAttribute('redirect-url')
-          window.location = redirectUrl ? redirectUrl : window.location
+          if (redirectUrl) {
+            window.location.href = redirectUrl
+          } else {
+            window.location = window.location
+          }
         }
       } catch (error) {
         console.error('Error submitting form:', error)
