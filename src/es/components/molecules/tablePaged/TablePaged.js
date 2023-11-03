@@ -55,7 +55,7 @@ export default class TablePaged extends Shadow() {
     this.reset = event => {
       this.url.searchParams.delete('orderBy')
       this.url.searchParams.delete('searchString')
-      this.url.searchParams.delete(this.filterDropdown.getAttribute('data-name'))
+      if (this.filterDropdown !== null) this.url.searchParams.delete(this.filterDropdown.getAttribute('data-name'))
       window.location.replace(this.url)
     }
 
