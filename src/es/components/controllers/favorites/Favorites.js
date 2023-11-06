@@ -2,12 +2,12 @@
 import { Shadow } from "../../web-components-toolbox/src/es/components/prototypes/Shadow.js";
 
 /**
- * Products
+ * Favorites
  * @export
- * @class Products
+ * @class Favorites
  * @type {CustomElementConstructor}
  */
-export default class Products extends Shadow() {
+export default class Favorites extends Shadow() {
   constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
@@ -24,6 +24,7 @@ export default class Products extends Shadow() {
     this.submit = this.root.querySelector("input[type=submit]")
     this.submit.addEventListener("click", (event) => {
       event.preventDefault()
+      console.log(event.target.value)
     })
 
     this.requestListFavoritesListener = (event) => {

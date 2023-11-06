@@ -24,7 +24,8 @@ export default class MigrosProTagManager extends TagManager {
     super.connectedCallback()
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    // document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.listProductListener)
     document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
@@ -32,7 +33,8 @@ export default class MigrosProTagManager extends TagManager {
     super.disconnectedCallback()
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    // document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.listProductListener)
     document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
@@ -91,7 +93,7 @@ export default class MigrosProTagManager extends TagManager {
           item_id: item.id,
           item_name: item.name,
           item_brand: item.brand,
-          price: item.price,
+          price: parseFloat(item.price),
           unit_price: item.unit_price,
           vat: {
             vat_rate_id: item.vat.id,
