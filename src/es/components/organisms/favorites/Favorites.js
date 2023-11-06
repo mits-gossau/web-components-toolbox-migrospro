@@ -2,15 +2,15 @@
 import { Shadow } from "../../web-components-toolbox/src/es/components/prototypes/Shadow.js";
 
 /**
- * ProductList
+ * Favorites
  * An example at: src/es/components/pages/Benutzerprofil.html?tab=favorites
  *
  * @export
- * @class ProductList
+ * @class Favorites
  * @type {CustomElementConstructor}
  */
 
-export default class ProductList extends Shadow() {
+export default class Favorites extends Shadow() {
   constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
