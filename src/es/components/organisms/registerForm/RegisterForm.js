@@ -197,7 +197,8 @@ export default class RegisterForm extends Shadow() {
       window.dataLayer.push({
         event: 'register',
         action: 'started',
-        step: `${step}`
+        step: `${step}`,
+        title: `${formSteps[step - 1].textContent.trim()}`
       })
     }
 
