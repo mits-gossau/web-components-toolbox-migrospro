@@ -69,8 +69,7 @@ export default class RegisterForm extends Shadow() {
 
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
           const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
-          // remove the required attribute only if TVA radio btn set to no
-          if(conditionalCheckedRadioBtn != null && +conditionalCheckedRadioBtn.value !== 1) resetConditionalRequiredElement()
+          resetConditionalRequiredElement()
           
           const selectedOption = event.target.options[event.target.value === '' ? 0 : event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
