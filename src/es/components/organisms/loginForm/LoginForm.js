@@ -68,7 +68,7 @@ export default class LoginForm extends Shadow() {
       :host li {
           display: flex;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 4px;
       }
       :host li p {
           color: #9E9E9E;
