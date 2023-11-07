@@ -24,7 +24,9 @@ export default class MigrosProTagManager extends TagManager {
     super.connectedCallback()
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
+    document.body.addEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
@@ -32,19 +34,46 @@ export default class MigrosProTagManager extends TagManager {
     super.disconnectedCallback()
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
+    document.body.removeEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
   }
 
   basketListener = (event, action) => {
     event.detail.tags.forEach((el) => {
       const item = this.items?.find((element) => element.item_id === el)
+      const schema = {
+        item_id: "SKU_12345",
+        item_name: "Stan and Friends Tee",
+        affiliation: "Google Merchandise Store",
+        coupon: "SUMMER_FUN",
+        discount: 2.22,
+        index: 0,
+        item_brand: "Google",
+        item_category: "Apparel",
+        item_category2: "Adult",
+        item_category3: "Shirts",
+        item_category4: "Crew",
+        item_category5: "Short sleeve",
+        item_list_id: "related_products",
+        item_list_name: "Related Products",
+        item_variant: "green",
+        location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+        price: 9.99,
+        quantity: 1,
+      }
+
+      const schemaItem = this.loop(schema, item)
+      if (action === 'add_to_cart' || action === 'add_to_wishlist') schemaItem.quantity = 1
 
       if (item) {
         const eventToCart = {
           event: action,
           ecommerce: {
-            items: [item]
+            currency: 'CHF',
+            value: parseFloat(item.price),
+            items: [schemaItem]
           }
         }
 
@@ -58,7 +87,11 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   removeBasketListener = (event) => {
-    this.basketListener(event, 'remove_to_cart')
+    this.basketListener(event, 'remove_from_cart')
+  }
+
+  addWishlistListener = (event) => {
+    this.basketListener(event, 'add_to_wishlist')
   }
 
   requestListBasketListener = (event) => {
@@ -66,14 +99,7 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   listProductListener = (event) => {
-    /**
-      * @typedef {Object} ItemNames
-      * @property {any} item_name_rpa
-      * @property {any} item_name_sap
-      * @property {any} item_short_name
-      */
-
-    /**
+      /**
       * @typedef {Object} VAT
       * @property {any} vat_rate_id
       * @property {any} vat_rate
@@ -83,39 +109,23 @@ export default class MigrosProTagManager extends TagManager {
       * @typedef {Object} Item
       * @property {any} item_id
       * @property {any} item_name
-      * @property {ItemNames} item_names
       * @property {any} item_brand
-      * @property {any} item_category
-      * @property {any} item_variant
       * @property {any} price
       * @property {any} unit_price
-      * @property {any} quantity
-      * @property {any} package_size
-      * @property {any} language
       * @property {VAT} vat
       */
 
     /** @type {Item[]} */
     this.items = []
-
+     
     event.detail.fetch.then((productData) => {
       productData[0].products.forEach((item) => {
         const viewItem = {
           item_id: item.id,
           item_name: item.name,
-          item_names: {
-            item_name_rpa: item.names.names_rpa,
-            item_name_sap: item.names.names_sap,
-            item_short_name: item.names.short_name
-          },
           item_brand: item.brand,
-          item_category: item.category,
-          item_variant: item.variant,
-          price: item.price,
+          price: parseFloat(item.price),
           unit_price: item.unit_price,
-          quantity: item.quantity,
-          package_size: item.package_size,
-          language: item.language,
           vat: {
             vat_rate_id: item.vat.id,
             vat_rate: item.vat.percentage
@@ -124,13 +134,57 @@ export default class MigrosProTagManager extends TagManager {
 
         this.items?.push(viewItem)
       })
+    }).catch((error) => {
+      console.error(error)
+    })
+  }
+
+  viewProductListener = (event) => {
+    const viewedItems = []
+    event.detail.fetch.then((productData) => {
+      productData[0].products.forEach((item) => {
+        const schema = {
+          item_id: "SKU_12345",
+          item_name: "Stan and Friends Tee",
+          affiliation: "Google Merchandise Store",
+          coupon: "SUMMER_FUN",
+          discount: 2.22,
+          index: 0,
+          item_brand: "Google",
+          item_category: "Apparel",
+          item_category2: "Adult",
+          item_category3: "Shirts",
+          item_category4: "Crew",
+          item_category5: "Short sleeve",
+          item_list_id: "related_products",
+          item_list_name: "Related Products",
+          item_variant: "green",
+          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+          price: 9.99,
+          quantity: 1,
+        }
+
+        const viewItem = {
+          item_id: item.id,
+          item_name: item.name,
+          item_brand: item.brand,
+          price: parseFloat(item.price),
+          unit_price: item.unit_price,
+          vat: {
+            vat_rate_id: item.vat.id,
+            vat_rate: item.vat.percentage
+          }
+        }
+
+        viewedItems.push(this.loop(schema, viewItem))
+      })
 
       const viewItemList = {
         event: 'view_item_list',
         ecommerce: {
           item_list_id: 'related_products',
           item_name: 'Related Products',
-          items: this.items
+          items: viewedItems
         }
       }
 
@@ -151,5 +205,15 @@ export default class MigrosProTagManager extends TagManager {
         console.error('Failed to push event data:', err)
       }
     }
+  }
+
+  loop (schema, obj) {
+    const resultObject = {}
+    for (const key in schema) {
+      if (Object.hasOwnProperty.call(schema, key)) resultObject[key] = typeof schema[key] === 'object'
+        ? this.loop(schema[key], obj[key] || {})
+        : obj[key] || ''
+    }
+    return resultObject
   }
 }

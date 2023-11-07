@@ -69,15 +69,14 @@ export default class RegisterForm extends Shadow() {
 
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
           const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
-          // remove the required attribute only if TVA radio btn set to no
-          if(+conditionalCheckedRadioBtn.value !== 1) resetConditionalRequiredElement()
-
-          const selectedOption = event.target.options[event.target.value]
+          resetConditionalRequiredElement()
+          
+          const selectedOption = event.target.options[event.target.value === '' ? 0 : event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalRequiredElement(selectedOption)
           }
 
-          if (!selectedOption.hasAttribute('additional-required-field') && +conditionalCheckedRadioBtn.value !== 1) {
+          if (conditionalCheckedRadioBtn != null && !selectedOption.hasAttribute('additional-required-field') && +conditionalCheckedRadioBtn.value !== 1) {
             const nextButton = this.querySelector('section.active').querySelector('a-button')
             // remove button disable attribute if not needed
             if(nextButton) nextButton.removeAttribute('disabled')
@@ -198,11 +197,21 @@ export default class RegisterForm extends Shadow() {
       window.dataLayer.push({
         event: 'register',
         action: 'started',
-        step: `${step}`
+        step: `${step}`,
+        title: `${formSteps[step - 1].textContent.trim()}`
       })
     }
 
     sendEvent(1) // initial gtm event step 1
+
+    const sendSubmitEvent = () => {
+      // @ts-ignore
+      window.dataLayer.push({
+        event: 'register',
+        action: 'completed',
+        step: '4'
+      })
+    }
 
     // required fields
     const getRequiredFields = () => {
@@ -251,6 +260,10 @@ export default class RegisterForm extends Shadow() {
             if (isFormValid) {
               nextButton?.removeAttribute('disabled')
               submitButton?.removeAttribute('disabled')
+              
+              submitButton?.addEventListener('click', () => {
+                sendSubmitEvent()
+              }, { once: true })
             }
           })
         })

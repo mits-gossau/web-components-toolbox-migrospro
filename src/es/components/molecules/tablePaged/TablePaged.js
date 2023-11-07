@@ -55,7 +55,7 @@ export default class TablePaged extends Shadow() {
     this.reset = event => {
       this.url.searchParams.delete('orderBy')
       this.url.searchParams.delete('searchString')
-      this.url.searchParams.delete(this.filterDropdown.getAttribute('data-name'))
+      if (this.filterDropdown !== null) this.url.searchParams.delete(this.filterDropdown.getAttribute('data-name'))
       window.location.replace(this.url)
     }
 
@@ -105,7 +105,7 @@ export default class TablePaged extends Shadow() {
 
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
-    this.footDropdown.addEventListener('change', this.dropdownChange)
+    if (this.footDropdown !== null) this.footDropdown.addEventListener('change', this.dropdownChange)
     if (this.filterDropdown !== null) this.filterDropdown.addEventListener('change', this.dropdownChange)
     this.aModal.forEach(a => a.addEventListener('click', this.openModal))
     this.footArrow.forEach(a => a.addEventListener('click', this.clickListener))
@@ -113,7 +113,7 @@ export default class TablePaged extends Shadow() {
   }
 
   disconnectedCallback () {
-    this.footDropdown.removeEventListener('change', this.dropdownChange)
+    if (this.footDropdown !== null) this.footDropdown.removeEventListener('change', this.dropdownChange)
     if (this.filterDropdown !== null) this.filterDropdown.removeEventListener('change', this.dropdownChange)
     this.aModal.forEach(a => a.removeEventListener('click', this.openModal))
     this.footArrow.forEach(a => a.addEventListener('click', this.clickListener))

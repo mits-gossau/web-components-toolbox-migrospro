@@ -4,8 +4,8 @@
     <ul class="tab-navigation">
         <li data-tab="quote-requets">Mes demandes de devis</li>
         <li data-tab="favorites">Mes favoris</li>
-        <li data-tab="settings">Mes Paramètres</li>
-        <li><a href="https://migrospro.ch" target="_blank">Mes Tickets</a></li>
+        <li data-tab="settings">Mes paramètres</li>
+        <li><a href="https://migrospro.ch" target="_blank">Mes tickets</a></li>
     </ul>
 
     <!-- QUOTE REQUESTS -->
@@ -21,7 +21,7 @@
         >
             <div slot="action">
                 <a-migrospro-button-toggle order-id="1234" is-active="false">
-                    <a-icon-mdx icon-name="ShoppingBasket"></a-icon-mdx>
+                    <a-migrospro-icon-shopping-basket></a-migrospro-icon-shopping-basket>
                 </a-migrospro-button-toggle>
                 <a-button namespace="button-action-" label="Modifier" href="#">
                     <a-icon-mdx class="icon-left" icon-name="Edit"></a-icon-mdx>
@@ -147,7 +147,7 @@
     <section class="tab-content">
         <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes de devis.</p>
         
-        <!-- <c-migrospro-products> -->    
+        <c-migrospro-favorites>    
             <m-form role="form">
                 <form action="/favorites" enctype="multipart/form-data" method="post" role="form">
                     <div class="two-column-align-bottom">
@@ -164,22 +164,22 @@
                         </div>
                     </div>
                     <p style="color:var(--m-orange-600)">Tout sélectionner</p>
-                    <o-migrospro-product-list 
-                        endpoint="https://api.json-generator.com/templates/hpINMz4yKYqK/data"
-                        token="ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
-                    ></o-migrospro-product-list>
+                    <o-migrospro-favorites 
+                        answer-event-name="list-favorites" 
+                        request-event-name="request-list-favorites"
+                    ></o-migrospro-favorites>
                 </form>
             </m-form>
-        <!-- </c-migrospro-products> -->
+        </c-migrospro-favorites>
     </section>
 
     <!-- SETTINGS -->
     <section class="tab-content">
-        <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher">
+        <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher" redirect-url="https://migrospro.ch">
             <div class="content">
                 <section>
                     <m-form role="form">
-                        <form action="/settings" enctype="multipart/form-data" method="post" role="form">
+                        <form enctype="multipart/form-data" method="post" role="form">
                             <section class="section">
                                 <div class="validation-errors">
                                     <ul>

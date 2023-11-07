@@ -67,8 +67,8 @@
                             id="firstname" 
                             name="firstname" 
                             type="text" 
-                            min="1"
-                            max="50"
+                            minlength="1"
+                            maxlength="50"
                             pattern="^\p{L}+$"
                             value=""
                             required
@@ -81,8 +81,8 @@
                             id="lastname" 
                             name="lastname" 
                             type="text" 
-                            min="1"
-                            max="100"
+                            minlength="1"
+                            maxlength="100"
                             pattern="^\p{L}+$"
                             value=""
                             required
@@ -105,8 +105,8 @@
                                 id="email" 
                                 name="email" 
                                 type="email" 
-                                min="6"
-                                max="128"
+                                minlength="6"
+                                maxlength="128"
                                 value=""
                                 required
                             >
@@ -119,7 +119,7 @@
                             id="phone" 
                             name="phone" 
                             type="tel"
-                            max="20"
+                            maxlength="20"
                             pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
                             value="" 
                             required
@@ -132,7 +132,7 @@
                             id="mobile" 
                             name="mobile" 
                             type="tel"
-                            max="20"
+                            maxlength="20"
                             placeholder="+41220000000"
                             pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
                         >
@@ -158,8 +158,8 @@
                             id="social-reason" 
                             name="social-reason" 
                             type="text"
-                            min="1"
-                            max="150"
+                            minlength="1"
+                            maxlength="150"
                             value="" 
                             required
                         >
@@ -172,8 +172,8 @@
                                 id="address" 
                                 name="address" 
                                 type="text" 
-                                min="1"
-                                max="150"
+                                minlength="1"
+                                maxlength="150"
                                 value="" 
                                 required
                             >
@@ -295,8 +295,8 @@
                             id="email-register" 
                             name="email-register" 
                             type="email"
-                            min="6"
-                            max="128"
+                            minlength="6"
+                            maxlength="128"
                             value=""
                             required
                         >
@@ -338,7 +338,7 @@
                                 id="billing-name" 
                                 name="billing-name" 
                                 type="text" 
-                                max="150"
+                                maxlength="150"
                                 conditional-required
                             >
                         </div>
@@ -349,7 +349,7 @@
                                 id="billing-address-line1"
                                 name="billing-address-line1" 
                                 type="text" 
-                                max="150"
+                                maxlength="150"
                                 conditional-required
                             >
                         </div>
@@ -360,7 +360,7 @@
                                 id="billing-address-line2" 
                                 name="billing-address-line2" 
                                 type="text"
-                                max="150"
+                                maxlength="150"
                                 conditional-required
                             >
                         </div>
@@ -371,7 +371,7 @@
                                 id="billing-post-office-box" 
                                 name="billing-post-office-box"
                                 type="text"
-                                max="150"
+                                maxlength="150"
                                 conditional-required
                             >
                         </div>
@@ -580,8 +580,8 @@
                             id="company-registration-number" 
                             name="company-registration-number" 
                             type="number"
-                            min="0"
-                            max="7" 
+                            minlength="0"
+                            maxlength="7" 
                             value=""
                             if-required-min-value="1"
                             default-min-value="0"
@@ -694,8 +694,8 @@
                             id="account-manager-firstname"
                             name="account-manager-firstname" 
                             type="text" 
-                            min="1"
-                            max="50"
+                            minlength="1"
+                            maxlength="50"
                             pattern="^\p{L}+$"
                             value="" 
                             required
@@ -708,8 +708,8 @@
                             id="account-manager-lastname"
                             name="account-manager-lastname" 
                             type="text" 
-                            min="1"
-                            max="100"
+                            minlength="1"
+                            maxlength="100"
                             pattern="^\p{L}+$"
                             value="" 
                             required
@@ -755,8 +755,8 @@
                             id="account-manager-lastname"
                             name="account-manager-lastname4" 
                             type="number" 
-                            min="0" 
-                            max="7" 
+                            minlength="0" 
+                            maxlength="7" 
                             required
                         >
                     </div>
@@ -770,8 +770,8 @@
                             type="text" 
                             custom-number-validation 
                             custom-validity-message="Bitte geben Sie ein Nummer zwischen 0-7" 
-                            min="0" 
-                            max="7" 
+                            minlength="0" 
+                            maxlength="7" 
                             value="" 
                             required
                         >
@@ -801,8 +801,8 @@
                             id="account-manager-email" 
                             name="account-manager-email"
                             type="email" 
-                            min="6"
-                            max="128"
+                            minlength="6"
+                            maxlength="128"
                             value="" 
                             required
                         >
@@ -814,7 +814,7 @@
                             id="account-manager-phone"
                             name="account-manager-phone" 
                             type="tel" 
-                            max="20"
+                            maxlength="20"
                             pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
                             value="" 
                             required
@@ -827,7 +827,7 @@
                             id="account-manager-mobile"
                             name="account-manager-mobile" 
                             type="tel"
-                            max="20"
+                            maxlength="20"
                             pattern="^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])"
                         >
                     </div>
