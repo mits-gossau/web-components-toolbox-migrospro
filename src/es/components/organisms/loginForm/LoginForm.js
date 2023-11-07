@@ -70,10 +70,6 @@ export default class LoginForm extends Shadow() {
           align-items: center;
           margin-bottom: 24px;
       }
-      :host li a-picture {
-          width: 85px;
-          height: 60px;
-      }
       :host li p {
           color: #9E9E9E;
           font-size: 12px;
