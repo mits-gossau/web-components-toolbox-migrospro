@@ -14,7 +14,7 @@ export default class Favorites extends Shadow() {
   constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
-    this.answerEventNameListener = (event) => {
+    this.answerEventNameListener = event => {
       this.renderHTML(event.detail)
     }
   }
@@ -23,7 +23,10 @@ export default class Favorites extends Shadow() {
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.productsLoaded) this.renderHTML()
 
-    document.body.addEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
+    document.body.addEventListener(
+      this.getAttribute('answer-event-name') || 'answer-event-name',
+      this.answerEventNameListener
+    )
 
     this.dispatchEvent(
       new CustomEvent(this.getAttribute('request-event-name'), {
@@ -35,7 +38,10 @@ export default class Favorites extends Shadow() {
   }
 
   disconnectedCallback () {
-    document.body.removeEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
+    document.body.removeEventListener(
+      this.getAttribute('answer-event-name') || 'answer-event-name',
+      this.answerEventNameListener
+    )
   }
 
   /**
@@ -77,7 +83,7 @@ export default class Favorites extends Shadow() {
     return Promise.all([fetchModules]).then(() => {
       let products = ''
 
-      data.products.forEach((product) => {
+      data.products.forEach(product => {
         products += /* html */ `
           <m-product-card 
             is-logged-in="true"

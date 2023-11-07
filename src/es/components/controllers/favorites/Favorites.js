@@ -16,18 +16,18 @@ export default class Favorites extends Shadow() {
     // select quote
     this.select = this.root.querySelector('select#devis')
 
-    this.select.addEventListener('change', (event) => {
+    this.select.addEventListener('change', event => {
       console.log(event.target.value)
     })
 
     // submit button
     this.submit = this.root.querySelector('input[type=submit]')
-    this.submit.addEventListener('click', (event) => {
+    this.submit.addEventListener('click', event => {
       event.preventDefault()
       console.log(event.target.value)
     })
 
-    this.requestListFavoritesListener = (event) => {
+    this.requestListFavoritesListener = event => {
       console.log('requestListFavoritesListener', event.detail)
       // this.dispatchEvent(
       //   new CustomEvent("list-favorites", {
@@ -41,7 +41,8 @@ export default class Favorites extends Shadow() {
       // )
     }
 
-    const endpoint = 'https://api.json-generator.com/templates/hpINMz4yKYqK/data'
+    const endpoint =
+      'https://api.json-generator.com/templates/hpINMz4yKYqK/data'
     const token = 'ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk'
 
     async function fetchData () {
@@ -66,7 +67,7 @@ export default class Favorites extends Shadow() {
     }
 
     fetchData()
-      .then((data) => {
+      .then(data => {
         this.dispatchEvent(
           new CustomEvent('list-favorites', {
             detail: {
@@ -78,26 +79,46 @@ export default class Favorites extends Shadow() {
           })
         )
 
-        data.products.length > 0 ? this.productsLoaded = true : this.productsLoaded = false
+        data.products.length > 0
+          ? (this.productsLoaded = true)
+          : (this.productsLoaded = false)
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('An error occurred:', error)
       })
   }
 
   connectedCallback () {
-    this.addEventListener('request-list-favorites', this.requestListFavoritesListener)
-    this.addEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromFavoritesListener)
-    this.addEventListener(this.getAttribute('select-item') || 'select-item', this.selectProductListener)
+    this.addEventListener(
+      'request-list-favorites',
+      this.requestListFavoritesListener
+    )
+    this.addEventListener(
+      this.getAttribute('delete-from-order') || 'delete-from-order',
+      this.deleteFromFavoritesListener
+    )
+    this.addEventListener(
+      this.getAttribute('select-item') || 'select-item',
+      this.selectProductListener
+    )
   }
 
   disconnectedCallback () {
-    this.removeEventListener('request-list-favorites', this.requestListFavoritesListener)
-    this.removeEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromFavoritesListener)
-    this.removeEventListener(this.getAttribute('select-item') || 'select-item', this.selectProductListener)
+    this.removeEventListener(
+      'request-list-favorites',
+      this.requestListFavoritesListener
+    )
+    this.removeEventListener(
+      this.getAttribute('delete-from-order') || 'delete-from-order',
+      this.deleteFromFavoritesListener
+    )
+    this.removeEventListener(
+      this.getAttribute('select-item') || 'select-item',
+      this.selectProductListener
+    )
   }
 
-  checkProductListener = async (event) => {
+  checkProductListener = async event => {
     console.log('checkProductListener', event.detail)
   }
 
@@ -106,7 +127,7 @@ export default class Favorites extends Shadow() {
    *
    * @param {{ detail: any; }} event
    */
-  deleteFromFavoritesListener = async (event) => {
+  deleteFromFavoritesListener = async event => {
     console.log('deleteFromFavoritesListener', event.detail)
     // if (this.deleteFromFavoritesAbortController) this.deleteFromFavoritesAbortController.abort()
     // this.deleteFromFavoritesAbortController = new AbortController()
@@ -138,7 +159,7 @@ export default class Favorites extends Shadow() {
    * @param {*} event
    * @memberof Favorites
    */
-  selectProductListener = (event) => {
+  selectProductListener = event => {
     console.log('selectProductListener', event.detail)
   }
 }
