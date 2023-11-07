@@ -19,52 +19,62 @@ import TagManager from '../../web-components-toolbox/src/es/components/controlle
     </c-migrospro-tag-manager>
  * }
  */
+// @ts-ignore
 export default class MigrosProTagManager extends TagManager {
+  constructor () {
+    super()
+    
+    this.itemSchema = {
+      item_id: "SKU_12345",
+      item_name: "Stan and Friends Tee",
+      affiliation: "Google Merchandise Store",
+      coupon: "SUMMER_FUN",
+      discount: 2.22,
+      index: 0,
+      item_brand: "Google",
+      item_category: "Apparel",
+      item_category2: "Adult",
+      item_category3: "Shirts",
+      item_category4: "Crew",
+      item_category5: "Short sleeve",
+      item_list_id: "related_products",
+      item_list_name: "Related Products",
+      item_variant: "green",
+      location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+      price: 9.99,
+      quantity: 1,
+    }
+  }
+
   connectedCallback () {
     super.connectedCallback()
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    document.body.addEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
+    // document.body.addEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
+    document.body.addEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
+    document.body.addEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
   }
 
   disconnectedCallback () {
     super.disconnectedCallback()
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    document.body.removeEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
+    // document.body.removeEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
+    document.body.removeEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
+    document.body.removeEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
   }
 
   basketListener = (event, action) => {
     event.detail.tags.forEach((el) => {
       const item = this.items?.find((element) => element.item_id === el)
-      const schema = {
-        item_id: "SKU_12345",
-        item_name: "Stan and Friends Tee",
-        affiliation: "Google Merchandise Store",
-        coupon: "SUMMER_FUN",
-        discount: 2.22,
-        index: 0,
-        item_brand: "Google",
-        item_category: "Apparel",
-        item_category2: "Adult",
-        item_category3: "Shirts",
-        item_category4: "Crew",
-        item_category5: "Short sleeve",
-        item_list_id: "related_products",
-        item_list_name: "Related Products",
-        item_variant: "green",
-        location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
-        price: 9.99,
-        quantity: 1,
-      }
 
-      const schemaItem = this.loop(schema, item)
+      const schemaItem = this.loop(this.itemSchema, item)
       if (action === 'add_to_cart' || action === 'add_to_wishlist') schemaItem.quantity = 1
 
       if (item) {
@@ -95,11 +105,19 @@ export default class MigrosProTagManager extends TagManager {
   }
 
   requestListBasketListener = (event) => {
-    console.log(event)
+    console.log('requestListBasketListener', event)
+  }
+
+  listBasketListener = (event) => {
+    console.log('listBasketListener', event)
+  }
+
+  submitOrderListener = (event) => {
+    console.log('submitOrderListener', event)
   }
 
   listProductListener = (event) => {
-      /**
+    /**
       * @typedef {Object} VAT
       * @property {any} vat_rate_id
       * @property {any} vat_rate
@@ -143,27 +161,6 @@ export default class MigrosProTagManager extends TagManager {
     const viewedItems = []
     event.detail.fetch.then((productData) => {
       productData[0].products.forEach((item) => {
-        const schema = {
-          item_id: "SKU_12345",
-          item_name: "Stan and Friends Tee",
-          affiliation: "Google Merchandise Store",
-          coupon: "SUMMER_FUN",
-          discount: 2.22,
-          index: 0,
-          item_brand: "Google",
-          item_category: "Apparel",
-          item_category2: "Adult",
-          item_category3: "Shirts",
-          item_category4: "Crew",
-          item_category5: "Short sleeve",
-          item_list_id: "related_products",
-          item_list_name: "Related Products",
-          item_variant: "green",
-          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
-          price: 9.99,
-          quantity: 1,
-        }
-
         const viewItem = {
           item_id: item.id,
           item_name: item.name,
@@ -176,7 +173,7 @@ export default class MigrosProTagManager extends TagManager {
           }
         }
 
-        viewedItems.push(this.loop(schema, viewItem))
+        viewedItems.push(this.loop(this.itemSchema, viewItem))
       })
 
       const viewItemList = {
