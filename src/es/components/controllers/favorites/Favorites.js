@@ -1,5 +1,5 @@
 // @ts-check
-import { Shadow } from "../../web-components-toolbox/src/es/components/prototypes/Shadow.js";
+import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 /**
  * Favorites
@@ -8,21 +8,21 @@ import { Shadow } from "../../web-components-toolbox/src/es/components/prototype
  * @type {CustomElementConstructor}
  */
 export default class Favorites extends Shadow() {
-  constructor(options = {}, ...args) {
+  constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     this.deleteFromFavoritesAbortController = null
 
-    // select element
-    this.select = this.root.querySelector("select#devis")
-    
-    this.select.addEventListener("change", (event) => {
+    // select quote
+    this.select = this.root.querySelector('select#devis')
+
+    this.select.addEventListener('change', (event) => {
       console.log(event.target.value)
     })
 
     // submit button
-    this.submit = this.root.querySelector("input[type=submit]")
-    this.submit.addEventListener("click", (event) => {
+    this.submit = this.root.querySelector('input[type=submit]')
+    this.submit.addEventListener('click', (event) => {
       event.preventDefault()
       console.log(event.target.value)
     })
@@ -41,16 +41,16 @@ export default class Favorites extends Shadow() {
       // )
     }
 
-    const endpoint = "https://api.json-generator.com/templates/hpINMz4yKYqK/data"
-    const token = "ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk"
+    const endpoint = 'https://api.json-generator.com/templates/hpINMz4yKYqK/data'
+    const token = 'ojsdbk9lbwewfluj5ujth8kfr0ujzmkmzzgfw5fk'
 
-    async function fetchData() {
+    async function fetchData () {
       try {
         const response = await fetch(endpoint, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+            'Content-Type': 'application/json'
+          }
         })
 
         if (!response.ok) {
@@ -60,7 +60,7 @@ export default class Favorites extends Shadow() {
         const data = await response.json()
         return data
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error)
         throw error
       }
     }
@@ -77,38 +77,24 @@ export default class Favorites extends Shadow() {
             composed: true
           })
         )
-        handleFavorites()
+
+        data.products.length > 0 ? this.productsLoaded = true : this.productsLoaded = false
       })
       .catch((error) => {
-        console.error("An error occurred:", error)
+        console.error('An error occurred:', error)
       })
-
-    this.productsLoaded = false
-
-    const handleFavorites = () => { 
-      const products = this.root.querySelectorAll(".product-item")
-      console.log(products)
-      products.forEach((product) => {
-        console.log(product)
-        const checkbox = product.querySelector("input[type=checkbox]")
-        checkbox.addEventListener("change", (event) => {
-          console.log(event.target.checked)
-          console.log(product.dataset.id)
-        })
-      })
-    }
   }
 
-  connectedCallback() {
-    this.addEventListener("request-list-favorites", this.requestListFavoritesListener)
+  connectedCallback () {
+    this.addEventListener('request-list-favorites', this.requestListFavoritesListener)
     this.addEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromFavoritesListener)
-
-    
+    this.addEventListener(this.getAttribute('select-item') || 'select-item', this.selectProductListener)
   }
 
-  disconnectedCallback() {
-    this.removeEventListener("request-list-favorites", this.requestListFavoritesListener)
+  disconnectedCallback () {
+    this.removeEventListener('request-list-favorites', this.requestListFavoritesListener)
     this.removeEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromFavoritesListener)
+    this.removeEventListener(this.getAttribute('select-item') || 'select-item', this.selectProductListener)
   }
 
   checkProductListener = async (event) => {
@@ -117,6 +103,7 @@ export default class Favorites extends Shadow() {
 
   /**
    * delete from favorites
+   *
    * @param {{ detail: any; }} event
    */
   deleteFromFavoritesListener = async (event) => {
@@ -143,5 +130,15 @@ export default class Favorites extends Shadow() {
     //   cancelable: true,
     //   composed: true
     // }))
+  }
+
+  /**
+   * select product from favorites
+   *
+   * @param {*} event
+   * @memberof Favorites
+   */
+  selectProductListener = (event) => {
+    console.log('selectProductListener', event.detail)
   }
 }

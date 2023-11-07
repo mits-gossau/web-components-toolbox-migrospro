@@ -160,12 +160,12 @@ export default class RequestForm extends Shadow() {
     event.preventDefault()
 
     this.dispatchEvent(new CustomEvent(event.target.getAttribute('submit-order') || 'submit-order',
-        {
-          bubbles: true,
-          cancelable: true,
-          composed: true
-        }
-      ))
+      {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }
+    ))
 
     const clickedButtonValue = event.submitter.value
     // @ts-ignore

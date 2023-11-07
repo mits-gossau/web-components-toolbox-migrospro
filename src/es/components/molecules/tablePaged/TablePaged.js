@@ -36,14 +36,12 @@ export default class TablePaged extends Shadow() {
 
     // onchange of dropdown
     this.dropdownChange = event => {
-      var name = event.target.getAttribute('data-name')
-      var value = event.target.value
+      const name = event.target.getAttribute('data-name')
+      const value = event.target.value
       if (value === null || value === '') {
         this.url.searchParams.delete(name)
         window.location.replace(this.url)
-      }
-      else
-        this.setParam(name, value)
+      } else { this.setParam(name, value) }
     }
 
     // onclick event on search button
@@ -273,10 +271,10 @@ export default class TablePaged extends Shadow() {
       const searchDiv = document.createElement('div')
       searchDiv.className = 'search'
 
-      if (this.filterDropdown !== null){
-        this.filterDropdown.setAttribute("id", "filter")
+      if (this.filterDropdown !== null) {
+        this.filterDropdown.setAttribute('id', 'filter')
         searchDiv.appendChild(this.filterDropdown)
-        //this.filterDiv.remove()
+        // this.filterDiv.remove()
       }
 
       // Input field to current search
@@ -332,7 +330,7 @@ export default class TablePaged extends Shadow() {
       tableDiv.className = 'table'
 
       this.root.appendChild(tableDiv)
-      if (this.error !== null){
+      if (this.error !== null) {
         this.root.appendChild(this.error)
       }
       this.root.appendChild(this.foot)
@@ -372,15 +370,13 @@ export default class TablePaged extends Shadow() {
   }
 
   get filterDiv () {
-    return this.root.querySelector('div#filterDropdown') 
+    return this.root.querySelector('div#filterDropdown')
   }
 
   get filterDropdown () {
-    if (this._filterDropdown !== null)
-      return this._filterDropdown
+    if (this._filterDropdown !== null) { return this._filterDropdown }
 
-    if (this.filterDiv === null)
-      return null
+    if (this.filterDiv === null) { return null }
 
     this._filterDropdown = this.filterDiv.firstElementChild
     return this._filterDropdown
