@@ -40,7 +40,7 @@ export default class RegisterForm extends Shadow() {
       // set default required field for TVA radio btn
       const additionalRequiredFieldRadio = this.root.querySelector('[additional-required-field][type="radio"]:checked')
       if (additionalRequiredFieldRadio !== null && additionalRequiredFieldRadio.value === 1) {
-        const conditionalRequiredFieldId = additionalRequiredFieldRadio.getAttribute("additional-required-field")
+        const conditionalRequiredFieldId = additionalRequiredFieldRadio.getAttribute('additional-required-field')
         const conditionalRequiredField = this.root.querySelector(`[required-field-name="${conditionalRequiredFieldId}"]`)
         conditionalRequiredField.required = true
         conditionalRequiredField.setAttribute('conditional-required', true)
@@ -70,7 +70,7 @@ export default class RegisterForm extends Shadow() {
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
           const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
           resetConditionalRequiredElement()
-          
+
           const selectedOption = event.target.options[event.target.value === '' ? 0 : event.target.value]
           if (selectedOption.hasAttribute('additional-required-field')) {
             setConditionalRequiredElement(selectedOption)
@@ -79,16 +79,16 @@ export default class RegisterForm extends Shadow() {
           if (conditionalCheckedRadioBtn != null && !selectedOption.hasAttribute('additional-required-field') && +conditionalCheckedRadioBtn.value !== 1) {
             const nextButton = this.querySelector('section.active').querySelector('a-button')
             // remove button disable attribute if not needed
-            if(nextButton) nextButton.removeAttribute('disabled')
+            if (nextButton) nextButton.removeAttribute('disabled')
           }
         }
 
-        if(event.target.hasAttribute('additional-required-field') && event.target.getAttribute('type') === "radio") {
+        if (event.target.hasAttribute('additional-required-field') && event.target.getAttribute('type') === 'radio') {
           const additionalRequiredFieldId = event.target.getAttribute('additional-required-field')
           const additionalRequiredField = this.querySelector(`input[required-field-name="${additionalRequiredFieldId}"]`)
           const currentInputLabel = this.querySelector(`[required-field-label='${additionalRequiredFieldId}']`)
           // TVA radio btn value has to be 1 if its yes
-          if(+event.target.value === 1) {
+          if (+event.target.value === 1) {
             if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
             additionalRequiredField.required = true
             additionalRequiredField.setAttribute('conditional-required', true)
@@ -97,16 +97,15 @@ export default class RegisterForm extends Shadow() {
           else {
             const conditionalSelectElement = this.querySelector('[data-conditional-required-element-enabled]')
             const requiredOptionValue = conditionalSelectElement.querySelector('option[additional-required-field]').value
-            if(+conditionalSelectElement.value !== +requiredOptionValue) {
-
+            if (+conditionalSelectElement.value !== +requiredOptionValue) {
               // remove button disable attribute if not needed
               const nextButton = this.querySelector('section.active').querySelector('a-button')
-              if(nextButton && +conditionalSelectElement.value) nextButton.removeAttribute('disabled')
-              
+              if (nextButton && +conditionalSelectElement.value) nextButton.removeAttribute('disabled')
+
               if (currentInputLabel && currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent.slice(0, -2)}`
               additionalRequiredField.required = false
               additionalRequiredField.setAttribute('conditional-required', false)
-            } return
+            }
           }
         }
       })
@@ -260,7 +259,7 @@ export default class RegisterForm extends Shadow() {
             if (isFormValid) {
               nextButton?.removeAttribute('disabled')
               submitButton?.removeAttribute('disabled')
-              
+
               submitButton?.addEventListener('click', () => {
                 sendSubmitEvent()
               }, { once: true })

@@ -159,6 +159,14 @@ export default class RequestForm extends Shadow() {
   onSubmit = async (event) => {
     event.preventDefault()
 
+    this.dispatchEvent(new CustomEvent(event.target.getAttribute('submit-order') || 'submit-order',
+      {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }
+    ))
+
     const clickedButtonValue = event.submitter.value
     // @ts-ignore
     let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit

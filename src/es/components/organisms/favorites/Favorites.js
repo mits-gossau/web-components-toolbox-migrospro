@@ -1,5 +1,5 @@
 // @ts-check
-import { Shadow } from "../../web-components-toolbox/src/es/components/prototypes/Shadow.js";
+import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 /**
  * Favorites
@@ -11,15 +11,15 @@ import { Shadow } from "../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class Favorites extends Shadow() {
-  constructor(options = {}, ...args) {
+  constructor (options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
-    this.answerEventNameListener = (event) => {
+    this.answerEventNameListener = event => {
       this.renderHTML(event.detail)
     }
   }
 
-  connectedCallback() {
+  connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.productsLoaded) this.renderHTML()
 
@@ -27,7 +27,7 @@ export default class Favorites extends Shadow() {
       this.getAttribute('answer-event-name') || 'answer-event-name',
       this.answerEventNameListener
     )
-    
+
     this.dispatchEvent(
       new CustomEvent(this.getAttribute('request-event-name'), {
         bubbles: true,
@@ -37,7 +37,7 @@ export default class Favorites extends Shadow() {
     )
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
     document.body.removeEventListener(
       this.getAttribute('answer-event-name') || 'answer-event-name',
       this.answerEventNameListener
@@ -49,13 +49,13 @@ export default class Favorites extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS() {
+  shouldRenderCSS () {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */ `
       :host {
 
@@ -72,18 +72,18 @@ export default class Favorites extends Shadow() {
     `
   }
 
-  renderHTML(data) {
+  renderHTML (data = {}) {
     const fetchModules = this.fetchModules([
       {
         path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/productCard/ProductCard.js`,
-        name: "m-product-card",
-      },
+        name: 'm-product-card'
+      }
     ])
 
     return Promise.all([fetchModules]).then(() => {
-      let products = ""
+      let products = ''
 
-      data.products.forEach((product) => {
+      data.products.forEach(product => {
         products += /* html */ `
           <m-product-card 
             is-logged-in="true"
@@ -93,8 +93,8 @@ export default class Favorites extends Shadow() {
         `
       })
 
-      this.html = ""
+      this.html = ''
       this.html = products
-    });
+    })
   }
 }
