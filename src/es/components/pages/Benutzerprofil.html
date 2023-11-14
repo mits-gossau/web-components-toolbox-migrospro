@@ -10,15 +10,12 @@
 
     <!-- QUOTE REQUESTS -->
     <section class="tab-content">
-        <p>Grâce à votre historique de demandes de devis, consultez vos anciennes demandes, complétez une demande que vous n'avez pas terminée, ou dupliquez une demande passée.</p>
+        <p>Grâce à votre historique de demandes de devis, consultez vos anciennes demandes, complétez une demande que
+            vous n'avez pas terminée, ou dupliquez une demande passée.</p>
 
         <a-migrospro-card-heading title="Brouillon"></a-migrospro-card-heading>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            category="Brouillon"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" category="Brouillon">
             <div slot="action">
                 <a-migrospro-button-toggle order-id="1234" is-active="false">
                     <a-migrospro-icon-shopping-basket></a-migrospro-icon-shopping-basket>
@@ -35,23 +32,15 @@
             </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            category="Brouillon"
-        >
-        <div slot="action">
-            <a-button namespace="button-action-" label="Modifier" href="#">
-                <a-icon-mdx class="icon-left" icon-name="Edit"></a-icon-mdx>
-            </a-button>
-        </div>
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" category="Brouillon">
+            <div slot="action">
+                <a-button namespace="button-action-" label="Modifier" href="#">
+                    <a-icon-mdx class="icon-left" icon-name="Edit"></a-icon-mdx>
+                </a-button>
+            </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            category="Brouillon"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" category="Brouillon">
             <div slot="action">
                 <a-button namespace="button-action-" label="Modifier" href="#">
                     <a-icon-mdx class="icon-left" icon-name="Edit"></a-icon-mdx>
@@ -61,11 +50,7 @@
 
         <a-migrospro-card-heading title="Envoyé"></a-migrospro-card-heading>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            category="Envoyé"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" category="Envoyé">
             <div slot="action">
                 <a-button namespace="button-action-" label="Télécharger" href="#">
                     <a-icon-mdx class="icon-left" icon-name="FileText"></a-icon-mdx>
@@ -76,12 +61,8 @@
             </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            name="Max Mustermann"
-            category="Envoyé"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" name="Max Mustermann"
+            category="Envoyé">
             <div slot="action">
                 <a-button namespace="button-action-" label="Télécharger" href="#">
                     <a-icon-mdx class="icon-left" icon-name="FileText"></a-icon-mdx>
@@ -92,11 +73,7 @@
             </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            category="Envoyé"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" category="Envoyé">
             <div slot="action">
                 <a-button namespace="button-action-" label="Télécharger" href="#">
                     <a-icon-mdx class="icon-left" icon-name="FileText"></a-icon-mdx>
@@ -107,12 +84,8 @@
             </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            name="Anna Musterfrau"
-            category="Envoyé"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" name="Anna Musterfrau"
+            category="Envoyé">
             <div slot="action">
                 <a-button namespace="button-action-" label="Télécharger" href="#">
                     <a-icon-mdx class="icon-left" icon-name="FileText"></a-icon-mdx>
@@ -123,12 +96,8 @@
             </div>
         </m-migrospro-card-order>
 
-        <m-migrospro-card-order
-            date="01.01.2023"
-            title="Test Bestell-Liste 123456"
-            name="Max Mustermann"
-            category="Envoyé"
-        >
+        <m-migrospro-card-order date="01.01.2023" title="Test Bestell-Liste 123456" name="Max Mustermann"
+            category="Envoyé">
             <div slot="action">
                 <a-button namespace="button-action-" label="Télécharger" href="#">
                     <a-icon-mdx class="icon-left" icon-name="FileText"></a-icon-mdx>
@@ -145,37 +114,40 @@
 
     <!-- FAVORITES -->
     <section class="tab-content">
-        <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes de devis.</p>
-        
-        <c-migrospro-favorites>    
-            <m-form role="form">
-                <form action="/favorites" enctype="multipart/form-data" method="post" role="form">
-                    <div class="two-column-align-bottom">
-                        <div>
-                            <label for="devis">Mon devis</label>
-                            <select id="devis" name="devis">
-                                <option>Devis 1</option>
-                                <option>Devis 2</option>
-                                <option>Devis 3</option>
-                            </select>
-                        </div>
-                        <div>
-                            <input type="submit" value="Ajouter au devis" />
-                        </div>
-                    </div>
-                    <p style="color:var(--m-orange-600)">Tout sélectionner</p>
+        <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes
+            de devis.</p>
+
+        <c-migrospro-favorites>
                     <o-migrospro-favorites 
                         answer-event-name="list-favorites" 
-                        request-event-name="request-list-favorites"
-                    ></o-migrospro-favorites>
-                </form>
-            </m-form>
+                        request-event-name="request-list-favorites">
+                        <m-form role="form">
+                            <div class="two-column-align-bottom">
+                                <div>
+                                    <label for="devis">Mon devis</label>
+                                    <select id="devis" name="devis">
+                                        <option value="">Choisissez une option</option>
+                                        <option value="d1">Devis 1</option>
+                                        <option value="d2">Devis 2</option>
+                                        <option value="d3">Devis 3</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <a-button namespace="button-primary-">Ajouter au devis</a-button>
+                                    <!-- <input type="submit" value="Ajouter au devis" /> -->
+                                </div>
+                            </div>
+                            <!-- <p style="color:var(--m-orange-600)">Tout sélectionner</p> -->
+                            <a-button namespace="button-action-">Tout sélectionner</a-button>
+                        </m-form>
+                    </o-migrospro-favorites>
         </c-migrospro-favorites>
     </section>
 
     <!-- SETTINGS -->
     <section class="tab-content">
-        <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher" redirect-url="https://migrospro.ch">
+        <o-migrospro-request-form show-password-text="afficher" hide-password-text="cacher"
+            redirect-url="https://migrospro.ch">
             <div class="content">
                 <section>
                     <m-form role="form">
@@ -190,66 +162,78 @@
                                     <label class="control-label" for="Data_CivilityId">Civillité *</label>
                                     <div class="form-radio-group">
                                         <label>
-                                            <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio" value="1"> M 
+                                            <input id="Data_CivilityId" name="Data.CivilityId" required="" type="radio"
+                                                value="1"> M
                                         </label>
-                                        <label> 
-                                            <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio" value="2"> Mme 
+                                        <label>
+                                            <input id="Data_CivilityId_Mme" name="Data.CivilityId" type="radio"
+                                                value="2"> Mme
                                         </label>
-                                        <label> 
-                                            <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio" value="3"> Autre 
+                                        <label>
+                                            <input id="Data_CivilityId_Autre" name="Data.CivilityId" type="radio"
+                                                value="3"> Autre
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_FirstName">Prénom *</label>
                                     <div>
-                                        <input class="form-control" id="Data_FirstName" name="Data.FirstName" type="text" value="" required>
+                                        <input class="form-control" id="Data_FirstName" name="Data.FirstName"
+                                            type="text" value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_LastName">Nom *</label>
                                     <div>
-                                        <input class="form-control" id="Data_LastName" name="Data.LastName" type="text" value="" required>
+                                        <input class="form-control" id="Data_LastName" name="Data.LastName" type="text"
+                                            value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_Email">E-mail professionnel *</label>
                                     <div>
-                                        <input class="form-control" id="Data_Email" name="Data.Email" type="email" value="" required>
+                                        <input class="form-control" id="Data_Email" name="Data.Email" type="email"
+                                            value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_MobileNumber">Mobile</label>
                                     <div>
-                                        <input class="form-control" id="Data_MobileNumber" name="Data.MobileNumber" type="tel">
+                                        <input class="form-control" id="Data_MobileNumber" name="Data.MobileNumber"
+                                            type="tel">
                                     </div>
                                 </div>
                                 <h3>Modifier votre mot de passe</h3>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_PasswordCurrent">Mot de passe actuel</label>
                                     <div>
-                                        <input class="form-control" id="Data_PasswordCurrent" name="Data.PasswordCurrent" type="password" value="">
+                                        <input class="form-control" id="Data_PasswordCurrent"
+                                            name="Data.PasswordCurrent" type="password" value="">
                                         <span>afficher</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="Data_PasswordNew">Mot de passe</label>
                                     <div>
-                                        <input class="form-control" id="Data_PasswordNew" name="Data.PasswordNew" type="password" value="">
+                                        <input class="form-control" id="Data_PasswordNew" name="Data.PasswordNew"
+                                            type="password" value="">
                                         <span>afficher</span>
                                     </div>
                                     <div>Min. 8 caractères, y compris les lettres, chiffres et caractères spéciaux</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="Data_PasswordConfirm">Confirmer le mot de passe</label>
+                                    <label class="control-label" for="Data_PasswordConfirm">Confirmer le mot de
+                                        passe</label>
                                     <div>
-                                        <input class="form-control" id="Data_PasswordConfirm" name="Data.PasswordConfirm" type="password" value="">
+                                        <input class="form-control" id="Data_PasswordConfirm"
+                                            name="Data.PasswordConfirm" type="password" value="">
                                         <span>afficher</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <input class="form-control" id="Data_TwoFactor" name="Data.TwoFactor" type="checkbox"> 
+                                        <input class="form-control" id="Data_TwoFactor" name="Data.TwoFactor"
+                                            type="checkbox">
                                         Activer l'authentification à 2 facteurs (E-Mail)
                                     </label>
                                 </div>
