@@ -19,6 +19,17 @@ export default class Favorites extends Shadow() {
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.shouldRenderHTML()) this.renderHTML()
     if (this.selection) this.selection.addEventListener('change', this.selectEventListener)
+    this.dispatchEvent(new CustomEvent('request-list-favorites',
+      {
+        detail: {
+          this: this,
+          favorite: 'EMPTY'
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }
+    ))
   }
 
   disconnectedCallback () {

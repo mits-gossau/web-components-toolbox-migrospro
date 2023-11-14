@@ -118,29 +118,27 @@
             de devis.</p>
 
         <c-migrospro-favorites>
-                    <o-migrospro-favorites 
-                        answer-event-name="list-favorites" 
-                        request-event-name="request-list-favorites">
-                        <m-form role="form">
-                            <div class="two-column-align-bottom">
-                                <div>
-                                    <label for="devis">Mon devis</label>
-                                    <select id="devis" name="devis">
-                                        <option value="">Choisissez une option</option>
-                                        <option value="d1">Devis 1</option>
-                                        <option value="d2">Devis 2</option>
-                                        <option value="d3">Devis 3</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <a-button namespace="button-primary-">Ajouter au devis</a-button>
-                                    <!-- <input type="submit" value="Ajouter au devis" /> -->
-                                </div>
-                            </div>
-                            <!-- <p style="color:var(--m-orange-600)">Tout sélectionner</p> -->
-                            <a-button namespace="button-action-">Tout sélectionner</a-button>
-                        </m-form>
-                    </o-migrospro-favorites>
+            <o-migrospro-favorites answer-event-name="list-favorites" request-event-name="request-list-favorites">
+                <m-form role="form">
+                    <div class="two-column-align-bottom">
+                        <div>
+                            <label for="devis">Mon devis</label>
+                            <select id="devis" name="devis">
+                                <option value="EMPTY" selected>Choisissez une option</option>
+                                <option value="d1">Devis 1</option>
+                                <option value="d2">Devis 2</option>
+                                <option value="d3">Devis 3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <a-button namespace="button-primary-">Ajouter au devis</a-button>
+                        </div>
+                    </div>
+                    <div class="spacer">
+                        <a-button namespace="button-secondary-">Tout sélectionner</a-button>
+                    </div>
+                </m-form>
+            </o-migrospro-favorites>
         </c-migrospro-favorites>
     </section>
 
