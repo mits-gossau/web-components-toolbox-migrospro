@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
+/* global self */
+
 /**
  * RequestForm
  * An example at: src/es/components/pages/Benutzerprofil.html
@@ -171,8 +173,7 @@ export default class RequestForm extends Shadow() {
     // @ts-ignore
     let action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSubmit
 
-    if (clickedButtonValue === 'submit') {
-    }
+    // if (clickedButtonValue === 'submit') {}
 
     if (clickedButtonValue === 'saveForLater') {
       // @ts-ignore

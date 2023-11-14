@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
+/* global self */
+
 /**
  * ButtonToggle
  * An example at: src/es/components/pages/Benutzerprofil.html
