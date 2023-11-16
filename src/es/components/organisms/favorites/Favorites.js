@@ -19,6 +19,7 @@ export default class Favorites extends Shadow() {
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.shouldRenderHTML()) this.renderHTML()
     if (this.selection) this.selection.addEventListener('change', this.selectEventListener)
+    document.body.addEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
     this.dispatchEvent(new CustomEvent('request-list-favorites',
       {
         detail: {
@@ -34,6 +35,11 @@ export default class Favorites extends Shadow() {
 
   disconnectedCallback () {
     this.selection.removeEventListener('change', this.selectEventListener)
+    document.body.removeEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
+  }
+
+  answerEventNameListener = (event) => {
+    console.log('event list favorites', event)
   }
 
   selectEventListener (event) {
