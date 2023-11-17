@@ -33,10 +33,10 @@ export default class Favorites extends Shadow() {
       method: 'GET',
       signal: this.abortController.signal
     }
-    const productId = event.detail.id
+
     // @ts-ignore
     // TODO: Change API
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiToggleFavorite}?id=${productId}`
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiGetActiveOrderAndOrderItemsEnrichedProductData}`
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
       detail: {
         fetch: fetch(endpoint, fetchOptions).then(async response => {

@@ -18,7 +18,7 @@ export default class Favorites extends Shadow() {
   connectedCallback () {
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.shouldRenderHTML()) this.renderHTML()
-    if (this.selection) this.selection.addEventListener('change', this.selectEventListener)
+    this.selection.addEventListener('change', this.selectEventListener)
     document.body.addEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
     this.dispatchEvent(new CustomEvent('request-list-favorites',
       {
@@ -39,10 +39,13 @@ export default class Favorites extends Shadow() {
   }
 
   answerEventNameListener = (event) => {
-    console.log('event list favorites', event)
+    event.detail.fetch.then(data => {
+      console.log('data', data)
+    })
   }
 
-  selectEventListener (event) {
+  selectEventListener = (event) => {
+    this.addToOrderBtn.setAttribute('order-id', event.target.value)
     this.dispatchEvent(new CustomEvent('request-list-favorites',
       {
         detail: {
@@ -79,6 +82,9 @@ export default class Favorites extends Shadow() {
       :host {
         display:block;
       }
+      :host label {
+        padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
+      }
       :host .product-list {
         margin: 1.25rem 0;
       }
@@ -106,9 +112,9 @@ export default class Favorites extends Shadow() {
       data.products.forEach(product => {
         products += /* html */ `
         <m-product-card 
-        is-logged-in="true"
-        is-selectable="true"
-        data='${JSON.stringify(product)}'
+          is-logged-in="true"
+          is-selectable="true"
+          data='${JSON.stringify(product)}'
         ></m-product-card>
         `
       })
@@ -122,5 +128,9 @@ export default class Favorites extends Shadow() {
 
   get selection () {
     return this.root.querySelector('select') || null
+  }
+
+  get addToOrderBtn () {
+    return this.root.getElementById('addToOffer') || null
   }
 }

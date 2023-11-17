@@ -131,7 +131,12 @@
                             </select>
                         </div>
                         <div>
-                            <a-button namespace="button-primary-">Ajouter au devis</a-button>
+                            <style>
+                                :host {
+                                    --button-primary-height:2.88em;
+                                }
+                            </style>
+                            <a-button id="addToOffer" namespace="button-primary-">Ajouter au devis</a-button>
                         </div>
                     </div>
                     <div class="spacer">
