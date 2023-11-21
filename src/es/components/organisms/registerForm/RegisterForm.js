@@ -89,12 +89,13 @@ export default class RegisterForm extends Shadow() {
           const currentInputLabel = this.querySelector(`[required-field-label='${additionalRequiredFieldId}']`)
           // TVA radio btn value has to be 1 if its yes
           if (+event.target.value === 1) {
-            if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+            if (currentInputLabel && !currentInputLabel.textContent.trim().slice(-3).includes('*')) {
+              currentInputLabel.textContent = `${currentInputLabel.textContent} *`
+            }
             additionalRequiredField.required = true
             additionalRequiredField.setAttribute('conditional-required', true)
-          }
-          // TVA radio btn value has to be 0 if its no
-          else {
+          } else {
+            // TVA radio btn value has to be 0 if its no
             const conditionalSelectElement = this.querySelector('[data-conditional-required-element-enabled]')
             const requiredOptionValue = conditionalSelectElement.querySelector('option[additional-required-field]').value
             if (+conditionalSelectElement.value !== +requiredOptionValue) {
@@ -241,6 +242,7 @@ export default class RegisterForm extends Shadow() {
           }
           return field
         }
+        return false
       })
 
       if (emptyRequiredFields.length !== 0) {
@@ -351,7 +353,9 @@ export default class RegisterForm extends Shadow() {
             showedElements.forEach(elem => {
               const conditionalRequiredFieldsInElement = elem.querySelectorAll('[conditional-required]')
               if (conditionalRequiredFieldsInElement.length > 0) {
-                conditionalRequiredFieldsInElement.forEach(elem => elem.required = true)
+                conditionalRequiredFieldsInElement.forEach(elem => {
+                  elem.required = true
+                })
               }
               elem.style.display = 'block'
             })
@@ -361,7 +365,9 @@ export default class RegisterForm extends Shadow() {
             hidedElements.forEach(elem => {
               const conditionalRequiredFieldsInElement = elem.querySelectorAll('[conditional-required]')
               if (conditionalRequiredFieldsInElement.length > 0) {
-                conditionalRequiredFieldsInElement.forEach(elem => elem.required = false)
+                conditionalRequiredFieldsInElement.forEach(elem => {
+                  elem.required = false
+                })
               }
               elem.style.display = 'none'
             })

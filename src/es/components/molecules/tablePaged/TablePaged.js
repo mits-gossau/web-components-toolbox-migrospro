@@ -88,11 +88,13 @@ export default class TablePaged extends Shadow() {
           this.url.searchParams.set(name, value + ' Descending')
           break
         }
+        break
       case 'pageNumber':
-        if (Number(value) == 0 || Number(value) == 1) {
+        if (Number(value) === 0 || Number(value) === 1) {
           this.url.searchParams.delete(name)
           break
         }
+        break
       default:
         this.url.searchParams.set(name, value)
     };
