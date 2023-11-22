@@ -29,7 +29,69 @@
                     display: none;
                 }
             </style>
-            <o-wrapper flex-nowrap-mobile namespace="wrapper-teaser-" data-id="fruits-legumes">
+            <o-grid namespace="grid-4columns-" data-id="fruits-legumes">
+                <a-button namespace="button-category-teaser-" tag="fruits-legumes_fruits" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load
+                                defaultSource="../src/img/migrospro/category-sample2.jpg" alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>fruits-legumes_fruits</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-teaser-" tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag"
+                    request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load
+                                defaultSource="../src/img/migrospro/category-sample2.jpg" alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-teaser-" tag="BeSS_010106" min-percentage="50"
+                    active-detail-property-name="fetch:tag" request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load
+                                defaultSource="../src/img/migrospro/category-sample2.jpg" alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>BeSS_010106xx</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-teaser-" tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag"
+                    request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load
+                                defaultSource="../src/img/migrospro/category-sample2.jpg" alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+                <a-button namespace="button-category-teaser-" tag="BeSS_97" min-percentage="50" active-detail-property-name="fetch:tag"
+                    request-event-name="request-list-product" answer-event-name="list-product">
+                    <m-teaser namespace=teaser-plainer->
+                        <figure>
+                            <a-picture namespace="teaser-plainer-" picture-load
+                                defaultSource="../src/img/migrospro/category-sample2.jpg" alt="default-alt-tag"></a-picture>
+                            <figcaption>
+                                <p>SSO Products (BeSS_97)</p>
+                            </figcaption>
+                        </figure>
+                    </m-teaser>
+                </a-button>
+            </o-grid>
+            <!-- <o-wrapper namespace="wrapper-teaser-" simulate-children="4" data-id="fruits-legumes" tabindex="0" class="">
                 <a-button namespace="button-category-teaser-" tag="fruits-legumes_fruits" min-percentage="50"
                     active-detail-property-name="fetch:tag" request-event-name="request-list-product"
                     answer-event-name="list-product">
@@ -95,7 +157,7 @@
                         </figure>
                     </m-teaser>
                 </a-button>
-            </o-wrapper>
+            </o-wrapper> -->
             <o-wrapper namespace=wrapper-teaser- data-id="BeSS_010119" simulate-children="4">
                 <m-teaser namespace="teaser-plainer-">
                     <figure>
