@@ -120,6 +120,7 @@ export default class RegisterForm extends Shadow() {
     // next step
     const formSteps = this.root.querySelectorAll('.form-steps li')
     const sections = this.root.querySelectorAll('m-form .section')
+    const formWrapper = this.root.querySelector("section")
     const nextButtons = this.root.querySelectorAll('a-button')
 
     nextButtons.forEach((button, index) => {
@@ -171,6 +172,8 @@ export default class RegisterForm extends Shadow() {
           sendEvent(index + 2)
 
           getRequiredFields()
+          // scroll up to first input of form
+          formWrapper.scrollIntoView()
         }
 
         // if step before last step is valid, make last step active and ready and clickable
