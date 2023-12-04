@@ -16,7 +16,6 @@ export default class Favorites extends Shadow() {
    */
   constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
-    this.itemsLoaded = false
   }
 
   connectedCallback() {
@@ -79,13 +78,17 @@ export default class Favorites extends Shadow() {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
       }
       :host .product-list {
+        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         margin: 1.25rem 0;
       }
       :host .no-products {
-        display: flex;
-        justify-content: center;
         align-items: center;
         border-top: 1px solid var(--m-black);
+        display: flex;
+        justify-content: center;
       }
     `
   }
@@ -101,7 +104,7 @@ export default class Favorites extends Shadow() {
       }
     ])
 
-    return Promise.all([fetchModules]).then(() => {
+    Promise.all([fetchModules]).then(() => {
       this.renderFavoritesContent(data)
     })
   }
@@ -112,8 +115,7 @@ export default class Favorites extends Shadow() {
     const favorites = data[0].response
     this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('order-id', data[0].id)
-    const fav = this.renderFavorites(favorites)
-    this.html = fav
+    this.html = this.renderFavorites(favorites)
   }
 
   renderSelection(data) {
@@ -130,9 +132,9 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavorites(favorites) {
-    let HTMLfavorites = ''
+    let HTMLFavorites = '<div class="product-list">'
     favorites.forEach(favorite => {
-      HTMLfavorites += /* html */ `
+      HTMLFavorites += /* html */ `
       <m-product-card
         is-logged-in="true"
         is-selectable="true"
@@ -140,7 +142,8 @@ export default class Favorites extends Shadow() {
       ></m-product-card>
       `
     })
-    return HTMLfavorites
+    HTMLFavorites += "</div>"
+    return HTMLFavorites
   }
 
   get selection() {
