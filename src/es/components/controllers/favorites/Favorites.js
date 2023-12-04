@@ -12,21 +12,20 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  * @type {CustomElementConstructor}
  */
 export default class Favorites extends Shadow() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
     this.abortController = null
   }
 
-  connectedCallback () {
+  connectedCallback() {
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     document.body.removeEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
   }
 
-  requestListFavoritesEventListener (event) {
-    console.log('controller value:', event.detail)
+  async requestListFavoritesEventListener(event) {
     if (this.abortController) this.abortController.abort()
     this.abortController = new AbortController()
     const fetchOptions = {
@@ -35,14 +34,15 @@ export default class Favorites extends Shadow() {
     }
 
     // @ts-ignore
-    // TODO: Change API
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`
+    const api = [`${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`, `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavorites}`]
+
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
       detail: {
-        fetch: fetch(endpoint, fetchOptions).then(async response => {
+        fetch: Promise.all(api.map(async url => {
+          const response = await fetch(url, fetchOptions)
           if (response.status >= 200 && response.status <= 299) return await response.json()
           throw new Error(response.statusText)
-        })
+        }))
       },
       bubbles: true,
       cancelable: true,

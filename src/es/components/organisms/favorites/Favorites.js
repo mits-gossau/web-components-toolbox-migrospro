@@ -28,8 +28,7 @@ export default class Favorites extends Shadow() {
     this.dispatchEvent(new CustomEvent('request-list-favorites',
       {
         detail: {
-          this: this,
-          favorite: 'EMPTY'
+          this: this
         },
         bubbles: true,
         cancelable: true,
@@ -45,8 +44,7 @@ export default class Favorites extends Shadow() {
 
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
     event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
-      console.log('data', data)
-      this.renderHTML(data.response)
+      this.renderHTML(data)
     })
   }
 
@@ -105,16 +103,17 @@ export default class Favorites extends Shadow() {
 
     return Promise.all([fetchModules]).then(() => {
       this.renderFavoritesContent(data)
-      // console.log('--', products)
-      // const nested = this.html
-      // this.html = ''
-      // this.html = nested
     })
   }
 
   renderFavoritesContent(data) {
-    this.renderSelection(data)
+    // TODO Talk with JJ
+    const orders = data[0].response
+    const favorites = data[0].response
+    this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('order-id', data[0].id)
+    const fav = this.renderFavorites(favorites)
+    this.html = fav
   }
 
   renderSelection(data) {
@@ -128,33 +127,20 @@ export default class Favorites extends Shadow() {
       i++
     }
     if (this.selection.length) this.hidden = false
-    this.fetchItems(data)
   }
 
-  fetchItems(data) {
-    console.log(data)
-    // this.dispatchEvent(new CustomEvent('request-list-favorites',
-    //   {
-    //     detail: {
-    //       this: this,
-    //       favorite: event.target.value
-    //     },
-    //     bubbles: true,
-    //     cancelable: true,
-    //     composed: true
-    //   }
-    // ))
-    // let products = ''
-
-    // data.products.forEach(product => {
-    //   products += /* html */ `
-    //   <m-product-card
-    //     is-logged-in="true"
-    //     is-selectable="true"
-    //     data='${JSON.stringify(product)}'
-    //   ></m-product-card>
-    //   `
-    // })
+  renderFavorites(favorites) {
+    let HTMLfavorites = ''
+    favorites.forEach(favorite => {
+      HTMLfavorites += /* html */ `
+      <m-product-card
+        is-logged-in="true"
+        is-selectable="true"
+        data='${JSON.stringify(favorite)}'
+      ></m-product-card>
+      `
+    })
+    return HTMLfavorites
   }
 
   get selection() {
