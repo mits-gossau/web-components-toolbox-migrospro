@@ -11,11 +11,16 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class Favorites extends Shadow() {
-  constructor (options = {}, ...args) {
+  /**
+   * @param {any} args
+   */
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
+    this.itemsLoaded = false
   }
 
-  connectedCallback () {
+  connectedCallback() {
+    this.hidden = true
     if (this.shouldRenderCSS()) this.renderCSS()
     if (this.shouldRenderHTML()) this.renderHTML()
     this.selection.addEventListener('change', this.selectEventListener)
@@ -33,30 +38,20 @@ export default class Favorites extends Shadow() {
     ))
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     this.selection.removeEventListener('change', this.selectEventListener)
     document.body.removeEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
   }
 
-  answerEventNameListener = (event) => {
-    event.detail.fetch.then(data => {
+  answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
+    event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
       console.log('data', data)
+      this.renderHTML(data.response)
     })
   }
 
-  selectEventListener = (event) => {
+  selectEventListener = (/** @type {{ target: { value: any; }; }} */ event) => {
     this.addToOrderBtn.setAttribute('order-id', event.target.value)
-    this.dispatchEvent(new CustomEvent('request-list-favorites',
-      {
-        detail: {
-          this: this,
-          favorite: event.target.value
-        },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      }
-    ))
   }
 
   /**
@@ -64,20 +59,20 @@ export default class Favorites extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
   /**
- * evaluates if a render is necessary
- *
- * @return {boolean}
- */
-  shouldRenderHTML () {
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+  */
+  shouldRenderHTML() {
     return !this.selection
   }
 
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */ `
       :host {
         display:block;
@@ -97,8 +92,10 @@ export default class Favorites extends Shadow() {
     `
   }
 
-  // TODO: Reflect on the parameters again
-  renderHTML (data = { products: [] }) {
+  /**
+   * @param {undefined} [data]
+   */
+  renderHTML(data) {
     const fetchModules = this.fetchModules([
       {
         path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/productCard/ProductCard.js`,
@@ -107,30 +104,64 @@ export default class Favorites extends Shadow() {
     ])
 
     return Promise.all([fetchModules]).then(() => {
-      let products = ''
-
-      data.products.forEach(product => {
-        products += /* html */ `
-        <m-product-card 
-          is-logged-in="true"
-          is-selectable="true"
-          data='${JSON.stringify(product)}'
-        ></m-product-card>
-        `
-      })
-
-      console.log('--', products)
-      const nested = this.html
-      this.html = ''
-      this.html = nested
+      this.renderFavoritesContent(data)
+      // console.log('--', products)
+      // const nested = this.html
+      // this.html = ''
+      // this.html = nested
     })
   }
 
-  get selection () {
+  renderFavoritesContent(data) {
+    this.renderSelection(data)
+    this.addToOrderBtn.setAttribute('order-id', data[0].id)
+  }
+
+  renderSelection(data) {
+    let i = 0
+    for (const key in data) {
+      const option = document.createElement('option')
+      option.value = data[key].id
+      option.text = data[key].name
+      if (i === 0) option.setAttribute('selected', 'selected')
+      this.selection.appendChild(option)
+      i++
+    }
+    if (this.selection.length) this.hidden = false
+    this.fetchItems(data)
+  }
+
+  fetchItems(data) {
+    console.log(data)
+    // this.dispatchEvent(new CustomEvent('request-list-favorites',
+    //   {
+    //     detail: {
+    //       this: this,
+    //       favorite: event.target.value
+    //     },
+    //     bubbles: true,
+    //     cancelable: true,
+    //     composed: true
+    //   }
+    // ))
+    // let products = ''
+
+    // data.products.forEach(product => {
+    //   products += /* html */ `
+    //   <m-product-card
+    //     is-logged-in="true"
+    //     is-selectable="true"
+    //     data='${JSON.stringify(product)}'
+    //   ></m-product-card>
+    //   `
+    // })
+  }
+
+  get selection() {
     return this.root.querySelector('select') || null
   }
 
-  get addToOrderBtn () {
+  get addToOrderBtn() {
     return this.root.getElementById('addToOffer') || null
   }
 }
