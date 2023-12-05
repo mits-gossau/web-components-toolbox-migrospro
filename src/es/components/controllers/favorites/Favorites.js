@@ -15,6 +15,7 @@ export default class Favorites extends Shadow() {
   constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
     this.abortController = null
+    this.abortAddToFavoriteController = null
   }
 
   connectedCallback() {
@@ -53,6 +54,39 @@ export default class Favorites extends Shadow() {
   }
 
   requestAddToFavoritesEventListener = (event) => {
-    console.log("update");
+    // TODO: Talk with JJ
+    // orderId !?
+    const orderId = event.detail.tags[0]
+    const favoriteList = this.root.querySelector('o-migrospro-favorites')
+    const productCards = favoriteList.root.querySelectorAll('m-product-card')
+    const selectedProducts = Array.from(productCards).map(product => {
+      if (product.hasAttribute('selected')) {
+        return product.getAttribute('id')
+      } else {
+        return undefined
+      }
+    }).filter(e => e).toString()
+
+    if (this.abortAddToFavoriteController) this.abortAddToFavoriteController.abort()
+    this.abortAddToFavoriteController = new AbortController()
+    const fetchOptions = {
+      method: 'GET',
+      signal: this.abortAddToFavoriteController.signal
+    }
+
+    // @ts-ignore
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddToFavorites}&mapiProductId=${selectedProducts}`
+
+    this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
+      detail: {
+        fetch: fetch(endpoint, fetchOptions).then(async response => {
+          if (response.status >= 200 && response.status <= 299) return await response.json()
+          throw new Error(response.statusText)
+        })
+      },
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }))
   }
 }
