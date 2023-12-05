@@ -112,7 +112,7 @@ export default class Favorites extends Shadow() {
   renderFavoritesContent(data) {
     // TODO Talk with JJ
     const orders = data[0].response
-    const favorites = data[0].response
+    const favorites = data[1].response
     this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('order-id', data[0].id)
     this.html = this.renderFavorites(favorites)
@@ -137,19 +137,20 @@ export default class Favorites extends Shadow() {
       HTMLFavorites += /* html */ `
       <m-product-card
         is-logged-in="true"
-        is-selectable="true"
         data='${JSON.stringify(favorite)}'
       ></m-product-card>
       `
     })
-    HTMLFavorites += "</div>"
+    HTMLFavorites += '</div>'
     return HTMLFavorites
   }
 
+  // orders dropdown
   get selection() {
     return this.root.querySelector('select') || null
   }
 
+  // add btn
   get addToOrderBtn() {
     return this.root.getElementById('addToOffer') || null
   }
