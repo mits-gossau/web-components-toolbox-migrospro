@@ -28,7 +28,7 @@ export default class Favorites extends Shadow() {
     document.body.removeEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
   }
 
-  async requestListFavoritesEventListener(event) {
+  requestListFavoritesEventListener = async (event) => {
     if (this.abortController) this.abortController.abort()
     this.abortController = new AbortController()
     const fetchOptions = {
@@ -53,7 +53,7 @@ export default class Favorites extends Shadow() {
     }))
   }
 
-  requestAddToFavoritesEventListener = (event) => {
+  requestAddToFavoritesEventListener = async (event) => {
     // TODO: Talk with JJ
     // orderId !?
     const orderId = event.detail.tags[0]
