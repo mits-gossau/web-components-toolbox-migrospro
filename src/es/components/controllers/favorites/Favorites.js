@@ -19,10 +19,12 @@ export default class Favorites extends Shadow() {
 
   connectedCallback() {
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
+    document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
   }
 
   disconnectedCallback() {
     document.body.removeEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
+    document.body.removeEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
   }
 
   async requestListFavoritesEventListener(event) {
@@ -48,5 +50,9 @@ export default class Favorites extends Shadow() {
       cancelable: true,
       composed: true
     }))
+  }
+
+  requestAddToFavoritesEventListener = (event) => {
+    console.log("update");
   }
 }

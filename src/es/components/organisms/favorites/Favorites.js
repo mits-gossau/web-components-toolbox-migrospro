@@ -48,7 +48,7 @@ export default class Favorites extends Shadow() {
   }
 
   selectEventListener = (/** @type {{ target: { value: any; }; }} */ event) => {
-    this.addToOrderBtn.setAttribute('order-id', event.target.value)
+    this.addToOrderBtn.setAttribute('tag', event.target.value)
   }
 
   /**
@@ -114,7 +114,7 @@ export default class Favorites extends Shadow() {
     const orders = data[0].response
     const favorites = data[1].response
     this.renderSelection(orders)
-    this.addToOrderBtn.setAttribute('order-id', data[0].id)
+    this.addToOrderBtn.setAttribute('tag', orders[0].id)
     this.html = this.renderFavorites(favorites)
   }
 
