@@ -116,27 +116,22 @@
     <section class="tab-content">
         <p>Conservez vos produits et services favoris pour les retrouver plus rapidement et les ajouter à vos demandes
             de devis.</p>
-
         <c-migrospro-favorites>
             <o-migrospro-favorites answer-event-name="list-favorites" request-event-name="request-list-favorites">
                 <m-form role="form">
                     <div class="two-column-align-bottom">
                         <div>
                             <label for="devis">Mon devis</label>
-                            <select id="devis" name="devis">
-                                <option value="EMPTY" selected>Choisissez une option</option>
-                                <option value="d1">Devis 1</option>
-                                <option value="d2">Devis 2</option>
-                                <option value="d3">Devis 3</option>
-                            </select>
+                            <select id="devis" name="devis" class="form-control"></select>
                         </div>
                         <div>
                             <style>
                                 :host {
-                                    --button-primary-height:2.88em;
+                                    --button-primary-height: 2.88em;
                                 }
                             </style>
-                            <a-button id="addToOffer" namespace="button-primary-">Ajouter au devis</a-button>
+                            <a-button id="addToOffer" namespace="button-primary-"
+                                request-event-name="request-add-favorite-to-order">Ajouter au devis</a-button>
                         </div>
                     </div>
                     <div class="spacer">

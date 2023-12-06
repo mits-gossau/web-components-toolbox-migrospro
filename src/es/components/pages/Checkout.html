@@ -123,7 +123,15 @@
 
                 <div>
                     <label for="delivery-date">Date de livraison souhaitée *</label>
-                    <input type="date" name="preferredDeliveryDate" id="delivery-date" data-min-days="3" required />
+                    <a-flatpickr
+                        name="preferredDeliveryDate"
+                        id="delivery-date"
+                        required
+                        namespace="flatpickr-default-"
+                        filter-type="date"
+                        data-min-days="3"
+                    >
+                    </a-flatpickr>
                 </div>
 
                 <a-migrospro-spacer height="2rem"></a-migrospro-spacer>

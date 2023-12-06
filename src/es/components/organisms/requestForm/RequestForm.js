@@ -96,11 +96,46 @@ export default class RequestForm extends Shadow() {
     // update delivery date minimum
     const deliveryDate = this.root.getElementById('delivery-date')
     if (deliveryDate) {
-      const minDays = deliveryDate.getAttribute('min-days') || 3
-      const currentDate = new Date()
-      currentDate.setDate(currentDate.getDate() + minDays)
-      const minDate = currentDate.toISOString().substr(0, 10)
-      deliveryDate.setAttribute('min', minDate)
+      const deliveryDelay = +deliveryDate.getAttribute("data-min-days") || 0
+      let earliestDeliveryDay = new Date()
+      let latestDeliveryDay = new Date()
+      earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + deliveryDelay))
+
+      // if earliest delivery date is Saturday => set earliest delivery date to Monday
+      if (earliestDeliveryDay.getDay() === 6) {
+        earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 2))
+      }
+      // if earliest delivery date is Sunday => set earliest delivery date to Monday
+      if (earliestDeliveryDay.getDay() === 0) {
+        earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 1))
+      }
+      // set latest delivery date 1 year from current day
+      latestDeliveryDay = new Date(latestDeliveryDay.setFullYear(latestDeliveryDay.getFullYear() + 1))
+      let earliestDeliveryDayCopy = earliestDeliveryDay
+      
+      function calculateWeekendDays() {
+        let weekends = []
+        while(earliestDeliveryDayCopy < latestDeliveryDay){
+          earliestDeliveryDayCopy.setDate(earliestDeliveryDayCopy.getDate() + 1);
+            if(earliestDeliveryDayCopy.getDay() === 0 || earliestDeliveryDayCopy.getDay() == 6){
+                weekends.push(`${earliestDeliveryDayCopy.getDate()}.${earliestDeliveryDayCopy.getMonth() + 1}.${earliestDeliveryDayCopy.getFullYear()}`)
+            }
+        }
+        return weekends
+      }
+    
+
+       deliveryDate.setAttribute('options', JSON.stringify({
+         allowInput: true,
+         mode: 'single',
+         maxDate: `${latestDeliveryDay.getDate()}.${latestDeliveryDay.getMonth() + 1}.${latestDeliveryDay.getFullYear()}`,
+         minDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
+         defaultDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
+         disable: calculateWeekendDays(),
+         locale: {
+          "firstDayOfWeek": 1
+         },
+       }))
     }
 
     // get order id and write it in hidden field
