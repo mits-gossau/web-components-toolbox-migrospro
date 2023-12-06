@@ -21,11 +21,13 @@ export default class Favorites extends Shadow() {
   connectedCallback() {
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
+    document.body.addEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
   }
 
   disconnectedCallback() {
     document.body.removeEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.removeEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
+    document.body.removeEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
   }
 
   requestListFavoritesEventListener = async (event) => {
@@ -40,6 +42,7 @@ export default class Favorites extends Shadow() {
     const api = [`${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`, `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavorites}`]
 
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
+      
       detail: {
         fetch: Promise.all(api.map(async url => {
           const response = await fetch(url, fetchOptions)
@@ -88,5 +91,9 @@ export default class Favorites extends Shadow() {
       cancelable: true,
       composed: true
     }))
+  }
+
+  deleteFavoriteFromOrderEventListener = async (event) => {
+    console.log("event", event)
   }
 }
