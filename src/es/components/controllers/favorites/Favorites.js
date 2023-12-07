@@ -42,7 +42,6 @@ export default class Favorites extends Shadow() {
     const api = [`${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`, `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavorites}`]
 
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
-      
       detail: {
         fetch: Promise.all(api.map(async url => {
           const response = await fetch(url, fetchOptions)
@@ -94,6 +93,32 @@ export default class Favorites extends Shadow() {
   }
 
   deleteFavoriteFromOrderEventListener = async (event) => {
-    console.log("event", event)
-  }
+    console.log("remove", event)
+    // TODO Figure out the product ID
+    /*
+    const productId = event.detail.tags[0]
+
+    if (this.abortAddToFavoriteController) this.abortAddToFavoriteController.abort()
+    this.abortAddToFavoriteController = new AbortController()
+    const fetchOptions = {
+      // TODO is it GET? or PUT?
+      method: 'GET',
+      signal: this.abortAddToFavoriteController.signal
+    }
+
+    // @ts-ignore
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiDeleteFromFavoriteList}&mapiProductId=${productId}`
+
+    this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
+      detail: {
+        fetch: fetch(endpoint, fetchOptions).then(async response => {
+          if (response.status >= 200 && response.status <= 299) return await response.json()
+          throw new Error(response.statusText)
+        })
+      },
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }))
+  */}
 }

@@ -44,6 +44,12 @@ export default class Favorites extends Shadow() {
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
     event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
       this.renderHTML(data)
+      // TODO 1 Talk with Joel about response
+      // TODO 2 Add delete request on the event
+      // TODO 3 Add loader if Joel not done yet
+      // TODO 4 Add function of adding the favorite products to orders
+      // TODO 5 ?? 
+      console.log("event", event, data)
     })
   }
 
