@@ -19,9 +19,11 @@ export default class Favorites extends Shadow() {
   }
 
   connectedCallback() {
+    console.log(this)
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
+    // this.temporary()
   }
 
   disconnectedCallback() {
@@ -40,7 +42,7 @@ export default class Favorites extends Shadow() {
 
     // @ts-ignore
     const api = [`${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`, `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavorites}`]
-
+    
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
       detail: {
         fetch: Promise.all(api.map(async url => {
@@ -56,8 +58,6 @@ export default class Favorites extends Shadow() {
   }
 
   requestAddToFavoritesEventListener = async (event) => {
-    // TODO: Talk with JJ
-    // orderId !?
     const orderId = event.detail.tags[0]
     const favoriteList = this.root.querySelector('o-migrospro-favorites')
     const productCards = favoriteList.root.querySelectorAll('m-product-card')
@@ -76,8 +76,11 @@ export default class Favorites extends Shadow() {
       signal: this.abortAddToFavoriteController.signal
     }
 
+    console.log("orderId",orderId)
+    console.log("selectedProducts", selectedProducts)
+
     // @ts-ignore
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddToFavorites}&mapiProductId=${selectedProducts}`
+    /*const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId${orderId}&mapiProductIds=${selectedProducts}`
 
     this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
       detail: {
@@ -89,27 +92,42 @@ export default class Favorites extends Shadow() {
       bubbles: true,
       cancelable: true,
       composed: true
-    }))
+    }))*/
   }
 
   deleteFavoriteFromOrderEventListener = async (event) => {
-    console.log("remove", event)
-    // TODO Figure out the product ID
-    /*
     const productId = event.detail.tags[0]
 
     if (this.abortAddToFavoriteController) this.abortAddToFavoriteController.abort()
     this.abortAddToFavoriteController = new AbortController()
     const fetchOptions = {
-      // TODO is it GET? or PUT?
       method: 'GET',
       signal: this.abortAddToFavoriteController.signal
     }
 
     // @ts-ignore
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiDeleteFromFavoriteList}&mapiProductId=${productId}`
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiDeleteFromFavoriteList}?mapiProductId=${productId}`
 
-    this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
+    fetch(endpoint, fetchOptions).then(async response => {
+      if (response.status >= 200 && response.status <= 299) {
+        this.requestListFavoritesEventListener()
+        return
+      }
+      throw new Error(response.statusText)
+    })
+  }
+
+  temporary = async () => {
+    if (this.addAbortController) this.addAbortController.abort()
+    this.addAbortController = new AbortController()
+    const fetchOptions = {
+      method: 'GET',
+      signal: this.addAbortController.signal
+    }
+    const productId = "260238501000"
+    // @ts-ignore
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiToggleFavorite}?mapiProductId=${productId}`
+    this.dispatchEvent(new CustomEvent(this.getAttribute('update-favorite') || 'update-favorite', {
       detail: {
         fetch: fetch(endpoint, fetchOptions).then(async response => {
           if (response.status >= 200 && response.status <= 299) return await response.json()
@@ -120,5 +138,5 @@ export default class Favorites extends Shadow() {
       cancelable: true,
       composed: true
     }))
-  */}
+  }
 }

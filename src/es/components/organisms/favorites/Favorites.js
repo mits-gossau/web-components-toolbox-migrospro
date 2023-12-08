@@ -34,22 +34,23 @@ export default class Favorites extends Shadow() {
         composed: true
       }
     ))
+    this.root.addEventListener(this.getAttribute('set-all-favorite-products-to-selected') || 'set-all-favorite-products-to-selected', this.setAllFavoriteProductsToSelectedEventListener)
   }
 
   disconnectedCallback() {
     this.selection.removeEventListener('change', this.selectEventListener)
     document.body.removeEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
+    this.root.removeEventListener(this.getAttribute('set-all-favorite-products-to-selected') || 'set-all-favorite-products-to-selected', this.setAllFavoriteProductsToSelectedEventListener)
   }
 
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
     event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
-      this.renderHTML(data)
+     this.renderHTML(data)
       // TODO 1 Talk with Joel about response
       // TODO 2 Add delete request on the event
       // TODO 3 Add loader if Joel not done yet
       // TODO 4 Add function of adding the favorite products to orders
       // TODO 5 ?? 
-      console.log("event", event, data)
     })
   }
 
@@ -100,7 +101,7 @@ export default class Favorites extends Shadow() {
   }
 
   /**
-   * @param {undefined} [data]
+   * @param {any | undefined} [data]
    */
   renderHTML(data) {
     const fetchModules = this.fetchModules([
@@ -116,9 +117,8 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavoritesContent(data) {
-    // TODO Talk with JJ
     const orders = data[0].response
-    const favorites = data[1].response
+    const favorites = data[1].response.products
     this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('tag', orders[0].id)
     this.html = this.renderFavorites(favorites)
@@ -138,18 +138,45 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavorites(favorites) {
+    const favoriteList = this.root.querySelector(".product-list")
+    if(favoriteList) favoriteList.remove()
+
     let HTMLFavorites = '<div class="product-list">'
-    favorites.forEach(favorite => {
-      HTMLFavorites += /* html */ `
-      <m-product-card
-        is-logged-in="true"
-        data='${JSON.stringify(favorite)}'
-      ></m-product-card>
-      `
-    })
+    if(favorites && favorites.length > 0) {
+      favorites.forEach(favorite => {
+        HTMLFavorites += /* html */ `
+        <m-product-card
+          is-logged-in="true"
+          data='${JSON.stringify(favorite)}'
+        ></m-product-card>
+        `
+      })
+    } 
     HTMLFavorites += '</div>'
     return HTMLFavorites
   }
+
+  setAllFavoriteProductsToSelectedEventListener() {
+    const allProductCardsCheckboxes = Array.from(this.querySelectorAll("m-product-card")).map(pc => pc.shadowRoot.querySelector('input[type="checkbox"]')).filter(checkbox => checkbox)
+    // if all checkbox checked set it all not checked
+    if(allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+      allProductCardsCheckboxes.map(checkbox => {
+        checkbox.click()
+        checkbox.checked = false
+      })
+      return 
+    } 
+    // if not all checkbox checked set it all checked
+    if(!allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+      allProductCardsCheckboxes.map(checkbox => {
+        if(!checkbox.checked){
+          checkbox.click()
+          checkbox.checked = true
+        }
+      })
+      return
+    }
+}
 
   // orders dropdown
   get selection() {
