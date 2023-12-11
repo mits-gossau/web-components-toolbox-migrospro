@@ -224,6 +224,7 @@ export default class RequestForm extends Shadow() {
           console.error('Failed to push event data:', err)
         }
       }
+    }
 
     const formData = new FormData(event.target)
     const jsonData = {}
