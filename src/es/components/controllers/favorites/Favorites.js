@@ -21,13 +21,13 @@ export default class Favorites extends Shadow() {
   connectedCallback() {
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
-    document.body.addEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
+    document.body.addEventListener(this.getAttribute('delete-favorite-product-from-favorite-list') || 'delete-favorite-product-from-favorite-list', this.deleteFavoriteFromFavoriteListEventListener)
   }
 
   disconnectedCallback() {
     document.body.removeEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.removeEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
-    document.body.removeEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
+    document.body.removeEventListener(this.getAttribute('delete-favorite-product-from-favorite-list') || 'delete-favorite-product-from-favorite-list', this.deleteFavoriteFromFavoriteListEventListener)
   }
 
   requestListFavoritesEventListener = async (event) => {
@@ -105,7 +105,7 @@ export default class Favorites extends Shadow() {
     return  
   }
 
-  deleteFavoriteFromOrderEventListener = async (event) => {
+  deleteFavoriteFromFavoriteListEventListener = async (event) => {
     const productId = event.detail.tags[0]
 
     if (this.abortAddToFavoriteController) this.abortAddToFavoriteController.abort()
