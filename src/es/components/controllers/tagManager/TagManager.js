@@ -54,9 +54,9 @@ export default class MigrosProTagManager extends TagManager {
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.addEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
-    document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
+    // document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.addEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
-    document.body.addEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
+    // document.body.addEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
   }
 
   disconnectedCallback () {
@@ -67,9 +67,9 @@ export default class MigrosProTagManager extends TagManager {
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.removeEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
-    document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
+    // document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.removeEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
-    document.body.removeEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
+    // document.body.removeEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
   }
 
   basketListener = (event, action) => {
