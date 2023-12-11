@@ -65,7 +65,7 @@ export default class Favorites extends Shadow() {
       if (product.hasAttribute('selected')) {
         return product.getAttribute('id')
       } else {
-        return undefined
+        return 
       }
     }).filter(e => e).toString()
 
@@ -76,23 +76,35 @@ export default class Favorites extends Shadow() {
       signal: this.abortAddToFavoriteController.signal
     }
 
-    console.log("orderId",orderId)
-    console.log("selectedProducts", selectedProducts)
-
+  if(orderId && selectedProducts) {
     // @ts-ignore
-    /*const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId${orderId}&mapiProductIds=${selectedProducts}`
-
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId=${orderId}&mapiProductIds=${selectedProducts}`
+    
     this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
       detail: {
         fetch: fetch(endpoint, fetchOptions).then(async response => {
-          if (response.status >= 200 && response.status <= 299) return await response.json()
+          if (response.status >= 200 && response.status <= 299) {
+            const productCards = this.root.querySelector('o-migrospro-favorites').root.querySelectorAll("m-product-card")
+            const allProductCardsCheckboxes = Array.from(productCards).map(pc => pc.shadowRoot.querySelector('input[type="checkbox"]')).filter(checkbox => checkbox)
+              allProductCardsCheckboxes.map(checkbox => {
+                if(checkbox.checked){
+                  checkbox.click()
+                  checkbox.checked = false
+                }
+                return
+              })
+            
+            return await response.json()
+          }
           throw new Error(response.statusText)
         })
       },
       bubbles: true,
       cancelable: true,
       composed: true
-    }))*/
+    }))
+   }  
+    return  
   }
 
   deleteFavoriteFromOrderEventListener = async (event) => {

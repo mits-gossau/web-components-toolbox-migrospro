@@ -45,7 +45,7 @@ export default class Favorites extends Shadow() {
 
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
     event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
-     this.renderHTML(data)
+      this.renderHTML(data)
       // TODO 1 Talk with Joel about response
       // TODO 2 Add delete request on the event
       // TODO 3 Add loader if Joel not done yet
@@ -80,10 +80,14 @@ export default class Favorites extends Shadow() {
     this.css = /* css */ `
       :host {
         display:block;
-      }
+        --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
+        --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
+    }
+
       :host label {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
       }
+
       :host .product-list {
         align-items: stretch;
         display: flex;
@@ -91,6 +95,7 @@ export default class Favorites extends Shadow() {
         flex-wrap: wrap;
         margin: 1.25rem 0;
       }
+
       :host .no-products {
         align-items: center;
         border-top: 1px solid var(--m-black);
@@ -139,10 +144,10 @@ export default class Favorites extends Shadow() {
 
   renderFavorites(favorites) {
     const favoriteList = this.root.querySelector(".product-list")
-    if(favoriteList) favoriteList.remove()
+    if (favoriteList) favoriteList.remove()
 
     let HTMLFavorites = '<div class="product-list">'
-    if(favorites && favorites.length > 0) {
+    if (favorites && favorites.length > 0) {
       favorites.forEach(favorite => {
         HTMLFavorites += /* html */ `
         <m-product-card
@@ -151,7 +156,7 @@ export default class Favorites extends Shadow() {
         ></m-product-card>
         `
       })
-    } 
+    }
     HTMLFavorites += '</div>'
     return HTMLFavorites
   }
@@ -159,24 +164,24 @@ export default class Favorites extends Shadow() {
   setAllFavoriteProductsToSelectedEventListener() {
     const allProductCardsCheckboxes = Array.from(this.querySelectorAll("m-product-card")).map(pc => pc.shadowRoot.querySelector('input[type="checkbox"]')).filter(checkbox => checkbox)
     // if all checkbox checked set it all not checked
-    if(allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+    if (allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
       allProductCardsCheckboxes.map(checkbox => {
         checkbox.click()
         checkbox.checked = false
       })
-      return 
-    } 
+      return
+    }
     // if not all checkbox checked set it all checked
-    if(!allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+    if (!allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
       allProductCardsCheckboxes.map(checkbox => {
-        if(!checkbox.checked){
+        if (!checkbox.checked) {
           checkbox.click()
           checkbox.checked = true
         }
       })
       return
     }
-}
+  }
 
   // orders dropdown
   get selection() {
