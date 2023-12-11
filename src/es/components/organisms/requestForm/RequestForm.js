@@ -213,7 +213,17 @@ export default class RequestForm extends Shadow() {
     if (clickedButtonValue === 'saveForLater') {
       // @ts-ignore
       action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
-    }
+    } else if (this.hasAttribute('event-data')) {
+      this.eventData = JSON.parse(this.getAttribute('event-data'))
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        try {
+          // @ts-ignore
+          window.dataLayer.push(this.eventData)
+        } catch (err) {
+          console.error('Failed to push event data:', err)
+        }
+      }
 
     const formData = new FormData(event.target)
     const jsonData = {}
