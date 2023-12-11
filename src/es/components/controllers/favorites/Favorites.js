@@ -19,11 +19,9 @@ export default class Favorites extends Shadow() {
   }
 
   connectedCallback() {
-    console.log(this)
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('delete-favorite-from-order') || 'delete-favorite-from-order', this.deleteFavoriteFromOrderEventListener)
-    // this.temporary()
   }
 
   disconnectedCallback() {
@@ -127,28 +125,5 @@ export default class Favorites extends Shadow() {
       }
       throw new Error(response.statusText)
     })
-  }
-
-  temporary = async () => {
-    if (this.addAbortController) this.addAbortController.abort()
-    this.addAbortController = new AbortController()
-    const fetchOptions = {
-      method: 'GET',
-      signal: this.addAbortController.signal
-    }
-    const productId = "260238501000"
-    // @ts-ignore
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiToggleFavorite}?mapiProductId=${productId}`
-    this.dispatchEvent(new CustomEvent(this.getAttribute('update-favorite') || 'update-favorite', {
-      detail: {
-        fetch: fetch(endpoint, fetchOptions).then(async response => {
-          if (response.status >= 200 && response.status <= 299) return await response.json()
-          throw new Error(response.statusText)
-        })
-      },
-      bubbles: true,
-      cancelable: true,
-      composed: true
-    }))
   }
 }

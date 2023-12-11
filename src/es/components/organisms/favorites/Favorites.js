@@ -46,11 +46,6 @@ export default class Favorites extends Shadow() {
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
     event.detail.fetch.then((/** @type {{ response: any; }} */ data) => {
       this.renderHTML(data)
-      // TODO 1 Talk with Joel about response
-      // TODO 2 Add delete request on the event
-      // TODO 3 Add loader if Joel not done yet
-      // TODO 4 Add function of adding the favorite products to orders
-      // TODO 5 ?? 
     })
   }
 
@@ -81,13 +76,11 @@ export default class Favorites extends Shadow() {
       :host {
         display:block;
         --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
-        --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
-    }
-
+        --product-image-margin: var(--product-image-margin-custom, auto .5em);
+      }
       :host label {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
       }
-
       :host .product-list {
         align-items: stretch;
         display: flex;
@@ -95,7 +88,6 @@ export default class Favorites extends Shadow() {
         flex-wrap: wrap;
         margin: 1.25rem 0;
       }
-
       :host .no-products {
         align-items: center;
         border-top: 1px solid var(--m-black);
