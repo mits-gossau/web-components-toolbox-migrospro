@@ -101,10 +101,6 @@ export default class RequestForm extends Shadow() {
       let latestDeliveryDay = new Date()
       earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + deliveryDelay))
 
-      // if earliest delivery date is Saturday => set earliest delivery date to Monday
-      if (earliestDeliveryDay.getDay() === 6) {
-        earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 2))
-      }
       // if earliest delivery date is Sunday => set earliest delivery date to Monday
       if (earliestDeliveryDay.getDay() === 0) {
         earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 1))
@@ -117,7 +113,7 @@ export default class RequestForm extends Shadow() {
         let weekends = []
         while(earliestDeliveryDayCopy < latestDeliveryDay){
           earliestDeliveryDayCopy.setDate(earliestDeliveryDayCopy.getDate() + 1);
-            if(earliestDeliveryDayCopy.getDay() === 0 || earliestDeliveryDayCopy.getDay() == 6){
+            if(earliestDeliveryDayCopy.getDay() === 0){
                 weekends.push(`${earliestDeliveryDayCopy.getDate()}.${earliestDeliveryDayCopy.getMonth() + 1}.${earliestDeliveryDayCopy.getFullYear()}`)
             }
         }
