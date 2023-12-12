@@ -77,6 +77,7 @@ export default class Favorites extends Shadow() {
         display:block;
         --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
         --product-image-margin: var(--product-image-margin-custom, auto .5em);
+        --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
       }
       :host label {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
