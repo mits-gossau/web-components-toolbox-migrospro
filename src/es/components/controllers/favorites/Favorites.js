@@ -82,17 +82,7 @@ export default class Favorites extends Shadow() {
       detail: {
         fetch: fetch(endpoint, fetchOptions).then(async response => {
           if (response.status >= 200 && response.status <= 299) {
-            const productCards = this.root.querySelector('o-migrospro-favorites').root.querySelectorAll("m-product-card")
-            const allProductCardsCheckboxes = Array.from(productCards).map(pc => pc.shadowRoot.querySelector('input[type="checkbox"]')).filter(checkbox => checkbox)
-              allProductCardsCheckboxes.map(checkbox => {
-                if(checkbox.checked){
-                  checkbox.click()
-                  checkbox.checked = false
-                }
-                return
-              })
-            
-            return await response.json()
+            window.location = window.location
           }
           throw new Error(response.statusText)
         })

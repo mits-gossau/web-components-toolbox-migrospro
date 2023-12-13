@@ -76,6 +76,7 @@ export default class Favorites extends Shadow() {
       :host {
         display:block;
         --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
+        --product-list-img-max-height: var(--product-list-img-max-height-custom, 7em);
         --product-image-margin: var(--product-image-margin-custom, auto .5em);
         --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
       }
@@ -115,11 +116,14 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavoritesContent(data) {
-    const orders = data[0].response
-    const favorites = data[1].response.products
-    this.renderSelection(orders)
-    this.addToOrderBtn.setAttribute('tag', orders[0].id)
-    this.html = this.renderFavorites(favorites)
+    let orders
+    let favorites
+    if(data[0].response) orders =  data[0].response
+    if(data[1].response && data[1].response.products) favorites = data[1].response.products
+
+    if(orders) this.renderSelection(orders)
+    if(orders) this.addToOrderBtn.setAttribute('tag', orders[0].id)
+    if(favorites) this.html = this.renderFavorites(favorites)
   }
 
   renderSelection(data) {
