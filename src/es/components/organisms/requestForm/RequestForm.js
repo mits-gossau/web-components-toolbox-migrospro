@@ -229,6 +229,9 @@ export default class RequestForm extends Shadow() {
       jsonData[key] = value
     })
 
+    // change time format because of problem of identity
+    if(jsonData['preferredDeliveryDate']) jsonData['preferredDeliveryDate'] = jsonData['preferredDeliveryDate'].split(".").reverse().join("-")
+
     if (action) {
       try {
         const response = await fetch(action, {

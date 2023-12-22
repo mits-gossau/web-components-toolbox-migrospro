@@ -76,8 +76,11 @@ export default class Favorites extends Shadow() {
       :host {
         display:block;
         --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
+        --product-list-img-max-height: var(--product-list-img-max-height-custom, 7em);
         --product-image-margin: var(--product-image-margin-custom, auto .5em);
         --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
+        --system-notification-flex-direction: row;
+        --system-notification-margin: 1em 0 0 0;
       }
       :host label {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
@@ -106,7 +109,11 @@ export default class Favorites extends Shadow() {
       {
         path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/productCard/ProductCard.js`,
         name: 'm-product-card'
-      }
+      },
+      {
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/systemNotification/SystemNotification.js`,
+        name: 'm-system-notification'
+      },
     ])
 
     Promise.all([fetchModules]).then(() => {
@@ -115,14 +122,19 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavoritesContent(data) {
-    const orders = data[0].response
-    const favorites = data[1].response.products
+    this.hidden = false
+    let orders = data[0].response || [{ id: 0, name: "Nouvelle commande" }]
+    let favorites = data[1].response && data[1].response.products ? data[1].response.products : null
     this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('tag', orders[0].id)
     this.html = this.renderFavorites(favorites)
   }
 
   renderSelection(data) {
+    // remove all dropdown option before rerendering
+    let currentOptions = this.root.querySelector('select').querySelectorAll('option')
+    if(currentOptions.length > 0) currentOptions.forEach(option => option.remove())
+    
     let i = 0
     for (const key in data) {
       const option = document.createElement('option')
@@ -166,6 +178,14 @@ export default class Favorites extends Shadow() {
         ></m-product-card>
         `
       })
+    } else {
+      HTMLFavorites += /* html */ `
+      <m-system-notification>
+       <div slot="description">
+         <p>Les produits que vous ajouterez en favoris seront affichés ici.</p>  
+       </div>
+      </m-system-notification>
+      `
     }
     HTMLFavorites += '</div>'
     return HTMLFavorites
