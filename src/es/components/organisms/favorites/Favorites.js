@@ -142,6 +142,23 @@ export default class Favorites extends Shadow() {
     let HTMLFavorites = '<div class="product-list">'
     if (favorites && favorites.length > 0) {
       favorites.forEach(favorite => {
+          // replace apostrophes because they break JSON
+          if (favorite.name != null)
+            favorite.name = favorite.name.replaceAll("'","")
+          if (favorite.brand != null)
+            favorite.brand = favorite.brand.replaceAll("'","")
+          if (favorite.package_size != null)
+            favorite.package_size = favorite.package_size.replaceAll("'","")
+
+          if (favorite.names != null) {
+            if (favorite.names.name_sap != null)
+              favorite.names.name_sap = favorite.names.name_sap.replaceAll("'","")
+            if (favorite.names.short_name != null)
+              favorite.names.short_name = favorite.names.short_name.replaceAll("'","")
+            if (favorite.names.name_rpa  != null)	
+              favorite.names.name_rpa = favorite.names.name_rpa.replaceAll("'","") 
+          }
+          
         HTMLFavorites += /* html */ `
         <m-product-card
           is-logged-in="true"
