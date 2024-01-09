@@ -74,25 +74,32 @@ export default class Favorites extends Shadow() {
       signal: this.abortAddToFavoriteController.signal
     }
 
-  if(orderId && selectedProducts) {
-    // @ts-ignore
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId=${orderId}&mapiProductIds=${selectedProducts}`
-    
-    this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
-      detail: {
-        fetch: fetch(endpoint, fetchOptions).then(async response => {
-          if (response.status >= 200 && response.status <= 299) {
-            window.location = window.location
-          }
-          throw new Error(response.statusText)
-        })
-      },
-      bubbles: true,
-      cancelable: true,
-      composed: true
-    }))
-   }  
-    return  
+    if (orderId && selectedProducts) {
+      // @ts-ignore
+      const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId=${orderId}&mapiProductIds=${selectedProducts}`
+
+      this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
+        detail: {
+          fetch: fetch(endpoint, fetchOptions).then(async response => {
+            if (response.status >= 200 && response.status <= 299) {
+              this.dispatchEvent(new CustomEvent('request-basket',
+                {
+                  bubbles: true,
+                  cancelable: true,
+                  composed: true
+                }
+              ))
+              this.renderNotification("c-favorite", "Ajouté avec succès au panier", { top: "4em", right: "2em" })
+            }
+            throw new Error(response.statusText)
+          })
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
+    return
   }
 
   deleteFavoriteFromFavoriteListEventListener = async (event) => {
@@ -115,5 +122,57 @@ export default class Favorites extends Shadow() {
       }
       throw new Error(response.statusText)
     })
+  }
+
+  renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
+    if (dependsElementName && description) {
+      const chainedElement = document.querySelector(`${dependsElementName}`)
+      const systemNotificationWrapper = document.createElement("div")
+      systemNotificationWrapper.innerHTML = /* html */ `
+      <m-system-notification>
+        <style>
+        :host {
+          position: absolute;
+          z-index: 5555;
+          width: auto;
+        }
+        :host .description {
+          padding: 0.5 !important;
+          display: flex;
+        }
+        :host .description p {
+          margin: 0 0 0 1em;
+        }
+        </style>
+        <div class="description" slot="description">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="#2E5C23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>${description}</p>
+        </div>
+      </m-system-notification>
+      `
+      const systemNotificationElement = systemNotificationWrapper.querySelector("m-system-notification")
+
+      if (systemNotificationElement) {
+        // @ts-ignore
+        systemNotificationElement.style.top = position.top || "";
+        // @ts-ignore
+        systemNotificationElement.style.right = position.right || "";
+        // @ts-ignore
+        systemNotificationElement.style.bottom = position.bottom || "";
+        // @ts-ignore
+        systemNotificationElement.style.left = position.left || "";
+        systemNotificationElement.setAttribute("type", type)
+        systemNotificationWrapper.setAttribute("role", "alert")
+      }
+
+      chainedElement?.prepend(systemNotificationWrapper)
+      // remove notification
+      setTimeout(() => {
+        chainedElement?.removeChild(systemNotificationWrapper)
+      }, renderingDuration);
+    }
+    return
   }
 }
