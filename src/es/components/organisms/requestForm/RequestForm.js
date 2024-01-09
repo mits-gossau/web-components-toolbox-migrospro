@@ -101,10 +101,6 @@ export default class RequestForm extends Shadow() {
       let latestDeliveryDay = new Date()
       earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + deliveryDelay))
 
-      // if earliest delivery date is Saturday => set earliest delivery date to Monday
-      if (earliestDeliveryDay.getDay() === 6) {
-        earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 2))
-      }
       // if earliest delivery date is Sunday => set earliest delivery date to Monday
       if (earliestDeliveryDay.getDay() === 0) {
         earliestDeliveryDay = new Date(earliestDeliveryDay.setDate(earliestDeliveryDay.getDate() + 1))
@@ -117,7 +113,7 @@ export default class RequestForm extends Shadow() {
         let weekends = []
         while(earliestDeliveryDayCopy < latestDeliveryDay){
           earliestDeliveryDayCopy.setDate(earliestDeliveryDayCopy.getDate() + 1);
-            if(earliestDeliveryDayCopy.getDay() === 0 || earliestDeliveryDayCopy.getDay() == 6){
+            if(earliestDeliveryDayCopy.getDay() === 0){
                 weekends.push(`${earliestDeliveryDayCopy.getDate()}.${earliestDeliveryDayCopy.getMonth() + 1}.${earliestDeliveryDayCopy.getFullYear()}`)
             }
         }
@@ -213,6 +209,17 @@ export default class RequestForm extends Shadow() {
     if (clickedButtonValue === 'saveForLater') {
       // @ts-ignore
       action = self.Environment.getApiBaseUrl('migrospro').apiOrderCheckoutSaveForLater
+    } else if (this.hasAttribute('event-data')) {
+      this.eventData = JSON.parse(this.getAttribute('event-data'))
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        try {
+          // @ts-ignore
+          window.dataLayer.push(this.eventData)
+        } catch (err) {
+          console.error('Failed to push event data:', err)
+        }
+      }
     }
 
     const formData = new FormData(event.target)
@@ -221,6 +228,9 @@ export default class RequestForm extends Shadow() {
     formData.forEach((value, key) => {
       jsonData[key] = value
     })
+
+    // change time format because of problem of identity
+    if(jsonData['preferredDeliveryDate']) jsonData['preferredDeliveryDate'] = jsonData['preferredDeliveryDate'].split(".").reverse().join("-")
 
     if (action) {
       try {

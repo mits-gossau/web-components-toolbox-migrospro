@@ -282,6 +282,11 @@ export default class TablePaged extends Shadow() {
       // Input field to current search
       this.InputField.setAttribute('type', 'text')
       this.InputField.value = this.query.get('searchString') ?? ''
+      this.InputField.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter') {
+          this.search();
+        }
+      })
       searchDiv.appendChild(this.InputField)
 
       // Add search button with icon

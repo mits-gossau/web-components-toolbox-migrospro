@@ -34,11 +34,13 @@ export default class Favorites extends Shadow() {
         composed: true
       }
     ))
+    this.root.addEventListener(this.getAttribute('set-all-favorite-products-to-selected') || 'set-all-favorite-products-to-selected', this.setAllFavoriteProductsToSelectedEventListener)
   }
 
   disconnectedCallback() {
     this.selection.removeEventListener('change', this.selectEventListener)
     document.body.removeEventListener(this.getAttribute('answer-event-name') || 'answer-event-name', this.answerEventNameListener)
+    this.root.removeEventListener(this.getAttribute('set-all-favorite-products-to-selected') || 'set-all-favorite-products-to-selected', this.setAllFavoriteProductsToSelectedEventListener)
   }
 
   answerEventNameListener = (/** @type {{ detail: { fetch: Promise<any>; }; }} */ event) => {
@@ -73,6 +75,12 @@ export default class Favorites extends Shadow() {
     this.css = /* css */ `
       :host {
         display:block;
+        --product-list-img-max-width: var(--product-list-img-max-width-custom, 8em);
+        --product-list-img-max-height: var(--product-list-img-max-height-custom, 7em);
+        --product-image-margin: var(--product-image-margin-custom, auto .5em);
+        --product-image-margin-mobile: var(--product-image-margin-mobile-custom, auto .5em);
+        --system-notification-flex-direction: row;
+        --system-notification-margin: 1em 0 0 0;
       }
       :host label {
         padding:0 0 calc(var(--content-spacing-mobile) / 2) 0;
@@ -94,14 +102,18 @@ export default class Favorites extends Shadow() {
   }
 
   /**
-   * @param {undefined} [data]
+   * @param {any | undefined} [data]
    */
   renderHTML(data) {
     const fetchModules = this.fetchModules([
       {
         path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/productCard/ProductCard.js`,
         name: 'm-product-card'
-      }
+      },
+      {
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/es/components/molecules/systemNotification/SystemNotification.js`,
+        name: 'm-system-notification'
+      },
     ])
 
     Promise.all([fetchModules]).then(() => {
@@ -110,15 +122,19 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavoritesContent(data) {
-    // TODO Talk with JJ
-    const orders = data[0].response
-    const favorites = data[1].response
+    this.hidden = false
+    let orders = data[0].response || [{ id: 0, name: "Nouvelle commande" }]
+    let favorites = data[1].response && data[1].response.products ? data[1].response.products : null
     this.renderSelection(orders)
     this.addToOrderBtn.setAttribute('tag', orders[0].id)
     this.html = this.renderFavorites(favorites)
   }
 
   renderSelection(data) {
+    // remove all dropdown option before rerendering
+    let currentOptions = this.root.querySelector('select').querySelectorAll('option')
+    if(currentOptions.length > 0) currentOptions.forEach(option => option.remove())
+    
     let i = 0
     for (const key in data) {
       const option = document.createElement('option')
@@ -132,17 +148,69 @@ export default class Favorites extends Shadow() {
   }
 
   renderFavorites(favorites) {
+    const favoriteList = this.root.querySelector(".product-list")
+    if (favoriteList) favoriteList.remove()
+
     let HTMLFavorites = '<div class="product-list">'
-    favorites.forEach(favorite => {
+    if (favorites && favorites.length > 0) {
+      favorites.forEach(favorite => {
+          // replace apostrophes because they break JSON
+          if (favorite.name != null)
+            favorite.name = favorite.name.replaceAll("'","")
+          if (favorite.brand != null)
+            favorite.brand = favorite.brand.replaceAll("'","")
+          if (favorite.package_size != null)
+            favorite.package_size = favorite.package_size.replaceAll("'","")
+
+          if (favorite.names != null) {
+            if (favorite.names.name_sap != null)
+              favorite.names.name_sap = favorite.names.name_sap.replaceAll("'","")
+            if (favorite.names.short_name != null)
+              favorite.names.short_name = favorite.names.short_name.replaceAll("'","")
+            if (favorite.names.name_rpa  != null)	
+              favorite.names.name_rpa = favorite.names.name_rpa.replaceAll("'","") 
+          }
+          
+        HTMLFavorites += /* html */ `
+        <m-product-card
+          is-logged-in="true"
+          data='${JSON.stringify(favorite)}'
+        ></m-product-card>
+        `
+      })
+    } else {
       HTMLFavorites += /* html */ `
-      <m-product-card
-        is-logged-in="true"
-        data='${JSON.stringify(favorite)}'
-      ></m-product-card>
+      <m-system-notification>
+       <div slot="description">
+         <p>Les produits que vous ajouterez en favoris seront affichés ici.</p>  
+       </div>
+      </m-system-notification>
       `
-    })
+    }
     HTMLFavorites += '</div>'
     return HTMLFavorites
+  }
+
+  setAllFavoriteProductsToSelectedEventListener() {
+    const allProductCardsCheckboxes = Array.from(this.querySelectorAll("m-product-card")).map(pc => pc.shadowRoot.querySelector('input[type="checkbox"]')).filter(checkbox => checkbox)
+    // if all checkbox checked set it all not checked
+    if (allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+      allProductCardsCheckboxes.map(checkbox => {
+        checkbox.click()
+        checkbox.checked = false
+      })
+      return
+    }
+    // if not all checkbox checked set it all checked
+    if (!allProductCardsCheckboxes.every(checkbox => checkbox.checked)) {
+      allProductCardsCheckboxes.map(checkbox => {
+        if (!checkbox.checked) {
+          checkbox.click()
+          checkbox.checked = true
+        }
+      })
+      return
+    }
   }
 
   // orders dropdown

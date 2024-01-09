@@ -21,11 +21,13 @@ export default class Favorites extends Shadow() {
   connectedCallback() {
     document.body.addEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.addEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
+    document.body.addEventListener(this.getAttribute('delete-favorite-product-from-favorite-list') || 'delete-favorite-product-from-favorite-list', this.deleteFavoriteFromFavoriteListEventListener)
   }
 
   disconnectedCallback() {
     document.body.removeEventListener(this.getAttribute('request-list-favorites') || 'request-list-favorites', this.requestListFavoritesEventListener)
     document.body.removeEventListener(this.getAttribute('request-add-favorite-to-order') || 'request-add-favorite-to-order', this.requestAddToFavoritesEventListener)
+    document.body.removeEventListener(this.getAttribute('delete-favorite-product-from-favorite-list') || 'delete-favorite-product-from-favorite-list', this.deleteFavoriteFromFavoriteListEventListener)
   }
 
   requestListFavoritesEventListener = async (event) => {
@@ -38,7 +40,7 @@ export default class Favorites extends Shadow() {
 
     // @ts-ignore
     const api = [`${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavoriteOrders}`, `${self.Environment.getApiBaseUrl('migrospro').apiGetAllFavorites}`]
-
+    
     this.dispatchEvent(new CustomEvent(this.getAttribute('list-favorites') || 'list-favorites', {
       detail: {
         fetch: Promise.all(api.map(async url => {
@@ -54,8 +56,6 @@ export default class Favorites extends Shadow() {
   }
 
   requestAddToFavoritesEventListener = async (event) => {
-    // TODO: Talk with JJ
-    // orderId !?
     const orderId = event.detail.tags[0]
     const favoriteList = this.root.querySelector('o-migrospro-favorites')
     const productCards = favoriteList.root.querySelectorAll('m-product-card')
@@ -63,7 +63,7 @@ export default class Favorites extends Shadow() {
       if (product.hasAttribute('selected')) {
         return product.getAttribute('id')
       } else {
-        return undefined
+        return 
       }
     }).filter(e => e).toString()
 
@@ -74,13 +74,16 @@ export default class Favorites extends Shadow() {
       signal: this.abortAddToFavoriteController.signal
     }
 
+  if(orderId && selectedProducts) {
     // @ts-ignore
-    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddToFavorites}&mapiProductId=${selectedProducts}`
-
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiAddFavoritesToOrder}?orderId=${orderId}&mapiProductIds=${selectedProducts}`
+    
     this.dispatchEvent(new CustomEvent(this.getAttribute('update-add-to-favorite') || 'update-add-to-favorite', {
       detail: {
         fetch: fetch(endpoint, fetchOptions).then(async response => {
-          if (response.status >= 200 && response.status <= 299) return await response.json()
+          if (response.status >= 200 && response.status <= 299) {
+            window.location = window.location
+          }
           throw new Error(response.statusText)
         })
       },
@@ -88,5 +91,29 @@ export default class Favorites extends Shadow() {
       cancelable: true,
       composed: true
     }))
+   }  
+    return  
+  }
+
+  deleteFavoriteFromFavoriteListEventListener = async (event) => {
+    const productId = event.detail.tags[0]
+
+    if (this.abortAddToFavoriteController) this.abortAddToFavoriteController.abort()
+    this.abortAddToFavoriteController = new AbortController()
+    const fetchOptions = {
+      method: 'GET',
+      signal: this.abortAddToFavoriteController.signal
+    }
+
+    // @ts-ignore
+    const endpoint = `${self.Environment.getApiBaseUrl('migrospro').apiDeleteFromFavoriteList}?mapiProductId=${productId}`
+
+    fetch(endpoint, fetchOptions).then(async response => {
+      if (response.status >= 200 && response.status <= 299) {
+        this.requestListFavoritesEventListener()
+        return
+      }
+      throw new Error(response.statusText)
+    })
   }
 }

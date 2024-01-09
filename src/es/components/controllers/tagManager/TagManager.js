@@ -25,23 +25,23 @@ export default class MigrosProTagManager extends TagManager {
     super()
 
     this.itemSchema = {
-      item_id: 'SKU_12345',
-      item_name: 'Stan and Friends Tee',
-      affiliation: 'Google Merchandise Store',
-      coupon: 'SUMMER_FUN',
-      discount: 2.22,
+      item_id: '',
+      item_name: '',
+      affiliation: '',
+      coupon: '',
+      discount: 0.00,
       index: 0,
-      item_brand: 'Google',
-      item_category: 'Apparel',
-      item_category2: 'Adult',
-      item_category3: 'Shirts',
-      item_category4: 'Crew',
-      item_category5: 'Short sleeve',
-      item_list_id: 'related_products',
-      item_list_name: 'Related Products',
-      item_variant: 'green',
-      location_id: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
-      price: 9.99,
+      item_brand: '',
+      item_category: '',
+      item_category2: '',
+      item_category3: '',
+      item_category4: '',
+      item_category5: '',
+      item_list_id: '',
+      item_list_name: '',
+      item_variant: '',
+      location_id: '',
+      price: 0.00,
       quantity: 1
     }
   }
@@ -52,6 +52,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     // document.body.addEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.addEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     // document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.addEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
@@ -64,6 +65,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
     // document.body.removeEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
+    document.body.removeEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
     // document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.removeEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
@@ -157,6 +159,31 @@ export default class MigrosProTagManager extends TagManager {
     })
   }
 
+  clickProductListener = (event) => {
+    const clickedItem = {
+      item_id: event.detail.data.id,
+      item_name: event.detail.data.name,
+      item_brand: event.detail.data.brand,
+      price: parseFloat(event.detail.data.price),
+      unit_price: event.detail.data.unit_price,
+      vat: {
+        vat_rate_id: event.detail.data.vat.id,
+        vat_rate: event.detail.data.vat.percentage
+      }
+    }
+
+    const selectItem = {
+      event: 'select_item',
+      ecommerce: {
+        item_list_id: 'related_products',
+        item_name: 'Related Products',
+        items: [this.loop(this.itemSchema, clickedItem)]
+      }
+    }
+
+    this.sendEvent(selectItem)
+  }
+
   viewProductListener = (event) => {
     const viewedItems = []
     event.detail.fetch.then((productData) => {
@@ -190,13 +217,19 @@ export default class MigrosProTagManager extends TagManager {
       console.warn(error)
     })
   }
-
-  sendEvent (eventData) {
+/**
+ *
+ *
+ * @param {*} eventData
+ * @memberof MigrosProTagManager
+ */
+sendEvent (eventData) {
     // @ts-ignore
     const dataLayer = window.dataLayer
 
     if (typeof window !== 'undefined' && dataLayer && eventData) {
       try {
+        console.log('sendEvent', eventData)
         dataLayer.push(eventData)
       } catch (err) {
         console.error('Failed to push event data:', err)
