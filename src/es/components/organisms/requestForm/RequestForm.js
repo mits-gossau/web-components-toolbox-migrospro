@@ -250,7 +250,12 @@ export default class RequestForm extends Shadow() {
           if (redirectUrl) {
             window.location.href = redirectUrl
           } else {
-            window.location = window.location
+            // TODO notification
+            // Message: Sie haben die Bestellung abgeschickt // Erfolgreich die bestellung gespeichert
+            // window.location = window.location
+            this.renderNotification("c-favorite", "La commande active sera mise à jour.", { top: "4em", right: "2em" })
+            this.root.querySelector("m-form").querySelector("form").reset()
+
           }
         }
       } catch (error) {
@@ -491,5 +496,57 @@ export default class RequestForm extends Shadow() {
     this.html = /* html */ `
         <slot></slot>
     `
+  }
+
+  renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
+    if (dependsElementName && description) {
+      const chainedElement = document.querySelector(`${dependsElementName}`)
+      const systemNotificationWrapper = document.createElement("div")
+      systemNotificationWrapper.innerHTML = /* html */ `
+      <m-system-notification>
+        <style>
+        :host {
+          position: absolute;
+          z-index: 5555;
+          width: auto;
+        }
+        :host .description {
+          padding: 0.5 !important;
+          display: flex;
+        }
+        :host .description p {
+          margin: 0 0 0 1em;
+        }
+        </style>
+        <div class="description" slot="description">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="#2E5C23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>${description}</p>
+        </div>
+      </m-system-notification>
+      `
+      const systemNotificationElement = systemNotificationWrapper.querySelector("m-system-notification")
+
+      if (systemNotificationElement) {
+        // @ts-ignore
+        systemNotificationElement.style.top = position.top || "";
+        // @ts-ignore
+        systemNotificationElement.style.right = position.right || "";
+        // @ts-ignore
+        systemNotificationElement.style.bottom = position.bottom || "";
+        // @ts-ignore
+        systemNotificationElement.style.left = position.left || "";
+        systemNotificationElement.setAttribute("type", type)
+        systemNotificationWrapper.setAttribute("role", "alert")
+      }
+
+      chainedElement?.prepend(systemNotificationWrapper)
+      // remove notification
+      setTimeout(() => {
+        chainedElement?.removeChild(systemNotificationWrapper)
+      }, renderingDuration);
+    }
+    return
   }
 }
