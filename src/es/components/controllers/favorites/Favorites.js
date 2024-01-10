@@ -89,7 +89,14 @@ export default class Favorites extends Shadow() {
                   composed: true
                 }
               ))
+
               this.renderNotification("c-favorite", "Ajouté avec succès au panier", { top: "4em", right: "2em" })
+
+              //clear the selectedProducts and the checked checkboxes
+              Array.from(productCards).map(product => {
+                product.removeAttribute("selected")
+                product.root.querySelector('#selectCheckbox').checked = false
+              })
             }
             throw new Error(response.statusText)
           })
