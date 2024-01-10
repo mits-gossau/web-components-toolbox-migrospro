@@ -90,7 +90,7 @@ export default class Favorites extends Shadow() {
                 }
               ))
 
-              this.renderNotification("c-favorite", "Ajouté avec succès au panier", { top: "4em", right: "2em" })
+              this.renderNotification("c-favorite", "Ajouté avec succès au panier.", { top: "4em", right: "2em" })
 
               //clear the selectedProducts and the checked checkboxes
               Array.from(productCards).map(product => {
