@@ -39,8 +39,8 @@ export default class ButtonToggle extends Shadow() {
                 composed: true
               }
             ))
-
-            this.renderNotification("c-favorite", "La commande active sera mise à jour.", { top: "4em", right: "2em" })
+            const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + "px"
+            this.renderNotification("c-favorite", "La commande active sera mise à jour.", { top: scrollPosition, right: "2em" })
           }
         })
         .catch(error => console.error(error))
@@ -92,8 +92,9 @@ export default class ButtonToggle extends Shadow() {
         <style>
         :host {
           position: absolute;
-          z-index: 5555;
+          z-index: 55555;
           width: auto;
+          animation: var(--show, show .3s ease-out);
         }
         :host .description {
           padding: 0.5 !important;
@@ -101,6 +102,10 @@ export default class ButtonToggle extends Shadow() {
         }
         :host .description p {
           margin: 0 0 0 1em;
+        }
+        @keyframes show {
+          0%{opacity: 0}
+          100%{opacity: 1}
         }
         </style>
         <div class="description" slot="description">
