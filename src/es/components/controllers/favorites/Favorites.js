@@ -130,8 +130,7 @@ export default class Favorites extends Shadow() {
       throw new Error(response.statusText)
     })
   }
-
-  renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
+renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
     if (dependsElementName && description) {
       const chainedElement = document.querySelector(`${dependsElementName}`)
       const systemNotificationWrapper = document.createElement("div")
@@ -187,4 +186,5 @@ export default class Favorites extends Shadow() {
     }
     return
   }
+
 }
