@@ -41,6 +41,23 @@ export default class ButtonToggle extends Shadow() {
             ))
             const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + "px"
             this.renderNotification("c-favorite", "La commande active sera mise à jour.", { top: scrollPosition, right: "2em" })
+
+            // handle active and not active toggle button reactivity
+            const cardsWithToggleButton = Array.from(this.getRootNode().querySelectorAll("m-migrospro-card-order")).filter(card => {
+              return card.querySelectorAll("a-migrospro-button-toggle").length > 0
+            })
+
+            cardsWithToggleButton.map(card => {
+              const toggleButton = card.querySelector("a-migrospro-button-toggle")
+
+              if (toggleButton === this) {
+                this.isActive = !this.isActive
+                this.renderCSS()
+              } else {
+                toggleButton.isActive = false
+                toggleButton.renderCSS()
+              }
+            })
           }
         })
         .catch(error => console.error(error))
