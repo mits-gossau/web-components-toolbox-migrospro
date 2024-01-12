@@ -89,7 +89,7 @@ export default class Favorites extends Shadow() {
                   composed: true
                 }
               ))
-              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + "px"
+              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + 40 + "px"
               this.renderNotification("c-favorite", "Ajouté avec succès au panier.", { top: scrollPosition, right: "2em" })
 
               //clear the selectedProducts and the checked checkboxes

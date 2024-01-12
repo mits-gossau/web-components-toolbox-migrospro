@@ -251,7 +251,7 @@ export default class RequestForm extends Shadow() {
             window.location.href = redirectUrl
           } else {
             if (this.hasAttribute("notification-message")) {
-              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + "px"
+              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + 40 + "px"
               this.renderNotification("c-favorite", this.getAttribute("notification-message"), { top: scrollPosition, right: "2em", })
             }
             // @ts-ignore
