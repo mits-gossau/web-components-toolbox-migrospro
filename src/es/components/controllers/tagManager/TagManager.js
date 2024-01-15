@@ -207,7 +207,7 @@ export default class MigrosProTagManager extends TagManager {
         event: 'view_item_list',
         ecommerce: {
           item_list_id: 'related_products',
-          item_name: 'Related Products',
+          item_list_name: 'Related Products',
           items: viewedItems
         }
       }
