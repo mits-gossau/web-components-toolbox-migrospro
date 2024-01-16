@@ -13,7 +13,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RequestForm extends Shadow() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
 
     this.form = this.shadowRoot.querySelector('form')
@@ -108,30 +108,30 @@ export default class RequestForm extends Shadow() {
       // set latest delivery date 1 year from current day
       latestDeliveryDay = new Date(latestDeliveryDay.setFullYear(latestDeliveryDay.getFullYear() + 1))
       let earliestDeliveryDayCopy = earliestDeliveryDay
-      
+
       function calculateWeekendDays() {
         let weekends = []
-        while(earliestDeliveryDayCopy < latestDeliveryDay){
+        while (earliestDeliveryDayCopy < latestDeliveryDay) {
           earliestDeliveryDayCopy.setDate(earliestDeliveryDayCopy.getDate() + 1);
-            if(earliestDeliveryDayCopy.getDay() === 0){
-                weekends.push(`${earliestDeliveryDayCopy.getDate()}.${earliestDeliveryDayCopy.getMonth() + 1}.${earliestDeliveryDayCopy.getFullYear()}`)
-            }
+          if (earliestDeliveryDayCopy.getDay() === 0) {
+            weekends.push(`${earliestDeliveryDayCopy.getDate()}.${earliestDeliveryDayCopy.getMonth() + 1}.${earliestDeliveryDayCopy.getFullYear()}`)
+          }
         }
         return weekends
       }
-    
 
-       deliveryDate.setAttribute('options', JSON.stringify({
-         allowInput: true,
-         mode: 'single',
-         maxDate: `${latestDeliveryDay.getDate()}.${latestDeliveryDay.getMonth() + 1}.${latestDeliveryDay.getFullYear()}`,
-         minDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
-         defaultDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
-         disable: calculateWeekendDays(),
-         locale: {
+
+      deliveryDate.setAttribute('options', JSON.stringify({
+        allowInput: true,
+        mode: 'single',
+        maxDate: `${latestDeliveryDay.getDate()}.${latestDeliveryDay.getMonth() + 1}.${latestDeliveryDay.getFullYear()}`,
+        minDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
+        defaultDate: `${earliestDeliveryDay.getDate()}.${earliestDeliveryDay.getMonth() + 1}.${earliestDeliveryDay.getFullYear()}`,
+        disable: calculateWeekendDays(),
+        locale: {
           "firstDayOfWeek": 1
-         },
-       }))
+        },
+      }))
     }
 
     // get order id and write it in hidden field
@@ -178,7 +178,7 @@ export default class RequestForm extends Shadow() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     // check, if web component has a child form with action attribute
     // if not, add submit event listener
     if (!this.form.hasAttribute('action')) {
@@ -230,7 +230,7 @@ export default class RequestForm extends Shadow() {
     })
 
     // change time format because of problem of identity
-    if(jsonData['preferredDeliveryDate']) jsonData['preferredDeliveryDate'] = jsonData['preferredDeliveryDate'].split(".").reverse().join("-")
+    if (jsonData['preferredDeliveryDate']) jsonData['preferredDeliveryDate'] = jsonData['preferredDeliveryDate'].split(".").reverse().join("-")
 
     if (action) {
       try {
@@ -250,7 +250,18 @@ export default class RequestForm extends Shadow() {
           if (redirectUrl) {
             window.location.href = redirectUrl
           } else {
-            window.location = window.location
+            if (this.hasAttribute("notification-message")) {
+              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + 40 + "px"
+              this.renderNotification("c-favorite", this.getAttribute("notification-message"), { top: scrollPosition, right: "2em", })
+            }
+            // @ts-ignore
+            this.form.reset()
+            // if there is an open modal, close it
+            const currentModal = document.querySelector("o-modal")
+            if (currentModal && currentModal.hasAttribute('open')) {
+              // @ts-ignore
+              currentModal.shadowRoot.querySelector("#close").click()
+            }
           }
         }
       } catch (error) {
@@ -264,13 +275,13 @@ export default class RequestForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */ `
         :host {
           --background-color: transparent; 
@@ -487,9 +498,66 @@ export default class RequestForm extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.html = /* html */ `
         <slot></slot>
     `
+  }
+
+  renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
+    if (dependsElementName && description) {
+      const chainedElement = document.querySelector(`${dependsElementName}`)
+      const systemNotificationWrapper = document.createElement("div")
+      systemNotificationWrapper.innerHTML = /* html */ `
+      <m-system-notification>
+        <style>
+        :host {
+          position: absolute;
+          z-index: 55555;
+          width: auto;
+          animation: var(--show, show .3s ease-out);
+        }
+        :host .description {
+          padding: 0.5 !important;
+          display: flex;
+        }
+        :host .description p {
+          margin: 0 0 0 1em;
+        }
+        @keyframes show {
+          0%{opacity: 0}
+          100%{opacity: 1}
+        }
+        </style>
+        <div class="description" slot="description">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="#2E5C23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>${description}</p>
+        </div>
+      </m-system-notification>
+      `
+      const systemNotificationElement = systemNotificationWrapper.querySelector("m-system-notification")
+
+      if (systemNotificationElement) {
+        // @ts-ignore
+        systemNotificationElement.style.top = position.top || "";
+        // @ts-ignore
+        systemNotificationElement.style.right = position.right || "";
+        // @ts-ignore
+        systemNotificationElement.style.bottom = position.bottom || "";
+        // @ts-ignore
+        systemNotificationElement.style.left = position.left || "";
+        systemNotificationElement.setAttribute("type", type)
+        systemNotificationWrapper.setAttribute("role", "alert")
+      }
+
+      chainedElement?.prepend(systemNotificationWrapper)
+      // remove notification
+      setTimeout(() => {
+        chainedElement?.removeChild(systemNotificationWrapper)
+      }, renderingDuration);
+    }
+    return
   }
 }

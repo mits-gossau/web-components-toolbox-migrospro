@@ -82,7 +82,21 @@ export default class Favorites extends Shadow() {
         detail: {
           fetch: fetch(endpoint, fetchOptions).then(async response => {
             if (response.status >= 200 && response.status <= 299) {
-              window.location = window.location
+              this.dispatchEvent(new CustomEvent('request-basket',
+                {
+                  bubbles: true,
+                  cancelable: true,
+                  composed: true
+                }
+              ))
+              const scrollPosition = document.getElementsByTagName("html")[0].scrollTop + 40 + "px"
+              this.renderNotification("c-favorite", "Ajouté avec succès au panier.", { top: scrollPosition, right: "2em" })
+
+              //clear the selectedProducts and the checked checkboxes
+              Array.from(productCards).map(product => {
+                product.removeAttribute("selected")
+                product.root.querySelector('#selectCheckbox').checked = false
+              })
             }
             throw new Error(response.statusText)
           })
@@ -116,4 +130,61 @@ export default class Favorites extends Shadow() {
       throw new Error(response.statusText)
     })
   }
+renderNotification(dependsElementName, description, position, renderingDuration = 4000, type = "success",) {
+    if (dependsElementName && description) {
+      const chainedElement = document.querySelector(`${dependsElementName}`)
+      const systemNotificationWrapper = document.createElement("div")
+      systemNotificationWrapper.innerHTML = /* html */ `
+      <m-system-notification>
+        <style>
+        :host {
+          position: absolute;
+          z-index: 55555;
+          width: auto;
+          animation: var(--show, show .3s ease-out);
+        }
+        :host .description {
+          padding: 0.5 !important;
+          display: flex;
+        }
+        :host .description p {
+          margin: 0 0 0 1em;
+        }
+        @keyframes show {
+          0%{opacity: 0}
+          100%{opacity: 1}
+        }
+        </style>
+        <div class="description" slot="description">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="#2E5C23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>${description}</p>
+        </div>
+      </m-system-notification>
+      `
+      const systemNotificationElement = systemNotificationWrapper.querySelector("m-system-notification")
+
+      if (systemNotificationElement) {
+        // @ts-ignore
+        systemNotificationElement.style.top = position.top || "";
+        // @ts-ignore
+        systemNotificationElement.style.right = position.right || "";
+        // @ts-ignore
+        systemNotificationElement.style.bottom = position.bottom || "";
+        // @ts-ignore
+        systemNotificationElement.style.left = position.left || "";
+        systemNotificationElement.setAttribute("type", type)
+        systemNotificationWrapper.setAttribute("role", "alert")
+      }
+
+      chainedElement?.prepend(systemNotificationWrapper)
+      // remove notification
+      setTimeout(() => {
+        chainedElement?.removeChild(systemNotificationWrapper)
+      }, renderingDuration);
+    }
+    return
+  }
+
 }
