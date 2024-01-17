@@ -255,8 +255,9 @@ export default class RequestForm extends Shadow() {
               {
                 detail: {
                   position: {
-                    top: 40,
-                    right: 30,
+                    unit:"em",
+                    top: 3,
+                    right: 3,
                   },
                   description: this.getAttribute("notification-message"),
                   duration: 4000,

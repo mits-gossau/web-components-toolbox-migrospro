@@ -44,8 +44,9 @@ export default class ButtonToggle extends Shadow() {
                 {
                   detail: {
                     position: {
-                      top: 40,
-                      right: 30,
+                      unit:"em",
+                      top: 3,
+                      right: 3,
                     },
                     description: "La commande active sera mise à jour.",
                     duration: 4000,
