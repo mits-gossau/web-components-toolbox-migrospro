@@ -93,8 +93,9 @@ export default class Favorites extends Shadow() {
                 {
                   detail: {
                     position: {
-                      top: 40,
-                      right: 30,
+                      unit:"em",
+                      top: 3,
+                      right: 3,
                     },
                     description: "Ajouté avec succès au panier.",
                     duration: 4000,
