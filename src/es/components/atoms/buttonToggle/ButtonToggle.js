@@ -48,7 +48,7 @@ export default class ButtonToggle extends Shadow() {
                       top: 3,
                       right: 3,
                     },
-                    description: "La commande active sera mise à jour.",
+                    description: "La commande sélectionnée est désormais modifiable.",
                     duration: 4000,
                     type: "success"
                   },

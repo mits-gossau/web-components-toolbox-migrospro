@@ -97,7 +97,7 @@ export default class Favorites extends Shadow() {
                       top: 3,
                       right: 3,
                     },
-                    description: "Ajouté avec succès au panier.",
+                    description: "Le produit a bien été ajouté au panier.",
                     duration: 4000,
                     type: "success"
                   },
