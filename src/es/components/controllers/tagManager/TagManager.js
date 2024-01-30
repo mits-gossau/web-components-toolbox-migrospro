@@ -217,19 +217,19 @@ export default class MigrosProTagManager extends TagManager {
       console.warn(error)
     })
   }
-/**
+
+  /**
  *
  *
  * @param {*} eventData
  * @memberof MigrosProTagManager
  */
-sendEvent (eventData) {
+  sendEvent (eventData) {
     // @ts-ignore
     const dataLayer = window.dataLayer
 
     if (typeof window !== 'undefined' && dataLayer && eventData) {
       try {
-        console.log('sendEvent', eventData)
         dataLayer.push(eventData)
       } catch (err) {
         console.error('Failed to push event data:', err)
