@@ -151,7 +151,6 @@ export default class MigrosProTagManager extends TagManager {
             vat_rate: item.vat.percentage
           }
         }
-
         this.items?.push(viewItem)
       })
     }).catch((error) => {
@@ -169,7 +168,10 @@ export default class MigrosProTagManager extends TagManager {
       vat: {
         vat_rate_id: event.detail.data.vat.id,
         vat_rate: event.detail.data.vat.percentage
-      }
+      },
+      quantity: 1,
+      item_list_id: "related_products",
+      item_list_name: "Related Products",
     }
 
     const selectItem = {
