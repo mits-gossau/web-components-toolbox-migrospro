@@ -54,6 +54,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.addEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
+    document.body.addEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromOrderListener)
     // document.body.addEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.addEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
     // document.body.addEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
@@ -67,6 +68,7 @@ export default class MigrosProTagManager extends TagManager {
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.removeEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
+    document.body.removeEventListener(this.getAttribute('delete-from-order') || 'delete-from-order', this.deleteFromOrderListener)
     // document.body.removeEventListener(this.getAttribute('request-basket') || 'request-basket', this.requestListBasketListener)
     // document.body.removeEventListener(this.getAttribute('list-basket') || 'list-basket', this.listBasketListener)
     // document.body.removeEventListener(this.getAttribute('submit-order') || 'submit-order', this.submitOrderListener)
@@ -74,8 +76,10 @@ export default class MigrosProTagManager extends TagManager {
 
   basketListener = (event, action) => {
     event.detail.tags.forEach((el) => {
-      const item = this.items?.find((element) => element.item_id === el)
-
+      let item = this.items?.find((element) => element.item_id === el)
+      if (!item) { // for product detail page (razor page in backend solution)
+        item = JSON.parse(localStorage.getItem('productDetailItemObject') || '{}')
+      }
       const schemaItem = this.loop(this.itemSchema, item)
       if (action === 'add_to_cart' || action === 'add_to_wishlist') schemaItem.quantity = 1
 
@@ -102,7 +106,7 @@ export default class MigrosProTagManager extends TagManager {
     this.basketListener(event, 'remove_from_cart')
   }
 
-  addWishlistListener = (event) => {
+  addFavoriteListener = (event) => {
     this.basketListener(event, 'add_to_wishlist')
   }
 
@@ -116,6 +120,10 @@ export default class MigrosProTagManager extends TagManager {
 
   submitOrderListener = (event) => {
     console.log('submitOrderListener', event)
+  }
+
+  deleteFromOrderListener = (event) => {
+    this.basketListener(event, 'remove_from_cart')
   }
 
   listProductListener = (event) => {
