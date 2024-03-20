@@ -50,7 +50,7 @@ export default class MigrosProTagManager extends TagManager {
     super.connectedCallback()
     document.body.addEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.addEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    // document.body.addEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
+    document.body.addEventListener(this.getAttribute('request-favorite-event-name') || 'request-favorite-event-name', this.addWishlistListener)
     document.body.addEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.addEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.addEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
@@ -64,7 +64,7 @@ export default class MigrosProTagManager extends TagManager {
     super.disconnectedCallback()
     document.body.removeEventListener(this.getAttribute('add-basket') || 'add-basket', this.addBasketListener)
     document.body.removeEventListener(this.getAttribute('remove-basket') || 'remove-basket', this.removeBasketListener)
-    // document.body.removeEventListener(this.getAttribute('add-wishlist') || 'add-wishlist', this.addWishlistListener)
+    document.body.removeEventListener(this.getAttribute('request-favorite-event-name') || 'request-favorite-event-name', this.addWishlistListener)
     document.body.removeEventListener(this.getAttribute('list-product') || 'list-product', this.listProductListener)
     document.body.removeEventListener(this.getAttribute('product-clicked') || 'product-clicked', this.clickProductListener)
     document.body.removeEventListener(this.getAttribute('product-viewed') || 'product-viewed', this.viewProductListener)
@@ -77,13 +77,25 @@ export default class MigrosProTagManager extends TagManager {
   basketListener = (event, action) => {
     event.detail.tags.forEach((el) => {
       let item = this.items?.find((element) => element.item_id === el)
-      if (!item) { // for product detail page (razor page in backend solution)
-        item = JSON.parse(localStorage.getItem('productDetailItemObject') || '{}')
-      }
       const schemaItem = this.loop(this.itemSchema, item)
-      if (action === 'add_to_cart' || action === 'add_to_wishlist') schemaItem.quantity = 1
+      if (action === 'add_to_cart' || action === 'add_to_wishlist' || action === 'remove_from_cart') schemaItem.quantity = 1
 
       if (item) {
+        let currentQuantity = parseInt(item['quantity'])
+        if (currentQuantity) {
+          // update this.items so that quantity is always correct for delete from cart event
+          if (action === 'add_to_cart') {
+            item['quantity'] = currentQuantity + 1
+          } else if (action === 'remove_from_cart') {
+            item['quantity'] = currentQuantity - 1
+          }
+          // delete from cart is a pseudo event, made to differentiate between only removing 1 from cart or the whole article
+          if (action === 'pseudoEvent-delete_from_cart') {
+            schemaItem.quantity = currentQuantity
+            action = 'remove_from_cart'
+          }
+        }
+        
         const eventToCart = {
           event: action,
           ecommerce: {
@@ -106,8 +118,14 @@ export default class MigrosProTagManager extends TagManager {
     this.basketListener(event, 'remove_from_cart')
   }
 
-  addFavoriteListener = (event) => {
-    this.basketListener(event, 'add_to_wishlist')
+  deleteFromOrderListener = (event) => {
+    this.basketListener(event, 'pseudoEvent-delete_from_cart')
+  }
+
+  addWishlistListener = (event) => {
+    if (event.detail?.action === 'add') {
+      this.basketListener(event, 'add_to_wishlist')
+    }
   }
 
   requestListBasketListener = (event) => {
@@ -120,10 +138,6 @@ export default class MigrosProTagManager extends TagManager {
 
   submitOrderListener = (event) => {
     console.log('submitOrderListener', event)
-  }
-
-  deleteFromOrderListener = (event) => {
-    this.basketListener(event, 'remove_from_cart')
   }
 
   listProductListener = (event) => {
