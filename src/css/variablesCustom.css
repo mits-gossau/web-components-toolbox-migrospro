@@ -103,4 +103,5 @@
   --wrapper-text-a-text-decoration: none;
   --details-default-table-odd-background-color: transparent;
   --details-default-table-padding: 0;
+  --details-default-table-margin:0;
 }
