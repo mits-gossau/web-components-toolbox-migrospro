@@ -191,6 +191,7 @@ export default class RequestForm extends Shadow() {
 
   onSubmit = async (event) => {
     event.preventDefault()
+    event.submitter.disabled = true;
 
     this.dispatchEvent(new CustomEvent(event.target.getAttribute('submit-order') || 'submit-order',
       {
