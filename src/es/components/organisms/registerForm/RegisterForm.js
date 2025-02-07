@@ -13,7 +13,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
  */
 
 export default class RegisterForm extends Shadow() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({ importMetaUrl: import.meta.url, ...options }, ...args)
     // store in sessionStorage
     const form = this.root.querySelector('m-form > form')
@@ -65,7 +65,7 @@ export default class RegisterForm extends Shadow() {
             }
           }
         })
-        sessionStorage.setItem('formValues', JSON.stringify(formData))
+
 
         if (event.target.hasAttribute('data-conditional-required-element-enabled')) {
           const conditionalCheckedRadioBtn = this.querySelector('[additional-required-field][type="radio"]:checked')
@@ -109,6 +109,35 @@ export default class RegisterForm extends Shadow() {
             }
           }
         }
+
+        if (event.target.hasAttribute('show-component-if-checked')) {
+          const nameOfCurrentConditionalFormElement = event.target.getAttribute('show-component-if-checked')
+          const currentActiveForm = this.querySelector('form .section.active')
+          const allSiblingConditionalFormElements = Array.from(event.target.parentElement.parentElement.querySelectorAll('[show-component-if-checked]'))
+          if (allSiblingConditionalFormElements && allSiblingConditionalFormElements.length > 0 && currentActiveForm) {
+            allSiblingConditionalFormElements.forEach(elem => {
+              if (elem.getAttribute('show-component-if-checked') !== nameOfCurrentConditionalFormElement) {
+                const hiddenConditionalFormElement = currentActiveForm.querySelector(`[component-name="${elem.getAttribute('show-component-if-checked')}"]`)
+                if (hiddenConditionalFormElement) {
+                  const formDataInputFields = hiddenConditionalFormElement.querySelectorAll('input[name], select[name]')
+                  formDataInputFields.forEach(field => {
+                    if (field.tagName === 'INPUT') {
+                      field.value = ''
+                    } else if (field.tagName === 'SELECT') {
+                      field.selectedIndex = 0
+                    }
+                    formData[field.name] = ''
+                  })
+                }
+
+              }
+            })
+          }
+        }
+
+        // set formData to sessionStorage
+        sessionStorage.setItem('formValues', JSON.stringify(formData))
+
       })
     }
 
@@ -468,7 +497,7 @@ export default class RegisterForm extends Shadow() {
     })
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldRenderCSS()) this.renderCSS()
   }
 
@@ -477,13 +506,13 @@ export default class RegisterForm extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(
       `:host > style[_css], ${this.tagName} > style[_css]`
     )
   }
 
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */ `
       :host {
         --background-color: transparent; 
