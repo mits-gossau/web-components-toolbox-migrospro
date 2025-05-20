@@ -8,28 +8,32 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: var(--one-point-five-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
+        margin-top: var(--double-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
+        margin-bottom: var(--double-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
     }
     hr.mobile {
         display: none;
     }
     @media only screen and (max-width: 767px) {
-        div.tileviewRow {
-            margin-top: calc((var(--one-point-five-content-spacing) / 2) + var(--content-spacing-mobile));
-            margin-bottom: calc((var(--one-point-five-content-spacing) / 2) + var(--content-spacing-mobile));
-        }
         m-migrospro-custom-product-teaser.fullsize, div.tileviewRow, m-migrospro-custom-product-teaser.tileview {
             display: grid;
+        }
+        m-migrospro-custom-product-teaser.fullsize, m-migrospro-custom-product-teaser.tileview {
             row-gap: var(--content-spacing, 1.143rem);
         }
         m-migrospro-custom-product-teaser.fullsize, div.tileviewRow {
             grid-template-columns: 1fr;
             column-gap: var(--one-point-five-content-spacing);
             width: 100%;
+            margin: 0;
+        }
+        m-migrospro-custom-product-teaser.tileview {
+            margin-top: var(--one-point-five-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
+            margin-bottom: var(--one-point-five-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
         }
         hr.mobile {
             display: block;
             width: 100%;
-            margin: var(--content-spacing-mobile)
         }
     }
 </style>

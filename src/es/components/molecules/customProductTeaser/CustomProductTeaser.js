@@ -127,6 +127,9 @@ export default class MProCustomProductTeaser extends Teaser {
                 aspect-ratio: 9/10;
                 margin-bottom: var(--content-spacing, 1.143rem);
             }
+            :host div.teaserContent {
+              order: 2;
+            }
             :host h2.productName {
                 font-size: 2em;
                 height: auto;
