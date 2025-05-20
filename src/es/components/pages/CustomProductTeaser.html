@@ -1,0 +1,194 @@
+<style>
+    m-migrospro-custom-product-teaser.fullsize {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--content-spacing, 1.143rem);
+    }
+    div.tileviewRow {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: var(--one-point-five-content-spacing, calc(var(--content-spacing, 1.143rem) * 1.5));
+    }
+    hr.mobile {
+        display: none;
+    }
+    @media only screen and (max-width: 767px) {
+        div.tileviewRow {
+            margin-top: calc((var(--one-point-five-content-spacing) / 2) + var(--content-spacing-mobile));
+            margin-bottom: calc((var(--one-point-five-content-spacing) / 2) + var(--content-spacing-mobile));
+        }
+        m-migrospro-custom-product-teaser.fullsize, div.tileviewRow, m-migrospro-custom-product-teaser.tileview {
+            display: grid;
+            row-gap: var(--content-spacing, 1.143rem);
+        }
+        m-migrospro-custom-product-teaser.fullsize, div.tileviewRow {
+            grid-template-columns: 1fr;
+            column-gap: var(--one-point-five-content-spacing);
+            width: 100%;
+        }
+        hr.mobile {
+            display: block;
+            width: 100%;
+            margin: var(--content-spacing-mobile)
+        }
+    }
+</style>
+
+<h1>tileview/kachelview</h1>
+
+<div class="customProductTeaserContainer">
+    <div class='tileviewRow'>
+
+        <m-migrospro-custom-product-teaser class="tileview">
+            <div>
+                <img class="imageTileview"
+                    src="../../../../img/migrospro/category-sample1.jpg"
+                    alt="bild"></img>
+            </div>
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">Produkt</h2>
+                    <p class="articleNumber"><small>7613561</small></p>
+                    <p class="price">CHF 1.95</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionTileview">
+                        <p class="description descriptionTileview">Beschreibung</p>
+                        <span class="tooltip">Beschreibung</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+        </m-migrospro-custom-product-teaser>
+
+        <hr class="mobile" />
+
+        <m-migrospro-custom-product-teaser class="tileview">
+            <div>
+                <img class="imageTileview"
+                    src="../../../../img/products/bread.png"
+                    alt="bild"></img>
+            </div>
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">Produkt</h2>
+                    <p class="articleNumber"><small>7613561</small></p>
+                    <p class="price">CHF 1.95</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionTileview">
+                        <p class="description descriptionTileview">Beschreibung</p>
+                        <span class="tooltip">Beschreibung</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+        </m-migrospro-custom-product-teaser>
+
+        <hr class="mobile" />
+
+        <m-migrospro-custom-product-teaser class="tileview">
+            <div>
+                <img class="imageTileview"
+                    src="../../../../img/products/Tafelfond_A6_DRUCK.jpg"
+                    alt="bild"></img>
+            </div>
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">Produkt</h2>
+                    <p class="articleNumber"><small>7613561</small></p>
+                    <p class="price">CHF 1.95</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionTileview">
+                        <p class="description descriptionTileview">Beschreibung</p>
+                        <span class="tooltip">Beschreibung</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+        </m-migrospro-custom-product-teaser>
+
+    </div>
+
+    <hr />
+
+    <div class='tileviewRow'>
+
+        <m-migrospro-custom-product-teaser class="tileview">
+            <div>
+                <img class="imageTileview"
+                    src="../../../../img/products/bread.png"
+                    alt="bild"></img>
+            </div>
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">Produkt</h2>
+                    <p class="articleNumber"><small>7613561</small></p>
+                    <p class="price">CHF 1.95</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionTileview">
+                        <p class="description descriptionTileview">Beschreibung</p>
+                        <span class="tooltip">Beschreibung</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+        </m-migrospro-custom-product-teaser>
+
+    </div>
+</div>
+
+
+<h1>fullsize</h1>
+
+<div class="customProductTeaserContainer">
+    <div>
+        <m-migrospro-custom-product-teaser class="fullsize">
+            <div>
+                <img class="imageFullsize" src="../../../../img/products/Tafelfond_A6_DRUCK.jpg"
+                    alt="farbe"></img>
+            </div>
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">CustomProductName</h2>
+                    <p class="articleNumber"><small>574662651</small></p>
+                    <p class="price">CHF 5757</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionFullsize">
+                        <p class="description descriptionFullsize">Model.ProductInformation</p>
+                        <span class="tooltip">Model.ProductInformation</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+        </m-migrospro-custom-product-teaser>
+    </div>
+</div>
+
+<div class="customProductTeaserContainer">
+    <div>
+        <m-migrospro-custom-product-teaser class="fullsize">
+            <div class="teaserContent">
+                <div>
+                    <h2 class="productName">CustomProductName</h2>
+                    <p class="articleNumber"><small>574662651</small></p>
+                    <p class="price">CHF 5757</p>
+                </div>
+                <div class="bottomContent">
+                    <div class="description descriptionFullsize">
+                        <p class="description descriptionFullsize">Model.ProductInformation</p>
+                        <span class="tooltip">Model.ProductInformation</span>
+                    </div>
+                    <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
+                </div>
+            </div>
+            <div>
+                <img class="imageFullsize" src="../../../../img/migrospro/category-sample1.jpg"
+                    alt="bild"></img>
+            </div>
+        </m-migrospro-custom-product-teaser>
+    </div>
+</div>

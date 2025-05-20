@@ -78,6 +78,9 @@
   --button-secondary-width: 100%;
   --button-tertiary-color-custom: var(--m-black);
   --checkbox-selected-background-color: #ff5b03;
+  --custom-product-teaser-h2-line-height: 1.334em;
+  --custom-product-teaser-p-line-height: 1.5;
+  --double-content-spacing: calc(var(--content-spacing) * 2);
   --emotion-pictures-default-img-max-height: 50vh;
   --font-family-bold: HelveticaNowTextBold, HelveticaNowText, Helvetica, Arial, sans-serif;
   --font-family-secondary: var(--font-family-bold);
@@ -91,6 +94,8 @@
   --header-default-margin-custom: calc(var(--content-spacing) / 2) 0 var(--content-spacing) 0;
   --menu-color-custom: var(--m-black);
   --modal-default-div-position: absolute;
+  --one-point-five-content-spacing: calc(var(--content-spacing) * 1.5);
+  --p-font-size: 1em;
   --picture-store-logo-img-max-width: 5em;
   --placeholder-color: var(--m-gray-400);
   --product-item-last-border-bottom: 1px solid var(--m-gray-300);
