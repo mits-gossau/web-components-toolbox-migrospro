@@ -99,6 +99,7 @@
   --picture-store-logo-img-max-width: 5em;
   --placeholder-color: var(--m-gray-400);
   --product-item-last-border-bottom: 1px solid var(--m-gray-300);
+  --tooltip-text-font-size: var(--p-font-size, 1em);
   --table-odd-background-color: #ededed;
   --table-padding: 0.5em;
   --tag-filter-a-button-width-mobile-custom: 49%;
