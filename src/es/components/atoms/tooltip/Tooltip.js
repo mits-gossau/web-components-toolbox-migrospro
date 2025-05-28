@@ -130,11 +130,11 @@ export default class MProTooltip extends Tooltip {
   fetchTemplate () {
     const styles = [
       {
-        path: `${this.importMetaUrl}../../../../css/reset.css`, // no variables for this reason no namespace
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/css/reset.css`, // no variables for this reason no namespace
         namespace: false
       },
       {
-        path: `${this.importMetaUrl}../../../../css/style.css`, // apply namespace and fallback to allow overwriting on deeper level
+        path: `${this.importMetaUrl}../../web-components-toolbox/src/css/style.css`, // apply namespace and fallback to allow overwriting on deeper level
         namespaceFallback: true
       }
     ]
