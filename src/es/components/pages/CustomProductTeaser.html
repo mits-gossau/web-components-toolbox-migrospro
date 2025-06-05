@@ -57,7 +57,7 @@
 
         <m-migrospro-custom-product-teaser class="tileview">
             <div>
-                <a-picture namespace="picture-custom-product-teaser-" class="imageTileview" defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="bild"></a-picture>
+                <a-picture namespace="picture-custom-product-teaser-tileview-" defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="bild"></a-picture>
             </div>
             <div class="teaserContent">
                 <div>
@@ -96,7 +96,7 @@ Elaboré à Genève. </p>
 
         <m-migrospro-custom-product-teaser class="tileview">
             <div>
-                <img class="imageTileview" src="../../../../img/products/bread.png" alt="bild"></img>
+                <a-picture namespace="picture-custom-product-teaser-tileview-" defaultSource="../../../../img/products/bread.png" alt="bild"></a-picture>
             </div>
             <div class="teaserContent">
                 <div>
@@ -106,12 +106,12 @@ Elaboré à Genève. </p>
                 </div>
                 <div class="bottomContent">
                     <div class="description descriptionTileview">
-                        <a-tooltip text-align="center" width="20">
+                        <a-migrospro-tooltip namespace="mpro-tooltip-default-" text-align="center" width="20">
                             <div class="tooltip">
                                 <a-icon-mdx icon-name="Info" size="1em" rotate="0"></a-icon-mdx>
                                 <span class="tooltip-text tooltip-text-icon">Beschreibung</span>
                             </div>
-                        </a-tooltip>
+                        </a-migrospro-tooltip>
                         <p class="description descriptionTileview">Beschreibung</p>
                     </div>
                     <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
@@ -123,7 +123,7 @@ Elaboré à Genève. </p>
 
         <m-migrospro-custom-product-teaser class="tileview">
             <div>
-                <img class="imageTileview" src="../../../../img/products/Tafelfond_A6_DRUCK.jpg" alt="bild"></img>
+                <a-picture namespace="picture-custom-product-teaser-tileview-" defaultSource="../../../../img/products/Tafelfond_A6_DRUCK.jpg" alt="bild"></a-picture>
             </div>
             <div class="teaserContent">
                 <div>
@@ -133,12 +133,12 @@ Elaboré à Genève. </p>
                 </div>
                 <div class="bottomContent">
                     <div class="description descriptionTileview">
-                        <a-tooltip text-align="center" width="20">
+                        <a-migrospro-tooltip namespace="mpro-tooltip-default-" text-align="center" width="20">
                             <div class="tooltip">
                                 <a-icon-mdx icon-name="Info" size="1em" rotate="0"></a-icon-mdx>
                                 <span class="tooltip-text tooltip-text-icon">Beschreibung</span>
                             </div>
-                        </a-tooltip>
+                        </a-migrospro-tooltip>
                         <p class="description descriptionTileview">Beschreibung</p>
                     </div>
                     <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
@@ -154,7 +154,8 @@ Elaboré à Genève. </p>
 
         <m-migrospro-custom-product-teaser class="tileview">
             <div>
-                <img class="imageTileview" src="../../../../img/products/bread.png" alt="bild"></img>
+                <!-- <img class="imageTileview" src="../../../../img/products/bread.png" alt="bild"></img> -->
+                <a-picture namespace="picture-custom-product-teaser-tileview-" defaultSource="../../../../img/products/bread.png" alt="bild"></a-picture>
             </div>
             <div class="teaserContent">
                 <div>
@@ -164,12 +165,12 @@ Elaboré à Genève. </p>
                 </div>
                 <div class="bottomContent">
                     <div class="description descriptionTileview">
-                        <a-tooltip text-align="center" width="20">
+                        <a-migrospro-tooltip namespace="mpro-tooltip-default-" text-align="center" width="20">
                             <div class="tooltip">
                                 <a-icon-mdx icon-name="Info" size="1em" rotate="0"></a-icon-mdx>
                                 <span class="tooltip-text tooltip-text-icon">Beschreibung</span>
                             </div>
-                        </a-tooltip>
+                        </a-migrospro-tooltip>
                         <p class="description descriptionTileview">Beschreibung</p>
                     </div>
                     <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
@@ -187,7 +188,8 @@ Elaboré à Genève. </p>
     <div>
         <m-migrospro-custom-product-teaser class="fullsize">
             <div>
-                <img class="imageFullsize" src="../../../../img/products/Tafelfond_A6_DRUCK.jpg" alt="farbe"></img>
+                <!-- <img class="imageFullsize" src="../../../../img/products/Tafelfond_A6_DRUCK.jpg" alt="farbe"></img> -->
+                <a-picture namespace="picture-custom-product-teaser-fullsize-" defaultSource="../../../../img/products/Tafelfond_A6_DRUCK.jpg" alt="bild"></a-picture>
             </div>
             <div class="teaserContent">
                 <div>
@@ -197,12 +199,12 @@ Elaboré à Genève. </p>
                 </div>
                 <div class="bottomContent">
                     <div class="description descriptionFullsize">
-                        <a-tooltip text-align="center" width="20">
+                        <a-migrospro-tooltip namespace="mpro-tooltip-default-" text-align="center" width="20">
                             <div class="tooltip">
                                 <a-icon-mdx icon-name="Info" size="1em" rotate="0"></a-icon-mdx>
                                 <span class="tooltip-text tooltip-text-icon">Beschreibung</span>
                             </div>
-                        </a-tooltip>
+                        </a-migrospro-tooltip>
                         <p class="description descriptionFullsize">Beschreibung</p>
                     </div>
                     <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
@@ -223,19 +225,20 @@ Elaboré à Genève. </p>
                 </div>
                 <div class="bottomContent">
                     <div class="description descriptionFullsize">
-                        <a-tooltip width="20">
+                        <a-migrospro-tooltip namespace="mpro-tooltip-default-" text-align="center" width="20">
                             <div class="tooltip">
                                 <a-icon-mdx icon-name="Info" size="1em" rotate="0"></a-icon-mdx>
                                 <span class="tooltip-text tooltip-text-icon">Beschreibung</span>
                             </div>
-                        </a-tooltip>
+                        </a-migrospro-tooltip>
                         <p class="description descriptionFullsize">Beschreibung</p>
                     </div>
                     <a-button namespace="button-primary-">Zum Warenkorb hinzufügen</a-button>
                 </div>
             </div>
             <div>
-                <img class="imageFullsize" src="../../../../img/migrospro/category-sample1.jpg" alt="bild"></img>
+                <!-- <img class="imageFullsize" src="../../../../img/migrospro/category-sample1.jpg" alt="bild"></img> -->
+                <a-picture namespace="picture-custom-product-teaser-fullsize-" defaultSource="../../../../img/migrospro/category-sample1.jpg" alt="bild"></a-picture>
             </div>
         </m-migrospro-custom-product-teaser>
     </div>

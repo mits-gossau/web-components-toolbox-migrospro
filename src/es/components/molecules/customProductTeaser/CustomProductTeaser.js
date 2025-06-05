@@ -21,18 +21,6 @@ export default class MProCustomProductTeaser extends Teaser {
 
   renderCSS() {
     this.css = /* css */ `
-        :host img {
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-        }
-        :host img.imageFullsize {
-          aspect-ratio: 21/16;
-        }
-        :host img.imageTileview, :host a-picture.imageTileview {
-          aspect-ratio: 9/10;
-          margin-bottom: var(--content-spacing, 1.143rem);
-        }
         :host div.teaserContent {
           display: flex;
           flex-direction: column;
@@ -81,7 +69,7 @@ export default class MProCustomProductTeaser extends Teaser {
           margin-top: 1em;
           margin-bottom: 1em;
         }
-        :host a-tooltip {
+        :host a-migrospro-tooltip {
           margin-right: 5px;
         }
         :host p.description {
